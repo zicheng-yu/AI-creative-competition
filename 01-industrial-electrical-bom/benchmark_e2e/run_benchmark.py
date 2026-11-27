@@ -3,12 +3,14 @@
 from argparse import ArgumentParser
 from contextlib import contextmanager
 from contextvars import ContextVar
+from hashlib import sha256
 from importlib.metadata import PackageNotFoundError, version
+import json
 from pathlib import Path
 import platform
 import sys
 
-from .adapter import SCORING_FILES
+from .adapter import SCORING_FILES, predict
 from .baselines import LANES, asset_for, execute, originals
 from .error_analysis import aggregate, drawing_errors
 from .metrics import load_references, score, summarize
@@ -53,7 +55,8 @@ def _row(lane_id, sample, asset, prediction, ref):
             "degradation": (sample.get("degradation") or {}).get("type"),
             "format": asset.suffix[1:], "channel": prediction["channel"], "counts": dict(counts),
             "compliance_run": prediction["compliance"] is not None, "timing": prediction["timing"],
-            "warnings": prediction["warnings"]}, matched
+            "warnings": prediction["warnings"],
+            "raster_preprocessing": prediction.get("raster_preprocessing")}, matched
 
 
 def _supported(lane, sample):
@@ -97,7 +100,7 @@ def benchmark(samples, *, predictions_path=None, progress=None):
     unknown_vlm = vlm_rows.keys() - {ref.sample["id"] for ref in references}
     if unknown_vlm:
         raise ValueError(f"unexpected VLM drawing ids: {sorted(unknown_vlm)}")
-    rows, errors, compliance_errors = [], [], []
+    rows, errors, compliance_errors, raster_recovery = [], [], [], []
     for reference in references:
         data = reference.sample
         assets = originals(samples / data["subset"] / data["id"])
@@ -125,6 +128,14 @@ def benchmark(samples, *, predictions_path=None, progress=None):
             if lane.id == "full":
                 errors.append(drawing_errors(prediction, reference, matches))
             collect_compliance_error(compliance_errors, row, prediction, reference, matches)
+            preprocessing = row["raster_preprocessing"]
+            if lane.id == "png" and preprocessing and preprocessing["applied"]:
+                with offline_inference():
+                    raw = predict(asset, enhance=False)
+                raw_counts, _ = score(raw, reference)
+                raster_recovery.append({"drawing_id": row["drawing_id"], "degradation": row["degradation"],
+                                        "raw_counts": dict(raw_counts), "enhanced_counts": row["counts"],
+                                        "preprocessing": preprocessing})
         if data["id"] in vlm_rows:
             asset = assets["png"]
             prediction = to_prediction(vlm_rows[data["id"]], asset)
@@ -140,15 +151,21 @@ def benchmark(samples, *, predictions_path=None, progress=None):
              for lane in LANES}
     lanes["b3"] = _working_groups([r for r in rows if r["lane"] == "b3"]) | {"title": "B3 纯 VLM"}
     primary = lanes["full"]["main"]
-    thresholds = {"composite": .93, "bom_detail": .95, "bom_summary": .95, "latency_mean_s": 15.0}
+    thresholds = {"composite": .93, "composite_target": .955, "all_composite": .93,
+                  "bom_detail": .95, "bom_summary": .95, "latency_mean_s": 15.0}
+    compliance = primary["compliance"]
     gate = {"composite_pass": primary["composite"] >= thresholds["composite"],
+            "composite_target_pass": primary["composite"] >= thresholds["composite_target"],
+            "all_composite_pass": lanes["full"]["all"]["composite"] >= thresholds["all_composite"],
             "bom_detail_pass": primary["bom_detail"]["recall"] >= thresholds["bom_detail"],
             "bom_summary_pass": primary["bom_summary"]["recall"] >= thresholds["bom_summary"],
+            "core_compliance_pass": compliance["precision"] == compliance["recall"] == 1
+            and compliance["standard_red"] == 0,
             "latency_pass": primary["timing"]["total_s"]["mean"] <= thresholds["latency_mean_s"]}
     return {"schema_version": "1.0.0", "dataset": "ElectroBench-JS v1.0.0", "upstream_commits": UPSTREAM,
             "reference_chart_contract": {"pr": 7, "sha": "a89597614d6aefae3ce4b53b2ec90187ee2f1db5"},
             "environment": _runtime(), "thresholds": thresholds, "acceptance": gate,
-            "lanes": lanes, "per_drawing": rows,
+            "lanes": lanes, "per_drawing": rows, "raster_recovery": raster_recovery,
             "error_analysis": aggregate(errors) | {"compliance_cases_by_lane": compliance_errors},
             "vlm_baseline": {"status": vlm["status"], "drawings": len(vlm_rows),
                              "run": "python -m benchmark_e2e.vlm_baseline --out vlm_preds.json",
@@ -161,6 +178,8 @@ def stable_metrics(result):
 
     snapshot = deepcopy(result)
     snapshot.pop("environment", None)
+    snapshot.pop("repeatability", None)
+    snapshot.pop("ablation_comparison", None)
     snapshot["acceptance"].pop("latency_pass", None)
     for row in snapshot["per_drawing"]:
         row.pop("timing")
@@ -171,6 +190,11 @@ def stable_metrics(result):
     return snapshot
 
 
+def canonical_metrics_bytes(result):
+    return json.dumps(stable_metrics(result), sort_keys=True, ensure_ascii=False,
+                      allow_nan=False, separators=(",", ":")).encode("utf-8")
+
+
 def main():
     cli = ArgumentParser(description=__doc__)
     cli.add_argument("--samples", type=Path, default=TRACK / "samples")
@@ -179,19 +203,23 @@ def main():
     cli.add_argument("--vlm-predictions", type=Path)
     cli.add_argument("--verify-repeat", action="store_true", help="Run the full matrix twice and compare non-timing metrics.")
     options = cli.parse_args()
-    first = benchmark(options.samples, predictions_path=options.vlm_predictions, progress=lambda s: print(s, flush=True))
+    first = benchmark(options.samples, predictions_path=options.vlm_predictions,
+                      progress=lambda s: print(f"[1] {s}", flush=True))
     if options.verify_repeat:
-        second = benchmark(options.samples, predictions_path=options.vlm_predictions)
-        if stable_metrics(first) != stable_metrics(second):
+        second = benchmark(options.samples, predictions_path=options.vlm_predictions,
+                           progress=lambda s: print(f"[2] {s}", flush=True))
+        canonical = canonical_metrics_bytes(first)
+        if canonical != canonical_metrics_bytes(second):
             raise AssertionError("benchmark core metrics drifted across repeated runs")
-        first["repeatability"] = {"non_timing_metrics_identical": True, "runs": 2}
+        first["repeatability"] = {"non_timing_metrics_identical": True, "runs": 2,
+                                  "canonical_metrics_sha256": sha256(canonical).hexdigest()}
     from .reporting import export_results
 
     export_results(first, options.output, options.frontend)
     overall = first["lanes"]["full"]["main"]
     print(f"Full main ({overall['drawings']} drawings): composite={overall['composite']:.2%}, "
           f"BOM detail={overall['bom_detail']['recall']:.2%}, "
-          f"BOM model/spec summary={overall['bom_summary']['recall']:.2%}")
+          f"BOM visible-spec summary={overall['bom_summary']['recall']:.2%}")
 
 
 if __name__ == "__main__":

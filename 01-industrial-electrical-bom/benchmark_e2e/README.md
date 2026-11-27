@@ -14,7 +14,7 @@ python -m pytest -q tests_benchmark
 python -m pytest -q tests/test_symbol_parser.py tests/test_netlist.py tests_compliance/test_compliance.py
 ~~~
 
-在隔离无网环境，可把第一条替换成 `python -m pip install --no-index --find-links <本地wheel目录> -r benchmark_e2e/requirements.txt`。图表从已安装的 Microsoft YaHei、SimHei、Noto Sans CJK SC 或其他受支持中文字体中选择。系统无中文字体时图表用英文标签。Windows 实测本机使用 Microsoft YaHei。运行中写入的耗时反映当前机器，`--verify-repeat` 逐字段对比两轮非耗时指标。
+在隔离无网环境，可把第一条替换成 `python -m pip install --no-index --find-links <本地wheel目录> -r benchmark_e2e/requirements.txt`。图表从已安装的 Microsoft YaHei、SimHei、Noto Sans CJK SC 或其他受支持中文字体中选择。系统无中文字体时图表用英文标签。Windows 实测本机使用 Microsoft YaHei。耗时和耗时图反映当前机器，`--verify-repeat` 逐字节对比规范化后的非耗时 JSON，并记录 SHA-256。
 
 ## 样本与执行矩阵
 
@@ -32,14 +32,16 @@ python -m pytest -q tests/test_symbol_parser.py tests/test_netlist.py tests_comp
 
 Full 自动选中与强制通道配置一致的行会复用同一条实测轨迹。其余不同配置独立执行。纯 PDF 的符号与文字解析采用 PDF 原语和文字通道，导线重建采用原始 PDF 页的同分辨率渲染位图。三张退化图分别列出 blur、skew 和 alias 的纯 PNG 配对结果。常见别名还受 YOU-263 内置模板与 OCR 能力影响，去 KG 组保留该上游功能。
 
+PNG 低清增强由原图灰度统计触发，同尺寸临时 PNG 供 YOU-263 和 YOU-264 共用。启用时增加原始图与增强图的配对计分。B1 始终使用原始像素做纯 OCR。细长母排从未占用的邻近文本补绑材质和规格，缺少标注时保持空值。
+
 所有推理分支仅能看到一个原始图纸文件及公开符号、规范资料。样本名称与分组仅供驱动器挑选原始文件和汇总评分。真值读取集中在 `metrics.py`，验证冻结 manifest 的标注哈希后供评分使用。
 
 ## 指标
 
 - 综合解析加权为符号检测 F1 × 0.40、规格语义准确率 × 0.35、无向器件连接对 F1 × 0.25。
 - 符号在类别一致、IoU ≥ 0.5 时做最大基数一对一匹配，微平均。规格分母包含所有带规格的真值器件。分别报告原始 OCR/矢量文本精确值、输出规范化文本精确值和电气语义等效。拓扑同时给出无向及有向结果。预测边有未匹配端点时计入误报。
-- BOM 明细要求类别与数量正确，并且位号正确或已匹配实例的可见规格语义等效。严格汇总同时检查采购型号、规格、单位与合计数量，另列规格与数量诊断口径。原图缺失的采购型号留空。两种主口径各自报告 Recall/完整率与 Precision。
-- 核心红灯以规则 ID 和映射后的实例集合匹配。标准图同时统计全部规则的红灯。空分母使用 JSON null，停用规则的消融结果留空。适配层的 `preview_fix(prediction, finding)` 支持语义补丁后复检。
+- BOM 明细要求类别与数量正确，并且位号或定位匹配。真值规格非空时还需语义等效。主汇总 `bom_summary` 按采购类别、规格语义、单位与合计数量匹配。采购目录号额外通过 `bom_model_summary` 诊断。两种主口径各自报告 Recall/完整率与 Precision。
+- 核心红灯以规则 ID 和映射后的实例集合匹配。标准图同时统计全部规则的红灯。模块结果字段 `compliance` 在关掉合规时为空，端到端覆盖 `pipeline_core_defect_recall` 按真实发出告警计算。适配层的 `preview_fix(prediction, finding)` 支持语义补丁后复检。
 - 阶段耗时从已隔离好原始文件后开始，记录解析、拓扑/BOM、合规及总计。总耗时报告均值、P50 和 P95。
 
 ## B3 真实 VLM

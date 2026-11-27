@@ -2,14 +2,15 @@
 
 from contextlib import contextmanager
 from copy import deepcopy
-from math import dist
+from math import dist, hypot
 from pathlib import Path
 import re
 import shutil
 from tempfile import TemporaryDirectory
 from time import perf_counter
 
-from PIL import Image
+import numpy as np
+from PIL import Image, ImageFilter
 import pymupdf
 
 from compliance.engine import evaluate
@@ -27,6 +28,12 @@ SCORING_FILES = {"annotations.json", "bom.csv", "bom_summary.csv", "manifest.jso
 CONTROL = frozenset({"KA_COIL", "KA_NO", "KA_NC", "KM_COIL", "KM_NO", "KM_NC",
                      "KT_COIL", "KT_NO", "FR_NC", "TC", "HL", "HA", "SB_NO", "SB_NC",
                      "SA", "SQ", "XT", "YC", "YO"})
+BUS_SPEC = re.compile(
+    r"(?:(?:TMY|LMY)(?:\s*[-–]?\s*\d+(?:\.\d+)?\s*[×xX*]\s*\d+(?:\.\d+)?)?"
+    r"|(?:铜排|铝排)\s*\d+(?:\.\d+)?\s*[×xX*]\s*\d+(?:\.\d+)?"
+    r"|\d+(?:\.\d+)?\s*[×xX*]\s*\d+(?:\.\d+)?\s*(?:mm)?\s*(?:铜排|铝排))",
+    re.IGNORECASE,
+)
 
 
 @contextmanager
@@ -51,6 +58,68 @@ def source_only(path):
 def _mid(bbox):
     x, y, w, h = bbox
     return x + w / 2, y + h / 2
+
+
+def prepare_raster(asset):
+    """Enhance pale PNG ink without translating, rotating or resizing the sheet."""
+    if asset.suffix.lower() != ".png":
+        return asset, None
+    with Image.open(asset) as source:
+        rgba = source.convert("RGBA")
+        background = Image.new("RGBA", rgba.size, "white")
+        background.alpha_composite(rgba)
+        gray_image = background.convert("L")
+    gray = np.asarray(gray_image)
+    minimum = int(gray.min())
+    dark_tail, low, high = (float(v) for v in np.percentile(gray, [0.1, 1, 99]))
+    low_ink = minimum >= 25 or (low >= 100 and dark_tail >= 30)
+    info = {"applied": False, "min_gray": minimum, "p01_gray": low}
+    if not low_ink or high - low < 12:
+        return asset, info
+    # Recover edges before clipping so adjacent glyph strokes retain their
+    # separation. A low ink percentile avoids thickening a whole text line.
+    sharp = gray_image.filter(ImageFilter.UnsharpMask(radius=1.6, percent=220, threshold=1))
+    clip_low, clip_high = (float(v) for v in np.percentile(np.asarray(sharp), [0.1, 99]))
+    if clip_high <= clip_low:
+        clip_low, clip_high = dark_tail, high
+    stretch = np.clip((np.arange(256, dtype=float) - clip_low) * 255 / (clip_high - clip_low), 0, 255)
+    restored = sharp.point(np.rint(stretch).astype(int).tolist())
+    enhanced = asset.with_name("enhanced.png")
+    restored.save(enhanced)
+    return enhanced, info | {"applied": True, "clip_low_gray": clip_low, "clip_high_gray": clip_high}
+
+
+def _point_to_box(point, bbox):
+    px, py = point
+    x, y, w, h = bbox
+    return hypot(max(x-px, px-x-w, 0), max(y-py, py-y-h, 0))
+
+
+def _bind_bus_specs(sheet):
+    """Associate visible bus material labels with the nearest unfilled bus."""
+    used = {tuple(mark["bbox_top_left"]) for item in sheet["symbols"]
+            for mark in item.get("evidence", {}).values() if "bbox_top_left" in mark}
+    scale = sheet["coordinate_space"].get("stencil_pixels_per_mm") or 1
+    candidates = []
+    for bus in sheet["symbols"]:
+        if bus["class_code"] != "WB" or bus["specs"].get("spec"):
+            continue
+        bbox = bus["bbox_top_left"]
+        if bbox[2] < 5 * bbox[3]:
+            continue
+        for mark in sheet["source_text"]:
+            box = tuple(mark["bbox_top_left"])
+            if box in used or not BUS_SPEC.fullmatch(mark["text"].strip()):
+                continue
+            distance = _point_to_box(_mid(box), bbox)
+            if distance <= 15 * scale:
+                candidates.append((distance, bus["id"], box, bus, mark))
+    for _, _, box, bus, mark in sorted(candidates, key=lambda candidate: candidate[:3]):
+        if box in used or bus["specs"].get("spec"):
+            continue
+        bus["specs"].update(parse_specs(mark["text"], bus["specs"].get("model", "")))
+        bus.setdefault("evidence", {})["spec"] = {"raw_text": mark["text"], "bbox_top_left": list(box)}
+        used.add(box)
 
 
 def _repair_voltage_tag(sheet):
@@ -82,6 +151,7 @@ def _repair_voltage_tag(sheet):
 
 def _observations(sheet, kg):
     _repair_voltage_tag(sheet)
+    _bind_bus_specs(sheet)
     for item in sheet["symbols"]:
         raw = item.get("evidence", {})
         item["raw_spec"] = raw.get("spec", {}).get("raw_text", item["specs"].get("spec", ""))
@@ -289,10 +359,11 @@ def reconstruct_sheet(path, sheet):
     return graph
 
 
-def predict(path, *, topology=reconstruct_sheet, kg=True, parser=parse_drawing):
+def predict(path, *, topology=reconstruct_sheet, kg=True, parser=parse_drawing, enhance=True):
     """Run one registered lane and time each actual phase."""
     with source_only(path) as asset:
         started = perf_counter()
+        asset, preprocessing = prepare_raster(asset) if enhance else (asset, None)
         payload = parser(asset)
         if len(payload["sheets"]) != 1:
             raise ValueError("the frozen benchmark expects a single sheet")
@@ -311,6 +382,7 @@ def predict(path, *, topology=reconstruct_sheet, kg=True, parser=parse_drawing):
     return {"channel": sheet["channel"], "coordinate_space": sheet["coordinate_space"],
             "symbols": sheet["symbols"], "graph": graph, "bom": bom, "compliance": compliance,
             "annotation": adapted, "warnings": sheet.get("warnings", []),
+            "raster_preprocessing": preprocessing,
             "timing": {"parse_s": parsed-started, "topology_s": connected-parsed,
                        "compliance_s": finished-connected if kg else 0.0,
                        "total_s": finished-started}}

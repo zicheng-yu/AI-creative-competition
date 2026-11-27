@@ -131,6 +131,6 @@ def ocr_template(path):
 
 def execute(path, lane):
     if lane.topology == "none":
-        return predict(path, topology=_empty_graph, kg=False, parser=ocr_template)
+        return predict(path, topology=_empty_graph, kg=False, parser=ocr_template, enhance=False)
     topology = _nearest_graph if lane.topology == "nearest" else reconstruct_sheet
     return predict(path, topology=topology, kg=lane.kg)

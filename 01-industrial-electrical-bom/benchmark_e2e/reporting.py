@@ -7,7 +7,7 @@ from .charts import METRICS, VARIANTS, eligible, metric, render_charts
 from .metrics import summarize
 
 WORKBENCH_FIELDS = ("chart_id","kind","title","unit","category","series","value","maximum")
-METRIC_NAMES = ("综合解析","符号 F1","规格语义","无向边 F1","BOM 明细","BOM 型号规格汇总")
+METRIC_NAMES = ("综合解析","符号 F1","规格语义","无向边 F1","BOM 明细（规格必对）","BOM 汇总（图纸可见）")
 FORMATS = ("full","dxf","png","pdf","b1","b2","b3","no_topology","no_kg")
 
 
@@ -34,7 +34,8 @@ def _outcomes(group):
     return {name: metric(group,name) for name in METRICS} | {
         "spec_raw_exact": group["spec_raw_exact"], "spec_emitted_exact": group["spec_emitted_exact"],
         "directed_edge": group["directed_edge"]["f1"], "tag_exact": group["tag_exact"],
-        "bom_spec_summary": group["bom_spec_summary"]["recall"],
+        "bom_model_summary": group["bom_model_summary"]["recall"],
+        "pipeline_core_defect_recall": group["pipeline_core_defect_recall"],
         "bom_detail_precision": group["bom_detail"]["precision"],
         "bom_summary_precision": group["bom_summary"]["precision"],
         "compliance_precision": group["compliance"]["precision"] if group["compliance"] else None,
@@ -47,6 +48,7 @@ def drawing_table(result):
     keys = ("symbol_tp","symbol_fp","symbol_fn","spec_expected","spec_raw_correct","spec_semantic_correct",
             "edge_tp","edge_fp","edge_fn","directed_edge_tp","directed_edge_fp","directed_edge_fn",
             "bom_detail_tp","bom_detail_fp","bom_detail_fn","bom_summary_tp","bom_summary_fp","bom_summary_fn",
+            "bom_model_summary_tp","bom_model_summary_fp","bom_model_summary_fn","core_defects_expected",
             "compliance_tp","compliance_fp","compliance_fn","standard_red","extra_red")
     for row in result["per_drawing"]:
         group = summarize([row])
@@ -54,6 +56,7 @@ def drawing_table(result):
                     not (key.startswith("compliance_") or key in {"standard_red","extra_red"}))
                     else None for key in keys}
         rows.append({key: row[key] for key in ("lane","drawing_id","subset","degradation","format","channel")} |
+                    {"raster_enhanced": (row.get("raster_preprocessing") or {}).get("applied")} |
                     _outcomes(group) |
                     (row["timing"] or dict.fromkeys(("parse_s","topology_s","compliance_s","total_s"))) | outcomes)
     return rows
@@ -61,12 +64,17 @@ def drawing_table(result):
 
 def ablations(result):
     contrasts = []
-    configs = [("full",variant,"main") for variant in VARIANTS] + [("png","degraded_no_kg","degraded")]
-    for base_id, lane_id, subset in configs:
-        base = result["lanes"][base_id][subset]
-        current = result["lanes"][lane_id][subset]
+    configs = [(variant, "full_main", result["lanes"]["full"]["main"], result["lanes"][variant]["main"])
+               for variant in VARIANTS]
+    configs.append(("degraded_no_kg", "png_degraded", result["lanes"]["png"]["degraded"],
+                    result["lanes"]["degraded_no_kg"]["degraded"]))
+    alias = {lane: summarize([r for r in result["per_drawing"] if r["lane"] == lane
+                              and r["degradation"] == "alias"]) for lane in ("png", "degraded_no_kg")}
+    if all(alias.values()):
+        configs.append(("alias_no_kg", "png_alias", alias["png"], alias["degraded_no_kg"]))
+    for lane_id, comparison, base, current in configs:
         expected, observed = _outcomes(base), _outcomes(current)
-        row = {"lane": lane_id, "comparison": f"{base_id}_{subset}", "drawings": current["drawings"],
+        row = {"lane": lane_id, "comparison": comparison, "drawings": current["drawings"],
                "compliance_enabled": current["compliance"] is not None}
         row.update({f"delta_{k}": expected[k]-observed[k] if None not in (expected[k],observed[k]) else None
                     for k in expected})
@@ -107,13 +115,13 @@ def _summary_rows(result):
         group = lane["main"]
         if group is None:
             if lane_id == "b3":
-                yield _line([lane["title"], 0, *(["—"]*10)])
+                yield _line([lane["title"], 0, *(["—"]*9)])
             continue
         timing = group["timing"]
         yield _line([lane["title"],group["drawings"],pct(group["composite"]),pct(group["symbol"]["f1"]),
                      pct(group["spec_raw_exact"]),pct(group["spec_semantic"]),pct(group["edge"]["f1"]),
                      pct(group["directed_edge"]["f1"]),pct(group["bom_detail"]["recall"]),
-                     pct(group["bom_summary"]["recall"]),pct(group["bom_spec_summary"]["recall"]),
+                     pct(group["bom_summary"]["recall"]),
                      sec(timing["total_s"]["mean"] if timing else None)])
 
 
@@ -128,24 +136,28 @@ def markdown_report(result):
     md = [
         "# ElectroBench-JS v1.0.0 端到端离线评测", "",
         f"完整系统在 11 张主验收图上的综合解析为 **{pct(full['composite'])}**，"
-        f"采购锚点明细完整率为 **{pct(full['bom_detail']['recall'])}**，"
-        f"型号与规格汇总完整率为 **{pct(full['bom_summary']['recall'])}**，"
+        f"严格采购明细完整率为 **{pct(full['bom_detail']['recall'])}**，"
+        f"图纸可见字段汇总完整率为 **{pct(full['bom_summary']['recall'])}**，"
         f"平均耗时为 **{sec(full['timing']['total_s']['mean'])} 秒/张**。", "",
-        f"- 93% 综合门槛{gate(status['composite_pass'])}，95% 明细门槛{gate(status['bom_detail_pass'])}，"
-        f"95% 型号规格汇总门槛{gate(status['bom_summary_pass'])}，15 秒耗时目标{gate(status['latency_pass'])}。",
+        f"- 93% 综合门槛{gate(status['composite_pass'])}，95.5% 主集综合目标{gate(status['composite_target_pass'])}，"
+        f"95% 严格明细门槛{gate(status['bom_detail_pass'])}，95% 可见字段汇总门槛{gate(status['bom_summary_pass'])}，"
+        f"15 秒耗时目标{gate(status['latency_pass'])}。",
         f"- 明细 Precision {pct(full['bom_detail']['precision'])}，汇总 Precision {pct(full['bom_summary']['precision'])}。"
-        f"按规格与数量汇总（忽略型号）的诊断完整率为 {pct(full['bom_spec_summary']['recall'])}。",
+        f"含采购目录号的扩展诊断完整率为 {pct(full['bom_model_summary']['recall'])}。原图缺少的目录号需由 ERP 或选型目录补充。",
         f"- 四类合规红灯 Precision **{pct(control['precision'])}**，Recall **{pct(control['recall'])}**，"
         f"{control['tp']} TP、{control['fp']} FP、{control['fn']} FN。7 张标准图全部规则的红灯误报 "
-        f"**{control['standard_red']}**。", "",
+        f"**{control['standard_red']}**。",
+        f"- Full 14 张全集综合 **{pct(result['lanes']['full']['all']['composite'])}**，"
+        f"93% 全集目标{gate(status['all_composite_pass'])}。", "",
         "## 主验收集与通道对比", "",
-        "| 组别 | 图数 | 综合 | 符号 F1 | 规格原始精确 | 规格语义 | 无向边 F1 | 有向边 F1 | BOM 明细 | BOM 型号规格汇总 | BOM 规格汇总诊断 | 均值秒 |",
-        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+        "| 组别 | 图数 | 综合 | 符号 F1 | 规格原始精确 | 规格语义 | 无向边 F1 | 有向边 F1 | BOM 严格明细 | BOM 可见字段汇总 | 均值秒 |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
         *_summary_rows(result),"",
         "主验收集包含 4 张一次、3 张二次、4 张缺陷图。Full 在主集自动选 DXF，全集还含光栅退化输入。"
-        "纯 PDF 先走 PDF 页的文字和原语解析，再从同一页的渲染图追踪导线。", "",
+        "纯 PDF 先走 PDF 页的文字和原语解析，再从同一页的渲染图追踪导线。",
+        "B1 仅从原始 PNG 做 OCR 和文本规格抽取。其文字框无法替代器件定位，明细仍逐条核对真值规格。", "",
         "## 分层与退化对照", "",
-        "| 组别 | 图数 | 综合 | 符号 F1 | 规格语义 | 输出规格精确 | 拓扑 F1 | BOM 明细 | 型号规格汇总 |",
+        "| 组别 | 图数 | 综合 | 符号 F1 | 规格语义 | 输出规格精确 | 拓扑 F1 | BOM 严格明细 | BOM 可见字段汇总 |",
         "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
     for lane_id, group in (("full","primary"),("full","secondary"),("full","defect"),("full","degraded"),
@@ -162,14 +174,28 @@ def markdown_report(result):
             md.append(_line([f"{r['drawing_id']}（{r['degradation']}）",r["lane"],pct(v["composite"]),
                              pct(v["spec_raw_exact"]),pct(v["spec_emitted_exact"]),
                              pct(v["spec_semantic"]),pct(v["bom_detail"]["recall"])]))
+    main_png = [r for r in result["per_drawing"] if r["lane"] == "png" and r["subset"] != "degraded"]
+    triggered = sum(bool((r["raster_preprocessing"] or {}).get("applied")) for r in main_png)
+    md.extend(["","### 低清 PNG 前后对照","",
+               f"主验收 PNG 中 {triggered}/{len(main_png)} 张触发增强。两路解析共用增强后的同尺寸像素网格。",
+               "", "| 图纸 | 模式 | 符号 F1 | 规格语义 | BOM 严格明细 | 无向边 F1 | 综合 |",
+               "| --- | --- | ---: | ---: | ---: | ---: | ---: |"])
+    for sample in result["raster_recovery"]:
+        for kind, label in (("raw","原始输入"),("enhanced","增强输入")):
+            group = summarize([{"counts":sample[kind+"_counts"],"timing":None,"compliance_run":True}])
+            md.append(_line([sample["drawing_id"],label,pct(group["symbol"]["f1"]),
+                             pct(group["spec_semantic"]),pct(group["bom_detail"]["recall"]),
+                             pct(group["edge"]["f1"]),pct(group["composite"])]))
     md.extend(["","## 消融贡献","",
-               "各列为完整模式减对应消融组。退化去 KG 行使用同一组 3 张原始 PNG。"
+               "各列为完整模式减对应消融组。退化去 KG 行使用同一组 3 张原始 PNG，简写行仅比较 alias 图。"
                "YOU-263 自身会解析常见别名，关闭 KG 时保留其内置解析能力，并以可获取的 OCR 原文输出位号与规格。",
-               "", "| 消融 | 图数 | 综合百分点 | 拓扑 F1 百分点 | BOM 明细百分点 | 输出规格精确百分点 | 均值秒差 |",
-               "| --- | ---: | ---: | ---: | ---: | ---: | ---: |"])
+               "端到端红灯 Recall 衡量管线实际发出的告警。A3 关闭合规模块，因此没有发出告警，模块自身 Precision/Recall 仍留空。",
+               "", "| 消融 | 图数 | 综合 pp | 拓扑 F1 pp | BOM 明细 pp | BOM 汇总 pp | 输出规格精确 pp | 红灯 Recall pp | 均值秒差 |",
+               "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |"])
     for row in ablations(result):
         deltas = [f"{100*row['delta_'+name]:+.2f}" if row["delta_"+name] is not None else "—"
-                  for name in ("composite","edge","bom_detail","spec_emitted_exact")]
+                  for name in ("composite","edge","bom_detail","bom_summary","spec_emitted_exact",
+                               "pipeline_core_defect_recall")]
         md.append(_line([row["lane"],row["drawings"],*deltas,f"{row['delta_mean_time_s']:+.3f}"]))
     md.extend(["","## 合规与耗时","",
                "| Full 主集红灯 | TP | FP | FN | Precision | Recall |",
@@ -205,9 +231,10 @@ def markdown_report(result):
     md.extend(["","## 评分与复现边界","",
                "- 推理暂存目录只有原始图纸，评分器验证 manifest 记录的标注 SHA-256 后读取标签。"
                "综合指标分母包含漏检器件，所有通道共用同一评分器。",
-               "- 明细项要求类别与数量一致，并匹配位号或已定位实例的语义规格。"
-               "严格汇总同时匹配型号、规格、单位及总数量。多种冻结目录型号只存在于采购真值，原始图纸中缺少对应采购型号。"
-               "原图有证据的规格汇总作为单独诊断口径。",
+               "- 明细项要求类别与数量一致，且位号或定位匹配。真值有规格时，语义规格也必须一致。"
+               "主汇总按采购类别、规格语义、单位及总数量匹配。目录号诊断另存为 bom_model_summary。",
+               "- 母排规格只从邻近的可见文本补绑。主集 7 张带母排的 DXF 正文没有 TMY 或 LMY 标注，"
+               "对应规格保留空值并计入遗漏。",
                "- B1 的框是 OCR 文字框，B2 和 A2 的边使用邻近端口，A3 关闭合规引擎。"
                "四类缺陷用规则 ID 和映射后的实例 ID 匹配，额外规则红灯单列。",
                "- Cu/Al 查表按 YOU-265 的项目筛查配置。载流量条件可由已观察到的 In > Iz 单独证伪。"
@@ -216,7 +243,8 @@ def markdown_report(result):
                f"- B3 状态为 {result['vlm_baseline']['status']}。配置环境后先运行以下第一条命令生成预测，再运行第二条重评。","",
                "~~~bash",result["vlm_baseline"]["run"],result["vlm_baseline"]["rescore"],"~~~",""])
     if result.get("repeatability"):
-        md += ["两次完整运行的非耗时指标逐字段一致。",""]
+        md += ["两次完整运行的非耗时评测载荷规范化为 UTF-8 JSON 后逐字节一致。"
+               f"SHA-256 为 {result['repeatability']['canonical_metrics_sha256']}。",""]
     md += ["## 上游代码",""]
     md.extend(f"- PR #{n} · {sha}" for n,sha in result["upstream_commits"].items())
     return "\n".join(md) + "\n"
@@ -234,7 +262,8 @@ def export_results(result, output, frontend):
     (output/"eval_report.md").write_text(markdown_report(result),encoding="utf-8")
     render_charts(result,output/"figures")
     dashboard = {k: result[k] for k in ("schema_version","dataset","upstream_commits","thresholds",
-                                        "acceptance","vlm_baseline","ablation_comparison","error_analysis")}
+                                        "acceptance","vlm_baseline","ablation_comparison","error_analysis",
+                                        "raster_recovery")}
     dashboard["lanes"] = result["lanes"]
     dashboard["per_drawing"] = per
     _json(frontend/"eval_dashboard.json",dashboard)

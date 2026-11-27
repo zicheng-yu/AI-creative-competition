@@ -21,6 +21,10 @@ from symbol_parser.raster import intersection_over_union
 CORE = {"selectivity_inversion", "ampacity_insufficient", "motor_protection_missing", "interlock_missing"}
 SPLITS = {"primary": 4, "secondary": 3, "defect": 4, "degraded": 3}
 RATINGS = {"In_A", "Ie_A", "Ir_A", "icu_kA", "icn_kA", "kW", "section_mm2", "ratio", "poles", "frame_A"}
+QF_SPEC = re.compile(
+    r"(?:塑壳断路器)?(?:IN=)?\d+(?:\.\d+)?A(?:/\d+(?:\.\d+)?A)?(?:[1-4]P(?:\+N)?)?(?:ICU=\d+(?:\.\d+)?KA)?"
+)
+FU_SPEC = re.compile(r"(?:IN=)?\d+(?:\.\d+)?A")
 
 
 @dataclass(frozen=True)
@@ -109,6 +113,11 @@ def _signature(code, raw, values=None):
     return {key: val for key, val in specs.items() if key in RATINGS and val is not None}
 
 
+def _rated_spec(code, text):
+    pattern = {"QF": QF_SPEC, "FU": FU_SPEC}.get(code)
+    return _signature(code, text) if pattern and pattern.fullmatch(format_spec(text).upper()) else {}
+
+
 def spec_semantic(code, expected, observed, values=None):
     if not expected:
         return False
@@ -116,17 +125,11 @@ def spec_semantic(code, expected, observed, values=None):
         return True
     # Ratings separated from the label count when the reference label is
     # fully represented by supported electrical fields.
+    want = _rated_spec(code, expected)
+    if not want:
+        return False
     actual = _signature(code, observed, values)
-    want = _signature(code, expected)
-    folded = format_spec(expected).upper()
-    if code == "QF" and re.fullmatch(
-        r"(?:塑壳断路器)?(?:IN=)?\d+(?:\.\d+)?A(?:/\d+(?:\.\d+)?A)?(?:[1-4]P(?:\+N)?)?(?:ICU=\d+(?:\.\d+)?KA)?",
-        folded,
-    ):
-        return bool(want) and all(actual.get(key) == val for key, val in want.items())
-    if code == "FU" and re.fullmatch(r"(?:IN=)?\d+(?:\.\d+)?A", folded):
-        return bool(want) and all(actual.get(key) == val for key, val in want.items())
-    return False
+    return all(actual.get(key) == val for key, val in want.items())
 
 
 def _edge_pairs(rows, mapping=None, *, directed=False):
@@ -168,7 +171,7 @@ def _bom_detail(actual, expected, mapping):
             position = any(mapping.get(a["instance_id"]) == wanted["instance_id"] for a in seen["anchors"])
             comparable = not wanted["spec"] or spec_semantic(wanted["class_code"], wanted["spec"],
                                                              seen["spec"], seen.get("ratings"))
-            if tag or position and comparable:
+            if (tag or position) and comparable:
                 matrix[i, j] = 1 + 0.01 * position + 0.001 * bool(tag)
     return len(_assign(matrix))
 
@@ -179,7 +182,10 @@ def _summarized(rows, *, by_model):
         symbol = BY_CODE.get(row.get("class_code"))
         family = row.get("bom_letter") or (symbol.bom_letter if symbol else "")
         model = str(row.get("model") or "").strip().casefold() if by_model else ""
-        key = (family, model, format_spec(row.get("spec")), row.get("unit") or "")
+        spec = row.get("spec") or ""
+        ratings = _rated_spec(family, spec)
+        spec_key = tuple(sorted(ratings.items())) if ratings else format_spec(spec)
+        key = (family, model, spec_key, row.get("unit") or "")
         groups[key] += int(row["qty"])
     return Counter((key, qty) for key, qty in groups.items())
 
@@ -219,10 +225,11 @@ def score(prediction, reference):
     actual_bom = prediction["bom"]["items"]
     hit = _bom_detail(actual_bom, reference.detail, mapping)
     counts.update(bom_detail_tp=hit, bom_detail_fp=len(actual_bom)-hit, bom_detail_fn=len(reference.detail)-hit)
-    for by_model, name in ((True, "bom_summary"), (False, "bom_spec_summary")):
+    for by_model, name in ((False, "bom_summary"), (True, "bom_model_summary")):
         _table_counts(counts, name, _summarized(prediction["bom"]["summary"], by_model=by_model),
                       _summarized(reference.summary, by_model=by_model))
     red = prediction["compliance"]
+    counts["core_defects_expected"] = sum(_findings(truth["defects"]).values())
     if red is not None:
         actual_findings = _findings(red["findings"], mapping)
         expected_findings = _findings(truth["defects"])
@@ -272,7 +279,8 @@ def summarize(rows):
             "spec_emitted_exact": _divide(counts["spec_emitted_correct"], counts["spec_expected"]),
             "tag_exact": _divide(counts["tag_correct"], counts["tags_expected"]),
             "bom_detail": _prf(counts, "bom_detail"), "bom_summary": _prf(counts, "bom_summary"),
-            "bom_spec_summary": _prf(counts, "bom_spec_summary"), "compliance": compliance,
+            "bom_model_summary": _prf(counts, "bom_model_summary"), "compliance": compliance,
+            "pipeline_core_defect_recall": _divide(counts["compliance_tp"], counts["core_defects_expected"]),
             "timing": timing, "counts": dict(counts)}
 
 

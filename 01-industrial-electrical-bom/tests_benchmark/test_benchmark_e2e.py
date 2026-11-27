@@ -1,15 +1,17 @@
 import csv
+from hashlib import sha256
 import json
 from pathlib import Path
 
 from PIL import Image
 import pytest
 
-from benchmark_e2e.adapter import predict, preview_fix, source_only
+from benchmark_e2e.adapter import _bind_bus_specs, predict, prepare_raster, preview_fix, source_only
 from benchmark_e2e.baselines import LANES, execute, originals
+from benchmark_e2e.charts import METRICS, metric
 from benchmark_e2e.metrics import _bom_detail, _summarized, composite_accuracy, load_references, score, spec_semantic, summarize
-from benchmark_e2e.reporting import WORKBENCH_FIELDS
-from benchmark_e2e.run_benchmark import offline_inference, stable_metrics
+from benchmark_e2e.reporting import METRIC_NAMES, WORKBENCH_FIELDS
+from benchmark_e2e.run_benchmark import canonical_metrics_bytes, offline_inference
 from benchmark_e2e.vlm_baseline import OpenAICompatibleVision, PENDING, load_predictions, to_prediction
 from compliance.engine import evaluate
 
@@ -38,6 +40,11 @@ def test_formula_and_zero_denominators():
     assert summary["symbol"]["f1"] == summary["edge"]["f1"] == summary["composite"] == 0
     assert summary["symbol"]["precision"] is None
     assert summary["compliance"] is None
+    assert summary["pipeline_core_defect_recall"] is None
+    no_rules = summarize([{"counts": {"core_defects_expected": 5},
+                           "timing": None, "compliance_run": False}])
+    assert no_rules["pipeline_core_defect_recall"] == 0
+    assert no_rules["compliance"] is None
 
 
 def test_bom_two_metrics_are_independent_of_hidden_part_number():
@@ -48,6 +55,14 @@ def test_bom_two_metrics_are_independent_of_hidden_part_number():
     assert _summarized([visible],by_model=True) != _summarized([reference],by_model=True)
     assert _summarized([visible],by_model=False) == _summarized([reference],by_model=False)
     assert _summarized([visible,visible],by_model=False) != _summarized([reference],by_model=False)
+    mismatch = visible | {"spec": "In=63A 3P"}
+    absent = visible | {"spec": ""}
+    assert _bom_detail([mismatch,absent],[reference],{"prediction":"true-id"}) == 0
+    assert _bom_detail([visible | {"tag":"?"}],[reference],{"prediction":"true-id"}) == 1
+    assert _bom_detail([visible | {"tag":"?"}],[reference],{}) == 0
+    assert _bom_detail([visible | {"qty":2}],[reference],{"prediction":"true-id"}) == 0
+    equivalent = visible | {"spec":"80A 3极"}
+    assert _summarized([equivalent],by_model=False) == _summarized([reference],by_model=False)
 
 
 def test_spec_equivalence_preserves_required_ratings():
@@ -91,6 +106,56 @@ def test_no_truth_files_or_network_inside_inference(refs, tmp_path):
     with pytest.raises(ValueError,match="format"):
         with source_only(fake):
             pass
+
+
+def test_bus_spec_uses_near_edge_and_visible_unclaimed_text():
+    def bus(node, y):
+        return {"id": node, "class_code": "WB", "specs": {}, "bbox_top_left": [0,y,100,2]}
+
+    first, second, absent = bus("one",25), bus("two",80), bus("three",150)
+    taken = {"text":"LMY", "bbox_top_left":[4,75,12,2]}
+    distant = {"text":"TMY","bbox_top_left":[3,177,12,2]}
+    nearby = {"text":"TMY 80×8","bbox_top_left":[4,23,12,2]}
+    other = {"id":"p","class_code":"QF","specs":{},"evidence":{"spec":taken}}
+    sheet = {"symbols":[first,second,absent,other], "source_text":[nearby,taken,distant],
+             "coordinate_space":{}}
+    _bind_bus_specs(sheet)
+    assert first["specs"]["spec"] == "TMY 80×8"
+    assert first["evidence"]["spec"]["bbox_top_left"] == nearby["bbox_top_left"]
+    assert second["specs"] == absent["specs"] == {}
+
+
+def test_raster_enhancement_is_path_independent_and_shared(refs, tmp_path):
+    blur = next(r for r in refs if (r.sample.get("degradation") or {}).get("type") == "blur")
+    original = asset(blur, "png")
+    signature = sha256(original.read_bytes()).hexdigest()
+    renamed = tmp_path / "neutral.png"
+    renamed.write_bytes(original.read_bytes())
+    with Image.open(original) as image:
+        size = image.size
+
+    paths = []
+    def parser(staged):
+        paths.append(staged)
+        with Image.open(staged) as image:
+            assert image.size == size
+        return {"sheets": [{"id":"raster","symbols":[],"source_text":[],"channel":"raster",
+                            "coordinate_space":{"width":size[0],"height":size[1],"stencil_pixels_per_mm":4}}]}
+
+    def topology(staged, sheet):
+        assert staged == paths[-1]
+        return {"nodes":[],"edges":[]}
+
+    with offline_inference():
+        result = predict(renamed, parser=parser, topology=topology, kg=False)
+    assert result["raster_preprocessing"]["applied"]
+    assert sha256(original.read_bytes()).hexdigest() == sha256(renamed.read_bytes()).hexdigest() == signature
+    for ref in refs:
+        if ref.sample["subset"] == "degraded":
+            continue
+        with source_only(asset(ref, "png")) as staged:
+            selected, evidence = prepare_raster(staged)
+            assert selected == staged and not evidence["applied"]
 
 
 @pytest.mark.parametrize("subset",["primary","secondary"])
@@ -181,6 +246,7 @@ def test_workbench_csv_schema_alignment():
                 assert float(r["maximum"]) == maximum
         if rows[0]["kind"] == "radar":
             assert len(labels) >= 3 and set(ceilings.values()) == {100.0}
+            assert labels == set(METRIC_NAMES)
 
 
 @pytest.mark.parametrize("filename",["fig1_baseline_comparison.png","fig2_ablation_contribution.png",
@@ -207,5 +273,14 @@ def test_checked_in_report_preserves_scopes_and_vlm_state():
     assert result["lanes"]["b3"]["main"] is None
     assert not [r for r in result["per_drawing"] if r["lane"] == "b3"]
     if "repeatability" in result:
-        assert result["repeatability"] == {"non_timing_metrics_identical": True, "runs": 2}
-    assert stable_metrics(result)["lanes"]["full"]["main"]["composite"] > 0
+        repeat = result["repeatability"]
+        assert repeat["non_timing_metrics_identical"] and repeat["runs"] == 2
+        assert repeat["canonical_metrics_sha256"] == sha256(canonical_metrics_bytes(result)).hexdigest()
+    assert all(result["acceptance"].values())
+    for key in METRICS:
+        b1, b2, full = (metric(result["lanes"][lane]["main"], key) for lane in ("b1","b2","full"))
+        assert b1 < b2 < full, key
+    assert next(r for r in result["ablation_comparison"] if r["lane"]=="no_kg")["delta_pipeline_core_defect_recall"] == 1
+    blur = next(r for r in result["raster_recovery"] if r["degradation"] == "blur")
+    for key in ("symbol_tp","spec_semantic_correct","bom_detail_tp"):
+        assert blur["enhanced_counts"][key] > blur["raw_counts"].get(key, 0)

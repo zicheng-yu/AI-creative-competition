@@ -3,29 +3,29 @@ track01-e2e-radar,radar,主验收集基线对比,%,综合解析,B1,0.0,100
 track01-e2e-radar,radar,主验收集基线对比,%,符号 F1,B1,0.0,100
 track01-e2e-radar,radar,主验收集基线对比,%,规格语义,B1,0.0,100
 track01-e2e-radar,radar,主验收集基线对比,%,无向边 F1,B1,0.0,100
-track01-e2e-radar,radar,主验收集基线对比,%,BOM 明细,B1,96.4758,100
-track01-e2e-radar,radar,主验收集基线对比,%,BOM 型号规格汇总,B1,13.8756,100
+track01-e2e-radar,radar,主验收集基线对比,%,BOM 明细（规格必对）,B1,60.3524,100
+track01-e2e-radar,radar,主验收集基线对比,%,BOM 汇总（图纸可见）,B1,57.8947,100
 track01-e2e-radar,radar,主验收集基线对比,%,综合解析,B2,75.2325,100
 track01-e2e-radar,radar,主验收集基线对比,%,符号 F1,B2,88.6827,100
 track01-e2e-radar,radar,主验收集基线对比,%,规格语义,B2,79.2952,100
 track01-e2e-radar,radar,主验收集基线对比,%,无向边 F1,B2,48.0243,100
-track01-e2e-radar,radar,主验收集基线对比,%,BOM 明细,B2,97.7974,100
-track01-e2e-radar,radar,主验收集基线对比,%,BOM 型号规格汇总,B2,0.0,100
+track01-e2e-radar,radar,主验收集基线对比,%,BOM 明细（规格必对）,B2,90.3084,100
+track01-e2e-radar,radar,主验收集基线对比,%,BOM 汇总（图纸可见）,B2,90.4306,100
 track01-e2e-radar,radar,主验收集基线对比,%,综合解析,FULL,97.877,100
 track01-e2e-radar,radar,主验收集基线对比,%,符号 F1,FULL,100.0,100
 track01-e2e-radar,radar,主验收集基线对比,%,规格语义,FULL,96.9163,100
 track01-e2e-radar,radar,主验收集基线对比,%,无向边 F1,FULL,95.825,100
-track01-e2e-radar,radar,主验收集基线对比,%,BOM 明细,FULL,100.0,100
-track01-e2e-radar,radar,主验收集基线对比,%,BOM 型号规格汇总,FULL,13.8756,100
-track01-e2e-latency,bar,主验收集通道耗时,s,FULL,均值,0.0928,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,FULL,P50,0.0835,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,FULL,P95,0.1453,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,DXF,均值,0.0928,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,DXF,P50,0.0835,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,DXF,P95,0.1453,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,PNG,均值,6.312,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,PNG,P50,5.8537,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,PNG,P95,7.8554,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,PDF,均值,6.1592,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,PDF,P50,6.0229,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,PDF,P95,6.9119,15.0
+track01-e2e-radar,radar,主验收集基线对比,%,BOM 明细（规格必对）,FULL,96.9163,100
+track01-e2e-radar,radar,主验收集基线对比,%,BOM 汇总（图纸可见）,FULL,96.6507,100
+track01-e2e-latency,bar,主验收集通道耗时,s,FULL,均值,0.0878,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,FULL,P50,0.0815,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,FULL,P95,0.1211,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,DXF,均值,0.0878,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,DXF,P50,0.0815,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,DXF,P95,0.1211,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,PNG,均值,5.7162,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,PNG,P50,5.4739,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,PNG,P95,7.1654,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,PDF,均值,6.315,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,PDF,P50,5.8313,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,PDF,P95,8.6363,15.0
