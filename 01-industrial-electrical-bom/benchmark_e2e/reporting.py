@@ -178,14 +178,21 @@ def markdown_report(result):
     triggered = sum(bool((r["raster_preprocessing"] or {}).get("applied")) for r in main_png)
     md.extend(["","### 低清 PNG 前后对照","",
                f"主验收 PNG 中 {triggered}/{len(main_png)} 张触发增强。两路解析共用增强后的同尺寸像素网格。",
-               "", "| 图纸 | 模式 | 符号 F1 | 规格语义 | BOM 严格明细 | 无向边 F1 | 综合 |",
-               "| --- | --- | ---: | ---: | ---: | ---: | ---: |"])
+               "", "| 图纸 | 模式 | 符号 F1 | 规格语义 | BOM 严格明细 | 无向边 F1 | 真边 / 误连 / 漏边 | 误报红灯 | 综合 |",
+               "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |"])
     for sample in result["raster_recovery"]:
-        for kind, label in (("raw","原始输入"),("enhanced","增强输入")):
+        threshold = sample["preprocessing"].get("wire_ink_threshold")
+        variants = (("raw","原始输入"),("enhanced_default_wires","增强输入 · 默认追线"),
+                    ("enhanced",f"增强输入 · 追线阈值 {threshold}" if threshold is not None else "增强输入"))
+        for kind, label in variants:
+            if kind + "_counts" not in sample:
+                continue
             group = summarize([{"counts":sample[kind+"_counts"],"timing":None,"compliance_run":True}])
+            edge, red = group["edge"], group["compliance"]
             md.append(_line([sample["drawing_id"],label,pct(group["symbol"]["f1"]),
                              pct(group["spec_semantic"]),pct(group["bom_detail"]["recall"]),
-                             pct(group["edge"]["f1"]),pct(group["composite"])]))
+                             pct(edge["f1"]),f"{edge['tp']} / {edge['fp']} / {edge['fn']}",
+                             red["fp"] + red["extra_red"],pct(group["composite"])]))
     md.extend(["","## 消融贡献","",
                "各列为完整模式减对应消融组。退化去 KG 行使用同一组 3 张原始 PNG，简写行仅比较 alias 图。"
                "YOU-263 自身会解析常见别名，关闭 KG 时保留其内置解析能力，并以可获取的 OCR 原文输出位号与规格。",

@@ -144,6 +144,7 @@ def test_raster_enhancement_is_path_independent_and_shared(refs, tmp_path):
 
     def topology(staged, sheet):
         assert staged == paths[-1]
+        assert sheet["ink_threshold"] == 180
         return {"nodes":[],"edges":[]}
 
     with offline_inference():
@@ -156,6 +157,20 @@ def test_raster_enhancement_is_path_independent_and_shared(refs, tmp_path):
         with source_only(asset(ref, "png")) as staged:
             selected, evidence = prepare_raster(staged)
             assert selected == staged and not evidence["applied"]
+
+
+def test_blurred_wire_trace_recovers_motor_protection_chain(refs):
+    ref = next(r for r in refs if (r.sample.get("degradation") or {}).get("type") == "blur")
+    with offline_inference():
+        prediction = predict(asset(ref, "png"))
+    counts, _ = score(prediction, ref)
+    assert counts["edge_tp"] > 0 and counts["edge_fp"] == 0
+    assert prediction["compliance"]["counts"]["error"] == 0
+    motor_checks = [finding for finding in prediction["compliance"]["findings"]
+                    if finding["rule_id"] == "motor_protection_missing"]
+    assert motor_checks
+    assert all(finding["severity"] == "pass" and finding["evidence"]["power_ancestor_count"] >= 3
+               for finding in motor_checks)
 
 
 @pytest.mark.parametrize("subset",["primary","secondary"])
@@ -284,3 +299,9 @@ def test_checked_in_report_preserves_scopes_and_vlm_state():
     blur = next(r for r in result["raster_recovery"] if r["degradation"] == "blur")
     for key in ("symbol_tp","spec_semantic_correct","bom_detail_tp"):
         assert blur["enhanced_counts"][key] > blur["raw_counts"].get(key, 0)
+    default_wires = blur["enhanced_default_wires_counts"]
+    enhanced = blur["enhanced_counts"]
+    assert enhanced["edge_tp"] > default_wires["edge_tp"]
+    assert enhanced["edge_fp"] == 0
+    assert default_wires["motor_protection_missing_fp"] == 1
+    assert enhanced["compliance_fp"] == enhanced["extra_red"] == 0

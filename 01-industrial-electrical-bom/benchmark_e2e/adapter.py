@@ -25,6 +25,7 @@ from symbol_parser.labels import specs as parse_specs, split_tag
 SUFFIXES = frozenset({".dxf", ".png", ".pdf"})
 SCORING_FILES = {"annotations.json", "bom.csv", "bom_summary.csv", "manifest.json",
                  "coco.json", "labels.txt", "electrobench_coco.json", "classes.txt"}
+ENHANCED_WIRE_INK_THRESHOLD = 180
 CONTROL = frozenset({"KA_COIL", "KA_NO", "KA_NC", "KM_COIL", "KM_NO", "KM_NC",
                      "KT_COIL", "KT_NO", "FR_NC", "TC", "HL", "HA", "SB_NO", "SB_NC",
                      "SA", "SQ", "XT", "YC", "YO"})
@@ -359,7 +360,8 @@ def reconstruct_sheet(path, sheet):
     return graph
 
 
-def predict(path, *, topology=reconstruct_sheet, kg=True, parser=parse_drawing, enhance=True):
+def predict(path, *, topology=reconstruct_sheet, kg=True, parser=parse_drawing, enhance=True,
+            wire_ink_threshold=ENHANCED_WIRE_INK_THRESHOLD):
     """Run one registered lane and time each actual phase."""
     with source_only(path) as asset:
         started = perf_counter()
@@ -368,6 +370,11 @@ def predict(path, *, topology=reconstruct_sheet, kg=True, parser=parse_drawing, 
         if len(payload["sheets"]) != 1:
             raise ValueError("the frozen benchmark expects a single sheet")
         sheet = payload["sheets"][0]
+        if preprocessing and preprocessing["applied"] and wire_ink_threshold is not None:
+            # The threshold applies only to tracing faint strokes after enhancement.
+            # A more permissive cutoff can fuse conductors with nearby symbols.
+            sheet["ink_threshold"] = wire_ink_threshold
+            preprocessing["wire_ink_threshold"] = wire_ink_threshold
         _observations(sheet, kg)
         metadata = _metadata(sheet)
         parsed = perf_counter()

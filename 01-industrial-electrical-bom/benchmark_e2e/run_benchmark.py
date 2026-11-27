@@ -132,9 +132,13 @@ def benchmark(samples, *, predictions_path=None, progress=None):
             if lane.id == "png" and preprocessing and preprocessing["applied"]:
                 with offline_inference():
                     raw = predict(asset, enhance=False)
+                    standard_wires = predict(asset, wire_ink_threshold=None)
                 raw_counts, _ = score(raw, reference)
+                standard_wire_counts, _ = score(standard_wires, reference)
                 raster_recovery.append({"drawing_id": row["drawing_id"], "degradation": row["degradation"],
-                                        "raw_counts": dict(raw_counts), "enhanced_counts": row["counts"],
+                                        "raw_counts": dict(raw_counts),
+                                        "enhanced_default_wires_counts": dict(standard_wire_counts),
+                                        "enhanced_counts": row["counts"],
                                         "preprocessing": preprocessing})
         if data["id"] in vlm_rows:
             asset = assets["png"]

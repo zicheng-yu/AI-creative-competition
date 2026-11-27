@@ -17,15 +17,15 @@ track01-e2e-radar,radar,主验收集基线对比,%,规格语义,FULL,96.9163,100
 track01-e2e-radar,radar,主验收集基线对比,%,无向边 F1,FULL,95.825,100
 track01-e2e-radar,radar,主验收集基线对比,%,BOM 明细（规格必对）,FULL,96.9163,100
 track01-e2e-radar,radar,主验收集基线对比,%,BOM 汇总（图纸可见）,FULL,96.6507,100
-track01-e2e-latency,bar,主验收集通道耗时,s,FULL,均值,0.0878,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,FULL,P50,0.0815,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,FULL,P95,0.1211,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,DXF,均值,0.0878,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,DXF,P50,0.0815,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,DXF,P95,0.1211,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,PNG,均值,5.7162,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,PNG,P50,5.4739,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,PNG,P95,7.1654,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,PDF,均值,6.315,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,PDF,P50,5.8313,15.0
-track01-e2e-latency,bar,主验收集通道耗时,s,PDF,P95,8.6363,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,FULL,均值,0.0699,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,FULL,P50,0.0655,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,FULL,P95,0.1058,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,DXF,均值,0.0699,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,DXF,P50,0.0655,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,DXF,P95,0.1058,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,PNG,均值,4.6616,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,PNG,P50,4.4811,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,PNG,P95,5.2655,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,PDF,均值,4.8117,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,PDF,P50,4.8529,15.0
+track01-e2e-latency,bar,主验收集通道耗时,s,PDF,P95,5.0934,15.0
