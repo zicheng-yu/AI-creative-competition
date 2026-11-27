@@ -1,0 +1,1 @@
+{"version":2,"seed":313,"scenarios":{"normal_weekday":"scenario_normal_weekday.json","high_renewable":"scenario_high_renewable.json","peak_shaving":"scenario_peak_shaving.json","fault_stress":"scenario_fault_stress.json"}}
