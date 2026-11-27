@@ -1,0 +1,6 @@
+ezdxf>=1.4,<2
+pymupdf>=1.25,<3
+opencv-python-headless>=4.10,<6
+numpy>=1.26,<3
+scipy>=1.13,<2
+pillow>=10,<14
