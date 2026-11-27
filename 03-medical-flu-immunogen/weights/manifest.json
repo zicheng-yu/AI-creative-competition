@@ -1,0 +1,235 @@
+{
+  "format_version": 1,
+  "seed": 2706,
+  "corpus_nature": "synthetic only; domain and template held out",
+  "runtime": {
+    "torch": "2.7.0+cpu",
+    "numpy": "2.2.4",
+    "onnx": "1.18.0"
+  },
+  "models": {
+    "reranker": {
+      "labels": [
+        "IRRELEVANT",
+        "RELEVANT"
+      ],
+      "features": [
+        "query_word_coverage",
+        "document_word_coverage",
+        "word_jaccard",
+        "dense_cosine",
+        "character_trigram_jaccard",
+        "length_ratio",
+        "exact_normalized_text",
+        "negation_mismatch",
+        "shared_numbers",
+        "different_numbers",
+        "same_first_word",
+        "word_order_bigram_overlap"
+      ],
+      "parameters": 362,
+      "chosen_epoch": 15,
+      "validation_loss": 0.41290900111198425,
+      "corpus": {
+        "train": {
+          "examples": 143,
+          "domains": [
+            "archive",
+            "governance",
+            "library",
+            "software",
+            "transport",
+            "workspace"
+          ],
+          "sha256": "2c3cf708fc7a1cee8049dfee847b94273f157e61aa8c175776535f5f99cfae52"
+        },
+        "validation": {
+          "examples": 48,
+          "domains": [
+            "museum",
+            "school"
+          ],
+          "sha256": "049709b17bd1792577f6745cd958a80f36ae085d45e24afdc67ca2097031cc15"
+        },
+        "test": {
+          "examples": 48,
+          "domains": [
+            "audio",
+            "garden"
+          ],
+          "sha256": "122c9047d49276c45f68ee78c2a5de28f4ba92ef06fa2f65ae687f52f6a924cd"
+        }
+      },
+      "metrics": {
+        "validation": {
+          "per_class": {
+            "IRRELEVANT": {
+              "support": 36,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "RELEVANT": {
+              "support": 12,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          },
+          "macro_precision": 1.0,
+          "macro_recall": 1.0,
+          "macro_f1": 1.0,
+          "decision_threshold": 0.47619760036468506,
+          "ndcg_at_3": 1.0
+        },
+        "test": {
+          "per_class": {
+            "IRRELEVANT": {
+              "support": 36,
+              "precision": 0.75,
+              "recall": 1.0,
+              "f1": 0.8571428571428571
+            },
+            "RELEVANT": {
+              "support": 12,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          },
+          "macro_precision": 0.375,
+          "macro_recall": 0.5,
+          "macro_f1": 0.42857142857142855,
+          "decision_threshold": 0.47619760036468506,
+          "ndcg_at_3": 0.9692441461309548
+        }
+      },
+      "files": {
+        "reranker.pt": {
+          "sha256": "0efa581205b7ddf5ad5d24508498780ce62d6d324e5568b95b006d893d0dd71b",
+          "bytes": 3879
+        },
+        "reranker.onnx": {
+          "sha256": "3afdb439c454f685c057ccafdf2784676eb6c51f78a5877c6f49c968129a9c72",
+          "bytes": 1898
+        }
+      }
+    },
+    "nli_auditor": {
+      "labels": [
+        "ENTAIL",
+        "CONTRADICT",
+        "UNSUPPORTED"
+      ],
+      "features": [
+        "query_word_coverage",
+        "document_word_coverage",
+        "word_jaccard",
+        "dense_cosine",
+        "character_trigram_jaccard",
+        "length_ratio",
+        "exact_normalized_text",
+        "negation_mismatch",
+        "shared_numbers",
+        "different_numbers",
+        "same_first_word",
+        "word_order_bigram_overlap"
+      ],
+      "parameters": 387,
+      "chosen_epoch": 220,
+      "validation_loss": 0.000942241633310914,
+      "corpus": {
+        "train": {
+          "examples": 432,
+          "domains": [
+            "archive",
+            "governance",
+            "library",
+            "software",
+            "transport",
+            "workspace"
+          ],
+          "sha256": "57fd76ec3afd4e62a6e4e4522fe0e93c52205cc911957aaa7a4525ed77b6c4f3"
+        },
+        "validation": {
+          "examples": 144,
+          "domains": [
+            "museum",
+            "school"
+          ],
+          "sha256": "90ba590374204d5bb86682a6c993d13c061dec13fff4630fcf2f8442173bac58"
+        },
+        "test": {
+          "examples": 144,
+          "domains": [
+            "audio",
+            "garden"
+          ],
+          "sha256": "c8bb03a535c34c38c1d515c2eafe7d5a7ca24eb306bc9477544a5b15787e2eeb"
+        }
+      },
+      "metrics": {
+        "validation": {
+          "per_class": {
+            "ENTAIL": {
+              "support": 48,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "CONTRADICT": {
+              "support": 48,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "UNSUPPORTED": {
+              "support": 48,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          },
+          "macro_precision": 1.0,
+          "macro_recall": 1.0,
+          "macro_f1": 1.0
+        },
+        "test": {
+          "per_class": {
+            "ENTAIL": {
+              "support": 48,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "CONTRADICT": {
+              "support": 48,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "UNSUPPORTED": {
+              "support": 48,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          },
+          "macro_precision": 1.0,
+          "macro_recall": 1.0,
+          "macro_f1": 1.0
+        }
+      },
+      "files": {
+        "nli_auditor.pt": {
+          "sha256": "33325e123b66a51ee619a1404c0c06972a7d1873970c40a0572c3bd898216c5d",
+          "bytes": 3973
+        },
+        "nli_auditor.onnx": {
+          "sha256": "610c413b47df657a7a2a50b024f5cca1b02fe96edfb130877144013a11ac3a8b",
+          "bytes": 1998
+        }
+      }
+    }
+  }
+}

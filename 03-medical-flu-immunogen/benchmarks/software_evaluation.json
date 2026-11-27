@@ -1,0 +1,23 @@
+{
+  "scope": "methods-only software tasks",
+  "task_1": {
+    "queries": 4,
+    "recall_at_3": 1.0,
+    "ndcg_at_3": 0.875,
+    "median_ms": 5.77455
+  },
+  "task_2": {
+    "dossiers": 4,
+    "dossiers_checked": 4,
+    "signed_accepted_citations": 2,
+    "compare_ms": 4.717,
+    "signoff_ms": 4.1026
+  },
+  "citations": {
+    "valid": 16,
+    "total": 16,
+    "invalid_drafts_blocked": 3,
+    "invalid_drafts_total": 3
+  },
+  "manual_sop_baseline": "未测"
+}

@@ -1,1 +1,119 @@
-{"records":[{"dataset_version":"methods-fixture-v1","evidence_id":"EV-METHODS-FAIR","record_sha256":"caed81e1b82aac9d92f66892ca827eb13651cd4e1455c9b9fd01c65b8c3537c7"},{"dataset_version":"methods-fixture-v1","evidence_id":"EV-METHODS-PRISMA","record_sha256":"6a30913c25112f914d82d3ff5f0660b153813a859a0b3c473fa631a59842e2ad"}]}
+{
+  "tenant_id": "demo",
+  "scope": "methods-and-records-governance",
+  "records": [
+    {
+      "evidence_id": "EV-METHODS-FAIR",
+      "dataset_version": "methods-fixture-v1",
+      "record_sha256": "caed81e1b82aac9d92f66892ca827eb13651cd4e1455c9b9fd01c65b8c3537c7",
+      "title": "The FAIR Guiding Principles for scientific data management and stewardship",
+      "primary_ref": "PMID:26978244",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/26978244/",
+      "nature": "public_methods",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "data stewardship",
+        "research transparency"
+      ],
+      "published_on": "2016-03-15",
+      "archive_note": "Public title."
+    },
+    {
+      "evidence_id": "EV-METHODS-PRISMA",
+      "dataset_version": "methods-fixture-v1",
+      "record_sha256": "6a30913c25112f914d82d3ff5f0660b153813a859a0b3c473fa631a59842e2ad",
+      "title": "The PRISMA 2020 statement: an updated guideline for reporting systematic reviews",
+      "primary_ref": "PMID:33782057",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/33782057/",
+      "nature": "public_methods",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "systematic reviews",
+        "reporting guidelines"
+      ],
+      "published_on": "2021-03-29",
+      "archive_note": "Public title."
+    },
+    {
+      "evidence_id": "EV-METHODS-PRISMA-ELAB",
+      "dataset_version": "methods-fixture-v2",
+      "record_sha256": "82db687d8be15d9e0b5086cb00106d9348832e9a78910a99407aea0c79f9ca0b",
+      "title": "PRISMA 2020 explanation and elaboration: updated guidance and exemplars for reporting systematic reviews",
+      "primary_ref": "PMID:33781993",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/33781993/",
+      "nature": "public_methods",
+      "approval": "approved",
+      "review_status": "pending",
+      "topics": [
+        "systematic reviews",
+        "reporting guidelines"
+      ],
+      "published_on": "2021-03-29",
+      "archive_note": null
+    },
+    {
+      "evidence_id": "EV-METHODS-PRISMA-P",
+      "dataset_version": "methods-fixture-v2",
+      "record_sha256": "ba976fb2d606c40c0620e6cd62b0134cb5cafaf4f21d591bbe6c3ac3ee877e1d",
+      "title": "Preferred reporting items for systematic review and meta-analysis protocols (PRISMA-P) 2015 statement",
+      "primary_ref": "PMID:25554246",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/25554246/",
+      "nature": "public_methods",
+      "approval": "approved",
+      "review_status": "flagged",
+      "topics": [
+        "systematic reviews",
+        "reporting guidelines"
+      ],
+      "published_on": "2015-01-01",
+      "archive_note": "Protocol reporting."
+    },
+    {
+      "evidence_id": "EV-METHODS-REPRO",
+      "dataset_version": "methods-fixture-v2",
+      "record_sha256": "aeb6555b71fcb5a51f8a2fe234b948d04d2db881bfa22e2b76caa58f3953c6e5",
+      "title": "Ten simple rules for reproducible computational research",
+      "primary_ref": "PMID:24204232",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/24204232/",
+      "nature": "public_methods",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "research transparency",
+        "data stewardship"
+      ],
+      "published_on": "2013-10-24",
+      "archive_note": "Public title."
+    },
+    {
+      "evidence_id": "EV-METHODS-SYNTH-REGISTER",
+      "dataset_version": "methods-fixture-v2",
+      "record_sha256": "3d8f1fbb66d29b3c476cfbc5c276738c1c36dab1ff732586a89f5f7c02450e09",
+      "title": "[Synthetic] Archive register lists a pending document review.",
+      "primary_ref": "SYNTHETIC:archive-register",
+      "source_url": null,
+      "nature": "synthetic",
+      "approval": "approved",
+      "review_status": "pending",
+      "topics": [
+        "data stewardship",
+        "archive review"
+      ],
+      "published_on": null,
+      "archive_note": null
+    }
+  ],
+  "releases": [
+    {
+      "dataset_version": "methods-fixture-v1",
+      "released_at": "2026-11-27T15:09:14+00:00"
+    },
+    {
+      "dataset_version": "methods-fixture-v2",
+      "released_at": "2026-11-27T15:30:00Z",
+      "previous_version": "methods-fixture-v1"
+    }
+  ]
+}

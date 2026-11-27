@@ -1,15 +1,29 @@
-# 离线证据审阅实现
+# 流盾智研离线检索及轻量文本模型
 
-## 检索与审计
+AI-HEALTH-Q40 流感病毒免疫原辅助设计智能体研发和应用是官方赛题。本分支按照新版 YOU-275、YOU-276 交付科研方法学资料管理、文本检索、引文忠实度审计和专家复核。资料治理评分只反映输入档案的完备情况。
 
-`EvidenceIndex` 以来源原始引用、检索摘要和原文片段为索引字段，用 BM25 选择证据，并生成证据、来源和版本之间的 NetworkX 溯源子图。展示层使用原样引文和分级。排序分仅决定检索顺序。
+## 检索和审计
 
-`BaseLLMClient.assemble(query, records)` 是可替换接口。默认 `OfflineClient` 返回已选原文引文。`engine/llm_adapter.py` 预留 `TODO(zicheng): plug in LLM provider`。仓库所有者可通过 `create_app(snapshot, client=provider)` 或 `EvidenceService(snapshot, client=provider)` 注入实现。适配器提交 `Citation(evidence_id, dataset_version, text)`，所有输出均经过独立审计。运行时执行当前检索集合成员检查、整段原文一致性核验及有限的疗效承诺措辞过滤。缺乏通过核验的证据、版本不匹配或生成了改写文本的场景会显示待验证提示。固定措辞过滤仅覆盖列出的规则，专家继续审查原文的语境、相关性和科学适用性。
+三条召回路分别为 BM25、384 维本地稠密向量余弦、NetworkX 1–3 跳图谱召回。向量使用词项归一、有限通用同义词映射和经过符号哈希的词／字符三元组。图谱使用 Document、Topic、Evidence、Snapshot 四类节点。检索将三路名次通过 RRF 融合，再用训练后的文本相关性概率参与重排。精确引用 ID 匹配优先。报告保留召回路名次、图跳数及文本匹配概率。
 
-`T4_COMPUTATIONAL` 记录保持辅助证据分级。记录来自可信 release，审计只展示 release 中已经标注的等级。引用的形式完整性和数据发布者对来源的核验是两个环节。
+两个分类器共享 12 项可核查特征，包含词覆盖/重叠、局部稠密余弦、字符三元组、长度、整句匹配、否定、数字和词序。单隐层 24 单元，`reranker` 有 362 个参数，`nli_auditor` 有 387 个，输出 ENTAIL、CONTRADICT、UNSUPPORTED 的概率。 `weights/manifest.json` 记录类别、特征、数据指纹、参数、验证集选定轮次、分项指标、权重字节数和 SHA256。
 
-## 演示与评测范围
+`UncertaintyAuditAgent` 执行引用元组和整段原文的硬核验，并用 NLI 提供附加文本忠实度信号。只有当前批准快照内的原样引文可以作为发布事实。NLI 预测无法替代快照和原文核验。 `method_differences` 展示同主题文献对及专家待复核信号，来源对照仍需人工判断。 `engine/llm_adapter.py` 保留 `TODO(zicheng): plug in LLM provider`。当前 `OfflineClient` 原样组装引文，所有输出均过相同的硬核验。后续所有者可通过 `create_app(snapshot, client=provider)` 注入本地适配器。
 
-`python -m benchmarks.export_demo` 通过本地 TestClient 执行研究方法问答、两组引文清点、专家处置与签批。命令报告指定引文 Top-1、通过检查的引用组数、签批导出结果及本次本地运行耗时。自动测试禁止外部 socket 连接与 DNS 查询。样例的 PubMed 来源为 [FAIR 指南（26978244）](https://pubmed.ncbi.nlm.nih.gov/26978244/) 和 [PRISMA 2020 声明（33782057）](https://pubmed.ncbi.nlm.nih.gov/33782057/)。
+## 数据拆分和复现
 
-本分支的指标覆盖软件行为和两个方法学样例。赛题生物分析指标、人工 SOP 提效指标、重排/NLI 的训练与权重包均不在本次部分交付范围。
+训练、验证、测试用明确标注的合成通用文本；领域词表与句式模板按 split 隔离，脚本检查不同 split 的完整文本对无交集。验证集决定训练停止点和排序器诊断二分类阈值。五条 PubMed 方法学标题和一条显式合成资料用于独立软件评测，模型训练不读取公开方法学快照。来源核验及内容性质见 [发行锁](tests/fixtures/release.lock.json)。
+
+实测环境为 Windows、Python 3.13，核心依赖为 `torch 2.7.0+cpu`、`numpy 2.2.4`、`onnx 1.18.0`、`onnxruntime 1.21.1`、`networkx 3.4.2`、`pydantic 2.13.4`、`pyarrow 24.0.0`、`fastapi 0.115.12`、`httpx 0.28.1`、`pytest 9.0.3`。使用已安装依赖的环境，或从本地 wheel 目录离线安装。可选 HTTP 服务另需 uvicorn。
+
+```bash
+python -m benchmarks.train_weights
+python weights/verify_weights.py --report weights/verification.json
+python -m benchmarks.export_demo
+python -m benchmarks.evaluate_tasks --report benchmarks/software_evaluation.json
+python -m pytest -q
+```
+
+验证器对四个权重文件逐项核对哈希和大小，检查 ONNX 结构，并在同一批合成留出样本上对照 PyTorch／ONNX 的 logits 与分类结果。CPU 耗时为模型单样本的热运行中位数；软件评测单独统计本地 TestClient 延迟。评测和测试会阻断外部连接与 DNS，允许 Windows asyncio 本地回环。
+
+[合成模型测试指标](weights/manifest.json) 中重排器的 NDCG@3 为约 0.969，同时二分类诊断漏掉了全部留出正类，故使用排序概率，不使用二分类阈值做准入。NLI 三类的合成样本宏平均 F1 为 1.000，样例规则简单，不能据此推定真实自由文本泛化。 [端到端软件指标](benchmarks/software_evaluation.json) 和 [数值一致性报告](weights/verification.json) 分开记录。人工 SOP 基线未测，软件指标用于核验资料审阅流程。

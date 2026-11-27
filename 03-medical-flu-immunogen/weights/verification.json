@@ -1,0 +1,18 @@
+{
+  "weight_bytes": 11748,
+  "onnxruntime": "1.21.1",
+  "models": {
+    "reranker": {
+      "held_out_rows": 48,
+      "max_abs_logit_error": 2.384185791015625e-07,
+      "pytorch_cpu_median_ms": 0.0147,
+      "onnx_cpu_median_ms": 0.0079
+    },
+    "nli_auditor": {
+      "held_out_rows": 144,
+      "max_abs_logit_error": 9.5367431640625e-07,
+      "pytorch_cpu_median_ms": 0.0151,
+      "onnx_cpu_median_ms": 0.007549999999999999
+    }
+  }
+}

@@ -85,18 +85,27 @@ class ReviewStore:
                     if report["review"][s["statement_id"]] == "accept"]
         markdown = [f"# 专家复核报告 v{report['version']}", "", BOUNDARY, "",
                     f"快照 `{report['snapshot_id']}`", ""]
+        if report.get("dossier_matrix"):
+            markdown.extend(["## 档案处置概览", ""])
+            for row in report["dossier_matrix"]:
+                fields = row["field_completeness"]
+                label = markdown_text(row["label"])
+                markdown.append(f"- {label}，完整字段 {fields['present']}/{fields['total']}，"
+                                f"未决事项 {len(row['review_status']['open_items'])} 项。")
+            markdown.extend(["", "## 已采纳引文", ""])
         if not accepted:
             markdown.append("本报告没有已采纳的引文。")
         csv_buffer = io.StringIO(newline="")
         fields = ["statement_id", "evidence_id", "dataset_version",
-                  "primary_ref", "evidence_tier", "ingested_at", "text"]
+                  "primary_ref", "evidence_tier", "ingested_at", "source_url", "nature",
+                  "source_review_status", "text"]
         writer = csv.writer(csv_buffer)
         writer.writerow(fields)
         for statement in accepted:
             citation = " · ".join(markdown_text(statement[field]) for field in
                                   ("evidence_id", "dataset_version", "primary_ref", "evidence_tier"))
             markdown.append(f"- {markdown_text(statement['text'])} — {citation}")
-            writer.writerow([csv_cell(statement[field]) for field in fields])
+            writer.writerow([csv_cell(statement.get(field) or "") for field in fields])
         return {
             "markdown": "\n".join(markdown) + "\n",
             "json": json.dumps(report, ensure_ascii=False, indent=2),

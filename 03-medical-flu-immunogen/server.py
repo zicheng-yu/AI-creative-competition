@@ -1,4 +1,5 @@
 """Optional loopback-only API for reviewing a local, curator-verified release."""
+import csv
 from pathlib import Path
 from typing import Annotated, Literal
 
@@ -6,9 +7,12 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, ConfigDict, Field, StringConstraints, model_validator
 
 from engine.capsules import Snapshot
+from engine.dossiers import Dossier, EvidenceRef, parse_csv
 from engine.llm_adapter import BaseLLMClient
+from engine.models import TextModels
 from engine.service import EvidenceService
 from engine.review import ReviewConflict
+from engine.timeline import Period
 
 
 FIXTURES = Path(__file__).parent / "tests" / "fixtures"
@@ -19,14 +23,14 @@ class Input(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
 
 
-class Question(Input):
+class WorkflowInput(Input):
+    period: Period = "month"
+    hops: int = Field(default=2, ge=1, le=3)
+
+
+class Question(WorkflowInput):
     query: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=1200)]
     limit: int = Field(default=5, ge=1, le=15)
-
-
-class EvidenceRef(Input):
-    evidence_id: Identifier
-    dataset_version: Identifier
 
 
 class CitationGroup(Input):
@@ -34,8 +38,16 @@ class CitationGroup(Input):
     citations: list[EvidenceRef] = Field(min_length=1, max_length=15)
 
 
-class Comparison(Input):
-    groups: list[CitationGroup] = Field(min_length=2, max_length=6)
+class Comparison(WorkflowInput):
+    groups: list[CitationGroup] | None = Field(default=None, min_length=2, max_length=6)
+    dossiers: list[Dossier] | None = Field(default=None, min_length=2, max_length=6)
+    dossier_csv: str | None = Field(default=None, min_length=1, max_length=100000)
+
+    @model_validator(mode="after")
+    def one_input(self):
+        if sum(value is not None for value in (self.groups, self.dossiers, self.dossier_csv)) != 1:
+            raise ValueError("provide one dossier representation")
+        return self
 
 
 class Action(Input):
@@ -58,23 +70,28 @@ class Review(Input):
         return self
 
 
-def create_app(snapshot: Snapshot, client: BaseLLMClient | None = None) -> FastAPI:
+def create_app(snapshot: Snapshot, client: BaseLLMClient | None = None,
+               models: TextModels | None = None) -> FastAPI:
     app = FastAPI(title="离线证据审阅", docs_url=None, redoc_url=None, openapi_url=None)
-    service = EvidenceService(snapshot, client)
+    service = EvidenceService(snapshot, client, models)
 
     @app.get("/api/v1/health")
     def health():
-        return {"ok": True, "snapshot_id": snapshot.snapshot_id, "record_count": len(snapshot.records)}
+        return {"ok": True, **snapshot.summary()}
 
     @app.post("/api/v1/qa")
     def qa(body: Question):
-        return service.qa(body.query, body.limit)
+        return service.qa(body.query, body.limit, period=body.period, hops=body.hops)
 
     @app.post("/api/v1/compare")
     def compare(body: Comparison):
         try:
-            return service.compare(body.model_dump()["groups"])
-        except ValueError as exc:
+            if body.groups is not None:
+                return service.compare([group.model_dump() for group in body.groups],
+                                       period=body.period, hops=body.hops)
+            dossiers = body.dossiers if body.dossiers is not None else parse_csv(body.dossier_csv)
+            return service.compare_dossiers(dossiers, period=body.period, hops=body.hops)
+        except (ValueError, csv.Error) as exc:
             raise HTTPException(status_code=422, detail=str(exc)) from exc
 
     @app.post("/api/v1/review/signoff")

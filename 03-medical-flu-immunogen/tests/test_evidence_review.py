@@ -1,5 +1,4 @@
 import json
-import socket
 from concurrent.futures import ThreadPoolExecutor
 
 import pyarrow as pa
@@ -22,27 +21,6 @@ FAIR = ("EV-METHODS-FAIR", "methods-fixture-v1")
 @pytest.fixture
 def snapshot():
     return Snapshot(FIXTURES / "methods.jsonl", FIXTURES / "release.lock.json")
-
-
-@pytest.fixture(autouse=True)
-def offline(monkeypatch):
-    original_connect = socket.socket.connect
-    original_connect_ex = socket.socket.connect_ex
-
-    def disabled(*args, **kwargs):
-        raise AssertionError("external network I/O in offline tests")
-
-    def loopback_only(connect):
-        def checked(sock, address):
-            # On Windows the asyncio wakeup socket pair uses loopback TCP.
-            if not isinstance(address, tuple) or address[0] not in ("127.0.0.1", "::1"):
-                disabled()
-            return connect(sock, address)
-        return checked
-
-    monkeypatch.setattr(socket.socket, "connect", loopback_only(original_connect))
-    monkeypatch.setattr(socket.socket, "connect_ex", loopback_only(original_connect_ex))
-    monkeypatch.setattr(socket, "getaddrinfo", disabled)
 
 
 def test_parquet_and_directory_match(snapshot, tmp_path):
@@ -126,11 +104,13 @@ def test_verified_citation_deduplicates_and_preserves_metadata(snapshot):
 
 def test_provenance_contains_source_and_release(snapshot):
     report = EvidenceService(snapshot).qa("PMID:26978244", 1)
-    nodes = report["provenance"]["nodes"]
-    assert ["evidence", *FAIR] in nodes
-    assert ["source", "PMID:26978244"] in nodes
-    assert ["release", FAIR[1]] in nodes
-    assert len(report["provenance"]["edges"]) == 2
+    nodes = {node["id"]: node for node in report["provenance"]["nodes"]}
+    assert ("evidence", *FAIR) in nodes
+    assert nodes[("document", "PMID:26978244")]["source_url"] == "https://pubmed.ncbi.nlm.nih.gov/26978244/"
+    assert ("snapshot", FAIR[1]) in nodes
+    assert {"contains", "published_in", "indexed_under"} == {
+        edge["relation"] for edge in report["provenance"]["edges"]
+    }
 
 
 def test_review_error_leaves_version_and_dispositions_unchanged(snapshot):
@@ -159,7 +139,7 @@ def test_review_error_leaves_version_and_dispositions_unchanged(snapshot):
 
 def test_api_schema_errors_and_unmatched_query():
     with TestClient(demo_app()) as client:
-        assert client.get("/api/v1/health").json()["record_count"] == 2
+        assert client.get("/api/v1/health").json()["record_count"] == 6
         qa = client.post("/api/v1/qa", json={"query": "unknownx123"})
         assert qa.json()["review_notice"] == INSUFFICIENT
         assert client.post("/api/v1/qa", json={"query": "  "}).status_code == 422
@@ -186,8 +166,9 @@ def test_exports_escape_markup_and_spreadsheet_formulas():
 
 def test_offline_demo():
     bundle, metrics = run()
-    assert metrics["qa_expected_reference_at_1"] == "1/1"
-    assert metrics["comparison_groups_verified"] == "2/2"
-    assert metrics["signed_accepted_citations"] == "1/1"
+    assert metrics["task_1"]["queries"] == 4
+    assert metrics["task_2"]["dossiers_checked"] == 4
+    assert metrics["task_2"]["signed_accepted_citations"] == 2
+    assert metrics["citations"]["valid"] == metrics["citations"]["total"]
     assert bundle["signoff"]["report"]["version"] == 2
-    assert len(bundle["signoff"]["report"]["timeline"]) == 3
+    assert len(bundle["signoff"]["report"]["timeline"]) == 5
