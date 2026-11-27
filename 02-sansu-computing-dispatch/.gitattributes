@@ -2,7 +2,8 @@
 *.md text eol=lf
 *.json text eol=lf
 weights/*.csv text eol=lf
-benchmarks/results_detail.csv -text
+# Keep RFC 4180 CRLF bytes identical for the published SHA256 on all platforms.
+benchmarks/results_detail.csv -text whitespace=trailing-space,space-before-tab,cr-at-eol
 *.pt binary
 *.onnx binary
 *.png binary
