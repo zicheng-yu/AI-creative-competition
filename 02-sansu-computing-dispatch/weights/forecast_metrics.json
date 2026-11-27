@@ -1,0 +1,35 @@
+{
+  "train_seeds": [
+    41,
+    42,
+    43
+  ],
+  "validation_seeds": [
+    72
+  ],
+  "epochs": 18,
+  "train": {
+    "arrivals_jobs_per_hour": {
+      "mae": 2.041754722595215,
+      "mape_pct": 43.71186447143555,
+      "nonzero_targets": 137010
+    },
+    "renewable_peak_fraction": {
+      "mae": 0.01980844885110855,
+      "mape_pct": 12.433324813842773,
+      "nonzero_targets": 152064
+    }
+  },
+  "validation": {
+    "arrivals_jobs_per_hour": {
+      "mae": 2.085512161254883,
+      "mape_pct": 43.96085739135742,
+      "nonzero_targets": 45179
+    },
+    "renewable_peak_fraction": {
+      "mae": 0.02035175822675228,
+      "mape_pct": 12.542470932006836,
+      "nonzero_targets": 50688
+    }
+  }
+}

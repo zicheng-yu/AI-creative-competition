@@ -1,0 +1,63 @@
+{
+  "version": 2,
+  "format": "state_dict (CPU) / ONNX opset 17",
+  "forecast": {
+    "input": "[16,4,24] scaled counts and renewable fractions at lag 48/24",
+    "output": "[16,2,24]",
+    "parameters": 1706
+  },
+  "policy": {
+    "input": "[batch,96,15] node-major, pool-minor",
+    "features": [
+      "eta",
+      "tariff",
+      "green_fraction",
+      "pue_excess",
+      "pool_fill",
+      "marginal_powered_efh_per_efh",
+      "latency_ratio",
+      "cross",
+      "domestic",
+      "quota",
+      "sla_risk",
+      "wait_fraction_of_6h",
+      "energy_per_work",
+      "available",
+      "urgent"
+    ],
+    "output": "raw actor logits; add backend.models.dispatch_bias, then apply feasibility mask",
+    "parameters": 1466
+  },
+  "files": [
+    {
+      "path": "policy.pt",
+      "description": "PPO actor and critic state_dict",
+      "size": 9669,
+      "sha256": "fc11e917392a9140b6aca8ad5487c617c06591df5d0755bd7fd54677853c7c63"
+    },
+    {
+      "path": "forecast.pt",
+      "description": "seasonal residual TCN state_dict",
+      "size": 9621,
+      "sha256": "4153bc439493ff61469b783a3159f18520d1da808bef6058e7751fa19c080f03"
+    },
+    {
+      "path": "policy.onnx",
+      "description": "portable actor logits, opset 17",
+      "size": 5437,
+      "sha256": "2f7b6d8032225469d3c4067e9174399980324cc58d93f43ee3c8277e3b426c67"
+    },
+    {
+      "path": "forecast_metrics.json",
+      "description": "independent train/validation MAE and positive-target MAPE",
+      "size": 707,
+      "sha256": "5ccb04478642254c299b6973f8b45e2794c9fbe645c0367a406de26e1af35917"
+    },
+    {
+      "path": "ppo_training.csv",
+      "description": "on-policy sample reward, violation rate and projected multiplier",
+      "size": 8539,
+      "sha256": "6d3543ee4dd1219e9ba8513f309c650a392e9ab37a9738cc1a3081c76961904d"
+    }
+  ]
+}

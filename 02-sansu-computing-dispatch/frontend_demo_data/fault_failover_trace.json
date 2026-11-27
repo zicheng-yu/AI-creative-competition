@@ -1,0 +1,210 @@
+{
+  "version": 1,
+  "seed": 313,
+  "events": [
+    {
+      "scenario": "fault_stress",
+      "strategy": "SuCompute",
+      "slot": 864,
+      "city": "南京",
+      "kind": "outage",
+      "severity": 1.0,
+      "duration_slots": 36,
+      "elapsed_s": 0.06010029999015387,
+      "trajectories": [
+        {
+          "task_id": 8080,
+          "source": "南京",
+          "target": "常州",
+          "checkpoint_slots": 12,
+          "remaining_slots": 12,
+          "operation": "checkpoint",
+          "sla_met": true
+        },
+        {
+          "task_id": 8404,
+          "source": "南京",
+          "target": "宿迁",
+          "checkpoint_slots": 0,
+          "remaining_slots": 42,
+          "operation": "checkpoint",
+          "sla_met": true
+        }
+      ]
+    },
+    {
+      "scenario": "fault_stress",
+      "strategy": "SuCompute",
+      "slot": 888,
+      "city": "南通",
+      "kind": "pue",
+      "severity": 0.35,
+      "duration_slots": 48,
+      "elapsed_s": 0.08032039999670815,
+      "trajectories": [
+        {
+          "task_id": 7637,
+          "source": "南通",
+          "target": "安徽芜湖",
+          "checkpoint_slots": 25,
+          "remaining_slots": 1,
+          "operation": "checkpoint",
+          "sla_met": true
+        },
+        {
+          "task_id": 7858,
+          "source": "南通",
+          "target": "淮安",
+          "checkpoint_slots": 19,
+          "remaining_slots": 15,
+          "operation": "checkpoint",
+          "sla_met": true
+        },
+        {
+          "task_id": 7731,
+          "source": "南通",
+          "target": "南通",
+          "checkpoint_slots": 14,
+          "remaining_slots": 17,
+          "operation": "checkpoint",
+          "sla_met": true
+        },
+        {
+          "task_id": 8058,
+          "source": "南通",
+          "target": "徐州",
+          "checkpoint_slots": 24,
+          "remaining_slots": 8,
+          "operation": "checkpoint",
+          "sla_met": true
+        },
+        {
+          "task_id": 8407,
+          "source": "南通",
+          "target": "连云港",
+          "checkpoint_slots": 0,
+          "remaining_slots": 28,
+          "operation": "checkpoint",
+          "sla_met": true
+        },
+        {
+          "task_id": 8421,
+          "source": "南通",
+          "target": "宿迁",
+          "checkpoint_slots": 0,
+          "remaining_slots": 13,
+          "operation": "checkpoint",
+          "sla_met": true
+        },
+        {
+          "task_id": 8392,
+          "source": "南通",
+          "target": "南通",
+          "checkpoint_slots": 0,
+          "remaining_slots": 9,
+          "operation": "checkpoint",
+          "sla_met": true
+        },
+        {
+          "task_id": 8391,
+          "source": "南通",
+          "target": "南通",
+          "checkpoint_slots": 0,
+          "remaining_slots": 8,
+          "operation": "checkpoint",
+          "sla_met": true
+        },
+        {
+          "task_id": 8456,
+          "source": "南通",
+          "target": "泰州",
+          "checkpoint_slots": 0,
+          "remaining_slots": 16,
+          "operation": "checkpoint",
+          "sla_met": true
+        },
+        {
+          "task_id": 8464,
+          "source": "南通",
+          "target": "南通",
+          "checkpoint_slots": 0,
+          "remaining_slots": 7,
+          "operation": "checkpoint",
+          "sla_met": true
+        },
+        {
+          "task_id": 8431,
+          "source": "南通",
+          "target": "安徽芜湖",
+          "checkpoint_slots": 0,
+          "remaining_slots": 9,
+          "operation": "checkpoint",
+          "sla_met": true
+        },
+        {
+          "task_id": 8429,
+          "source": "南通",
+          "target": "南通",
+          "checkpoint_slots": 0,
+          "remaining_slots": 10,
+          "operation": "checkpoint",
+          "sla_met": true
+        },
+        {
+          "task_id": 8432,
+          "source": "南通",
+          "target": "盐城",
+          "checkpoint_slots": 0,
+          "remaining_slots": 16,
+          "operation": "checkpoint",
+          "sla_met": true
+        },
+        {
+          "task_id": 8468,
+          "source": "南通",
+          "target": "南通",
+          "checkpoint_slots": 9,
+          "remaining_slots": 9,
+          "operation": "checkpoint",
+          "sla_met": true
+        },
+        {
+          "task_id": 8446,
+          "source": "南通",
+          "target": "徐州",
+          "checkpoint_slots": 0,
+          "remaining_slots": 18,
+          "operation": "checkpoint",
+          "sla_met": true
+        },
+        {
+          "task_id": 8484,
+          "source": "南通",
+          "target": "南通",
+          "checkpoint_slots": 14,
+          "remaining_slots": 4,
+          "operation": "checkpoint",
+          "sla_met": true
+        },
+        {
+          "task_id": 8540,
+          "source": "南通",
+          "target": "淮安",
+          "checkpoint_slots": 0,
+          "remaining_slots": 29,
+          "operation": "checkpoint",
+          "sla_met": true
+        },
+        {
+          "task_id": 8541,
+          "source": "南通",
+          "target": "南通",
+          "checkpoint_slots": 6,
+          "remaining_slots": 7,
+          "operation": "reroute",
+          "sla_met": true
+        }
+      ]
+    }
+  ]
+}
