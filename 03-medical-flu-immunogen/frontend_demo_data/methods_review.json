@@ -1,0 +1,422 @@
+{
+  "scope": "公开研究方法文献的离线证据审阅示例",
+  "snapshot": {
+    "ok": true,
+    "snapshot_id": "24a587fff354396f038be110a5f0878a272a0a45d23b17e51cab52018fc1cf0c",
+    "record_count": 2
+  },
+  "qa": {
+    "query": "PMID:26978244 FAIR data stewardship",
+    "report": {
+      "report_id": "78dfada9c3a6423ab4fbf72e8a66250d",
+      "snapshot_id": "24a587fff354396f038be110a5f0878a272a0a45d23b17e51cab52018fc1cf0c",
+      "state": "AI_DRAFT_PENDING_REVIEW",
+      "version": 1,
+      "statements": [
+        {
+          "statement_id": "S1",
+          "text": "The FAIR Guiding Principles for scientific data management and stewardship",
+          "evidence_id": "EV-METHODS-FAIR",
+          "dataset_version": "methods-fixture-v1",
+          "primary_ref": "PMID:26978244",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-27T15:09:14+00:00"
+        }
+      ],
+      "review": {},
+      "timeline": [],
+      "scientific_boundary": "本阶段交付软件原型与离线评测，不以实验有效性或临床效果作为承诺。",
+      "inventory": [],
+      "review_notice": null,
+      "provenance": {
+        "nodes": [
+          [
+            "evidence",
+            "EV-METHODS-FAIR",
+            "methods-fixture-v1"
+          ],
+          [
+            "release",
+            "methods-fixture-v1"
+          ],
+          [
+            "source",
+            "PMID:26978244"
+          ]
+        ],
+        "edges": [
+          [
+            [
+              "evidence",
+              "EV-METHODS-FAIR",
+              "methods-fixture-v1"
+            ],
+            [
+              "release",
+              "methods-fixture-v1"
+            ]
+          ],
+          [
+            [
+              "evidence",
+              "EV-METHODS-FAIR",
+              "methods-fixture-v1"
+            ],
+            [
+              "source",
+              "PMID:26978244"
+            ]
+          ]
+        ]
+      },
+      "agent_trace": [
+        {
+          "step": "evidence_selection",
+          "selected": 1
+        },
+        {
+          "step": "quotation_audit",
+          "accepted": 1,
+          "rejected": {
+            "outside_selection": 0,
+            "nonverbatim": 0,
+            "effect_promise": 0
+          }
+        }
+      ]
+    }
+  },
+  "compare": {
+    "groups": [
+      {
+        "label": "数据管理规范",
+        "citations": [
+          {
+            "evidence_id": "EV-METHODS-FAIR",
+            "dataset_version": "methods-fixture-v1"
+          }
+        ]
+      },
+      {
+        "label": "系统综述报告规范",
+        "citations": [
+          {
+            "evidence_id": "EV-METHODS-PRISMA",
+            "dataset_version": "methods-fixture-v1"
+          }
+        ]
+      }
+    ],
+    "report": {
+      "report_id": "c0f6ffe8d9494b76bc9c5f437ddfa0fd",
+      "snapshot_id": "24a587fff354396f038be110a5f0878a272a0a45d23b17e51cab52018fc1cf0c",
+      "state": "AI_DRAFT_PENDING_REVIEW",
+      "version": 1,
+      "statements": [
+        {
+          "statement_id": "S1",
+          "text": "The FAIR Guiding Principles for scientific data management and stewardship",
+          "evidence_id": "EV-METHODS-FAIR",
+          "dataset_version": "methods-fixture-v1",
+          "primary_ref": "PMID:26978244",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-27T15:09:14+00:00"
+        },
+        {
+          "statement_id": "S2",
+          "text": "The PRISMA 2020 statement: an updated guideline for reporting systematic reviews",
+          "evidence_id": "EV-METHODS-PRISMA",
+          "dataset_version": "methods-fixture-v1",
+          "primary_ref": "PMID:33782057",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-27T15:09:14+00:00"
+        }
+      ],
+      "review": {},
+      "timeline": [],
+      "scientific_boundary": "本阶段交付软件原型与离线评测，不以实验有效性或临床效果作为承诺。",
+      "inventory": [
+        {
+          "label": "数据管理规范",
+          "statement_ids": [
+            "S1"
+          ],
+          "tier_counts": {
+            "T3_PEER_REVIEWED_LIT": 1
+          },
+          "review_notice": null
+        },
+        {
+          "label": "系统综述报告规范",
+          "statement_ids": [
+            "S2"
+          ],
+          "tier_counts": {
+            "T3_PEER_REVIEWED_LIT": 1
+          },
+          "review_notice": null
+        }
+      ],
+      "review_notice": null,
+      "provenance": {
+        "nodes": [
+          [
+            "evidence",
+            "EV-METHODS-FAIR",
+            "methods-fixture-v1"
+          ],
+          [
+            "evidence",
+            "EV-METHODS-PRISMA",
+            "methods-fixture-v1"
+          ],
+          [
+            "release",
+            "methods-fixture-v1"
+          ],
+          [
+            "source",
+            "PMID:26978244"
+          ],
+          [
+            "source",
+            "PMID:33782057"
+          ]
+        ],
+        "edges": [
+          [
+            [
+              "evidence",
+              "EV-METHODS-FAIR",
+              "methods-fixture-v1"
+            ],
+            [
+              "release",
+              "methods-fixture-v1"
+            ]
+          ],
+          [
+            [
+              "evidence",
+              "EV-METHODS-FAIR",
+              "methods-fixture-v1"
+            ],
+            [
+              "source",
+              "PMID:26978244"
+            ]
+          ],
+          [
+            [
+              "evidence",
+              "EV-METHODS-PRISMA",
+              "methods-fixture-v1"
+            ],
+            [
+              "release",
+              "methods-fixture-v1"
+            ]
+          ],
+          [
+            [
+              "evidence",
+              "EV-METHODS-PRISMA",
+              "methods-fixture-v1"
+            ],
+            [
+              "source",
+              "PMID:33782057"
+            ]
+          ]
+        ]
+      },
+      "agent_trace": [
+        {
+          "step": "evidence_selection",
+          "selected": 2
+        },
+        {
+          "step": "quotation_audit",
+          "accepted": 2,
+          "rejected": {
+            "outside_selection": 0,
+            "nonverbatim": 0,
+            "effect_promise": 0
+          }
+        }
+      ]
+    }
+  },
+  "signoff": {
+    "report": {
+      "report_id": "c0f6ffe8d9494b76bc9c5f437ddfa0fd",
+      "snapshot_id": "24a587fff354396f038be110a5f0878a272a0a45d23b17e51cab52018fc1cf0c",
+      "state": "EXPERT_SIGNED",
+      "version": 2,
+      "statements": [
+        {
+          "statement_id": "S1",
+          "text": "The FAIR Guiding Principles for scientific data management and stewardship",
+          "evidence_id": "EV-METHODS-FAIR",
+          "dataset_version": "methods-fixture-v1",
+          "primary_ref": "PMID:26978244",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-27T15:09:14+00:00"
+        },
+        {
+          "statement_id": "S2",
+          "text": "The PRISMA 2020 statement: an updated guideline for reporting systematic reviews",
+          "evidence_id": "EV-METHODS-PRISMA",
+          "dataset_version": "methods-fixture-v1",
+          "primary_ref": "PMID:33782057",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-27T15:09:14+00:00"
+        }
+      ],
+      "review": {
+        "S1": "accept",
+        "S2": "flag_doubt"
+      },
+      "timeline": [
+        {
+          "statement_id": "S1",
+          "action": "accept",
+          "note": "",
+          "reviewer": "demo-reviewer",
+          "timestamp": "2026-11-27T15:09:19.502061+00:00",
+          "version": 2
+        },
+        {
+          "statement_id": "S2",
+          "action": "flag_doubt",
+          "note": "核对适用范围。",
+          "reviewer": "demo-reviewer",
+          "timestamp": "2026-11-27T15:09:19.502061+00:00",
+          "version": 2
+        },
+        {
+          "action": "signoff",
+          "reviewer": "demo-reviewer",
+          "timestamp": "2026-11-27T15:09:19.502061+00:00",
+          "version": 2
+        }
+      ],
+      "scientific_boundary": "本阶段交付软件原型与离线评测，不以实验有效性或临床效果作为承诺。",
+      "inventory": [
+        {
+          "label": "数据管理规范",
+          "statement_ids": [
+            "S1"
+          ],
+          "tier_counts": {
+            "T3_PEER_REVIEWED_LIT": 1
+          },
+          "review_notice": null
+        },
+        {
+          "label": "系统综述报告规范",
+          "statement_ids": [
+            "S2"
+          ],
+          "tier_counts": {
+            "T3_PEER_REVIEWED_LIT": 1
+          },
+          "review_notice": null
+        }
+      ],
+      "review_notice": null,
+      "provenance": {
+        "nodes": [
+          [
+            "evidence",
+            "EV-METHODS-FAIR",
+            "methods-fixture-v1"
+          ],
+          [
+            "evidence",
+            "EV-METHODS-PRISMA",
+            "methods-fixture-v1"
+          ],
+          [
+            "release",
+            "methods-fixture-v1"
+          ],
+          [
+            "source",
+            "PMID:26978244"
+          ],
+          [
+            "source",
+            "PMID:33782057"
+          ]
+        ],
+        "edges": [
+          [
+            [
+              "evidence",
+              "EV-METHODS-FAIR",
+              "methods-fixture-v1"
+            ],
+            [
+              "release",
+              "methods-fixture-v1"
+            ]
+          ],
+          [
+            [
+              "evidence",
+              "EV-METHODS-FAIR",
+              "methods-fixture-v1"
+            ],
+            [
+              "source",
+              "PMID:26978244"
+            ]
+          ],
+          [
+            [
+              "evidence",
+              "EV-METHODS-PRISMA",
+              "methods-fixture-v1"
+            ],
+            [
+              "release",
+              "methods-fixture-v1"
+            ]
+          ],
+          [
+            [
+              "evidence",
+              "EV-METHODS-PRISMA",
+              "methods-fixture-v1"
+            ],
+            [
+              "source",
+              "PMID:33782057"
+            ]
+          ]
+        ]
+      },
+      "agent_trace": [
+        {
+          "step": "evidence_selection",
+          "selected": 2
+        },
+        {
+          "step": "quotation_audit",
+          "accepted": 2,
+          "rejected": {
+            "outside_selection": 0,
+            "nonverbatim": 0,
+            "effect_promise": 0
+          }
+        }
+      ]
+    },
+    "exports": {
+      "markdown": "# 专家复核报告 v2\n\n本阶段交付软件原型与离线评测，不以实验有效性或临床效果作为承诺。\n\n快照 `24a587fff354396f038be110a5f0878a272a0a45d23b17e51cab52018fc1cf0c`\n\n- The FAIR Guiding Principles for scientific data management and stewardship — EV-METHODS-FAIR · methods-fixture-v1 · PMID:26978244 · T3\\_PEER\\_REVIEWED\\_LIT\n",
+      "json": "{\n  \"report_id\": \"c0f6ffe8d9494b76bc9c5f437ddfa0fd\",\n  \"snapshot_id\": \"24a587fff354396f038be110a5f0878a272a0a45d23b17e51cab52018fc1cf0c\",\n  \"state\": \"EXPERT_SIGNED\",\n  \"version\": 2,\n  \"statements\": [\n    {\n      \"statement_id\": \"S1\",\n      \"text\": \"The FAIR Guiding Principles for scientific data management and stewardship\",\n      \"evidence_id\": \"EV-METHODS-FAIR\",\n      \"dataset_version\": \"methods-fixture-v1\",\n      \"primary_ref\": \"PMID:26978244\",\n      \"evidence_tier\": \"T3_PEER_REVIEWED_LIT\",\n      \"ingested_at\": \"2026-11-27T15:09:14+00:00\"\n    },\n    {\n      \"statement_id\": \"S2\",\n      \"text\": \"The PRISMA 2020 statement: an updated guideline for reporting systematic reviews\",\n      \"evidence_id\": \"EV-METHODS-PRISMA\",\n      \"dataset_version\": \"methods-fixture-v1\",\n      \"primary_ref\": \"PMID:33782057\",\n      \"evidence_tier\": \"T3_PEER_REVIEWED_LIT\",\n      \"ingested_at\": \"2026-11-27T15:09:14+00:00\"\n    }\n  ],\n  \"review\": {\n    \"S1\": \"accept\",\n    \"S2\": \"flag_doubt\"\n  },\n  \"timeline\": [\n    {\n      \"statement_id\": \"S1\",\n      \"action\": \"accept\",\n      \"note\": \"\",\n      \"reviewer\": \"demo-reviewer\",\n      \"timestamp\": \"2026-11-27T15:09:19.502061+00:00\",\n      \"version\": 2\n    },\n    {\n      \"statement_id\": \"S2\",\n      \"action\": \"flag_doubt\",\n      \"note\": \"核对适用范围。\",\n      \"reviewer\": \"demo-reviewer\",\n      \"timestamp\": \"2026-11-27T15:09:19.502061+00:00\",\n      \"version\": 2\n    },\n    {\n      \"action\": \"signoff\",\n      \"reviewer\": \"demo-reviewer\",\n      \"timestamp\": \"2026-11-27T15:09:19.502061+00:00\",\n      \"version\": 2\n    }\n  ],\n  \"scientific_boundary\": \"本阶段交付软件原型与离线评测，不以实验有效性或临床效果作为承诺。\",\n  \"inventory\": [\n    {\n      \"label\": \"数据管理规范\",\n      \"statement_ids\": [\n        \"S1\"\n      ],\n      \"tier_counts\": {\n        \"T3_PEER_REVIEWED_LIT\": 1\n      },\n      \"review_notice\": null\n    },\n    {\n      \"label\": \"系统综述报告规范\",\n      \"statement_ids\": [\n        \"S2\"\n      ],\n      \"tier_counts\": {\n        \"T3_PEER_REVIEWED_LIT\": 1\n      },\n      \"review_notice\": null\n    }\n  ],\n  \"review_notice\": null,\n  \"provenance\": {\n    \"nodes\": [\n      [\n        \"evidence\",\n        \"EV-METHODS-FAIR\",\n        \"methods-fixture-v1\"\n      ],\n      [\n        \"evidence\",\n        \"EV-METHODS-PRISMA\",\n        \"methods-fixture-v1\"\n      ],\n      [\n        \"release\",\n        \"methods-fixture-v1\"\n      ],\n      [\n        \"source\",\n        \"PMID:26978244\"\n      ],\n      [\n        \"source\",\n        \"PMID:33782057\"\n      ]\n    ],\n    \"edges\": [\n      [\n        [\n          \"evidence\",\n          \"EV-METHODS-FAIR\",\n          \"methods-fixture-v1\"\n        ],\n        [\n          \"release\",\n          \"methods-fixture-v1\"\n        ]\n      ],\n      [\n        [\n          \"evidence\",\n          \"EV-METHODS-FAIR\",\n          \"methods-fixture-v1\"\n        ],\n        [\n          \"source\",\n          \"PMID:26978244\"\n        ]\n      ],\n      [\n        [\n          \"evidence\",\n          \"EV-METHODS-PRISMA\",\n          \"methods-fixture-v1\"\n        ],\n        [\n          \"release\",\n          \"methods-fixture-v1\"\n        ]\n      ],\n      [\n        [\n          \"evidence\",\n          \"EV-METHODS-PRISMA\",\n          \"methods-fixture-v1\"\n        ],\n        [\n          \"source\",\n          \"PMID:33782057\"\n        ]\n      ]\n    ]\n  },\n  \"agent_trace\": [\n    {\n      \"step\": \"evidence_selection\",\n      \"selected\": 2\n    },\n    {\n      \"step\": \"quotation_audit\",\n      \"accepted\": 2,\n      \"rejected\": {\n        \"outside_selection\": 0,\n        \"nonverbatim\": 0,\n        \"effect_promise\": 0\n      }\n    }\n  ]\n}",
+      "evidence_csv": "statement_id,evidence_id,dataset_version,primary_ref,evidence_tier,ingested_at,text\r\nS1,EV-METHODS-FAIR,methods-fixture-v1,PMID:26978244,T3_PEER_REVIEWED_LIT,2026-11-27T15:09:14+00:00,The FAIR Guiding Principles for scientific data management and stewardship\r\n"
+    }
+  }
+}
