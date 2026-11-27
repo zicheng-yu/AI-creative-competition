@@ -1,0 +1,8 @@
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+weights/*.csv text eol=lf
+benchmarks/results_detail.csv -text
+*.pt binary
+*.onnx binary
+*.png binary
