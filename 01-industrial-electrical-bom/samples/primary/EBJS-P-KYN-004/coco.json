@@ -1,0 +1,531 @@
+{
+  "info": {
+    "description": "ElectroBench-JS",
+    "version": "1.0.0"
+  },
+  "licenses": [
+    {
+      "id": 1,
+      "name": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "images": [
+    {
+      "id": 1,
+      "file_name": "drawing.png",
+      "width": 1680,
+      "height": 1188
+    }
+  ],
+  "annotations": [
+    {
+      "id": 1,
+      "image_id": 1,
+      "category_id": 33,
+      "bbox": [
+        280.0,
+        472.8,
+        1280.0,
+        6.4
+      ],
+      "area": 8192.0,
+      "iscrowd": 0,
+      "attributes": {
+        "tag": "WB1",
+        "instance_id": "i001"
+      }
+    },
+    {
+      "id": 2,
+      "image_id": 1,
+      "category_id": 1,
+      "bbox": [
+        270.0,
+        108.0,
+        32.0,
+        64.0
+      ],
+      "area": 2048.0,
+      "iscrowd": 0,
+      "attributes": {
+        "tag": "QS1",
+        "instance_id": "i002"
+      }
+    },
+    {
+      "id": 3,
+      "image_id": 1,
+      "category_id": 0,
+      "bbox": [
+        263.2,
+        252.0,
+        33.6,
+        64.0
+      ],
+      "area": 2150.4,
+      "iscrowd": 0,
+      "attributes": {
+        "tag": "QF1",
+        "instance_id": "i003"
+      }
+    },
+    {
+      "id": 4,
+      "image_id": 1,
+      "category_id": 15,
+      "bbox": [
+        260.0,
+        380.0,
+        46.0,
+        64.0
+      ],
+      "area": 2944.0,
+      "iscrowd": 0,
+      "attributes": {
+        "tag": "TA1",
+        "instance_id": "i004"
+      }
+    },
+    {
+      "id": 5,
+      "image_id": 1,
+      "category_id": 2,
+      "bbox": [
+        450.0,
+        108.0,
+        44.0,
+        88.0
+      ],
+      "area": 3872.0,
+      "iscrowd": 0,
+      "attributes": {
+        "tag": "QE1",
+        "instance_id": "i005"
+      }
+    },
+    {
+      "id": 6,
+      "image_id": 1,
+      "category_id": 37,
+      "bbox": [
+        452.0,
+        292.0,
+        40.0,
+        40.0
+      ],
+      "area": 1600.0,
+      "iscrowd": 0,
+      "attributes": {
+        "tag": "PE1",
+        "instance_id": "i006"
+      }
+    },
+    {
+      "id": 7,
+      "image_id": 1,
+      "category_id": 16,
+      "bbox": [
+        1462.4,
+        276.0,
+        42.4,
+        64.0
+      ],
+      "area": 2713.6,
+      "iscrowd": 0,
+      "attributes": {
+        "tag": "TV1",
+        "instance_id": "i007"
+      }
+    },
+    {
+      "id": 8,
+      "image_id": 1,
+      "category_id": 22,
+      "bbox": [
+        1458.0,
+        124.0,
+        44.0,
+        64.0
+      ],
+      "area": 2816.0,
+      "iscrowd": 0,
+      "attributes": {
+        "tag": "PV1",
+        "instance_id": "i008"
+      }
+    },
+    {
+      "id": 9,
+      "image_id": 1,
+      "category_id": 21,
+      "bbox": [
+        618.0,
+        236.0,
+        44.0,
+        64.0
+      ],
+      "area": 2816.0,
+      "iscrowd": 0,
+      "attributes": {
+        "tag": "PA1",
+        "instance_id": "i009"
+      }
+    },
+    {
+      "id": 10,
+      "image_id": 1,
+      "category_id": 1,
+      "bbox": [
+        750.0,
+        572.0,
+        32.0,
+        64.0
+      ],
+      "area": 2048.0,
+      "iscrowd": 0,
+      "attributes": {
+        "tag": "QS2",
+        "instance_id": "i010"
+      }
+    },
+    {
+      "id": 11,
+      "image_id": 1,
+      "category_id": 0,
+      "bbox": [
+        743.2,
+        700.0,
+        33.6,
+        64.0
+      ],
+      "area": 2150.4,
+      "iscrowd": 0,
+      "attributes": {
+        "tag": "QF2",
+        "instance_id": "i011"
+      }
+    },
+    {
+      "id": 12,
+      "image_id": 1,
+      "category_id": 25,
+      "bbox": [
+        746.0,
+        828.0,
+        28.0,
+        64.0
+      ],
+      "area": 1792.0,
+      "iscrowd": 0,
+      "attributes": {
+        "tag": "L1",
+        "instance_id": "i012"
+      }
+    },
+    {
+      "id": 13,
+      "image_id": 1,
+      "category_id": 38,
+      "bbox": [
+        832.0,
+        1043.2,
+        64.08,
+        24.8
+      ],
+      "area": 1589.18,
+      "iscrowd": 0,
+      "attributes": {
+        "tag": "WL1",
+        "instance_id": "i013"
+      }
+    },
+    {
+      "id": 14,
+      "image_id": 1,
+      "category_id": 1,
+      "bbox": [
+        1190.0,
+        572.0,
+        32.0,
+        64.0
+      ],
+      "area": 2048.0,
+      "iscrowd": 0,
+      "attributes": {
+        "tag": "QS3",
+        "instance_id": "i014"
+      }
+    },
+    {
+      "id": 15,
+      "image_id": 1,
+      "category_id": 0,
+      "bbox": [
+        1183.2,
+        700.0,
+        33.6,
+        64.0
+      ],
+      "area": 2150.4,
+      "iscrowd": 0,
+      "attributes": {
+        "tag": "QF3",
+        "instance_id": "i015"
+      }
+    },
+    {
+      "id": 16,
+      "image_id": 1,
+      "category_id": 15,
+      "bbox": [
+        1180.0,
+        828.0,
+        46.0,
+        64.0
+      ],
+      "area": 2944.0,
+      "iscrowd": 0,
+      "attributes": {
+        "tag": "TA2",
+        "instance_id": "i016"
+      }
+    },
+    {
+      "id": 17,
+      "image_id": 1,
+      "category_id": 18,
+      "bbox": [
+        1182.4,
+        956.0,
+        35.2,
+        64.0
+      ],
+      "area": 2252.8,
+      "iscrowd": 0,
+      "attributes": {
+        "tag": "T1",
+        "instance_id": "i017"
+      }
+    },
+    {
+      "id": 18,
+      "image_id": 1,
+      "category_id": 38,
+      "bbox": [
+        1272.0,
+        1043.2,
+        64.08,
+        24.8
+      ],
+      "area": 1589.18,
+      "iscrowd": 0,
+      "attributes": {
+        "tag": "WL2",
+        "instance_id": "i018"
+      }
+    }
+  ],
+  "categories": [
+    {
+      "id": 0,
+      "name": "QF",
+      "supercategory": "primary"
+    },
+    {
+      "id": 1,
+      "name": "QS",
+      "supercategory": "primary"
+    },
+    {
+      "id": 2,
+      "name": "QE",
+      "supercategory": "primary"
+    },
+    {
+      "id": 3,
+      "name": "KM_MAIN",
+      "supercategory": "primary"
+    },
+    {
+      "id": 4,
+      "name": "KM_COIL",
+      "supercategory": "secondary"
+    },
+    {
+      "id": 5,
+      "name": "KM_NO",
+      "supercategory": "secondary"
+    },
+    {
+      "id": 6,
+      "name": "KM_NC",
+      "supercategory": "secondary"
+    },
+    {
+      "id": 7,
+      "name": "KA_COIL",
+      "supercategory": "secondary"
+    },
+    {
+      "id": 8,
+      "name": "KA_NO",
+      "supercategory": "secondary"
+    },
+    {
+      "id": 9,
+      "name": "KA_NC",
+      "supercategory": "secondary"
+    },
+    {
+      "id": 10,
+      "name": "KT_COIL",
+      "supercategory": "secondary"
+    },
+    {
+      "id": 11,
+      "name": "KT_NO",
+      "supercategory": "secondary"
+    },
+    {
+      "id": 12,
+      "name": "FR",
+      "supercategory": "primary"
+    },
+    {
+      "id": 13,
+      "name": "FR_NC",
+      "supercategory": "secondary"
+    },
+    {
+      "id": 14,
+      "name": "FU",
+      "supercategory": "both"
+    },
+    {
+      "id": 15,
+      "name": "TA",
+      "supercategory": "primary"
+    },
+    {
+      "id": 16,
+      "name": "TV",
+      "supercategory": "primary"
+    },
+    {
+      "id": 17,
+      "name": "SPD",
+      "supercategory": "primary"
+    },
+    {
+      "id": 18,
+      "name": "T",
+      "supercategory": "primary"
+    },
+    {
+      "id": 19,
+      "name": "TC",
+      "supercategory": "secondary"
+    },
+    {
+      "id": 20,
+      "name": "M",
+      "supercategory": "primary"
+    },
+    {
+      "id": 21,
+      "name": "PA",
+      "supercategory": "primary"
+    },
+    {
+      "id": 22,
+      "name": "PV",
+      "supercategory": "primary"
+    },
+    {
+      "id": 23,
+      "name": "PJ",
+      "supercategory": "primary"
+    },
+    {
+      "id": 24,
+      "name": "C",
+      "supercategory": "primary"
+    },
+    {
+      "id": 25,
+      "name": "L",
+      "supercategory": "primary"
+    },
+    {
+      "id": 26,
+      "name": "HL",
+      "supercategory": "secondary"
+    },
+    {
+      "id": 27,
+      "name": "HA",
+      "supercategory": "secondary"
+    },
+    {
+      "id": 28,
+      "name": "SB_NO",
+      "supercategory": "secondary"
+    },
+    {
+      "id": 29,
+      "name": "SB_NC",
+      "supercategory": "secondary"
+    },
+    {
+      "id": 30,
+      "name": "SA",
+      "supercategory": "secondary"
+    },
+    {
+      "id": 31,
+      "name": "SQ",
+      "supercategory": "secondary"
+    },
+    {
+      "id": 32,
+      "name": "XT",
+      "supercategory": "secondary"
+    },
+    {
+      "id": 33,
+      "name": "WB",
+      "supercategory": "primary"
+    },
+    {
+      "id": 34,
+      "name": "YC",
+      "supercategory": "secondary"
+    },
+    {
+      "id": 35,
+      "name": "YO",
+      "supercategory": "secondary"
+    },
+    {
+      "id": 36,
+      "name": "ATS",
+      "supercategory": "primary"
+    },
+    {
+      "id": 37,
+      "name": "PE",
+      "supercategory": "annotation"
+    },
+    {
+      "id": 38,
+      "name": "WL",
+      "supercategory": "primary"
+    },
+    {
+      "id": 39,
+      "name": "WIRE_NO",
+      "supercategory": "annotation"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+﻿line_no,bom_letter,name_zh,model,spec,qty,unit,tags
+1,WB,母线,EB-WB,TMY,1,套,WB1
+2,QS,隔离开关,EB-QS-1250,1250A 12kV,1,台,QS1
+3,QF,断路器,EB-VCB-1250/1250,In=1250A 3P Icu=31kA,1,台,QF1
+4,TA,电流互感器,EB-TA-600/5,600/5A 10P10,1,只,TA1
+5,QE,接地开关,EB-QE-12,12kV,1,台,QE1
+6,TV,电压互感器,EB-TV-10/0.1,10/0.1kV,1,只,TV1
+7,PV,电压表,EB-PV-12kV,12kV,1,只,PV1
+8,PA,电流表,EB-PA-5A,5A,1,只,PA1
+9,QS,隔离开关,EB-QS-630,630A 12kV,2,台,QS2 QS3
+10,QF,断路器,EB-VCB-630/160,In=160A 3P Icu=31kA,1,台,QF2
+11,L,电抗器,EB-L-10kV,10kV 限流,1,只,L1
+12,WL,电力电缆,YJV,YJV-4x70+1x35,1,回路,WL1
+13,QF,断路器,EB-VCB-630/200,In=200A 3P Icu=31kA,1,台,QF3
+14,TA,电流互感器,EB-TA-200/5,200/5A 0.5,1,只,TA2
+15,T,电力变压器,EB-T-800,10/0.4kV 800kVA,1,台,T1
+16,WL,电力电缆,YJV,YJV-4x95+1x50,1,回路,WL2

@@ -1,0 +1,14 @@
+﻿line_no,bom_letter,name_zh,model,spec,qty,unit,tags
+1,QF,断路器,EB-MCB-63/32,In=32A 3P Icu=50kA,1,台,QF1
+2,KM,交流接触器,EB-KM-32,Ie=32A AC220V,1,台,KM1
+3,FR,热继电器,EB-FR-18,整定18A,1,只,FR1
+4,M,电动机,EB-M-7kW,7kW 380V 4P,1,台,M1
+5,WL,电力电缆,YJV,YJV-4x6+1x4,1,回路,WL1
+6,TC,控制变压器,EB-TC-100,380/220V 100VA,1,台,TC1
+7,FU,熔断器,EB-FU-4,In=4A,1,只,FU1
+8,SB,按钮,EB-SB,停止 常闭,1,只,SB1
+9,SB,按钮,EB-SB,启动 常开,1,只,SB2
+10,KA,中间继电器,EB-KA,AC220V,1,只,KA1
+11,HL,指示灯,EB-HL-GN,绿色 AC220V,1,只,HL1
+12,HA,电铃,EB-HA,AC220V,1,只,HA1
+13,XT,端子,EB-XT,2.5mm2,2,只,XT1 XT2

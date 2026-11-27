@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/electrobench-js/annotation-1.0.0.schema.json",
+  "title": "ElectroBench-JS drawing annotation",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "dataset",
+    "id",
+    "subset",
+    "title",
+    "seed",
+    "sheet",
+    "instances",
+    "netlist",
+    "bom",
+    "bom_summary",
+    "defects"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "dataset": {"const": "ElectroBench-JS"},
+    "id": {"type": "string"},
+    "subset": {"enum": ["primary", "secondary", "defect", "degraded"]},
+    "title": {"type": "string"},
+    "seed": {"type": "integer"},
+    "cabinet": {"type": ["string", "null"]},
+    "circuit_kind": {"type": ["string", "null"]},
+    "voltage": {"type": "string"},
+    "alias": {"type": "boolean"},
+    "interlock": {"type": "boolean"},
+    "degradation": {"type": ["object", "null"]},
+    "notes": {"type": "array", "items": {"type": "string"}},
+    "sheet": {
+      "type": "object",
+      "required": ["width_mm", "height_mm", "px_per_mm", "image_width", "image_height"],
+      "properties": {
+        "width_mm": {"type": "number"},
+        "height_mm": {"type": "number"},
+        "px_per_mm": {"type": "number"},
+        "image_width": {"type": "integer"},
+        "image_height": {"type": "integer"}
+      }
+    },
+    "instances": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "tag", "class_id", "class_code", "bom_anchor", "in_netlist", "bbox_mm", "bbox_px", "specs"],
+        "properties": {
+          "id": {"type": "string"},
+          "tag": {"type": "string"},
+          "class_id": {"type": "integer", "minimum": 0},
+          "class_code": {"type": "string"},
+          "bom_anchor": {"type": "boolean"},
+          "in_netlist": {"type": "boolean"},
+          "bbox_mm": {"type": "array", "minItems": 4, "maxItems": 4},
+          "bbox_px": {"type": "array", "minItems": 4, "maxItems": 4},
+          "specs": {"type": "object"}
+        }
+      }
+    },
+    "netlist": {
+      "type": "object",
+      "required": ["nodes", "edges"],
+      "properties": {
+        "nodes": {"type": "array"},
+        "edges": {"type": "array"},
+        "children": {"type": "object"},
+        "roots": {"type": "array"}
+      }
+    },
+    "control_branches": {"type": "array"},
+    "logic": {"type": ["object", "null"]},
+    "bom": {"type": "array"},
+    "bom_summary": {"type": "array"},
+    "defects": {"type": "array"}
+  },
+  "additionalProperties": true
+}

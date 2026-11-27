@@ -1,0 +1,1716 @@
+{
+  "schema_version": "1.0.0",
+  "dataset": "ElectroBench-JS",
+  "generator_version": "1.0.0",
+  "id": "EBJS-P-KYN-004",
+  "subset": "primary",
+  "title": "KYN28 铠装移开式交流金属封闭开关柜一次系统图",
+  "seed": 262,
+  "cabinet": "KYN28",
+  "circuit_kind": null,
+  "voltage": "AC10kV",
+  "alias": false,
+  "interlock": true,
+  "degradation": null,
+  "notes": [
+    "KYN28 单母线一次图：隔离、接地、真空断路器、互感器与馈线变压器。"
+  ],
+  "standards": {
+    "graphical_symbols": "GB/T 4728 / IEC 60617（简图近似，非标准图版复制）",
+    "designations": "图面文字代号沿用成套行业习惯；iec81346 字段为 IEC 81346-2:2019 表1 类字母",
+    "structuring": "GB/T 5094（对应 IEC 81346 的结构与参照代号原则）"
+  },
+  "sheet": {
+    "width_mm": 420.0,
+    "height_mm": 297.0,
+    "px_per_mm": 4,
+    "image_width": 1680,
+    "image_height": 1188
+  },
+  "instances": [
+    {
+      "id": "i001",
+      "tag": "WB1",
+      "class_id": 33,
+      "class_code": "WB",
+      "name_zh": "母线",
+      "bom_letter": "WB",
+      "iec81346": "W",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        70,
+        177.2,
+        320,
+        1.6
+      ],
+      "bbox_px": [
+        280.0,
+        472.8,
+        1280.0,
+        6.4
+      ],
+      "ports": {
+        "src": [
+          70,
+          178
+        ],
+        "f1": [
+          190,
+          178
+        ],
+        "f2": [
+          300,
+          178
+        ],
+        "tv": [
+          370,
+          178
+        ]
+      },
+      "specs": {
+        "spec": "TMY",
+        "model": "EB-WB"
+      },
+      "label_tag": "WB1",
+      "label_spec": "TMY",
+      "circuit": "BUS",
+      "extra": {}
+    },
+    {
+      "id": "i002",
+      "tag": "QS1",
+      "class_id": 1,
+      "class_code": "QS",
+      "name_zh": "隔离开关",
+      "bom_letter": "QS",
+      "iec81346": "Q",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        67.5,
+        254.0,
+        8.0,
+        16.0
+      ],
+      "bbox_px": [
+        270.0,
+        108.0,
+        32.0,
+        64.0
+      ],
+      "ports": {
+        "in": [
+          70.0,
+          270.0
+        ],
+        "out": [
+          70.0,
+          254.0
+        ],
+        "tap": [
+          70.0,
+          264.0
+        ]
+      },
+      "specs": {
+        "model": "EB-QS-1250",
+        "spec": "1250A 12kV"
+      },
+      "label_tag": "QS1",
+      "label_spec": "1250A 12kV",
+      "circuit": "IN",
+      "extra": {}
+    },
+    {
+      "id": "i003",
+      "tag": "QF1",
+      "class_id": 0,
+      "class_code": "QF",
+      "name_zh": "断路器",
+      "bom_letter": "QF",
+      "iec81346": "Q",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        65.8,
+        218.0,
+        8.4,
+        16.0
+      ],
+      "bbox_px": [
+        263.2,
+        252.0,
+        33.6,
+        64.0
+      ],
+      "ports": {
+        "in": [
+          70.0,
+          234.0
+        ],
+        "out": [
+          70.0,
+          218.0
+        ]
+      },
+      "specs": {
+        "model": "EB-VCB-1250/1250",
+        "spec": "In=1250A 3P Icu=31kA",
+        "In_A": 1250,
+        "frame_A": 1250,
+        "poles": "3P",
+        "icu_kA": 31
+      },
+      "label_tag": "QF1",
+      "label_spec": "In=1250A 3P Icu=31kA",
+      "circuit": "IN",
+      "extra": {}
+    },
+    {
+      "id": "i004",
+      "tag": "TA1",
+      "class_id": 15,
+      "class_code": "TA",
+      "name_zh": "电流互感器",
+      "bom_letter": "TA",
+      "iec81346": "B",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        65.0,
+        186.0,
+        11.5,
+        16.0
+      ],
+      "bbox_px": [
+        260.0,
+        380.0,
+        46.0,
+        64.0
+      ],
+      "ports": {
+        "in": [
+          70.0,
+          202.0
+        ],
+        "out": [
+          70.0,
+          186.0
+        ],
+        "sec": [
+          75.0,
+          194.0
+        ]
+      },
+      "specs": {
+        "model": "EB-TA-600/5",
+        "spec": "600/5A 10P10",
+        "ratio": "600/5"
+      },
+      "label_tag": "TA1",
+      "label_spec": "600/5A 10P10",
+      "circuit": "IN",
+      "extra": {}
+    },
+    {
+      "id": "i005",
+      "tag": "QE1",
+      "class_id": 2,
+      "class_code": "QE",
+      "name_zh": "接地开关",
+      "bom_letter": "QE",
+      "iec81346": "Q",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        112.5,
+        248.0,
+        11.0,
+        22.0
+      ],
+      "bbox_px": [
+        450.0,
+        108.0,
+        44.0,
+        88.0
+      ],
+      "ports": {
+        "in": [
+          118.0,
+          270.0
+        ],
+        "out": [
+          118.0,
+          248.0
+        ]
+      },
+      "specs": {
+        "model": "EB-QE-12",
+        "spec": "12kV"
+      },
+      "label_tag": "QE1",
+      "label_spec": "12kV",
+      "circuit": "IN",
+      "extra": {}
+    },
+    {
+      "id": "i006",
+      "tag": "PE1",
+      "class_id": 37,
+      "class_code": "PE",
+      "name_zh": "保护接地",
+      "bom_letter": null,
+      "iec81346": null,
+      "bom_anchor": false,
+      "in_netlist": true,
+      "bbox_mm": [
+        113.0,
+        214.0,
+        10.0,
+        10.0
+      ],
+      "bbox_px": [
+        452.0,
+        292.0,
+        40.0,
+        40.0
+      ],
+      "ports": {
+        "in": [
+          118.0,
+          224.0
+        ]
+      },
+      "specs": {},
+      "label_tag": "PE1",
+      "label_spec": "",
+      "circuit": "IN",
+      "extra": {}
+    },
+    {
+      "id": "i007",
+      "tag": "TV1",
+      "class_id": 16,
+      "class_code": "TV",
+      "name_zh": "电压互感器",
+      "bom_letter": "TV",
+      "iec81346": "B",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        365.6,
+        212.0,
+        10.6,
+        16.0
+      ],
+      "bbox_px": [
+        1462.4,
+        276.0,
+        42.4,
+        64.0
+      ],
+      "ports": {
+        "in": [
+          370.0,
+          228.0
+        ],
+        "out": [
+          370.0,
+          212.0
+        ],
+        "sec": [
+          374.4,
+          220.0
+        ]
+      },
+      "specs": {
+        "model": "EB-TV-10/0.1",
+        "spec": "10/0.1kV"
+      },
+      "label_tag": "TV1",
+      "label_spec": "10/0.1kV",
+      "circuit": "IN",
+      "extra": {}
+    },
+    {
+      "id": "i008",
+      "tag": "PV1",
+      "class_id": 22,
+      "class_code": "PV",
+      "name_zh": "电压表",
+      "bom_letter": "PV",
+      "iec81346": "P",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        364.5,
+        250.0,
+        11.0,
+        16.0
+      ],
+      "bbox_px": [
+        1458.0,
+        124.0,
+        44.0,
+        64.0
+      ],
+      "ports": {
+        "in": [
+          370.0,
+          266.0
+        ],
+        "out": [
+          370.0,
+          250.0
+        ]
+      },
+      "specs": {
+        "model": "EB-PV-12kV",
+        "spec": "12kV"
+      },
+      "label_tag": "PV1",
+      "label_spec": "12kV",
+      "circuit": "IN",
+      "extra": {}
+    },
+    {
+      "id": "i009",
+      "tag": "PA1",
+      "class_id": 21,
+      "class_code": "PA",
+      "name_zh": "电流表",
+      "bom_letter": "PA",
+      "iec81346": "P",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        154.5,
+        222.0,
+        11.0,
+        16.0
+      ],
+      "bbox_px": [
+        618.0,
+        236.0,
+        44.0,
+        64.0
+      ],
+      "ports": {
+        "in": [
+          160.0,
+          238.0
+        ],
+        "out": [
+          160.0,
+          222.0
+        ]
+      },
+      "specs": {
+        "model": "EB-PA-5A",
+        "spec": "5A"
+      },
+      "label_tag": "PA1",
+      "label_spec": "5A",
+      "circuit": "IN",
+      "extra": {}
+    },
+    {
+      "id": "i010",
+      "tag": "QS2",
+      "class_id": 1,
+      "class_code": "QS",
+      "name_zh": "隔离开关",
+      "bom_letter": "QS",
+      "iec81346": "Q",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        187.5,
+        138.0,
+        8.0,
+        16.0
+      ],
+      "bbox_px": [
+        750.0,
+        572.0,
+        32.0,
+        64.0
+      ],
+      "ports": {
+        "in": [
+          190.0,
+          154.0
+        ],
+        "out": [
+          190.0,
+          138.0
+        ],
+        "tap": [
+          190.0,
+          148.0
+        ]
+      },
+      "specs": {
+        "model": "EB-QS-630",
+        "spec": "630A 12kV"
+      },
+      "label_tag": "QS2",
+      "label_spec": "630A 12kV",
+      "circuit": "WL1",
+      "extra": {}
+    },
+    {
+      "id": "i011",
+      "tag": "QF2",
+      "class_id": 0,
+      "class_code": "QF",
+      "name_zh": "断路器",
+      "bom_letter": "QF",
+      "iec81346": "Q",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        185.8,
+        106.0,
+        8.4,
+        16.0
+      ],
+      "bbox_px": [
+        743.2,
+        700.0,
+        33.6,
+        64.0
+      ],
+      "ports": {
+        "in": [
+          190.0,
+          122.0
+        ],
+        "out": [
+          190.0,
+          106.0
+        ]
+      },
+      "specs": {
+        "model": "EB-VCB-630/160",
+        "spec": "In=160A 3P Icu=31kA",
+        "In_A": 160,
+        "frame_A": 630,
+        "poles": "3P",
+        "icu_kA": 31
+      },
+      "label_tag": "QF2",
+      "label_spec": "In=160A 3P Icu=31kA",
+      "circuit": "WL1",
+      "extra": {}
+    },
+    {
+      "id": "i012",
+      "tag": "L1",
+      "class_id": 25,
+      "class_code": "L",
+      "name_zh": "电抗器",
+      "bom_letter": "L",
+      "iec81346": null,
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        186.5,
+        74.0,
+        7.0,
+        16.0
+      ],
+      "bbox_px": [
+        746.0,
+        828.0,
+        28.0,
+        64.0
+      ],
+      "ports": {
+        "in": [
+          190.0,
+          90.0
+        ],
+        "out": [
+          190.0,
+          74.0
+        ]
+      },
+      "specs": {
+        "model": "EB-L-10kV",
+        "spec": "10kV 限流"
+      },
+      "label_tag": "L1",
+      "label_spec": "10kV 限流",
+      "circuit": "WL1",
+      "extra": {}
+    },
+    {
+      "id": "i013",
+      "tag": "WL1",
+      "class_id": 38,
+      "class_code": "WL",
+      "name_zh": "导线回路",
+      "bom_letter": "WL",
+      "iec81346": "W",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        208,
+        30,
+        16.02,
+        6.2
+      ],
+      "bbox_px": [
+        832.0,
+        1043.2,
+        64.08,
+        24.8
+      ],
+      "ports": {
+        "in": [
+          208,
+          33.0
+        ],
+        "out": [
+          208,
+          33.0
+        ]
+      },
+      "specs": {
+        "model": "YJV",
+        "spec": "YJV-4x70+1x35",
+        "section_mm2": 70,
+        "Iz_A": 171,
+        "Ib_A": 120,
+        "circuit": "WL1"
+      },
+      "label_tag": "WL1",
+      "label_spec": "YJV-4x70+1x35",
+      "circuit": "WL1",
+      "extra": {}
+    },
+    {
+      "id": "i014",
+      "tag": "QS3",
+      "class_id": 1,
+      "class_code": "QS",
+      "name_zh": "隔离开关",
+      "bom_letter": "QS",
+      "iec81346": "Q",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        297.5,
+        138.0,
+        8.0,
+        16.0
+      ],
+      "bbox_px": [
+        1190.0,
+        572.0,
+        32.0,
+        64.0
+      ],
+      "ports": {
+        "in": [
+          300.0,
+          154.0
+        ],
+        "out": [
+          300.0,
+          138.0
+        ],
+        "tap": [
+          300.0,
+          148.0
+        ]
+      },
+      "specs": {
+        "model": "EB-QS-630",
+        "spec": "630A 12kV"
+      },
+      "label_tag": "QS3",
+      "label_spec": "630A 12kV",
+      "circuit": "WL2",
+      "extra": {}
+    },
+    {
+      "id": "i015",
+      "tag": "QF3",
+      "class_id": 0,
+      "class_code": "QF",
+      "name_zh": "断路器",
+      "bom_letter": "QF",
+      "iec81346": "Q",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        295.8,
+        106.0,
+        8.4,
+        16.0
+      ],
+      "bbox_px": [
+        1183.2,
+        700.0,
+        33.6,
+        64.0
+      ],
+      "ports": {
+        "in": [
+          300.0,
+          122.0
+        ],
+        "out": [
+          300.0,
+          106.0
+        ]
+      },
+      "specs": {
+        "model": "EB-VCB-630/200",
+        "spec": "In=200A 3P Icu=31kA",
+        "In_A": 200,
+        "frame_A": 630,
+        "poles": "3P",
+        "icu_kA": 31
+      },
+      "label_tag": "QF3",
+      "label_spec": "In=200A 3P Icu=31kA",
+      "circuit": "WL2",
+      "extra": {}
+    },
+    {
+      "id": "i016",
+      "tag": "TA2",
+      "class_id": 15,
+      "class_code": "TA",
+      "name_zh": "电流互感器",
+      "bom_letter": "TA",
+      "iec81346": "B",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        295.0,
+        74.0,
+        11.5,
+        16.0
+      ],
+      "bbox_px": [
+        1180.0,
+        828.0,
+        46.0,
+        64.0
+      ],
+      "ports": {
+        "in": [
+          300.0,
+          90.0
+        ],
+        "out": [
+          300.0,
+          74.0
+        ],
+        "sec": [
+          305.0,
+          82.0
+        ]
+      },
+      "specs": {
+        "model": "EB-TA-200/5",
+        "spec": "200/5A 0.5",
+        "ratio": "200/5"
+      },
+      "label_tag": "TA2",
+      "label_spec": "200/5A 0.5",
+      "circuit": "WL2",
+      "extra": {}
+    },
+    {
+      "id": "i017",
+      "tag": "T1",
+      "class_id": 18,
+      "class_code": "T",
+      "name_zh": "电力变压器",
+      "bom_letter": "T",
+      "iec81346": "T",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        295.6,
+        42.0,
+        8.8,
+        16.0
+      ],
+      "bbox_px": [
+        1182.4,
+        956.0,
+        35.2,
+        64.0
+      ],
+      "ports": {
+        "in": [
+          300.0,
+          58.0
+        ],
+        "out": [
+          300.0,
+          42.0
+        ]
+      },
+      "specs": {
+        "model": "EB-T-800",
+        "spec": "10/0.4kV 800kVA"
+      },
+      "label_tag": "T1",
+      "label_spec": "10/0.4kV 800kVA",
+      "circuit": "WL2",
+      "extra": {}
+    },
+    {
+      "id": "i018",
+      "tag": "WL2",
+      "class_id": 38,
+      "class_code": "WL",
+      "name_zh": "导线回路",
+      "bom_letter": "WL",
+      "iec81346": "W",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        318,
+        30,
+        16.02,
+        6.2
+      ],
+      "bbox_px": [
+        1272.0,
+        1043.2,
+        64.08,
+        24.8
+      ],
+      "ports": {
+        "in": [
+          318,
+          33.0
+        ],
+        "out": [
+          318,
+          33.0
+        ]
+      },
+      "specs": {
+        "model": "YJV",
+        "spec": "YJV-4x95+1x50",
+        "section_mm2": 95,
+        "Iz_A": 207,
+        "Ib_A": 150,
+        "circuit": "WL2"
+      },
+      "label_tag": "WL2",
+      "label_spec": "YJV-4x95+1x50",
+      "circuit": "WL2",
+      "extra": {}
+    }
+  ],
+  "netlist": {
+    "nodes": [
+      {
+        "id": "i001",
+        "tag": "WB1",
+        "class_code": "WB",
+        "circuit": "BUS"
+      },
+      {
+        "id": "i002",
+        "tag": "QS1",
+        "class_code": "QS",
+        "circuit": "IN"
+      },
+      {
+        "id": "i003",
+        "tag": "QF1",
+        "class_code": "QF",
+        "circuit": "IN"
+      },
+      {
+        "id": "i004",
+        "tag": "TA1",
+        "class_code": "TA",
+        "circuit": "IN"
+      },
+      {
+        "id": "i005",
+        "tag": "QE1",
+        "class_code": "QE",
+        "circuit": "IN"
+      },
+      {
+        "id": "i006",
+        "tag": "PE1",
+        "class_code": "PE",
+        "circuit": "IN"
+      },
+      {
+        "id": "i007",
+        "tag": "TV1",
+        "class_code": "TV",
+        "circuit": "IN"
+      },
+      {
+        "id": "i008",
+        "tag": "PV1",
+        "class_code": "PV",
+        "circuit": "IN"
+      },
+      {
+        "id": "i009",
+        "tag": "PA1",
+        "class_code": "PA",
+        "circuit": "IN"
+      },
+      {
+        "id": "i010",
+        "tag": "QS2",
+        "class_code": "QS",
+        "circuit": "WL1"
+      },
+      {
+        "id": "i011",
+        "tag": "QF2",
+        "class_code": "QF",
+        "circuit": "WL1"
+      },
+      {
+        "id": "i012",
+        "tag": "L1",
+        "class_code": "L",
+        "circuit": "WL1"
+      },
+      {
+        "id": "i013",
+        "tag": "WL1",
+        "class_code": "WL",
+        "circuit": "WL1"
+      },
+      {
+        "id": "i014",
+        "tag": "QS3",
+        "class_code": "QS",
+        "circuit": "WL2"
+      },
+      {
+        "id": "i015",
+        "tag": "QF3",
+        "class_code": "QF",
+        "circuit": "WL2"
+      },
+      {
+        "id": "i016",
+        "tag": "TA2",
+        "class_code": "TA",
+        "circuit": "WL2"
+      },
+      {
+        "id": "i017",
+        "tag": "T1",
+        "class_code": "T",
+        "circuit": "WL2"
+      },
+      {
+        "id": "i018",
+        "tag": "WL2",
+        "class_code": "WL",
+        "circuit": "WL2"
+      }
+    ],
+    "edges": [
+      {
+        "id": "e001",
+        "source": "i002",
+        "target": "i003",
+        "kind": "power",
+        "source_port": "out",
+        "target_port": "in",
+        "points": [
+          [
+            70.0,
+            254.0
+          ],
+          [
+            70.0,
+            234.0
+          ]
+        ]
+      },
+      {
+        "id": "e002",
+        "source": "i003",
+        "target": "i004",
+        "kind": "power",
+        "source_port": "out",
+        "target_port": "in",
+        "points": [
+          [
+            70.0,
+            218.0
+          ],
+          [
+            70.0,
+            202.0
+          ]
+        ]
+      },
+      {
+        "id": "e003",
+        "source": "i004",
+        "target": "i001",
+        "kind": "power",
+        "source_port": "out",
+        "target_port": "src",
+        "points": [
+          [
+            70.0,
+            186.0
+          ],
+          [
+            70,
+            178
+          ]
+        ]
+      },
+      {
+        "id": "e004",
+        "source": "i002",
+        "target": "i005",
+        "kind": "power",
+        "source_port": "tap",
+        "target_port": "in",
+        "points": [
+          [
+            70.0,
+            264.0
+          ],
+          [
+            118.0,
+            264.0
+          ],
+          [
+            118.0,
+            270.0
+          ]
+        ]
+      },
+      {
+        "id": "e005",
+        "source": "i005",
+        "target": "i006",
+        "kind": "power",
+        "source_port": "out",
+        "target_port": "in",
+        "points": [
+          [
+            118.0,
+            248.0
+          ],
+          [
+            118.0,
+            224.0
+          ]
+        ]
+      },
+      {
+        "id": "e006",
+        "source": "i001",
+        "target": "i007",
+        "kind": "branch",
+        "source_port": "tv",
+        "target_port": "in",
+        "points": [
+          [
+            370,
+            178
+          ],
+          [
+            370.0,
+            228.0
+          ]
+        ]
+      },
+      {
+        "id": "e007",
+        "source": "i007",
+        "target": "i008",
+        "kind": "branch",
+        "source_port": "out",
+        "target_port": "in",
+        "points": [
+          [
+            370.0,
+            212.0
+          ],
+          [
+            370.0,
+            266.0
+          ]
+        ]
+      },
+      {
+        "id": "e008",
+        "source": "i004",
+        "target": "i009",
+        "kind": "branch",
+        "source_port": "sec",
+        "target_port": "in",
+        "points": [
+          [
+            75.0,
+            194.0
+          ],
+          [
+            160.0,
+            194.0
+          ],
+          [
+            160.0,
+            238.0
+          ]
+        ]
+      },
+      {
+        "id": "e009",
+        "source": "i001",
+        "target": "i010",
+        "kind": "power",
+        "source_port": "f1",
+        "target_port": "in",
+        "points": [
+          [
+            190,
+            178
+          ],
+          [
+            190.0,
+            154.0
+          ]
+        ]
+      },
+      {
+        "id": "e010",
+        "source": "i010",
+        "target": "i011",
+        "kind": "power",
+        "source_port": "out",
+        "target_port": "in",
+        "points": [
+          [
+            190.0,
+            138.0
+          ],
+          [
+            190.0,
+            122.0
+          ]
+        ]
+      },
+      {
+        "id": "e011",
+        "source": "i011",
+        "target": "i012",
+        "kind": "power",
+        "source_port": "out",
+        "target_port": "in",
+        "points": [
+          [
+            190.0,
+            106.0
+          ],
+          [
+            190.0,
+            90.0
+          ]
+        ]
+      },
+      {
+        "id": "e012",
+        "source": "i011",
+        "target": "i013",
+        "kind": "power",
+        "source_port": "out",
+        "target_port": "in",
+        "points": [
+          [
+            190.0,
+            106.0
+          ],
+          [
+            190.0,
+            33.0
+          ],
+          [
+            208,
+            33.0
+          ]
+        ]
+      },
+      {
+        "id": "e013",
+        "source": "i001",
+        "target": "i014",
+        "kind": "power",
+        "source_port": "f2",
+        "target_port": "in",
+        "points": [
+          [
+            300,
+            178
+          ],
+          [
+            300.0,
+            154.0
+          ]
+        ]
+      },
+      {
+        "id": "e014",
+        "source": "i014",
+        "target": "i015",
+        "kind": "power",
+        "source_port": "out",
+        "target_port": "in",
+        "points": [
+          [
+            300.0,
+            138.0
+          ],
+          [
+            300.0,
+            122.0
+          ]
+        ]
+      },
+      {
+        "id": "e015",
+        "source": "i015",
+        "target": "i016",
+        "kind": "power",
+        "source_port": "out",
+        "target_port": "in",
+        "points": [
+          [
+            300.0,
+            106.0
+          ],
+          [
+            300.0,
+            90.0
+          ]
+        ]
+      },
+      {
+        "id": "e016",
+        "source": "i016",
+        "target": "i017",
+        "kind": "power",
+        "source_port": "out",
+        "target_port": "in",
+        "points": [
+          [
+            300.0,
+            74.0
+          ],
+          [
+            300.0,
+            58.0
+          ]
+        ]
+      },
+      {
+        "id": "e017",
+        "source": "i015",
+        "target": "i018",
+        "kind": "power",
+        "source_port": "out",
+        "target_port": "in",
+        "points": [
+          [
+            300.0,
+            106.0
+          ],
+          [
+            300.0,
+            33.0
+          ],
+          [
+            318,
+            33.0
+          ]
+        ]
+      }
+    ],
+    "children": {
+      "i002": [
+        "i003",
+        "i005"
+      ],
+      "i003": [
+        "i004"
+      ],
+      "i004": [
+        "i001"
+      ],
+      "i005": [
+        "i006"
+      ],
+      "i001": [
+        "i010",
+        "i014"
+      ],
+      "i010": [
+        "i011"
+      ],
+      "i011": [
+        "i012",
+        "i013"
+      ],
+      "i014": [
+        "i015"
+      ],
+      "i015": [
+        "i016",
+        "i018"
+      ],
+      "i016": [
+        "i017"
+      ]
+    },
+    "roots": [
+      "i002",
+      "i007",
+      "i008",
+      "i009"
+    ]
+  },
+  "control_branches": [],
+  "logic": null,
+  "bom": [
+    {
+      "line_no": 1,
+      "instance_id": "i001",
+      "tag": "WB1",
+      "class_code": "WB",
+      "bom_letter": "WB",
+      "name_zh": "母线",
+      "model": "EB-WB",
+      "spec": "TMY",
+      "qty": 1,
+      "unit": "套",
+      "circuit": "BUS"
+    },
+    {
+      "line_no": 2,
+      "instance_id": "i002",
+      "tag": "QS1",
+      "class_code": "QS",
+      "bom_letter": "QS",
+      "name_zh": "隔离开关",
+      "model": "EB-QS-1250",
+      "spec": "1250A 12kV",
+      "qty": 1,
+      "unit": "台",
+      "circuit": "IN"
+    },
+    {
+      "line_no": 3,
+      "instance_id": "i003",
+      "tag": "QF1",
+      "class_code": "QF",
+      "bom_letter": "QF",
+      "name_zh": "断路器",
+      "model": "EB-VCB-1250/1250",
+      "spec": "In=1250A 3P Icu=31kA",
+      "qty": 1,
+      "unit": "台",
+      "circuit": "IN"
+    },
+    {
+      "line_no": 4,
+      "instance_id": "i004",
+      "tag": "TA1",
+      "class_code": "TA",
+      "bom_letter": "TA",
+      "name_zh": "电流互感器",
+      "model": "EB-TA-600/5",
+      "spec": "600/5A 10P10",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "IN"
+    },
+    {
+      "line_no": 5,
+      "instance_id": "i005",
+      "tag": "QE1",
+      "class_code": "QE",
+      "bom_letter": "QE",
+      "name_zh": "接地开关",
+      "model": "EB-QE-12",
+      "spec": "12kV",
+      "qty": 1,
+      "unit": "台",
+      "circuit": "IN"
+    },
+    {
+      "line_no": 6,
+      "instance_id": "i007",
+      "tag": "TV1",
+      "class_code": "TV",
+      "bom_letter": "TV",
+      "name_zh": "电压互感器",
+      "model": "EB-TV-10/0.1",
+      "spec": "10/0.1kV",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "IN"
+    },
+    {
+      "line_no": 7,
+      "instance_id": "i008",
+      "tag": "PV1",
+      "class_code": "PV",
+      "bom_letter": "PV",
+      "name_zh": "电压表",
+      "model": "EB-PV-12kV",
+      "spec": "12kV",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "IN"
+    },
+    {
+      "line_no": 8,
+      "instance_id": "i009",
+      "tag": "PA1",
+      "class_code": "PA",
+      "bom_letter": "PA",
+      "name_zh": "电流表",
+      "model": "EB-PA-5A",
+      "spec": "5A",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "IN"
+    },
+    {
+      "line_no": 9,
+      "instance_id": "i010",
+      "tag": "QS2",
+      "class_code": "QS",
+      "bom_letter": "QS",
+      "name_zh": "隔离开关",
+      "model": "EB-QS-630",
+      "spec": "630A 12kV",
+      "qty": 1,
+      "unit": "台",
+      "circuit": "WL1"
+    },
+    {
+      "line_no": 10,
+      "instance_id": "i011",
+      "tag": "QF2",
+      "class_code": "QF",
+      "bom_letter": "QF",
+      "name_zh": "断路器",
+      "model": "EB-VCB-630/160",
+      "spec": "In=160A 3P Icu=31kA",
+      "qty": 1,
+      "unit": "台",
+      "circuit": "WL1"
+    },
+    {
+      "line_no": 11,
+      "instance_id": "i012",
+      "tag": "L1",
+      "class_code": "L",
+      "bom_letter": "L",
+      "name_zh": "电抗器",
+      "model": "EB-L-10kV",
+      "spec": "10kV 限流",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "WL1"
+    },
+    {
+      "line_no": 12,
+      "instance_id": "i013",
+      "tag": "WL1",
+      "class_code": "WL",
+      "bom_letter": "WL",
+      "name_zh": "电力电缆",
+      "model": "YJV",
+      "spec": "YJV-4x70+1x35",
+      "qty": 1,
+      "unit": "回路",
+      "circuit": "WL1"
+    },
+    {
+      "line_no": 13,
+      "instance_id": "i014",
+      "tag": "QS3",
+      "class_code": "QS",
+      "bom_letter": "QS",
+      "name_zh": "隔离开关",
+      "model": "EB-QS-630",
+      "spec": "630A 12kV",
+      "qty": 1,
+      "unit": "台",
+      "circuit": "WL2"
+    },
+    {
+      "line_no": 14,
+      "instance_id": "i015",
+      "tag": "QF3",
+      "class_code": "QF",
+      "bom_letter": "QF",
+      "name_zh": "断路器",
+      "model": "EB-VCB-630/200",
+      "spec": "In=200A 3P Icu=31kA",
+      "qty": 1,
+      "unit": "台",
+      "circuit": "WL2"
+    },
+    {
+      "line_no": 15,
+      "instance_id": "i016",
+      "tag": "TA2",
+      "class_code": "TA",
+      "bom_letter": "TA",
+      "name_zh": "电流互感器",
+      "model": "EB-TA-200/5",
+      "spec": "200/5A 0.5",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "WL2"
+    },
+    {
+      "line_no": 16,
+      "instance_id": "i017",
+      "tag": "T1",
+      "class_code": "T",
+      "bom_letter": "T",
+      "name_zh": "电力变压器",
+      "model": "EB-T-800",
+      "spec": "10/0.4kV 800kVA",
+      "qty": 1,
+      "unit": "台",
+      "circuit": "WL2"
+    },
+    {
+      "line_no": 17,
+      "instance_id": "i018",
+      "tag": "WL2",
+      "class_code": "WL",
+      "bom_letter": "WL",
+      "name_zh": "电力电缆",
+      "model": "YJV",
+      "spec": "YJV-4x95+1x50",
+      "qty": 1,
+      "unit": "回路",
+      "circuit": "WL2"
+    }
+  ],
+  "bom_summary": [
+    {
+      "bom_letter": "WB",
+      "name_zh": "母线",
+      "model": "EB-WB",
+      "spec": "TMY",
+      "qty": 1,
+      "unit": "套",
+      "tags": [
+        "WB1"
+      ],
+      "line_no": 1
+    },
+    {
+      "bom_letter": "QS",
+      "name_zh": "隔离开关",
+      "model": "EB-QS-1250",
+      "spec": "1250A 12kV",
+      "qty": 1,
+      "unit": "台",
+      "tags": [
+        "QS1"
+      ],
+      "line_no": 2
+    },
+    {
+      "bom_letter": "QF",
+      "name_zh": "断路器",
+      "model": "EB-VCB-1250/1250",
+      "spec": "In=1250A 3P Icu=31kA",
+      "qty": 1,
+      "unit": "台",
+      "tags": [
+        "QF1"
+      ],
+      "line_no": 3
+    },
+    {
+      "bom_letter": "TA",
+      "name_zh": "电流互感器",
+      "model": "EB-TA-600/5",
+      "spec": "600/5A 10P10",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "TA1"
+      ],
+      "line_no": 4
+    },
+    {
+      "bom_letter": "QE",
+      "name_zh": "接地开关",
+      "model": "EB-QE-12",
+      "spec": "12kV",
+      "qty": 1,
+      "unit": "台",
+      "tags": [
+        "QE1"
+      ],
+      "line_no": 5
+    },
+    {
+      "bom_letter": "TV",
+      "name_zh": "电压互感器",
+      "model": "EB-TV-10/0.1",
+      "spec": "10/0.1kV",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "TV1"
+      ],
+      "line_no": 6
+    },
+    {
+      "bom_letter": "PV",
+      "name_zh": "电压表",
+      "model": "EB-PV-12kV",
+      "spec": "12kV",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "PV1"
+      ],
+      "line_no": 7
+    },
+    {
+      "bom_letter": "PA",
+      "name_zh": "电流表",
+      "model": "EB-PA-5A",
+      "spec": "5A",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "PA1"
+      ],
+      "line_no": 8
+    },
+    {
+      "bom_letter": "QS",
+      "name_zh": "隔离开关",
+      "model": "EB-QS-630",
+      "spec": "630A 12kV",
+      "qty": 2,
+      "unit": "台",
+      "tags": [
+        "QS2",
+        "QS3"
+      ],
+      "line_no": 9
+    },
+    {
+      "bom_letter": "QF",
+      "name_zh": "断路器",
+      "model": "EB-VCB-630/160",
+      "spec": "In=160A 3P Icu=31kA",
+      "qty": 1,
+      "unit": "台",
+      "tags": [
+        "QF2"
+      ],
+      "line_no": 10
+    },
+    {
+      "bom_letter": "L",
+      "name_zh": "电抗器",
+      "model": "EB-L-10kV",
+      "spec": "10kV 限流",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "L1"
+      ],
+      "line_no": 11
+    },
+    {
+      "bom_letter": "WL",
+      "name_zh": "电力电缆",
+      "model": "YJV",
+      "spec": "YJV-4x70+1x35",
+      "qty": 1,
+      "unit": "回路",
+      "tags": [
+        "WL1"
+      ],
+      "line_no": 12
+    },
+    {
+      "bom_letter": "QF",
+      "name_zh": "断路器",
+      "model": "EB-VCB-630/200",
+      "spec": "In=200A 3P Icu=31kA",
+      "qty": 1,
+      "unit": "台",
+      "tags": [
+        "QF3"
+      ],
+      "line_no": 13
+    },
+    {
+      "bom_letter": "TA",
+      "name_zh": "电流互感器",
+      "model": "EB-TA-200/5",
+      "spec": "200/5A 0.5",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "TA2"
+      ],
+      "line_no": 14
+    },
+    {
+      "bom_letter": "T",
+      "name_zh": "电力变压器",
+      "model": "EB-T-800",
+      "spec": "10/0.4kV 800kVA",
+      "qty": 1,
+      "unit": "台",
+      "tags": [
+        "T1"
+      ],
+      "line_no": 15
+    },
+    {
+      "bom_letter": "WL",
+      "name_zh": "电力电缆",
+      "model": "YJV",
+      "spec": "YJV-4x95+1x50",
+      "qty": 1,
+      "unit": "回路",
+      "tags": [
+        "WL2"
+      ],
+      "line_no": 16
+    }
+  ],
+  "defects": []
+}

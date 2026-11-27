@@ -10,7 +10,7 @@
 
 | 序号 | 报名编号 | 赛道 | 赛题编号与名称 | 命题单位 | 拟定作品名 | 工作目录 |
 | :---: | :---: | :--- | :--- | :--- | :--- | :--- |
-| **01** | `REG-2026-000523` | “人工智能+”工业制造赛道<br>（4 题争 12 席） | `AI-MFG-Q21`<br>**电气图纸智能解析与BOM自动生成** | 中国联合网络通信有限公司镇江市分公司 | 图枢电析（ElectroGraph BOM） | [01-industrial-electrical-bom](./01-industrial-electrical-bom/)<br>（[赛题信息](./01-industrial-electrical-bom/challenge_info.md) · [参赛方案](./01-industrial-electrical-bom/solution.md) · [数据/开源/竞品调研](./01-industrial-electrical-bom/research.md)） |
+| **01** | `REG-2026-000523` | “人工智能+”工业制造赛道<br>（4 题争 12 席） | `AI-MFG-Q21`<br>**电气图纸智能解析与BOM自动生成** | 中国联合网络通信有限公司镇江市分公司 | 图枢电析（ElectroGraph BOM） | [01-industrial-electrical-bom](./01-industrial-electrical-bom/)<br>（[赛题信息](./01-industrial-electrical-bom/challenge_info.md) · [参赛方案](./01-industrial-electrical-bom/solution.md) · [数据/开源/竞品调研](./01-industrial-electrical-bom/research.md) · [ElectroBench-JS](./01-industrial-electrical-bom/README.md)） |
 | **02** | `REG-2026-000524` | “三苏”（苏模、苏算、苏数）创新应用赛道<br>（7 题争 12 席） | `AI-JIANGSU-Q36`<br>**异构算力智能调度与能效优化** | 江苏省数据集团有限公司 | 苏算绿枢（SuCompute-Opt） | [02-sansu-computing-dispatch](./02-sansu-computing-dispatch/)<br>（[赛题信息](./02-sansu-computing-dispatch/challenge_info.md) · [参赛方案](./02-sansu-computing-dispatch/solution.md) · [数据/开源/竞品调研](./02-sansu-computing-dispatch/research.md)） |
 | **03** | `REG-2026-000525` | “人工智能+”医疗健康赛道<br>（13 题争 12 席） | `AI-HEALTH-Q40`<br>**流感病毒免疫原辅助设计智能体研发和应用** | 宿迁市楚润数据集团有限公司 | 流盾智研（FluVax-Evidence Agent） | [03-medical-flu-immunogen](./03-medical-flu-immunogen/)<br>（[赛题信息](./03-medical-flu-immunogen/challenge_info.md) · [参赛方案](./03-medical-flu-immunogen/solution.md) · [数据/开源/竞品调研](./03-medical-flu-immunogen/research.md)） |
 

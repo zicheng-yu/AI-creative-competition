@@ -1,0 +1,21 @@
+﻿line_no,bom_letter,name_zh,model,spec,qty,unit,tags
+1,WB,母线,EB-WB,TMY,1,套,WB1
+2,QS,隔离开关,EB-QS-630,630A 3P,1,台,QS1
+3,QF,断路器,EB-MCCB-250/100,In=100A 3P Icu=50kA,1,台,QF1
+4,TA,电流互感器,EB-TA-600/5,600/5A 0.5,1,只,TA1
+5,PA,电流表,EB-PA-5A,5A,1,只,PA1
+6,TV,电压互感器,EB-TV-380/100,380/100V,1,只,TV1
+7,PV,电压表,EB-PV-500V,500V,1,只,PV1
+8,PJ,电能表,EB-PJ-3X5,3x380V 5A,1,只,PJ1
+9,SPD,电涌保护器,EB-SPD-40,In=40kA,1,只,SPD1
+10,QF,断路器,EB-MCCB-250/160,In=160A 3P Icu=50kA,1,台,QF2
+11,WL,电力电缆,YJV,YJV-4x70+1x35,1,回路,WL1
+12,QF,断路器,EB-MCB-63/63,In=63A 3P Icu=50kA,2,台,QF3 QF4
+13,KM,交流接触器,EB-KM-63,Ie=63A AC220V,1,台,KM1
+14,FR,热继电器,EB-FR-40,整定40A,1,只,FR1
+15,M,电动机,EB-M-15kW,15kW 380V 4P,1,台,M1
+16,WL,电力电缆,YJV,YJV-4x16+1x10,2,回路,WL2 WL3
+17,TA,电流互感器,EB-TA-75/5,75/5A 0.5,1,只,TA2
+18,FU,熔断器,EB-FU-32,In=32A,1,只,FU1
+19,WL,电力电缆,YJV,YJV-4x6+1x4,2,回路,WL4 WL5
+20,QF,断路器,EB-MCB-63/32,In=32A 3P Icu=50kA,1,台,QF5

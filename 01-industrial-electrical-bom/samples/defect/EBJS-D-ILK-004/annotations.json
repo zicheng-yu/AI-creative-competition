@@ -1,0 +1,5078 @@
+{
+  "schema_version": "1.0.0",
+  "dataset": "ElectroBench-JS",
+  "generator_version": "1.0.0",
+  "id": "EBJS-D-ILK-004",
+  "subset": "defect",
+  "title": "电动机正反转互锁控制原理图",
+  "seed": 262,
+  "cabinet": null,
+  "circuit_kind": "reversing",
+  "voltage": "主回路 AC380V / 控制 AC220V",
+  "alias": false,
+  "interlock": false,
+  "degradation": null,
+  "notes": [
+    "注入缺陷：正反转线圈回路未串入对方常闭互锁触点。"
+  ],
+  "standards": {
+    "graphical_symbols": "GB/T 4728 / IEC 60617（简图近似，非标准图版复制）",
+    "designations": "图面文字代号沿用成套行业习惯；iec81346 字段为 IEC 81346-2:2019 表1 类字母",
+    "structuring": "GB/T 5094（对应 IEC 81346 的结构与参照代号原则）"
+  },
+  "sheet": {
+    "width_mm": 420.0,
+    "height_mm": 297.0,
+    "px_per_mm": 4,
+    "image_width": 1680,
+    "image_height": 1188
+  },
+  "instances": [
+    {
+      "id": "i001",
+      "tag": "QF1",
+      "class_id": 0,
+      "class_code": "QF",
+      "name_zh": "断路器",
+      "bom_letter": "QF",
+      "iec81346": "Q",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        43.8,
+        250.0,
+        8.4,
+        16.0
+      ],
+      "bbox_px": [
+        175.2,
+        124.0,
+        33.6,
+        64.0
+      ],
+      "ports": {
+        "in": [
+          48.0,
+          266.0
+        ],
+        "out": [
+          48.0,
+          250.0
+        ]
+      },
+      "specs": {
+        "model": "EB-MCB-63/32",
+        "spec": "In=32A 3P Icu=50kA",
+        "In_A": 32,
+        "frame_A": 63,
+        "poles": "3P",
+        "icu_kA": 50
+      },
+      "label_tag": "QF1",
+      "label_spec": "In=32A 3P Icu=50kA",
+      "circuit": "WL1",
+      "extra": {}
+    },
+    {
+      "id": "i002",
+      "tag": "KMF",
+      "class_id": 3,
+      "class_code": "KM_MAIN",
+      "name_zh": "接触器主触头",
+      "bom_letter": "KM",
+      "iec81346": "Q",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        23.8,
+        206.0,
+        8.4,
+        16.0
+      ],
+      "bbox_px": [
+        95.2,
+        300.0,
+        33.6,
+        64.0
+      ],
+      "ports": {
+        "in": [
+          28.0,
+          222.0
+        ],
+        "out": [
+          28.0,
+          206.0
+        ]
+      },
+      "specs": {
+        "model": "EB-KM-32",
+        "spec": "Ie=32A AC220V",
+        "Ie_A": 32
+      },
+      "label_tag": "KMF",
+      "label_spec": "Ie=32A AC220V",
+      "circuit": "WL1",
+      "extra": {}
+    },
+    {
+      "id": "i003",
+      "tag": "KMR",
+      "class_id": 3,
+      "class_code": "KM_MAIN",
+      "name_zh": "接触器主触头",
+      "bom_letter": "KM",
+      "iec81346": "Q",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        67.8,
+        206.0,
+        8.4,
+        16.0
+      ],
+      "bbox_px": [
+        271.2,
+        300.0,
+        33.6,
+        64.0
+      ],
+      "ports": {
+        "in": [
+          72.0,
+          222.0
+        ],
+        "out": [
+          72.0,
+          206.0
+        ]
+      },
+      "specs": {
+        "model": "EB-KM-32",
+        "spec": "Ie=32A AC220V",
+        "Ie_A": 32
+      },
+      "label_tag": "KMR",
+      "label_spec": "Ie=32A AC220V",
+      "circuit": "WL1",
+      "extra": {}
+    },
+    {
+      "id": "i004",
+      "tag": "FR1",
+      "class_id": 12,
+      "class_code": "FR",
+      "name_zh": "热继电器",
+      "bom_letter": "FR",
+      "iec81346": "F",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        43.8,
+        160.0,
+        8.4,
+        16.0
+      ],
+      "bbox_px": [
+        175.2,
+        484.0,
+        33.6,
+        64.0
+      ],
+      "ports": {
+        "in": [
+          48.0,
+          176.0
+        ],
+        "out": [
+          48.0,
+          160.0
+        ]
+      },
+      "specs": {
+        "model": "EB-FR-18",
+        "spec": "整定18A",
+        "Ir_A": 18
+      },
+      "label_tag": "FR1",
+      "label_spec": "整定18A",
+      "circuit": "WL1",
+      "extra": {}
+    },
+    {
+      "id": "i005",
+      "tag": "M1",
+      "class_id": 20,
+      "class_code": "M",
+      "name_zh": "电动机",
+      "bom_letter": "M",
+      "iec81346": "M",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        42.0,
+        120.0,
+        12.0,
+        16.0
+      ],
+      "bbox_px": [
+        168.0,
+        644.0,
+        48.0,
+        64.0
+      ],
+      "ports": {
+        "in": [
+          48.0,
+          136.0
+        ],
+        "out": [
+          48.0,
+          120.0
+        ]
+      },
+      "specs": {
+        "model": "EB-M-7kW",
+        "spec": "7kW 380V 4P",
+        "kW": 7
+      },
+      "label_tag": "M1",
+      "label_spec": "7kW 380V 4P",
+      "circuit": "WL1",
+      "extra": {}
+    },
+    {
+      "id": "i006",
+      "tag": "WL1",
+      "class_id": 38,
+      "class_code": "WL",
+      "name_zh": "导线回路",
+      "bom_letter": "WL",
+      "iec81346": "W",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        90,
+        140,
+        13.71,
+        6.2
+      ],
+      "bbox_px": [
+        360.0,
+        603.2,
+        54.84,
+        24.8
+      ],
+      "ports": {
+        "in": [
+          90,
+          143.0
+        ],
+        "out": [
+          90,
+          143.0
+        ]
+      },
+      "specs": {
+        "model": "YJV",
+        "spec": "YJV-4x6+1x4",
+        "section_mm2": 6,
+        "Iz_A": 36,
+        "Ib_A": 18,
+        "circuit": "WL1"
+      },
+      "label_tag": "WL1",
+      "label_spec": "YJV-4x6+1x4",
+      "circuit": "WL1",
+      "extra": {}
+    },
+    {
+      "id": "i007",
+      "tag": "FU1",
+      "class_id": 14,
+      "class_code": "FU",
+      "name_zh": "熔断器",
+      "bom_letter": "FU",
+      "iec81346": "F",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        142.0,
+        227.6,
+        16.0,
+        4.8
+      ],
+      "bbox_px": [
+        568.0,
+        258.4,
+        64.0,
+        19.2
+      ],
+      "ports": {
+        "in": [
+          142.0,
+          230.0
+        ],
+        "out": [
+          158.0,
+          230.0
+        ]
+      },
+      "specs": {
+        "model": "EB-FU-4",
+        "spec": "In=4A",
+        "In_A": 4
+      },
+      "label_tag": "FU1",
+      "label_spec": "In=4A",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i008",
+      "tag": "SB1",
+      "class_id": 29,
+      "class_code": "SB_NC",
+      "name_zh": "常闭按钮",
+      "bom_letter": "SB",
+      "iec81346": "S",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        142.0,
+        192.8,
+        16.0,
+        10.2
+      ],
+      "bbox_px": [
+        568.0,
+        376.0,
+        64.0,
+        40.8
+      ],
+      "ports": {
+        "left": [
+          142.0,
+          196.0
+        ],
+        "right": [
+          158.0,
+          196.0
+        ]
+      },
+      "specs": {
+        "model": "EB-SB",
+        "spec": "停止 常闭"
+      },
+      "label_tag": "SB1",
+      "label_spec": "停止 常闭",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i009",
+      "tag": "SB2",
+      "class_id": 28,
+      "class_code": "SB_NO",
+      "name_zh": "常开按钮",
+      "bom_letter": "SB",
+      "iec81346": "S",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        206.0,
+        226.8,
+        16.0,
+        10.2
+      ],
+      "bbox_px": [
+        824.0,
+        240.0,
+        64.0,
+        40.8
+      ],
+      "ports": {
+        "left": [
+          206.0,
+          230.0
+        ],
+        "right": [
+          222.0,
+          230.0
+        ]
+      },
+      "specs": {
+        "model": "EB-SB",
+        "spec": "正转 常开"
+      },
+      "label_tag": "SB2",
+      "label_spec": "正转 常开",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i010",
+      "tag": "SB3",
+      "class_id": 28,
+      "class_code": "SB_NO",
+      "name_zh": "常开按钮",
+      "bom_letter": "SB",
+      "iec81346": "S",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        206.0,
+        156.8,
+        16.0,
+        10.2
+      ],
+      "bbox_px": [
+        824.0,
+        520.0,
+        64.0,
+        40.8
+      ],
+      "ports": {
+        "left": [
+          206.0,
+          160.0
+        ],
+        "right": [
+          222.0,
+          160.0
+        ]
+      },
+      "specs": {
+        "model": "EB-SB",
+        "spec": "反转 常开"
+      },
+      "label_tag": "SB3",
+      "label_spec": "反转 常开",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i011",
+      "tag": "SQ1",
+      "class_id": 31,
+      "class_code": "SQ",
+      "name_zh": "行程开关",
+      "bom_letter": "SQ",
+      "iec81346": "B",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        270.0,
+        226.8,
+        16.0,
+        10.7
+      ],
+      "bbox_px": [
+        1080.0,
+        238.0,
+        64.0,
+        42.8
+      ],
+      "ports": {
+        "left": [
+          270.0,
+          230.0
+        ],
+        "right": [
+          286.0,
+          230.0
+        ]
+      },
+      "specs": {
+        "model": "EB-SQ",
+        "spec": "正转限位 常闭"
+      },
+      "label_tag": "SQ1",
+      "label_spec": "正转限位 常闭",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i012",
+      "tag": "SQ2",
+      "class_id": 31,
+      "class_code": "SQ",
+      "name_zh": "行程开关",
+      "bom_letter": "SQ",
+      "iec81346": "B",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        270.0,
+        156.8,
+        16.0,
+        10.7
+      ],
+      "bbox_px": [
+        1080.0,
+        518.0,
+        64.0,
+        42.8
+      ],
+      "ports": {
+        "left": [
+          270.0,
+          160.0
+        ],
+        "right": [
+          286.0,
+          160.0
+        ]
+      },
+      "specs": {
+        "model": "EB-SQ",
+        "spec": "反转限位 常闭"
+      },
+      "label_tag": "SQ2",
+      "label_spec": "反转限位 常闭",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i013",
+      "tag": "KMF",
+      "class_id": 5,
+      "class_code": "KM_NO",
+      "name_zh": "接触器常开触点",
+      "bom_letter": "KM",
+      "iec81346": "Q",
+      "bom_anchor": false,
+      "in_netlist": true,
+      "bbox_mm": [
+        206.0,
+        254.8,
+        16.0,
+        7.4
+      ],
+      "bbox_px": [
+        824.0,
+        139.2,
+        64.0,
+        29.6
+      ],
+      "ports": {
+        "left": [
+          206.0,
+          258.0
+        ],
+        "right": [
+          222.0,
+          258.0
+        ]
+      },
+      "specs": {},
+      "label_tag": "KMF",
+      "label_spec": "",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i014",
+      "tag": "KMR",
+      "class_id": 5,
+      "class_code": "KM_NO",
+      "name_zh": "接触器常开触点",
+      "bom_letter": "KM",
+      "iec81346": "Q",
+      "bom_anchor": false,
+      "in_netlist": true,
+      "bbox_mm": [
+        206.0,
+        124.8,
+        16.0,
+        7.4
+      ],
+      "bbox_px": [
+        824.0,
+        659.2,
+        64.0,
+        29.6
+      ],
+      "ports": {
+        "left": [
+          206.0,
+          128.0
+        ],
+        "right": [
+          222.0,
+          128.0
+        ]
+      },
+      "specs": {},
+      "label_tag": "KMR",
+      "label_spec": "",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i015",
+      "tag": "KMF",
+      "class_id": 4,
+      "class_code": "KM_COIL",
+      "name_zh": "接触器线圈",
+      "bom_letter": "KM",
+      "iec81346": "Q",
+      "bom_anchor": false,
+      "in_netlist": true,
+      "bbox_mm": [
+        312.0,
+        225.0,
+        16.0,
+        10.0
+      ],
+      "bbox_px": [
+        1248.0,
+        248.0,
+        64.0,
+        40.0
+      ],
+      "ports": {
+        "left": [
+          312.0,
+          230.0
+        ],
+        "right": [
+          328.0,
+          230.0
+        ]
+      },
+      "specs": {},
+      "label_tag": "KMF",
+      "label_spec": "",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i016",
+      "tag": "KMR",
+      "class_id": 4,
+      "class_code": "KM_COIL",
+      "name_zh": "接触器线圈",
+      "bom_letter": "KM",
+      "iec81346": "Q",
+      "bom_anchor": false,
+      "in_netlist": true,
+      "bbox_mm": [
+        312.0,
+        155.0,
+        16.0,
+        10.0
+      ],
+      "bbox_px": [
+        1248.0,
+        528.0,
+        64.0,
+        40.0
+      ],
+      "ports": {
+        "left": [
+          312.0,
+          160.0
+        ],
+        "right": [
+          328.0,
+          160.0
+        ]
+      },
+      "specs": {},
+      "label_tag": "KMR",
+      "label_spec": "",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i017",
+      "tag": "XT1",
+      "class_id": 32,
+      "class_code": "XT",
+      "name_zh": "端子",
+      "bom_letter": "XT",
+      "iec81346": "X",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        144.0,
+        75.6,
+        12.0,
+        4.8
+      ],
+      "bbox_px": [
+        576.0,
+        866.4,
+        48.0,
+        19.2
+      ],
+      "ports": {
+        "left": [
+          144.0,
+          78.0
+        ],
+        "right": [
+          156.0,
+          78.0
+        ]
+      },
+      "specs": {
+        "model": "EB-XT",
+        "spec": "2.5mm2"
+      },
+      "label_tag": "XT1",
+      "label_spec": "2.5mm2",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i018",
+      "tag": "HL1",
+      "class_id": 26,
+      "class_code": "HL",
+      "name_zh": "指示灯",
+      "bom_letter": "HL",
+      "iec81346": "P",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        392.0,
+        225.0,
+        16.0,
+        10.0
+      ],
+      "bbox_px": [
+        1568.0,
+        248.0,
+        64.0,
+        40.0
+      ],
+      "ports": {
+        "left": [
+          392.0,
+          230.0
+        ],
+        "right": [
+          408.0,
+          230.0
+        ]
+      },
+      "specs": {
+        "model": "EB-HL-GN",
+        "spec": "正转 绿色"
+      },
+      "label_tag": "HL1",
+      "label_spec": "正转 绿色",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i019",
+      "tag": "HL2",
+      "class_id": 26,
+      "class_code": "HL",
+      "name_zh": "指示灯",
+      "bom_letter": "HL",
+      "iec81346": "P",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        392.0,
+        155.0,
+        16.0,
+        10.0
+      ],
+      "bbox_px": [
+        1568.0,
+        528.0,
+        64.0,
+        40.0
+      ],
+      "ports": {
+        "left": [
+          392.0,
+          160.0
+        ],
+        "right": [
+          408.0,
+          160.0
+        ]
+      },
+      "specs": {
+        "model": "EB-HL-YE",
+        "spec": "反转 黄色"
+      },
+      "label_tag": "HL2",
+      "label_spec": "反转 黄色",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i020",
+      "tag": "W1",
+      "class_id": 39,
+      "class_code": "WIRE_NO",
+      "name_zh": "线号",
+      "bom_letter": null,
+      "iec81346": null,
+      "bom_anchor": false,
+      "in_netlist": false,
+      "bbox_mm": [
+        158,
+        210,
+        2.41,
+        2.8
+      ],
+      "bbox_px": [
+        632.0,
+        336.8,
+        9.64,
+        11.2
+      ],
+      "ports": {},
+      "specs": {
+        "wire_no": "1"
+      },
+      "label_tag": "1",
+      "label_spec": "",
+      "circuit": "",
+      "extra": {}
+    },
+    {
+      "id": "i021",
+      "tag": "W3",
+      "class_id": 39,
+      "class_code": "WIRE_NO",
+      "name_zh": "线号",
+      "bom_letter": null,
+      "iec81346": null,
+      "bom_anchor": false,
+      "in_netlist": false,
+      "bbox_mm": [
+        222,
+        240,
+        2.41,
+        2.8
+      ],
+      "bbox_px": [
+        888.0,
+        216.8,
+        9.64,
+        11.2
+      ],
+      "ports": {},
+      "specs": {
+        "wire_no": "3"
+      },
+      "label_tag": "3",
+      "label_spec": "",
+      "circuit": "",
+      "extra": {}
+    },
+    {
+      "id": "i022",
+      "tag": "W5",
+      "class_id": 39,
+      "class_code": "WIRE_NO",
+      "name_zh": "线号",
+      "bom_letter": null,
+      "iec81346": null,
+      "bom_anchor": false,
+      "in_netlist": false,
+      "bbox_mm": [
+        286,
+        240,
+        2.41,
+        2.8
+      ],
+      "bbox_px": [
+        1144.0,
+        216.8,
+        9.64,
+        11.2
+      ],
+      "ports": {},
+      "specs": {
+        "wire_no": "5"
+      },
+      "label_tag": "5",
+      "label_spec": "",
+      "circuit": "",
+      "extra": {}
+    },
+    {
+      "id": "i023",
+      "tag": "W11",
+      "class_id": 39,
+      "class_code": "WIRE_NO",
+      "name_zh": "线号",
+      "bom_letter": null,
+      "iec81346": null,
+      "bom_anchor": false,
+      "in_netlist": false,
+      "bbox_mm": [
+        222,
+        148,
+        3.62,
+        2.8
+      ],
+      "bbox_px": [
+        888.0,
+        584.8,
+        14.48,
+        11.2
+      ],
+      "ports": {},
+      "specs": {
+        "wire_no": "11"
+      },
+      "label_tag": "11",
+      "label_spec": "",
+      "circuit": "",
+      "extra": {}
+    },
+    {
+      "id": "i024",
+      "tag": "W13",
+      "class_id": 39,
+      "class_code": "WIRE_NO",
+      "name_zh": "线号",
+      "bom_letter": null,
+      "iec81346": null,
+      "bom_anchor": false,
+      "in_netlist": false,
+      "bbox_mm": [
+        286,
+        148,
+        3.62,
+        2.8
+      ],
+      "bbox_px": [
+        1144.0,
+        584.8,
+        14.48,
+        11.2
+      ],
+      "ports": {},
+      "specs": {
+        "wire_no": "13"
+      },
+      "label_tag": "13",
+      "label_spec": "",
+      "circuit": "",
+      "extra": {}
+    }
+  ],
+  "netlist": {
+    "nodes": [
+      {
+        "id": "i001",
+        "tag": "QF1",
+        "class_code": "QF",
+        "circuit": "WL1"
+      },
+      {
+        "id": "i002",
+        "tag": "KMF",
+        "class_code": "KM_MAIN",
+        "circuit": "WL1"
+      },
+      {
+        "id": "i003",
+        "tag": "KMR",
+        "class_code": "KM_MAIN",
+        "circuit": "WL1"
+      },
+      {
+        "id": "i004",
+        "tag": "FR1",
+        "class_code": "FR",
+        "circuit": "WL1"
+      },
+      {
+        "id": "i005",
+        "tag": "M1",
+        "class_code": "M",
+        "circuit": "WL1"
+      },
+      {
+        "id": "i006",
+        "tag": "WL1",
+        "class_code": "WL",
+        "circuit": "WL1"
+      },
+      {
+        "id": "i007",
+        "tag": "FU1",
+        "class_code": "FU",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i008",
+        "tag": "SB1",
+        "class_code": "SB_NC",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i009",
+        "tag": "SB2",
+        "class_code": "SB_NO",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i010",
+        "tag": "SB3",
+        "class_code": "SB_NO",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i011",
+        "tag": "SQ1",
+        "class_code": "SQ",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i012",
+        "tag": "SQ2",
+        "class_code": "SQ",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i013",
+        "tag": "KMF",
+        "class_code": "KM_NO",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i014",
+        "tag": "KMR",
+        "class_code": "KM_NO",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i015",
+        "tag": "KMF",
+        "class_code": "KM_COIL",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i016",
+        "tag": "KMR",
+        "class_code": "KM_COIL",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i017",
+        "tag": "XT1",
+        "class_code": "XT",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i018",
+        "tag": "HL1",
+        "class_code": "HL",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i019",
+        "tag": "HL2",
+        "class_code": "HL",
+        "circuit": "CTRL"
+      }
+    ],
+    "edges": [
+      {
+        "id": "e001",
+        "source": "i001",
+        "target": "i002",
+        "kind": "power",
+        "source_port": "out",
+        "target_port": "in",
+        "points": [
+          [
+            48.0,
+            250.0
+          ],
+          [
+            48.0,
+            222.0
+          ],
+          [
+            28.0,
+            222.0
+          ]
+        ]
+      },
+      {
+        "id": "e002",
+        "source": "i001",
+        "target": "i003",
+        "kind": "power",
+        "source_port": "out",
+        "target_port": "in",
+        "points": [
+          [
+            48.0,
+            250.0
+          ],
+          [
+            48.0,
+            222.0
+          ],
+          [
+            72.0,
+            222.0
+          ]
+        ]
+      },
+      {
+        "id": "e003",
+        "source": "i002",
+        "target": "i004",
+        "kind": "power",
+        "source_port": "out",
+        "target_port": "in",
+        "points": [
+          [
+            28.0,
+            206.0
+          ],
+          [
+            28.0,
+            176.0
+          ],
+          [
+            48.0,
+            176.0
+          ]
+        ]
+      },
+      {
+        "id": "e004",
+        "source": "i003",
+        "target": "i004",
+        "kind": "power",
+        "source_port": "out",
+        "target_port": "in",
+        "points": [
+          [
+            72.0,
+            206.0
+          ],
+          [
+            72.0,
+            176.0
+          ],
+          [
+            48.0,
+            176.0
+          ]
+        ]
+      },
+      {
+        "id": "e005",
+        "source": "i004",
+        "target": "i005",
+        "kind": "power",
+        "source_port": "out",
+        "target_port": "in",
+        "points": [
+          [
+            48.0,
+            160.0
+          ],
+          [
+            48.0,
+            136.0
+          ]
+        ]
+      },
+      {
+        "id": "e006",
+        "source": "i001",
+        "target": "i006",
+        "kind": "power",
+        "source_port": "out",
+        "target_port": "in",
+        "points": [
+          [
+            48.0,
+            250.0
+          ],
+          [
+            48.0,
+            143.0
+          ],
+          [
+            90,
+            143.0
+          ]
+        ]
+      },
+      {
+        "id": "e007",
+        "source": "i007",
+        "target": "i008",
+        "kind": "control",
+        "source_port": "out",
+        "target_port": "left",
+        "points": [
+          [
+            158.0,
+            230.0
+          ],
+          [
+            158.0,
+            196.0
+          ],
+          [
+            142.0,
+            196.0
+          ]
+        ]
+      },
+      {
+        "id": "e008",
+        "source": "i008",
+        "target": "i009",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            158.0,
+            196.0
+          ],
+          [
+            158.0,
+            230.0
+          ],
+          [
+            206.0,
+            230.0
+          ]
+        ]
+      },
+      {
+        "id": "e009",
+        "source": "i008",
+        "target": "i010",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            158.0,
+            196.0
+          ],
+          [
+            158.0,
+            160.0
+          ],
+          [
+            206.0,
+            160.0
+          ]
+        ]
+      },
+      {
+        "id": "e010",
+        "source": "i009",
+        "target": "i011",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            222.0,
+            230.0
+          ],
+          [
+            270.0,
+            230.0
+          ]
+        ]
+      },
+      {
+        "id": "e011",
+        "source": "i010",
+        "target": "i012",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            222.0,
+            160.0
+          ],
+          [
+            270.0,
+            160.0
+          ]
+        ]
+      },
+      {
+        "id": "e012",
+        "source": "i008",
+        "target": "i013",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            158.0,
+            196.0
+          ],
+          [
+            158.0,
+            258.0
+          ],
+          [
+            206.0,
+            258.0
+          ]
+        ]
+      },
+      {
+        "id": "e013",
+        "source": "i013",
+        "target": "i011",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            222.0,
+            258.0
+          ],
+          [
+            270.0,
+            258.0
+          ],
+          [
+            270.0,
+            230.0
+          ]
+        ]
+      },
+      {
+        "id": "e014",
+        "source": "i008",
+        "target": "i014",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            158.0,
+            196.0
+          ],
+          [
+            158.0,
+            128.0
+          ],
+          [
+            206.0,
+            128.0
+          ]
+        ]
+      },
+      {
+        "id": "e015",
+        "source": "i014",
+        "target": "i012",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            222.0,
+            128.0
+          ],
+          [
+            270.0,
+            128.0
+          ],
+          [
+            270.0,
+            160.0
+          ]
+        ]
+      },
+      {
+        "id": "e016",
+        "source": "i011",
+        "target": "i015",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            286.0,
+            230.0
+          ],
+          [
+            312.0,
+            230.0
+          ]
+        ]
+      },
+      {
+        "id": "e017",
+        "source": "i012",
+        "target": "i016",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            286.0,
+            160.0
+          ],
+          [
+            312.0,
+            160.0
+          ]
+        ]
+      },
+      {
+        "id": "e018",
+        "source": "i015",
+        "target": "i018",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            328.0,
+            230.0
+          ],
+          [
+            392.0,
+            230.0
+          ]
+        ]
+      },
+      {
+        "id": "e019",
+        "source": "i016",
+        "target": "i019",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            328.0,
+            160.0
+          ],
+          [
+            392.0,
+            160.0
+          ]
+        ]
+      },
+      {
+        "id": "e020",
+        "source": "i018",
+        "target": "i017",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "right",
+        "points": [
+          [
+            408.0,
+            230.0
+          ],
+          [
+            408.0,
+            78.0
+          ],
+          [
+            156.0,
+            78.0
+          ]
+        ]
+      },
+      {
+        "id": "e021",
+        "source": "i019",
+        "target": "i017",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            408.0,
+            160.0
+          ],
+          [
+            408.0,
+            78.0
+          ],
+          [
+            144.0,
+            78.0
+          ]
+        ]
+      }
+    ],
+    "children": {
+      "i001": [
+        "i002",
+        "i003",
+        "i006"
+      ],
+      "i002": [
+        "i004"
+      ],
+      "i003": [
+        "i004"
+      ],
+      "i004": [
+        "i005"
+      ]
+    },
+    "roots": [
+      "i001",
+      "i007",
+      "i008",
+      "i009",
+      "i010",
+      "i011",
+      "i012",
+      "i013",
+      "i014",
+      "i015",
+      "i016",
+      "i017",
+      "i018",
+      "i019"
+    ]
+  },
+  "control_branches": [
+    {
+      "id": "forward",
+      "coil_tag": "KMF",
+      "pair_tag": "KMR",
+      "series_ids": [
+        "i007",
+        "i008",
+        "i009",
+        "i011",
+        "i015"
+      ]
+    },
+    {
+      "id": "reverse",
+      "coil_tag": "KMR",
+      "pair_tag": "KMF",
+      "series_ids": [
+        "i007",
+        "i008",
+        "i010",
+        "i012",
+        "i016"
+      ]
+    }
+  ],
+  "logic": {
+    "kind": "reversing",
+    "interlock": false,
+    "equation": "KMF' = (not STOP) and (not FR) and (not SQF) and (SBF or KMF); KMR' symmetric; no electrical interlock",
+    "inputs": [
+      "stop",
+      "sb_f",
+      "sb_r",
+      "fr",
+      "sq_f",
+      "sq_r",
+      "km_f",
+      "km_r"
+    ],
+    "outputs": [
+      "km_f_next",
+      "km_r_next"
+    ],
+    "rows": [
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 1,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 1,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 1,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 1,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 1,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 1,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 1,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 1,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 1,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 1,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 1,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 1,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 1,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 1,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 1,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 1,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 1,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 1,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 1,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 1,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 1,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 1,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 1,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 1,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 1
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 0,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 0,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 0,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 0,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 0,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 0,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 0,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 0,
+        "km_f_next": 0,
+        "km_r_next": 0
+      },
+      {
+        "stop": 1,
+        "sb_f": 1,
+        "sb_r": 1,
+        "fr": 1,
+        "sq_f": 1,
+        "sq_r": 1,
+        "km_f": 1,
+        "km_r": 1,
+        "km_f_next": 0,
+        "km_r_next": 0
+      }
+    ]
+  },
+  "bom": [
+    {
+      "line_no": 1,
+      "instance_id": "i001",
+      "tag": "QF1",
+      "class_code": "QF",
+      "bom_letter": "QF",
+      "name_zh": "断路器",
+      "model": "EB-MCB-63/32",
+      "spec": "In=32A 3P Icu=50kA",
+      "qty": 1,
+      "unit": "台",
+      "circuit": "WL1"
+    },
+    {
+      "line_no": 2,
+      "instance_id": "i002",
+      "tag": "KMF",
+      "class_code": "KM_MAIN",
+      "bom_letter": "KM",
+      "name_zh": "交流接触器",
+      "model": "EB-KM-32",
+      "spec": "Ie=32A AC220V",
+      "qty": 1,
+      "unit": "台",
+      "circuit": "WL1"
+    },
+    {
+      "line_no": 3,
+      "instance_id": "i003",
+      "tag": "KMR",
+      "class_code": "KM_MAIN",
+      "bom_letter": "KM",
+      "name_zh": "交流接触器",
+      "model": "EB-KM-32",
+      "spec": "Ie=32A AC220V",
+      "qty": 1,
+      "unit": "台",
+      "circuit": "WL1"
+    },
+    {
+      "line_no": 4,
+      "instance_id": "i004",
+      "tag": "FR1",
+      "class_code": "FR",
+      "bom_letter": "FR",
+      "name_zh": "热继电器",
+      "model": "EB-FR-18",
+      "spec": "整定18A",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "WL1"
+    },
+    {
+      "line_no": 5,
+      "instance_id": "i005",
+      "tag": "M1",
+      "class_code": "M",
+      "bom_letter": "M",
+      "name_zh": "电动机",
+      "model": "EB-M-7kW",
+      "spec": "7kW 380V 4P",
+      "qty": 1,
+      "unit": "台",
+      "circuit": "WL1"
+    },
+    {
+      "line_no": 6,
+      "instance_id": "i006",
+      "tag": "WL1",
+      "class_code": "WL",
+      "bom_letter": "WL",
+      "name_zh": "电力电缆",
+      "model": "YJV",
+      "spec": "YJV-4x6+1x4",
+      "qty": 1,
+      "unit": "回路",
+      "circuit": "WL1"
+    },
+    {
+      "line_no": 7,
+      "instance_id": "i007",
+      "tag": "FU1",
+      "class_code": "FU",
+      "bom_letter": "FU",
+      "name_zh": "熔断器",
+      "model": "EB-FU-4",
+      "spec": "In=4A",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "CTRL"
+    },
+    {
+      "line_no": 8,
+      "instance_id": "i008",
+      "tag": "SB1",
+      "class_code": "SB_NC",
+      "bom_letter": "SB",
+      "name_zh": "按钮",
+      "model": "EB-SB",
+      "spec": "停止 常闭",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "CTRL"
+    },
+    {
+      "line_no": 9,
+      "instance_id": "i009",
+      "tag": "SB2",
+      "class_code": "SB_NO",
+      "bom_letter": "SB",
+      "name_zh": "按钮",
+      "model": "EB-SB",
+      "spec": "正转 常开",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "CTRL"
+    },
+    {
+      "line_no": 10,
+      "instance_id": "i010",
+      "tag": "SB3",
+      "class_code": "SB_NO",
+      "bom_letter": "SB",
+      "name_zh": "按钮",
+      "model": "EB-SB",
+      "spec": "反转 常开",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "CTRL"
+    },
+    {
+      "line_no": 11,
+      "instance_id": "i011",
+      "tag": "SQ1",
+      "class_code": "SQ",
+      "bom_letter": "SQ",
+      "name_zh": "行程开关",
+      "model": "EB-SQ",
+      "spec": "正转限位 常闭",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "CTRL"
+    },
+    {
+      "line_no": 12,
+      "instance_id": "i012",
+      "tag": "SQ2",
+      "class_code": "SQ",
+      "bom_letter": "SQ",
+      "name_zh": "行程开关",
+      "model": "EB-SQ",
+      "spec": "反转限位 常闭",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "CTRL"
+    },
+    {
+      "line_no": 13,
+      "instance_id": "i017",
+      "tag": "XT1",
+      "class_code": "XT",
+      "bom_letter": "XT",
+      "name_zh": "端子",
+      "model": "EB-XT",
+      "spec": "2.5mm2",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "CTRL"
+    },
+    {
+      "line_no": 14,
+      "instance_id": "i018",
+      "tag": "HL1",
+      "class_code": "HL",
+      "bom_letter": "HL",
+      "name_zh": "指示灯",
+      "model": "EB-HL-GN",
+      "spec": "正转 绿色",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "CTRL"
+    },
+    {
+      "line_no": 15,
+      "instance_id": "i019",
+      "tag": "HL2",
+      "class_code": "HL",
+      "bom_letter": "HL",
+      "name_zh": "指示灯",
+      "model": "EB-HL-YE",
+      "spec": "反转 黄色",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "CTRL"
+    }
+  ],
+  "bom_summary": [
+    {
+      "bom_letter": "QF",
+      "name_zh": "断路器",
+      "model": "EB-MCB-63/32",
+      "spec": "In=32A 3P Icu=50kA",
+      "qty": 1,
+      "unit": "台",
+      "tags": [
+        "QF1"
+      ],
+      "line_no": 1
+    },
+    {
+      "bom_letter": "KM",
+      "name_zh": "交流接触器",
+      "model": "EB-KM-32",
+      "spec": "Ie=32A AC220V",
+      "qty": 2,
+      "unit": "台",
+      "tags": [
+        "KMF",
+        "KMR"
+      ],
+      "line_no": 2
+    },
+    {
+      "bom_letter": "FR",
+      "name_zh": "热继电器",
+      "model": "EB-FR-18",
+      "spec": "整定18A",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "FR1"
+      ],
+      "line_no": 3
+    },
+    {
+      "bom_letter": "M",
+      "name_zh": "电动机",
+      "model": "EB-M-7kW",
+      "spec": "7kW 380V 4P",
+      "qty": 1,
+      "unit": "台",
+      "tags": [
+        "M1"
+      ],
+      "line_no": 4
+    },
+    {
+      "bom_letter": "WL",
+      "name_zh": "电力电缆",
+      "model": "YJV",
+      "spec": "YJV-4x6+1x4",
+      "qty": 1,
+      "unit": "回路",
+      "tags": [
+        "WL1"
+      ],
+      "line_no": 5
+    },
+    {
+      "bom_letter": "FU",
+      "name_zh": "熔断器",
+      "model": "EB-FU-4",
+      "spec": "In=4A",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "FU1"
+      ],
+      "line_no": 6
+    },
+    {
+      "bom_letter": "SB",
+      "name_zh": "按钮",
+      "model": "EB-SB",
+      "spec": "停止 常闭",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "SB1"
+      ],
+      "line_no": 7
+    },
+    {
+      "bom_letter": "SB",
+      "name_zh": "按钮",
+      "model": "EB-SB",
+      "spec": "正转 常开",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "SB2"
+      ],
+      "line_no": 8
+    },
+    {
+      "bom_letter": "SB",
+      "name_zh": "按钮",
+      "model": "EB-SB",
+      "spec": "反转 常开",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "SB3"
+      ],
+      "line_no": 9
+    },
+    {
+      "bom_letter": "SQ",
+      "name_zh": "行程开关",
+      "model": "EB-SQ",
+      "spec": "正转限位 常闭",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "SQ1"
+      ],
+      "line_no": 10
+    },
+    {
+      "bom_letter": "SQ",
+      "name_zh": "行程开关",
+      "model": "EB-SQ",
+      "spec": "反转限位 常闭",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "SQ2"
+      ],
+      "line_no": 11
+    },
+    {
+      "bom_letter": "XT",
+      "name_zh": "端子",
+      "model": "EB-XT",
+      "spec": "2.5mm2",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "XT1"
+      ],
+      "line_no": 12
+    },
+    {
+      "bom_letter": "HL",
+      "name_zh": "指示灯",
+      "model": "EB-HL-GN",
+      "spec": "正转 绿色",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "HL1"
+      ],
+      "line_no": 13
+    },
+    {
+      "bom_letter": "HL",
+      "name_zh": "指示灯",
+      "model": "EB-HL-YE",
+      "spec": "反转 黄色",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "HL2"
+      ],
+      "line_no": 14
+    }
+  ],
+  "defects": [
+    {
+      "rule_id": "interlock_missing",
+      "severity": "error",
+      "instance_ids": [
+        "i015"
+      ],
+      "tags": [
+        "KMF"
+      ],
+      "standard_refs": [
+        "GB/T 5226.1-2019 9.3"
+      ],
+      "message": "KMF 支路缺少对 KMR 的常闭电气互锁",
+      "evidence": {
+        "coil_tag": "KMF",
+        "pair_tag": "KMR"
+      }
+    },
+    {
+      "rule_id": "interlock_missing",
+      "severity": "error",
+      "instance_ids": [
+        "i016"
+      ],
+      "tags": [
+        "KMR"
+      ],
+      "standard_refs": [
+        "GB/T 5226.1-2019 9.3"
+      ],
+      "message": "KMR 支路缺少对 KMF 的常闭电气互锁",
+      "evidence": {
+        "coil_tag": "KMR",
+        "pair_tag": "KMF"
+      }
+    }
+  ]
+}

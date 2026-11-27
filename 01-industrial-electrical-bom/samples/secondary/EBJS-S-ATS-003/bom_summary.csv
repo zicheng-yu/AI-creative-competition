@@ -1,0 +1,16 @@
+﻿line_no,bom_letter,name_zh,model,spec,qty,unit,tags
+1,QF,断路器,EB-MCCB-250/160,In=160A 3P Icu=50kA,2,台,QF1 QF2
+2,ATS,双电源转换开关,EB-ATS-160,160A 3P 自投,1,台,ATS1
+3,WL,电力电缆,YJV,YJV-4x70+1x35,1,回路,WL1
+4,TC,控制变压器,EB-TC-150,380/220V 150VA,1,台,TC1
+5,FU,熔断器,EB-FU-4,In=4A,1,只,FU1
+6,SA,选择开关,EB-SA,自动/I/II,1,只,SA1
+7,KA,中间继电器,EB-KA,I段电压,1,只,KA1
+8,KA,中间继电器,EB-KA,II段电压,1,只,KA2
+9,KT,时间继电器,EB-KT,延时 1-10s,1,只,KT1
+10,YC,合闸线圈,EB-YC,合闸 AC220V,2,只,YC1 YC2
+11,YO,分闸线圈,EB-YO,分闸 AC220V,2,只,YO1 YO2
+12,HL,指示灯,EB-HL-GN,I段合位,1,只,HL1
+13,HL,指示灯,EB-HL-YE,II段合位,1,只,HL2
+14,HA,电铃,EB-HA,故障音响,1,只,HA1
+15,XT,端子,EB-XT,2.5mm2,1,只,XT1

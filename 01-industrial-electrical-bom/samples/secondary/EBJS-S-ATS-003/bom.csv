@@ -1,0 +1,19 @@
+﻿line_no,instance_id,tag,class_code,bom_letter,name_zh,model,spec,qty,unit,circuit
+1,i001,QF1,QF,QF,断路器,EB-MCCB-250/160,In=160A 3P Icu=50kA,1,台,IN1
+2,i002,QF2,QF,QF,断路器,EB-MCCB-250/160,In=160A 3P Icu=50kA,1,台,IN2
+3,i003,ATS1,ATS,ATS,双电源转换开关,EB-ATS-160,160A 3P 自投,1,台,BUS
+4,i004,WL1,WL,WL,电力电缆,YJV,YJV-4x70+1x35,1,回路,WL1
+5,i005,TC1,TC,TC,控制变压器,EB-TC-150,380/220V 150VA,1,台,CTRL
+6,i006,FU1,FU,FU,熔断器,EB-FU-4,In=4A,1,只,CTRL
+7,i007,SA1,SA,SA,选择开关,EB-SA,自动/I/II,1,只,CTRL
+8,i008,KA1,KA_COIL,KA,中间继电器,EB-KA,I段电压,1,只,CTRL
+9,i009,KA2,KA_COIL,KA,中间继电器,EB-KA,II段电压,1,只,CTRL
+10,i012,KT1,KT_COIL,KT,时间继电器,EB-KT,延时 1-10s,1,只,CTRL
+11,i014,YC1,YC,YC,合闸线圈,EB-YC,合闸 AC220V,1,只,IN1
+12,i015,YO1,YO,YO,分闸线圈,EB-YO,分闸 AC220V,1,只,IN1
+13,i016,YC2,YC,YC,合闸线圈,EB-YC,合闸 AC220V,1,只,IN2
+14,i017,YO2,YO,YO,分闸线圈,EB-YO,分闸 AC220V,1,只,IN2
+15,i018,HL1,HL,HL,指示灯,EB-HL-GN,I段合位,1,只,CTRL
+16,i019,HL2,HL,HL,指示灯,EB-HL-YE,II段合位,1,只,CTRL
+17,i020,HA1,HA,HA,电铃,EB-HA,故障音响,1,只,CTRL
+18,i021,XT1,XT,XT,端子,EB-XT,2.5mm2,1,只,CTRL
