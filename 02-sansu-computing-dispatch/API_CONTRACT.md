@@ -7,17 +7,21 @@
 | 文件 | 顶层结构 | 沙盘用法 |
 | --- | --- | --- |
 | `topology.json` | `{version, simulator, core, slot_minutes, nodes[16], pools[6], task_classes[5], affinity[5][6], latency_ms[16][16], wan_gb_per_slot}` | 节点字段为 `id, city, lon, lat, external, centres, peak_eflops, pools_eflops[6], base_pue`。经纬度为十进制度 |
-| `scenarios_4x4.json` | `{version,seed,scenarios:{[scenario]:{[strategy]:Replay}}}` | 所选场景与策略的 168 小时和 7 天趋势、逐城市时序状态、调度飞线、可查凭证 ID |
-| `benchmarks_summary.json` | `{version,seed,hours,scenarios,strategies,aggregation,mean,runs[24],detail_sha256,runtime}` | `mean[strategy]` 为四场景等权均值。每行 `runs` 含场景、策略、周指标、实测规划次数、最长规划与故障耗时。无事件的耗时为 null |
+| `scenarios_4x4.json` | `{version:2,seed,scenarios:{[scenario]:filename}}` | 加载菜单时只取索引 |
+| `scenario_{scenario}.json`（四份） | `{version:2,seed,scenario,strategies:{[strategy]:Replay}}` | 切换场景时按索引按需加载所选周，含逐城市时序状态、飞线与审计索引。小时及日 KPI 保留四位小数，周指标与明细 CSV 保留完整精度 |
+| `benchmarks_summary.json` | `{version,seed,hours,scenarios,strategies,aggregation,mean,runs[24],detail_sha256,runtime}` | `mean[strategy]` 为四场景等权均值。每行 `runs` 含场景、策略、周指标、实测规划次数、最长规划与故障耗时。`trace_sha256` 校验输入作业与外生时序；`domestic_share` 是实际国产有效份额；`batch_jobs_shifted_2h` 统计首次开工推迟至少两小时的批任务；`pending_repacked` 为已受理任务的重排次数。无事件的耗时为 null |
 | `fault_failover_trace.json` | `{version,seed,events:[{scenario,strategy,slot,city,kind,severity,duration_slots,elapsed_s,trajectories}]}` | 故障回放。`trajectories[]` 含 `task_id,source,target,checkpoint_slots,remaining_slots,operation,sla_met`。空目标表示迁移无可行目的地 |
-| `ledger_sample.json` | `{version,receipts:[Receipt]}` | 以 `(scenario,strategy,seed,task_id)` 定位任务，展示首次决策候选、执行分段、碳足迹及凭证 |
+| `ledger_sample.json` | `{version:2,receipts:[CompactReceipt]}` | 以 `(scenario,strategy,seed,task_id)` 定位任务，展示首次决策候选、执行分段、碳足迹及凭证 |
+
+当前四个回放文件为 `scenario_normal_weekday.json`、`scenario_high_renewable.json`、`scenario_peak_shaving.json`、`scenario_fault_stress.json`。拓扑采用长期缓存，分片仅在首次切换该场景时请求，账本按需加载。
 
 四种 `scenario` 值为 `normal_weekday, high_renewable, peak_shaving, fault_stress`。四种回放策略为 `RR-Local, Least-Loaded, Cost-First, SuCompute`。摘要另含 `MILP-only, Safe-RL-only`。读取示例：
 
 ```js
 const read = name => fetch("./frontend_demo_data/" + name).then(r => r.json());
 const { scenarios } = await read("scenarios_4x4.json");
-const week = scenarios.fault_stress.SuCompute;
+const shard = await read(scenarios.fault_stress);
+const week = shard.strategies.SuCompute;
 const city = week.nodes.utilization[72][0];
 const firstDay = week.hourly.slice(0, 24);
 const { receipts } = await read("ledger_sample.json");
@@ -31,16 +35,18 @@ const audit = receipts.find(r => r.scenario === "fault_stress" &&
 
 | KPI | 单位与分母 |
 | --- | --- |
-| `utilization` | 已驻留物理算力时 / 已启用服务器组容量时，0–1 |
+| `utilization` | 按芯片 η 折算的有效 EF·h / 全网已通电容量时（含 15 分钟保活），0–1 |
 | `sla` | 同时满足时延和截止期、完整交付的任务数 / 到达任务数，拒单计违约 |
 | `kwh_per_efh` | 含待机的全部机房 kWh / 已执行有效 EF·h |
 | `pue` | 全部设施 kWh / IT kWh |
 | `green_share` | 实际就地消纳绿电 kWh / 设施 kWh |
 | `kgco2_per_efh` | 电网用电碳排 kgCO₂ / 有效 EF·h |
 
-辅助字段有 `installed_utilization`（忙物理容量 / 全装机）、`effective_installed_utilization`（有效工作量 / 全装机容量时）、`effective_efh, energy_kwh, tasks`。全网装机包括额外的 3 个枢纽。百分比指标在前端乘 100。相对增长应计算 `(新/基线 - 1) × 100%`。SLA 差值与相对增长可以用不同单位显示。
+辅助字段有 `powered_efh`（通电容量时）、`physical_online_utilization`（物理忙容量时 / 通电容量时）、`peak_sla`（每日 09–11、17–19 时到达的任务；区间无高峰小时则为 null）、`installed_utilization`（忙物理容量 / 全装机）、`effective_installed_utilization`（有效工作量 / 全装机容量时）、`effective_efh, energy_kwh, tasks`。全网装机包括额外的 3 个枢纽。百分比指标在前端乘 100。相对增长应计算 `(新/基线 - 1) × 100%`。SLA 差值与相对增长可以用不同单位显示。
 
 ### 审计与计量
+
+静态账本 v2 将重复的候选数据无损提取到拓扑。每条 CompactReceipt 的 `feasible_bits[node]` 用低 6 位（CPU 为最低位）存各池可行性，`resource_shadow[node]` 和 `carbon_shadow[node]` 是对偶向量，无计划时为 null。池亲和度从 `topology.affinity[topology.task_classes.indexOf(task_class)]` 取得，时延从 `topology.latency_ms[source][node]` 取得。展开后得到完整 Receipt，保留原 SHA256；可调用 `backend.replay.expand_receipt` 再验哈希。样例覆盖每场景的混合策略、三条基线、五类任务、跨域路径、2h 以上移峰和故障。小时/日 KPI 的展示舍入不作用于凭证。
 
 `Receipt` 记录 `task_class,source,release_slot,deadline_slot,latency_limit_ms,required_efh`。每个 `candidate_affinity` 元素给出该节点 6 个芯片池的 `scores`（任务亲和度 η）、首次决策时的物理/配额可行掩码 `feasible`、网络时延和节点资源/碳预算的 LP 松弛影子价格。仅使用基线时节点对偶为 null。`segments[]` 含目标节点、芯片池、起止槽（左闭右开）、实际时延、加权 PUE 和绿电占比、两类影子价格及部署决策分布中所选动作的概率。策略部署采用最大分值动作，概率用于解释各候选的相对分值。
 
@@ -60,7 +66,7 @@ python benchmarks/run_benchmark.py
 python -m pytest -q
 ```
 
-仅重新训练时，依次执行 `python benchmarks/train_forecast.py`、`python benchmarks/train_policy.py`、`python weights/verify_weights.py --release`，再跑评测。可用 `python benchmarks/run_benchmark.py --out <另一个目录>` 独立复验。对比 `detail_sha256`；CPU 实耗随主机与调度变化。`benchmarks/results_report.md`、两张 PNG、逐小时 CSV 与前端 JSON 均由同一入口生成。
+仅重新训练时，依次执行 `python benchmarks/train_forecast.py`、`python benchmarks/train_policy.py`、`python weights/verify_weights.py --release`，再跑评测。可用 `python benchmarks/run_benchmark.py --out <另一个目录>` 独立复验。对比 `detail_sha256` 以及四个回放分片的文件哈希。默认最多使用两个 CPU 进程独立处理场景，`--workers 1` 可串行执行。CPU 实耗随主机与调度变化。`benchmarks/results_report.md`、两张 PNG、逐小时 CSV 与前端 JSON 均由同一入口生成。
 
 ## 可选的本地接口
 
