@@ -1,0 +1,186 @@
+{
+  "schema_version": "1.0.0",
+  "version": "mock-v1",
+  "id": "electrical",
+  "title": "图枢电析",
+  "subtitle": "工业制造赛道",
+  "summary": "核对电气图纸解析、设备规格与 BOM，定位需要复审的图纸片段。",
+  "sources": [
+    {
+      "source_id": "drawing-a12",
+      "title": "一次配电图 A12",
+      "version": "样例快照 v1",
+      "confidence": 0.96,
+      "raw_snippet": "QF-03 · 出线支路 F03 · 额定电流 63 A",
+      "source_text": "一次配电图 A12\n\nA12 · 一次系统图 · 低压配电柜 G01\n\nQF-03 · 出线支路 F03 · 额定电流 63 A\n\n识别区域位于图纸右下，位号与支路已关联。"
+    },
+    {
+      "source_id": "catalog-c04",
+      "title": "设备规格清单 C04",
+      "version": "样例快照 v1",
+      "confidence": 0.88,
+      "raw_snippet": "支路 F03 · 规格清单录入：断路器 3P 50 A",
+      "source_text": "设备规格清单 C04\n\nC04 · 设备规格表 · 采购复核版\n\n支路 F03 · 规格清单录入：断路器 3P 50 A\n\n该条与一次配电图图面读数存在差异。"
+    }
+  ],
+  "findings": [
+    {
+      "id": "rating-mismatch",
+      "severity": "critical",
+      "title": "F03 断路器额定电流不一致",
+      "detail": "图面识别为 63 A，清单记录为 50 A。",
+      "recommendation": "核对原图与设备选型后更新清单。",
+      "source_id": "catalog-c04"
+    },
+    {
+      "id": "low-confidence",
+      "severity": "warning",
+      "title": "QF-03 位号需要复查",
+      "detail": "当前图块与支路记录已关联。",
+      "recommendation": "确认图纸上的位号与设备表一致。",
+      "source_id": "drawing-a12"
+    },
+    {
+      "id": "anchors-ok",
+      "severity": "pass",
+      "title": "BOM 项已定位到图纸",
+      "detail": "样例中的设备可沿坐标回查原图。",
+      "recommendation": "保留定位信息供复审。",
+      "source_id": "drawing-a12"
+    }
+  ],
+  "charts": [
+    {
+      "id": "tracking",
+      "kind": "line",
+      "title": "拓扑识别稳定性",
+      "unit": "%",
+      "axes": [
+        {
+          "label": "第 1 批"
+        },
+        {
+          "label": "第 2 批"
+        },
+        {
+          "label": "第 3 批"
+        },
+        {
+          "label": "第 4 批"
+        },
+        {
+          "label": "第 5 批"
+        },
+        {
+          "label": "第 6 批"
+        },
+        {
+          "label": "第 7 批"
+        }
+      ],
+      "series": [
+        {
+          "name": "拓扑解析",
+          "values": [
+            81,
+            84,
+            85,
+            88,
+            86,
+            91,
+            90
+          ]
+        },
+        {
+          "name": "文本基线",
+          "values": [
+            69,
+            70,
+            68,
+            74,
+            71,
+            76,
+            75
+          ]
+        }
+      ]
+    },
+    {
+      "id": "coverage",
+      "kind": "radar",
+      "title": "解析质量维度",
+      "unit": "%",
+      "axes": [
+        {
+          "label": "器件",
+          "maximum": 100
+        },
+        {
+          "label": "拓扑",
+          "maximum": 100
+        },
+        {
+          "label": "规格",
+          "maximum": 100
+        },
+        {
+          "label": "锚点",
+          "maximum": 100
+        },
+        {
+          "label": "清单",
+          "maximum": 100
+        }
+      ],
+      "series": [
+        {
+          "name": "拓扑解析",
+          "values": [
+            91,
+            90,
+            82,
+            96,
+            92
+          ]
+        },
+        {
+          "name": "文本基线",
+          "values": [
+            75,
+            68,
+            70,
+            50,
+            72
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ablation",
+      "kind": "bar",
+      "title": "模块消融对比",
+      "unit": "%",
+      "axes": [
+        {
+          "label": "去除端口约束"
+        },
+        {
+          "label": "去除连线消歧"
+        },
+        {
+          "label": "完整模块"
+        }
+      ],
+      "series": [
+        {
+          "name": "拓扑边 F1",
+          "values": [
+            73,
+            79,
+            90
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "schema_version": "1.0.0",
+  "version": "mock-v1",
+  "id": "sucompute",
+  "title": "苏算绿枢",
+  "subtitle": "三苏创新应用赛道",
+  "summary": "核对算网离线仿真的调度策略、资源约束和可追溯日志。",
+  "sources": [
+    {
+      "source_id": "dispatch-log",
+      "title": "算网调度回放",
+      "version": "样例快照 v1",
+      "confidence": 0.94,
+      "raw_snippet": "14:10 · 南京任务 T-38 · 改派至苏州节点",
+      "source_text": "算网调度回放\n\n场景：工作日峰值 · 区域池 A\n\n14:10 · 南京任务 T-38 · 改派至苏州节点\n\n日志显示节点余量缓冲恢复，任务进入执行队列。"
+    }
+  ],
+  "findings": [
+    {
+      "id": "latency-budget",
+      "severity": "warning",
+      "title": "任务 T-38 接近时延上限",
+      "detail": "样例任务的剩余时延预算为 9 分钟。",
+      "recommendation": "前往调度回放核对改派窗口。",
+      "source_id": "dispatch-log"
+    },
+    {
+      "id": "capacity-pass",
+      "severity": "pass",
+      "title": "节点资源未超容量",
+      "detail": "样例节点的资源约束检查通过。",
+      "recommendation": "保持记录以便复算。",
+      "source_id": "dispatch-log"
+    }
+  ],
+  "charts": [
+    {
+      "id": "peak-window",
+      "kind": "line",
+      "title": "工作日算力利用率",
+      "unit": "%",
+      "axes": [
+        {
+          "label": "08:00"
+        },
+        {
+          "label": "10:00"
+        },
+        {
+          "label": "12:00"
+        },
+        {
+          "label": "14:00"
+        },
+        {
+          "label": "16:00"
+        },
+        {
+          "label": "18:00"
+        },
+        {
+          "label": "20:00"
+        }
+      ],
+      "series": [
+        {
+          "name": "约束调度",
+          "values": [
+            48,
+            54,
+            66,
+            81,
+            79,
+            67,
+            55
+          ]
+        },
+        {
+          "name": "先到先服务",
+          "values": [
+            41,
+            49,
+            55,
+            68,
+            70,
+            55,
+            47
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strategy",
+      "kind": "radar",
+      "title": "调度维度对比",
+      "unit": "分",
+      "axes": [
+        {
+          "label": "利用率",
+          "maximum": 100
+        },
+        {
+          "label": "时延达标",
+          "maximum": 100
+        },
+        {
+          "label": "绿电匹配",
+          "maximum": 100
+        },
+        {
+          "label": "故障自愈",
+          "maximum": 100
+        },
+        {
+          "label": "碳效率",
+          "maximum": 100
+        }
+      ],
+      "series": [
+        {
+          "name": "约束调度",
+          "values": [
+            82,
+            92,
+            71,
+            81,
+            76
+          ]
+        },
+        {
+          "name": "先到先服务",
+          "values": [
+            69,
+            80,
+            49,
+            58,
+            45
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dispatch-ablation",
+      "kind": "bar",
+      "title": "策略消融对比",
+      "unit": "%",
+      "axes": [
+        {
+          "label": "关闭绿电权重"
+        },
+        {
+          "label": "关闭改派"
+        },
+        {
+          "label": "完整策略"
+        }
+      ],
+      "series": [
+        {
+          "name": "任务达标率",
+          "values": [
+            90,
+            83,
+            94
+          ]
+        }
+      ]
+    }
+  ]
+}
