@@ -20,6 +20,12 @@ def digest(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def require_zoned_timestamp(value: str) -> str:
+    if datetime.fromisoformat(value).utcoffset() is None:
+        raise ValueError("ingested_at requires a timezone")
+    return value
+
+
 def canonical(value: object) -> bytes:
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()
 
@@ -41,9 +47,7 @@ class EvidenceCapsule(BaseModel):
     @field_validator("ingested_at")
     @classmethod
     def timestamp_with_zone(cls, value: str) -> str:
-        if datetime.fromisoformat(value).utcoffset() is None:
-            raise ValueError("ingested_at requires a timezone")
-        return value
+        return require_zoned_timestamp(value)
 
     @model_validator(mode="after")
     def check_record(self):
@@ -97,7 +101,10 @@ class Release(BaseModel):
     released_at: str
     previous_version: Identifier | None = None
 
-    _timestamp = field_validator("released_at")(EvidenceCapsule.timestamp_with_zone)
+    @field_validator("released_at")
+    @classmethod
+    def timestamp_with_zone(cls, value: str) -> str:
+        return require_zoned_timestamp(value)
 
 
 class ReleaseLock(BaseModel):
