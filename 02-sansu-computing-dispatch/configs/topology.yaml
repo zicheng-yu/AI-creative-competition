@@ -1,0 +1,46 @@
+# JS-ComputeSim-313 topology.
+# Official totals (competition problem statement AI-JIANGSU-Q36, archived in
+# challenge_info.md): 313 in-use data centers, 271.8 EFlops, 1+13, metro 1 ms.
+# Per-city EFlops and DC counts are NOT published. They are a labeled assumption:
+# shares follow 2024 city GDP, then scale to those two official totals.
+# GDP source: 江苏省统计局《2024年1-12月设区市地区生产总值》
+# https://tj.jiangsu.gov.cn/art/2025/2/7/art_90208_11487052.html
+# The 13 city rows sum to 137291.46 亿元; the same table's provincial total is
+# 137008.03 亿元. Shares use the city-row sum, not the provincial total.
+
+meta:
+  simulator: JS-ComputeSim-313
+  jiangsu_total_eflops: 271.8
+  jiangsu_dc_count: 313
+  gdp_city_sum_100m_cny: 137291.46
+  gdp_province_100m_cny: 137008.03
+  allocation: assumption_gdp_share
+  latency_ms:
+    metro: 1.0
+    intra_province: 5.0
+    yangtze: 10.0
+  # Design parameters from YOU-268, consistent with the published “城域 1ms 时延圈”.
+  # They are not a measured RTT matrix.
+
+# Order matches the statistics bureau table, then three Yangtze hubs.
+# pue_base is an assumption inside the issue range 1.16–1.48. It is not a
+# metered PUE. Carbon factors are provincial values from the same 2022 table
+# (see configs/energy.yaml); every Jiangsu city uses Jiangsu's factor.
+nodes:
+  - {id: nanjing, name: 南京, kind: city, region: sunan, province: jiangsu, gdp_100m_cny: 18500.81, pue_base: 1.35}
+  - {id: wuxi, name: 无锡, kind: city, region: sunan, province: jiangsu, gdp_100m_cny: 16263.29, pue_base: 1.34}
+  - {id: xuzhou, name: 徐州, kind: city, region: subei, province: jiangsu, gdp_100m_cny: 9537.12, pue_base: 1.46}
+  - {id: changzhou, name: 常州, kind: city, region: sunan, province: jiangsu, gdp_100m_cny: 10813.59, pue_base: 1.33}
+  - {id: suzhou, name: 苏州, kind: city, region: sunan, province: jiangsu, gdp_100m_cny: 26726.98, pue_base: 1.38}
+  - {id: nantong, name: 南通, kind: city, region: suzhong, province: jiangsu, gdp_100m_cny: 12421.89, pue_base: 1.22}
+  - {id: lianyungang, name: 连云港, kind: city, region: subei, province: jiangsu, gdp_100m_cny: 4663.13, pue_base: 1.20}
+  - {id: huaian, name: 淮安, kind: city, region: subei, province: jiangsu, gdp_100m_cny: 5413.02, pue_base: 1.42}
+  - {id: yancheng, name: 盐城, kind: city, region: subei, province: jiangsu, gdp_100m_cny: 7779.18, pue_base: 1.18}
+  - {id: yangzhou, name: 扬州, kind: city, region: suzhong, province: jiangsu, gdp_100m_cny: 7809.64, pue_base: 1.36}
+  - {id: zhenjiang, name: 镇江, kind: city, region: sunan, province: jiangsu, gdp_100m_cny: 5540.01, pue_base: 1.40}
+  - {id: taizhou, name: 泰州, kind: city, region: suzhong, province: jiangsu, gdp_100m_cny: 7020.95, pue_base: 1.37}
+  - {id: suqian, name: 宿迁, kind: city, region: subei, province: jiangsu, gdp_100m_cny: 4801.85, pue_base: 1.48}
+  # Hub nameplate is NOT part of 271.8 EFlops. No public dispatch quota was found.
+  - {id: shanghai, name: 上海, kind: hub, region: yangtze, province: shanghai, gdp_100m_cny: null, pue_base: 1.32, assumed_eflops: 12.0}
+  - {id: zhejiang, name: 浙江, kind: hub, region: yangtze, province: zhejiang, gdp_100m_cny: null, pue_base: 1.30, assumed_eflops: 12.0}
+  - {id: wuhu, name: 安徽芜湖, kind: hub, region: yangtze, province: anhui, gdp_100m_cny: null, pue_base: 1.28, assumed_eflops: 12.0}

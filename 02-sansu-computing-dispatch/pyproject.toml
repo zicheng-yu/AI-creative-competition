@@ -1,0 +1,10 @@
+[project]
+name = "js-computesim"
+version = "0.1.0"
+description = "JS-ComputeSim-313: Jiangsu 1+13 and Yangtze River Delta heterogeneous compute simulator"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24", "pyyaml>=6", "gymnasium>=0.29"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
