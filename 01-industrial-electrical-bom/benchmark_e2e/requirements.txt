@@ -1,0 +1,4 @@
+-r ../symbol-parser-ocr-requirements.txt
+-r ../netlist-requirements.txt
+-r ../compliance/requirements.txt
+matplotlib>=3.8,<4
