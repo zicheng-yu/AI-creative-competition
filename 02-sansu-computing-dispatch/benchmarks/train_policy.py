@@ -7,7 +7,8 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 import numpy as np
 import torch
 from torch.distributions import Categorical
-from backend.models import ActorCritic, WEIGHTS
+from backend.models import ActorCritic, WEIGHTS, dispatch_bias
+from backend.planner import DEFAULT
 from backend.simulation import ComputeEnv
 from backend.world import SCENARIOS
 
@@ -29,7 +30,7 @@ def train():
     for update in range(160):
         if done:
             episode += 1
-            env = ComputeEnv(hours=24,scenario=SCENARIOS[episode%4],macro=True)
+            env = ComputeEnv(hours=24,scenario=SCENARIOS[episode%4],macro=episode%8<4,policy=model)
             obs,info = env.reset(seed=5000+episode)
         states,masks,actions,old_logp,values,rewards,costs = [],[],[],[],[],[],[]
         for _ in range(384):
@@ -38,7 +39,7 @@ def train():
             if not mask.any():
                 mask[:] = True
             with torch.no_grad():
-                dist = distribution(model(s),mask)
+                dist = distribution(model(s)+dispatch_bias(s,DEFAULT),mask)
                 action = dist.sample()
                 prob = dist.log_prob(action)
                 v = model.critic(s)
@@ -67,7 +68,7 @@ def train():
         for _ in range(4):
             for idx in torch.randperm(len(adv)).split(96):
                 s,mask,a,old = (v[idx] for v in data)
-                dist = distribution(model(s),mask)
+                dist = distribution(model(s)+dispatch_bias(s,DEFAULT),mask)
                 ratio = torch.exp(dist.log_prob(a)-old)
                 gain = torch.minimum(ratio*advantages[idx],ratio.clamp(.8,1.2)*advantages[idx])
                 loss = (-gain.mean()+.25*torch.nn.functional.smooth_l1_loss(

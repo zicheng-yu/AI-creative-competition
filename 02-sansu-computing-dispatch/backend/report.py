@@ -5,9 +5,10 @@ import json
 from collections import defaultdict
 
 import numpy as np
+from .power import powered_banks
 
 from .world import (BASE_PUE, BW, CAP, CENTRES, CITIES, CROSS, DOM, EF, ETA, GRID,
-                    KINDS, KW_PER_EF, LAT, POOLS, SLOTS)
+                    KINDS, KW_PER_EF, LAT, PEAK_HOURS, POOLS, SLOTS)
 
 COORDS = [(118.80,32.06),(120.59,31.30),(120.31,31.49),(119.97,31.81),(119.45,32.20),
           (120.89,31.98),(119.42,32.39),(119.92,32.45),(120.16,33.35),(119.02,33.61),
@@ -39,7 +40,8 @@ class Meter:
         # Identical power management for all policies: eight switchable banks per pool.
         capacity = sim.health[:,:,None]*CAP
         fill = np.divide(sim.used,capacity,out=np.zeros_like(sim.used),where=capacity>0)
-        active = (np.ceil(np.round(fill.clip(0,1)*8,9))/8 * capacity).sum(axis=2)
+        needed = np.ceil(np.round(fill.clip(0,1)*8,9))/8 * capacity
+        active = powered_banks(needed,capacity).sum(axis=2)
         u = self.raw/np.maximum(1e-9,active)
         temp = np.repeat(tr.tariffs[2],SLOTS,axis=0)
         self.pue = BASE_PUE+sim.pue_extra+.035*(1-u)+.003*(temp-24)
@@ -74,7 +76,11 @@ class Meter:
         def total(a):
             return a[span].sum()
         energy,work = total(self.energy),total(self.eff)
-        return dict(utilization=float(total(self.raw)/max(1e-9,total(self.powered))),
+        peak = np.isin(np.arange(begin,end)%24,PEAK_HOURS)
+        return dict(utilization=float(work*SLOTS/max(1e-9,total(self.powered))),
+                    physical_online_utilization=float(total(self.raw)/max(1e-9,total(self.powered))),
+                    powered_efh=float(total(self.powered)/SLOTS),
+                    peak_sla=float(self.met[begin:end][peak].sum()/max(1,self.arrived[begin:end][peak].sum())) if peak.any() else None,
                     sla=float(self.met[begin:end].sum()/max(1,self.arrived[begin:end].sum())),
                     kwh_per_efh=float(energy/max(1e-9,work)),
                     pue=float(energy/max(1e-9,total(self.it))),

@@ -20,11 +20,11 @@ ARTIFACTS = {"policy.pt":"PPO actor and critic state_dict",
 
 
 def metadata():
-    return dict(version=1,format="state_dict (CPU) / ONNX opset 17",
+    return dict(version=2,format="state_dict (CPU) / ONNX opset 17",
                 forecast=dict(input="[16,4,24] scaled counts and renewable fractions at lag 48/24",
                               output="[16,2,24]",parameters=sum(p.numel() for p in Forecaster().parameters())),
                 policy=dict(input="[batch,96,15] node-major, pool-minor",features=FEATURES,
-                            output="raw actor logits; apply scheduling feasibility mask",
+                            output="raw actor logits; add backend.models.dispatch_bias, then apply feasibility mask",
                             parameters=sum(p.numel() for p in ActorCritic().parameters())),
                 files=[dict(path=name,description=desc,size=(WEIGHTS/name).stat().st_size,
                             sha256=hashlib.sha256((WEIGHTS/name).read_bytes()).hexdigest())

@@ -10,8 +10,8 @@ from .world import ORIGIN
 ROOT = Path(__file__).resolve().parents[1]
 WEIGHTS = ROOT / "weights"
 FEATURES = ("eta", "tariff", "green_fraction", "pue_excess", "pool_fill",
-            "node_fill", "latency_ratio", "cross", "domestic", "quota", "sla_risk",
-            "wait_hours", "energy_per_work", "available", "urgent")
+            "marginal_powered_efh_per_efh", "latency_ratio", "cross", "domestic", "quota", "sla_risk",
+            "wait_fraction_of_6h", "energy_per_work", "available", "urgent")
 SCALE = np.stack([np.maximum(1., 80*ORIGIN), np.ones(16)], axis=-1).astype('float32')
 
 
@@ -51,6 +51,13 @@ class ActorCritic(nn.Module):
 
     def critic(self, candidates):
         return self.value(candidates.mean(dim=-2)).squeeze(-1)
+
+
+def dispatch_bias(f,w):
+    """Economic and reservation priors shared by on-policy sampling and deployment."""
+    return (2*w["sla"]*f[...,9] - 3*w["utilization"]*f[...,5] -
+            3*w["carbon"]*(1-f[...,2])*f[...,12] - 2*w["cost"]*f[...,1]*f[...,12] -
+            w["network"]*f[...,7] - .8*f[...,3])
 
 
 @lru_cache(maxsize=2)

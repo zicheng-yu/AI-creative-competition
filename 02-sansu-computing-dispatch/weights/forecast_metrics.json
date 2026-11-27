@@ -10,25 +10,25 @@
   "epochs": 18,
   "train": {
     "arrivals_jobs_per_hour": {
-      "mae": 1.8546923398971558,
-      "mape_pct": 47.235836029052734,
-      "nonzero_targets": 138047
+      "mae": 2.041754722595215,
+      "mape_pct": 43.71186447143555,
+      "nonzero_targets": 137010
     },
     "renewable_peak_fraction": {
-      "mae": 0.018714137375354767,
-      "mape_pct": 11.361296653747559,
+      "mae": 0.01980844885110855,
+      "mape_pct": 12.433324813842773,
       "nonzero_targets": 152064
     }
   },
   "validation": {
     "arrivals_jobs_per_hour": {
-      "mae": 1.8182340860366821,
-      "mape_pct": 46.39265823364258,
-      "nonzero_targets": 45981
+      "mae": 2.085512161254883,
+      "mape_pct": 43.96085739135742,
+      "nonzero_targets": 45179
     },
     "renewable_peak_fraction": {
-      "mae": 0.019035937264561653,
-      "mape_pct": 11.493343353271484,
+      "mae": 0.02035175822675228,
+      "mape_pct": 12.542470932006836,
       "nonzero_targets": 50688
     }
   }

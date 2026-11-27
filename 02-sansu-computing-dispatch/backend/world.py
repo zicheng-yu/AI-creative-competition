@@ -25,6 +25,9 @@ np.fill_diagonal(LAT, 1)
 CROSS = LAT == 10
 DOM = np.array([False, True, True, True, False, False])
 SLOTS = 12
+# After a bank becomes idle, keep it powered for another 15 minutes.
+KEEPALIVE = 3
+PEAK_HOURS = (9, 10, 11, 17, 18, 19)
 GRID = .55  # kgCO2/kWh, East China 2023
 KW_PER_EF = 10_000.
 BW = 120.  # shared cross-domain link GB per 5-min slot
@@ -77,8 +80,13 @@ class Trace:
         for h in range(-self.history, hours):
             day = 8 <= h % 24 < 21
             burst = rng.random() < .08
-            mean = 55 + 53*day + 21*burst + 18*(scenario == "peak_shaving" and day)
-            counts = rng.poisson(mean*ORIGIN)
+            peak = h % 24 in PEAK_HOURS
+            mean = 45 + 90*day + 85*peak + 26*burst + 20*(scenario == "peak_shaving" and day)
+            origin = ORIGIN.copy()
+            if peak:
+                origin[:3] *= 1.7
+                origin /= origin.sum()
+            counts = rng.poisson(mean*origin)
             green = weather([h], scenario)[1][0] * rng.uniform(.82, 1.18, 16)
             self.series.append(np.stack([counts, green/(EF*KW_PER_EF)], axis=-1))
             if h < 0:
@@ -91,9 +99,9 @@ class Trace:
                     dur = min(hours*SLOTS-slot, max(1, round(rng.lognormal(
                         np.log([23,12,4,10,5][kind]), .48))))
                     urgent = bool(burst or rng.random() < .035)
-                    slack = 0 if kind >= 2 or urgent else int(rng.integers(12, 37))
+                    slack = 0 if kind >= 2 or urgent else SLOTS*int(rng.integers(2,7))
                     rate = np.clip(rng.lognormal(.02, .48), .25, 3.8)
-                    latency = int(rng.choice([1,5,10], p=[.18,.67,.15])) if kind == 2 else 10
+                    latency = int(rng.choice([1,5,10], p=[.55,.35,.10])) if kind == 2 else 10
                     self.jobs.append(Job(len(self.jobs), slot, src, kind, float(rate), dur,
                                          min(hours*SLOTS, slot+dur+slack), latency, urgent))
         self.jobs.sort(key=lambda j: (j.slot, not j.priority, j.id))

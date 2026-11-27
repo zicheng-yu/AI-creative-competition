@@ -32,7 +32,9 @@ def test_forecast_past_only_and_milp_constraints():
     assert p.elapsed<1 and p.quota.shape==(24,16)
     assert p.domestic_share>=DOM_FLOOR-1e-7 and p.max_cross_flow*GB_PER_EF<=BW+1e-6
     assert not p.quota[:,1].any()
-    assert np.all(p.quota<=EF*health+1e-6) and np.all((p.delay>=0)&(p.delay<=1+1e-7))
+    assert np.all(p.quota+p.reserve<=EF*health+1e-6)
+    assert p.timing.shape==(5,7) and np.all(p.timing>=-1e-7)
+    assert all(not p.timing[tier,tier+3:].any() for tier in range(5))
     assert np.all(p.resource>=0) and np.all(p.carbon>=0)
 
 
@@ -59,3 +61,64 @@ def test_fault_conservation_and_receipts(kind,severity,tmp_path):
     m.export_csv(tmp_path/"ledger.csv")
     with (tmp_path/"ledger.csv").open(encoding="utf-8") as f:
         assert len(list(csv.DictReader(f)))==len(tr.jobs)
+
+
+def test_bank_hold_and_effective_online_denominator():
+    from backend.simulation import Calendar
+    from backend.world import KEEPALIVE
+    tr = Trace(12,"normal_weekday",1)
+    sim = Calendar(tr,"RR-Local")
+    sim.costs = {j.id:True for j in tr.jobs}
+    sim.used[2,0,0] = CAP[0,0]/8
+    sim.effective[2,0] = .75*CAP[0,0]/8
+    meter = Meter(sim)
+    assert np.allclose(meter.powered[2:3+KEEPALIVE,0],CAP[0,0]/8)
+    assert meter.powered[3+KEEPALIVE,0]==0
+    assert np.isclose(meter.kpi(0,1)["utilization"],.75/(KEEPALIVE+1))
+    sim.health[3,0] = 0
+    assert not Meter(sim).powered[3:,0].any()
+
+
+def test_failed_displacement_rolls_back_the_calendar():
+    from backend.simulation import Calendar, Segment
+    from backend.world import ETA, Job
+    tr = Trace(51,"normal_weekday",2)
+    # Only one online city. Six existing batches leave no alternative for a trial move.
+    tr.jobs = [Job(m,0,0,0,CAP[0,m]*ETA[0,m],12,12,10,False) for m in range(6)]
+    pinned = Job(6,1,0,2,1.,2,3,1,True)
+    tr.jobs.append(pinned)
+    sim = Calendar(tr,"Safe-RL-only")
+    sim.health[:,1:] = 0
+    sim.advance(1)
+    for m,j in enumerate(tr.jobs[:6]):
+        s = Segment(j.id,0,m,0,12,j.rate,CAP[0,m],0.,1,0.,0.,None)
+        sim.change(s,1)
+        sim.segments.append(s)
+        sim.by_pool[0][m].append(s)
+        sim.book[j.id] = s
+    before = sim.used.copy()
+    assert not sim.make_room(pinned)
+    np.testing.assert_allclose(sim.used,before,atol=1e-12)
+    assert len(sim.book)==len(sim.segments)==6
+    assert all(s.end==12 for s in sim.segments)
+
+
+@pytest.mark.parametrize("strategy",["RR-Local","Least-Loaded","Cost-First","SuCompute","MILP-only","Safe-RL-only"])
+def test_shared_feasibility_and_no_forecast_leak(strategy):
+    from backend.simulation import Calendar
+    from backend.world import Job
+    tr = Trace(61,"normal_weekday",8)
+    sim = Calendar(tr,strategy)
+    sim.advance(0)
+    tight = Job(0,0,0,2,.5,2,2,1,False)
+    _,mask,_ = sim.candidates(tight)
+    assert mask.any() and not mask.reshape(16,6)[1:].any()
+    assert not mask.reshape(16,6)[:,~DOM].any()
+    flex = Job(1,0,0,0,.8,6,6+6*SLOTS,10,False)
+    first = sim.candidates(flex)
+    tr.series[49:] = 0  # Unobserved future weather and arrivals must not influence the action.
+    second = sim.candidates(flex)
+    for a,b in zip(first,second):
+        np.testing.assert_array_equal(a,b)
+    if strategy not in ("SuCompute","MILP-only"):
+        assert not first[2].any()
