@@ -1,0 +1,71 @@
+# Four standard stress scenarios. Shared reward weights so the scalar reward
+# is comparable. Weights shape RL only; raw metrics do not depend on them.
+# Reward per hour, divided by that hour's arrived reference EFlops:
+#   w_served * served - w_sla * violated - w_cost * cost_cny - w_carbon * carbon_kg
+
+reward:
+  w_served: 1.0
+  w_sla: 3.0
+  w_cost: 0.00001
+  w_carbon: 0.00002
+
+scenarios:
+  weekday:
+    label: 常规工作日
+    season: summer
+    load_scale: 1.0
+    task_load_scale: {}
+    green_cf_scale: 1.0
+    green_contract_scale: 1.0
+    # 1.0 means no peak derate. Values below 1 shut that fraction of Jiangsu
+    # city nameplate during peak and spike hours (assumption, not a tariff).
+    peak_capacity_derate: 1.0
+    apply_weekend: true
+    fault: null
+
+  green_surplus:
+    label: 绿电大发日
+    season: summer
+    load_scale: 1.0
+    task_load_scale: {}
+    # Assumption knobs on the already-assumed capacity-factor shape and on the
+    # assumed contract fraction. Not a measured high-wind day.
+    green_cf_scale: 1.6
+    green_contract_scale: 1.5
+    peak_capacity_derate: 1.0
+    apply_weekend: true
+    fault: null
+
+  peak_conservation:
+    label: 尖峰保电日
+    season: summer
+    load_scale: 1.0
+    # Assumption: conservation day shifts the mix toward latency-critical work
+    # and trims deferrable pretraining. Prices stay on the published August table.
+    task_load_scale:
+      inference: 1.45
+      general: 1.15
+      finetune: 0.90
+      pretrain: 0.75
+      hpc: 0.90
+    green_cf_scale: 1.0
+    green_contract_scale: 1.0
+    peak_capacity_derate: 0.80
+    apply_weekend: false
+    fault: null
+
+  node_failure:
+    label: 节点故障压测
+    season: summer
+    load_scale: 1.0
+    task_load_scale: {}
+    green_cf_scale: 1.0
+    green_contract_scale: 1.0
+    peak_capacity_derate: 1.0
+    apply_weekend: true
+    # Day 4 = hours 72–95. Which node fails is a scenario choice, not an event log.
+    fault:
+      day_1based: 4
+      offline: [nanjing]
+      pue_multiplier:
+        suzhou: 1.35

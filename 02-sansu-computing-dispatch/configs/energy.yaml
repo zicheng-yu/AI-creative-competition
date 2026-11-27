@@ -1,0 +1,119 @@
+# Energy, tariff, carbon and renewable curves.
+# Numbers tagged in comments are either copied from the cited publication or
+# marked as assumptions. Do not treat assumption knobs as measurements.
+
+carbon:
+  # 生态环境部、国家统计局公告 2024年第33号《关于发布2022年电力二氧化碳排放因子的公告》
+  # https://www.mee.gov.cn/xxgk2018/xxgk/xxgk01/202412/t20241226_1099413.html
+  # Unit: kgCO2 / kWh. These are annual average factors, not hourly intensity.
+  east_china_kg_per_kwh: 0.5617
+  provincial_kg_per_kwh:
+    jiangsu: 0.5978
+    shanghai: 0.5849
+    zhejiang: 0.5153
+    anhui: 0.6782
+  # provincial: each node uses its province's factor from the same announcement.
+  # east_china: every node uses 0.5617 (the regional factor named in YOU-268).
+  default_mode: provincial
+
+tariff:
+  # Hours: 苏发改价格发〔2025〕426号, effective 2025-06-01.
+  # https://fzggw.jiangsu.gov.cn/art/2025/4/30/art_284_11557001.html
+  # Summer/winter (Jun–Aug, Dec–Feb) share one peak/flat/valley partition.
+  # Spike hours differ and override the peak label for that clock hour.
+  # A 1-hour step cannot represent 19:30. Summer spike is therefore the fully
+  # covered hour 14:00–15:00 and the hour 20:00–21:00 (inside 19:30–21:30).
+  # 19:00–19:30 and 21:00–21:30 stay in the surrounding peak hour.
+  season_hours:
+    valley: [0, 1, 2, 3, 4, 5, 11, 12]
+    flat: [6, 7, 8, 9, 10, 13, 22, 23]
+    peak: [14, 15, 16, 17, 18, 19, 20, 21]
+  spike_hours:
+    summer: [14, 20]   # Jul–Aug 14:00–15:00 and the 20:00–21:00 slice of 19:30–21:30
+    winter: [18, 19]   # Dec–Jan 18:00–20:00
+  # All-in 110 kV two-part prices, CNY/kWh, grid-agent purchase.
+  # The provincial notice does not publish separate 苏南/苏北 prices. Both
+  # curves are this table. Hub nodes reuse it as an explicit proxy (assumption):
+  # Shanghai/Zhejiang/Anhui monthly agent-purchase tables are not bundled.
+  tables:
+    summer:
+      # 国网江苏省电力有限公司《关于2025年8月代理购电工商业用户电价的公告》
+      # 110千伏两部制，2025-08-01 至 2025-08-31
+      label: 2025-08 110kV two-part agent purchase
+      flat: 0.6263
+      peak: 0.9682
+      valley: 0.3485
+      spike: 1.1221
+    winter:
+      # 国网江苏省电力有限公司《关于2025年12月代理购电工商业用户电价的公告》
+      # 110千伏两部制，2025-12-01 至 2025-12-31
+      label: 2025-12 110kV two-part agent purchase
+      flat: 0.6256
+      peak: 0.9876
+      valley: 0.3315
+      spike: 1.1505
+
+power:
+  # Sandbox scale. NOT an official EFlops-to-watts conversion. Absolute MWh and
+  # tonnes scale linearly with this knob; policy comparisons at a fixed knob
+  # stay meaningful. 1000 kW/EFlops => 271.8 MW IT nameplate on the Jiangsu side.
+  assumption_it_kw_per_eflops: 1000.0
+  # Dynamic exponent in P_it = P_peak * (idle + (1-idle) * u^alpha).
+  # Barroso & Hölzle, IEEE Computer 2007, document large idle draw and near-linear
+  # server power. alpha > 1 is this simulator's convexity knob, not their fit.
+  assumption_alpha: 1.2
+  # Idle fraction of pool peak. CPU 0.50 echoes the "often about half" server
+  # observation in that paper; it is still a parameter, not a Jiangsu meter.
+  assumption_idle_fraction:
+    cpu: 0.50
+    ascend: 0.25
+    cambricon: 0.25
+    hygon: 0.28
+    nvidia: 0.22
+    hpc: 0.40
+  # PUE(u) = pue_base * (1 + coeff * u) * fault_multiplier.
+  # Base PUE stays inside 1.16–1.48. The util term and faults may rise above it.
+  assumption_pue_util_coeff: 0.04
+  # A node with health 0 contributes no facility power (assumption).
+  offline_power_mw: 0.0
+
+renewables:
+  # City installed capacity is context, not a data-center PPA.
+  # 1 万千瓦 = 10 MW. contract_mw = installed_mw * assumption_contract_fraction.
+  # 0.001 is an assumption: no public DC green-contract ratio was found. It is
+  # small enough that coastal nodes are not automatically 100% green.
+  assumption_contract_fraction: 0.001
+  # Diurnal capacity factors are assumed shapes, not mast or dispatch data.
+  # Wind: mean + amplitude * cos(2π (h - phase) / 24), clipped to [0, 1].
+  # The cosine over 24 integer hours is ~0, so the mean stays near `mean`.
+  wind_cf:
+    mean: 0.36
+    amplitude: 0.12
+    phase_hour: 2.0
+  # Solar: clear-sky sine between sunrise and sunset, peak at mid-window.
+  solar_cf:
+    sunrise_hour: 6
+    sunset_hour: 18
+    peak: 0.72
+  # Vintages differ. Using them together is a static sandbox, not one census.
+  cities:
+    yancheng:
+      # 盐城市政府办公室，截至 2024-08：风电 943.86 万千瓦，光伏 571.33 万千瓦
+      # https://www.jiangsu.gov.cn/art/2024/9/13/art_33718_11367829.html
+      as_of: "2024-08"
+      wind_wan_kw: 943.86
+      pv_wan_kw: 571.33
+    nantong:
+      # 风电：南通日报 2025-08-06，「截至去年底」704.7 万千瓦
+      # https://www.nantong.gov.cn/ntsrmzf/sxcz/content/e9b07296-0a47-4c94-94c2-4ef01e28f410.html
+      # 光伏：南通市统计局《2024年国民经济和社会发展统计公报》年末太阳能 663.4 万千瓦
+      # https://www.nantong.gov.cn/ntsrmzf/tjgb2/content/518a2c15-df46-48a8-9e84-7cc864ce8873.html
+      as_of: "2024-end"
+      wind_wan_kw: 704.7
+      pv_wan_kw: 663.4
+    lianyungang:
+      # 连云港市发改委，截至 2025-05：风电 111.12 万千瓦，光伏 723.78 万千瓦
+      # http://fgw.lyg.gov.cn/lygsfzhggwyh/fggz/content/d75688c7-2995-4b85-a003-f59c219ea86b.html
+      as_of: "2025-05"
+      wind_wan_kw: 111.12
+      pv_wan_kw: 723.78

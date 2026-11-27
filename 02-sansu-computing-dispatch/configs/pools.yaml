@@ -1,0 +1,35 @@
+# Heterogeneous pools and the effective-throughput matrix.
+# Pool shares and both coefficient matrices are assumptions. The 2020 Alibaba
+# PAI trace shows heterogeneous NVIDIA generations and that only 6% of tasks
+# pin a GPU type (Weng et al., NSDI 2022). It does not contain Ascend, MLU or
+# Hygon, so those coefficients are not fitted.
+
+pools: [cpu, ascend, cambricon, hygon, nvidia, hpc]
+tasks: [pretrain, finetune, inference, hpc, general]
+
+# Assumption: the same mix on every node, including hubs. Sums to 1.
+pool_share:
+  cpu: 0.22
+  ascend: 0.18
+  cambricon: 0.10
+  hygon: 0.12
+  nvidia: 0.28
+  hpc: 0.10
+
+# eta[task][pool]: fraction of nameplate FLOPS that counts as reference work.
+# 1.0 would be a perfect match. All values below are assumptions.
+eta:
+  pretrain:   {cpu: 0.08, ascend: 0.92, cambricon: 0.70, hygon: 0.72, nvidia: 0.95, hpc: 0.35}
+  finetune:   {cpu: 0.15, ascend: 0.88, cambricon: 0.80, hygon: 0.78, nvidia: 0.93, hpc: 0.30}
+  inference:  {cpu: 0.25, ascend: 0.90, cambricon: 0.86, hygon: 0.75, nvidia: 0.96, hpc: 0.20}
+  hpc:        {cpu: 0.55, ascend: 0.25, cambricon: 0.20, hygon: 0.70, nvidia: 0.40, hpc: 0.95}
+  general:    {cpu: 0.90, ascend: 0.35, cambricon: 0.30, hygon: 0.45, nvidia: 0.50, hpc: 0.40}
+
+# Operator-adaptation gain. Multiplies eta. 1.0 = no extra software-stack gain.
+# Assumptions, not benchmark speedups.
+operator_gain:
+  pretrain:   {cpu: 1.00, ascend: 1.08, cambricon: 1.00, hygon: 1.00, nvidia: 1.05, hpc: 1.00}
+  finetune:   {cpu: 1.00, ascend: 1.04, cambricon: 1.00, hygon: 1.00, nvidia: 1.03, hpc: 1.00}
+  inference:  {cpu: 1.00, ascend: 1.04, cambricon: 1.06, hygon: 1.00, nvidia: 1.05, hpc: 1.00}
+  hpc:        {cpu: 1.00, ascend: 1.00, cambricon: 1.00, hygon: 1.06, nvidia: 1.00, hpc: 1.10}
+  general:    {cpu: 1.05, ascend: 1.00, cambricon: 1.00, hygon: 1.00, nvidia: 1.00, hpc: 1.00}
