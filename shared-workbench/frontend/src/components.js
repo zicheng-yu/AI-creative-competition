@@ -2,7 +2,7 @@ import { html, labels, percent } from './format.js';
 
 const chartLabels = { line: '趋势', radar: '维度', bar: '消融' };
 
-export function benchmarkPanel(charts, selected) {
+export function benchmarkPanel(charts, selected, context = '离线评测') {
   if (!charts.length) {
     return '<div class="panel empty"><h2 id="benchmark">评测数据</h2><p>导入 JSON 或 CSV 后查看策略对比。</p></div>';
   }
@@ -10,7 +10,7 @@ export function benchmarkPanel(charts, selected) {
   for (const chart of charts) kindCounts.set(chart.kind, (kindCounts.get(chart.kind) || 0) + 1);
   return `<section class="panel benchmark" aria-labelledby="benchmark">
     <div class="panel-head">
-      <div><h2 id="benchmark">${html(selected.title)}</h2><p>离线评测 <span class="panel-divider"></span> ${html(selected.unit || '数值')}</p></div>
+      <div><h2 id="benchmark">${html(selected.title)}</h2><p>${html(context)} <span class="panel-divider"></span> ${html(selected.unit || '数值')}</p></div>
       <div class="segmented" aria-label="选择图表">
         ${charts.map((chart) => {
           const label = kindCounts.get(chart.kind) === 1

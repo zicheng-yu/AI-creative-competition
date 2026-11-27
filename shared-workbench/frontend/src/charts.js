@@ -40,7 +40,7 @@ export function mountChart(element, chart, dark) {
         type: 'category', data: xs, boundaryGap: chart.kind === 'bar',
         axisLabel: { color: tone, hideOverlap: true }, axisLine: { lineStyle: { color: grid } },
       },
-      yAxis: { type: 'value', axisLabel: { color: tone }, splitLine: { lineStyle: { color: grid, type: 'dashed' } } },
+      yAxis: { type: 'value', scale: chart.tightValueAxis === true, axisLabel: { color: tone }, splitLine: { lineStyle: { color: grid, type: 'dashed' } } },
       series: chart.series.map(({ name, values }) => ({
         type: chart.kind, name, data: values, symbolSize: 7,
         lineStyle: { width: 3 },
