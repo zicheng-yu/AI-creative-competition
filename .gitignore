@@ -1,0 +1,15 @@
+# Python bytecode & virtual environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Node.js / frontend build artifacts
+node_modules/
+dist/
+
+# OS, logs & temporary database journals
+.DS_Store
+*.log
+*.sqlite-journal
