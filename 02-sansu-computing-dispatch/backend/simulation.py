@@ -306,7 +306,57 @@ class Calendar:
             if repaired:
                 f,valid,start = self.candidates(j)
                 a,p = self.select(j,f,valid)
+        if self.plan and a>=0 and j.kind<2 and j.deadline-j.duration>j.slot:
+            start[a] = self.refine_start(j,a,int(start[a]))
         return self.place(j,a,f,valid,start,p)
+
+    def refine_start(self,j,action,anchor):
+        """Resolve a macro reservation to a five-minute start on the selected pool.
+
+        Score the whole service interval and its bank hold. Adjacent jobs can
+        reuse a powered bank even when their releases miss the planning grid.
+        """
+        n,m = divmod(action,M)
+        starts = np.arange(max(j.slot,anchor-SLOTS//2),
+                           min(j.deadline-j.duration,anchor+SLOTS//2)+1)
+        if len(starts)<2:
+            return anchor
+        lo = max(0,int(starts[0])-KEEPALIVE)
+        hi = min(self.slots,int(starts[-1])+j.duration+KEEPALIVE)
+        t = np.arange(lo,hi)
+        service = (t[:,None]>=starts)&(t[:,None]<starts+j.duration)
+        cap = self.health[lo:hi,n,None]*CAP[n]
+        busy = self.used[lo:hi,n].clip(0)
+        size = np.maximum(cap/8,1e-8)
+        needed = np.ceil(np.round(busy/size,9))*size
+        online = powered_banks(needed,cap)
+        extra = service*(j.rate/ETA[j.kind,m])
+        valid = ((busy[:,m,None]+extra<=cap[:,m,None]+1e-8)|~service).all(0)
+        if CROSS[j.src,n]:
+            valid &= ((self.link[lo:hi,None]+j.rate*GB_PER_EF<=BW+1e-8)|~service).all(0)
+        pool_size = size[:,m,None]
+        new_bank = np.ceil(np.round((busy[:,m,None]+extra)/pool_size,9))*pool_size
+        after = powered_banks(new_bank,cap[:,m,None])
+        warm = online.sum(1,keepdims=True)
+        additional = after-online[:,m,None]
+        load = busy.sum(1,keepdims=True)
+        ph = np.clip(t//SLOTS-self.hour,0,23)
+        pue = (BASE_PUE[n]+self.pue_extra[t,n]+.003*(self.trace.tariffs[2][t//SLOTS,n]-24))[:,None]
+        def facility(l,b):
+            util = np.divide(l,b,out=np.zeros_like(l),where=b>0)
+            it = .018*cap.sum(1,keepdims=True)+b*(.302+.68*util**1.55)
+            return (pue+.035*(1-util))*it
+        before = facility(load,warm)
+        final = facility(load+extra,warm+additional)
+        supply = self.plan.renewable[ph,n].copy()
+        supply[ph==0] = self.trace.series[48+self.hour,n,1]
+        spare = (supply*EF[n])[:,None]
+        grid = np.maximum(0,final-spare)-np.maximum(0,before-spare)
+        delta = final-before
+        w = self.weights
+        cost = (w["utilization"]*additional + w["cost"]*self.plan.tariff[ph,n,None]*delta+
+                w["carbon"]*GRID*grid+.25*delta).sum(0)
+        return int(starts[np.argmin(np.where(valid,cost,np.inf))])
 
     def repack(self,slot):
         """Revisit pending reservations at half-hour boundaries, before execution."""

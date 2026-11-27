@@ -103,6 +103,22 @@ def test_failed_displacement_rolls_back_the_calendar():
     assert all(s.end==12 for s in sim.segments)
 
 
+def test_five_minute_batch_refinement_respects_wan_and_pool():
+    from backend.simulation import Calendar
+    from backend.world import Job
+    sim = Calendar(Trace(33,"high_renewable",8),"SuCompute")
+    sim.advance(0)
+    job = Job(0,0,0,0,1.,4,4+6*SLOTS,10,False)
+    node,pool = 15,1
+    sim.used[7:12,node,pool] = CAP[node,pool]
+    sim.link[12:15] = BW
+    start = sim.refine_start(job,node*6+pool,18)
+    span = slice(start,start+job.duration)
+    assert start>=job.slot and span.stop<=job.deadline
+    assert np.all(sim.link[span]+job.rate*GB_PER_EF<=BW)
+    assert np.all(sim.used[span,node,pool]+job.rate/.96<=CAP[node,pool])
+
+
 @pytest.mark.parametrize("strategy",["RR-Local","Least-Loaded","Cost-First","SuCompute","MILP-only","Safe-RL-only"])
 def test_shared_feasibility_and_no_forecast_leak(strategy):
     from backend.simulation import Calendar
