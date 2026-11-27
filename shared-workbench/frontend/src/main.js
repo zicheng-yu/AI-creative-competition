@@ -67,7 +67,10 @@ function render() {
       ${data ? `<section class="intro" aria-labelledby="workspace-title">
         <div><div class="version"><span class="mode-dot ${state.mode}"></span>${state.mode === 'mock' ? '样例数据' : '真实数据'} <span>·</span> ${html(data.version)}</div>
         <h1 id="workspace-title">${html(data.title)}</h1><p>${html(data.summary)}</p></div>
-        <div class="import-control"><button class="quiet" data-import>导入评测数据</button><input type="file" id="import-file" aria-label="导入评测数据" accept=".json,.csv,application/json,text/csv" hidden></div>
+        <div class="import-control">
+          ${data.id === 'electrical' ? '<a class="quiet workbench-link" href="./electrical.html">打开审图工作台</a>' : ''}
+          <button class="quiet" data-import>导入评测数据</button><input type="file" id="import-file" aria-label="导入评测数据" accept=".json,.csv,application/json,text/csv" hidden>
+        </div>
       </section>
       ${state.importNote ? `<div class="import-note" role="status"><p>${html(state.importNote)}</p>
         ${state.imports ? '<button class="text-button" data-restore>恢复工作区数据</button>' : ''}</div>` : ''}

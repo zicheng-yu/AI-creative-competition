@@ -1,0 +1,22 @@
+[
+  {
+    "id": "EBJS-P-GGD-001",
+    "title": "低压配电柜 GGD",
+    "filename": "EBJS-P-GGD-001.json"
+  },
+  {
+    "id": "EBJS-P-KYN-004",
+    "title": "10 kV 开关柜 KYN28",
+    "filename": "EBJS-P-KYN-004.json"
+  },
+  {
+    "id": "EBJS-S-DOL-001",
+    "title": "电机启停控制",
+    "filename": "EBJS-S-DOL-001.json"
+  },
+  {
+    "id": "EBJS-D-SEL-001",
+    "title": "级差问题样图",
+    "filename": "EBJS-D-SEL-001.json"
+  }
+]

@@ -1,0 +1,526 @@
+{
+  "GB 50054-2011 3.1": {
+    "applicable_classes": [
+      "QS",
+      "QF",
+      "ATS"
+    ],
+    "clause_id": "GB 50054-2011 3.1",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "核对进线隔离位置、电器用途和额定参数。",
+    "section": "3.1",
+    "source_url": "https://labmc.hxu.edu.cn/info/1318/1449.htm",
+    "standard_code": "GB 50054-2011",
+    "summary": "结合安装点的电压、电流、隔离与操作功能验证低压电器。",
+    "text_kind": "summary",
+    "title": "电器选择及隔离"
+  },
+  "GB 50054-2011 3.2": {
+    "applicable_classes": [
+      "WL",
+      "PE"
+    ],
+    "clause_id": "GB 50054-2011 3.2",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "按材料和连接方式复核相线、中性线和 PE 截面。",
+    "section": "3.2",
+    "source_url": "https://labmc.hxu.edu.cn/info/1318/1449.htm",
+    "standard_code": "GB 50054-2011",
+    "summary": "导体截面需按敷设、机械强度、中性线负荷和保护导体条件分别核查。",
+    "text_kind": "summary",
+    "title": "导体选择"
+  },
+  "GB 50054-2011 6.1.1": {
+    "applicable_classes": [
+      "QF",
+      "FU",
+      "FR",
+      "WL",
+      "M"
+    ],
+    "clause_id": "GB 50054-2011 6.1.1",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "补齐短路及过负荷保护并核对配合。",
+    "section": "6.1.1",
+    "source_url": "https://labmc.hxu.edu.cn/info/1318/1449.htm",
+    "standard_code": "GB 50054-2011",
+    "summary": "配电线路需核对短路、过负荷等保护配置，末端设备另核查对应设计规范。",
+    "text_kind": "summary",
+    "title": "线路保护配置"
+  },
+  "GB 50054-2011 6.1.2": {
+    "applicable_classes": [
+      "QF",
+      "FU"
+    ],
+    "clause_id": "GB 50054-2011 6.1.2",
+    "constraint_formula": "In_up ≥ k × In_down（筛查）",
+    "excerpt": "其动作特性应具有选择性，且各级之间应能协调配合。",
+    "remediation_guide": "核对时间-电流曲线、整定值与厂家选择性表。",
+    "section": "6.1.2",
+    "source_url": "https://labmc.hxu.edu.cn/info/1318/1449.htm",
+    "standard_code": "GB 50054-2011",
+    "summary": "上下级保护电器需结合动作特性校核选择性和协调配合。1.6 是本引擎对断路器的筛查系数。",
+    "text_kind": "short_excerpt",
+    "title": "保护选择性与上下级配合"
+  },
+  "GB 50054-2011 6.2": {
+    "applicable_classes": [
+      "QF",
+      "FU",
+      "WL"
+    ],
+    "clause_id": "GB 50054-2011 6.2",
+    "constraint_formula": "I_break ≥ I_k；I²t ≤ k²S²",
+    "excerpt": null,
+    "remediation_guide": "补充短路计算和器件额定电压下的分断数据。",
+    "section": "6.2",
+    "source_url": "https://labmc.hxu.edu.cn/info/1318/1449.htm",
+    "standard_code": "GB 50054-2011",
+    "summary": "短路保护需验证安装点预期短路电流与电器分断能力，以及导体短路热稳定。",
+    "text_kind": "summary",
+    "title": "短路保护"
+  },
+  "GB 50054-2011 6.3.3": {
+    "applicable_classes": [
+      "WL",
+      "QF",
+      "FU"
+    ],
+    "clause_id": "GB 50054-2011 6.3.3",
+    "constraint_formula": "Ib ≤ In ≤ Iz；I2 ≤ 1.45 Iz",
+    "excerpt": "IB≤In≤IZ",
+    "remediation_guide": "按敷设方式、环境温度和成束条件核算载流量并调整截面或保护整定。",
+    "section": "6.3.3",
+    "source_url": "https://labmc.hxu.edu.cn/info/1318/1449.htm",
+    "standard_code": "GB 50054-2011",
+    "summary": "计算电流 Ib、保护器额定或整定电流 In 和实际敷设条件下允许持续载流量 Iz 要协调，并核对约定动作电流 I2。",
+    "text_kind": "short_excerpt",
+    "title": "导线载流量与过负荷保护"
+  },
+  "GB 50055-2011 2.3.1": {
+    "applicable_classes": [
+      "M",
+      "QF",
+      "FU",
+      "KM_MAIN",
+      "FR",
+      "PE"
+    ],
+    "clause_id": "GB 50055-2011 2.3.1",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "补充电动机保护并核实铭牌电流。",
+    "section": "2.3.1",
+    "source_url": "https://zjjcmspublic.oss-cn-hangzhou-zwynet-d01-a.internet.cloud.zj.gov.cn/jcms_files/jcms1/web3162/site/attach/0/8c21ac860df046bea26db9b844818115.pdf",
+    "standard_code": "GB 50055-2011",
+    "summary": "交流电动机应配置短路保护和接地故障保护。项目还应结合电动机和负载工况校验过载整定。",
+    "text_kind": "summary",
+    "title": "交流电动机保护"
+  },
+  "GB 50060-2008 2.0.10": {
+    "applicable_classes": [
+      "QF",
+      "QS",
+      "QE",
+      "PE"
+    ],
+    "clause_id": "GB 50060-2008 2.0.10",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "核查五防逻辑和接地状态反馈。",
+    "section": "2.0.10",
+    "source_url": "https://zjjcmspublic.oss-cn-hangzhou-zwynet-d01-a.internet.cloud.zj.gov.cn/jcms_files/jcms1/web3162/site/attach/0/8c21ac860df046bea26db9b844818115.pdf",
+    "standard_code": "GB 50060-2008",
+    "summary": "核查隔离开关、断路器、接地刀闸之间闭锁，并防止误入带电间隔。",
+    "text_kind": "summary",
+    "title": "高压配电装置防误闭锁"
+  },
+  "GB/T 14048.11-2024": {
+    "applicable_classes": [
+      "ATS",
+      "QF",
+      "YC",
+      "YO"
+    ],
+    "clause_id": "GB/T 14048.11-2024",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "对照转换类别及产品技术资料验证转换过程。",
+    "section": null,
+    "source_url": "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=E8787467B7FD49792254D2D34572FF92",
+    "standard_code": "GB/T 14048.11-2024",
+    "summary": "转换开关电器需按设备构型和工作类别核查电源转换功能。",
+    "text_kind": "summary",
+    "title": "低压转换开关电器"
+  },
+  "GB/T 14048.2-2020": {
+    "applicable_classes": [
+      "QF"
+    ],
+    "clause_id": "GB/T 14048.2-2020",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "核对安装点预期短路电流和厂商级联、选择性配合表。",
+    "section": null,
+    "source_url": "https://openstd.samr.gov.cn/bzgk/std/std_list?p.p2=GB%2FT+14048.2-2020",
+    "standard_code": "GB/T 14048.2-2020",
+    "summary": "在规定电压与试验条件下核查断路器分断能力 Icu、额定和脱扣参数。Icn 与 Icu 应按其各自试验标准比较。",
+    "text_kind": "summary",
+    "title": "低压断路器"
+  },
+  "GB/T 14048.4-2020": {
+    "applicable_classes": [
+      "KM_MAIN",
+      "KM_COIL",
+      "FR",
+      "M"
+    ],
+    "clause_id": "GB/T 14048.4-2020",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "按使用类别核对接触器与保护器的厂家组合表。",
+    "section": null,
+    "source_url": "https://openstd.samr.gov.cn/bzgk/std/nd?no=1241",
+    "standard_code": "GB/T 14048.4-2020",
+    "summary": "电动机馈线需要核对接触器使用类别、额定工作电流和启动保护配合。",
+    "text_kind": "summary",
+    "title": "接触器和电动机起动器"
+  },
+  "GB/T 18802.11-2020": {
+    "applicable_classes": [
+      "SPD",
+      "FU",
+      "QF",
+      "PE"
+    ],
+    "clause_id": "GB/T 18802.11-2020",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "按具体 SPD 与配套保护器的技术资料审图。",
+    "section": null,
+    "source_url": "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=198603C1B4D9C2ED4627908C736CF503",
+    "standard_code": "GB/T 18802.11-2020",
+    "summary": "电涌保护器需结合产品参数和制造商声明的后备保护条件核查。",
+    "text_kind": "summary",
+    "title": "低压电涌保护器性能要求"
+  },
+  "GB/T 20840.2-2014": {
+    "applicable_classes": [
+      "TA",
+      "PA",
+      "PJ"
+    ],
+    "clause_id": "GB/T 20840.2-2014",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "核对互感器铭牌、测量仪表和二次回路图。",
+    "section": null,
+    "source_url": "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=9D2A5ECCC914E53080EBF5E3DFC7233E",
+    "standard_code": "GB/T 20840.2-2014",
+    "summary": "电流互感器的额定变比、二次负荷及准确度需按产品条件核查。",
+    "text_kind": "summary",
+    "title": "电流互感器补充技术要求"
+  },
+  "GB/T 3906-2020": {
+    "applicable_classes": [
+      "QF",
+      "QS",
+      "QE",
+      "PE",
+      "YC",
+      "YO"
+    ],
+    "clause_id": "GB/T 3906-2020",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "逐项核验柜型机械闭锁试验与二次防误逻辑。",
+    "section": null,
+    "source_url": "https://openstd.samr.gov.cn/bzgk/std/std_list?p.p2=GB%2FT+3906",
+    "standard_code": "GB/T 3906-2020",
+    "summary": "10 kV KYN28 成套图筛查断路器、隔离和接地开关、带电门以及操作闭锁证据。",
+    "text_kind": "summary",
+    "title": "中压成套设备和防误操作"
+  },
+  "GB/T 4728.3": {
+    "applicable_classes": [
+      "XT",
+      "WB",
+      "PE",
+      "WL",
+      "WIRE_NO"
+    ],
+    "clause_id": "GB/T 4728.3",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "核对项目采用的图例和标准版本。",
+    "section": null,
+    "source_url": "https://openstd.samr.gov.cn/bzgk/std/std_list?p.p2=GB%2FT+4728.3",
+    "standard_code": "GB/T 4728.3",
+    "summary": "按器件功能保留图形语义和连线端口。",
+    "text_kind": "summary",
+    "title": "导体和连接件图形语义"
+  },
+  "GB/T 4728.4": {
+    "applicable_classes": [
+      "C",
+      "L"
+    ],
+    "clause_id": "GB/T 4728.4",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "核对项目采用的图例和标准版本。",
+    "section": null,
+    "source_url": "https://openstd.samr.gov.cn/bzgk/std/std_list?p.p2=GB%2FT+4728.4",
+    "standard_code": "GB/T 4728.4",
+    "summary": "按器件功能保留图形语义和连线端口。",
+    "text_kind": "summary",
+    "title": "基本无源元件图形语义"
+  },
+  "GB/T 4728.6": {
+    "applicable_classes": [
+      "TA",
+      "TV",
+      "T",
+      "TC",
+      "M"
+    ],
+    "clause_id": "GB/T 4728.6",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "核对项目采用的图例和标准版本。",
+    "section": null,
+    "source_url": "https://openstd.samr.gov.cn/bzgk/std/std_list?p.p2=GB%2FT+4728.6",
+    "standard_code": "GB/T 4728.6",
+    "summary": "按器件功能保留图形语义和连线端口。",
+    "text_kind": "summary",
+    "title": "电能发生和转换图形语义"
+  },
+  "GB/T 4728.7-2022": {
+    "applicable_classes": [
+      "QF",
+      "QS",
+      "QE",
+      "KM_MAIN",
+      "KM_COIL",
+      "KM_NO",
+      "KM_NC",
+      "KA_COIL",
+      "KA_NO",
+      "KA_NC",
+      "KT_COIL",
+      "KT_NO",
+      "FR",
+      "FR_NC",
+      "FU",
+      "SPD",
+      "SB_NO",
+      "SB_NC",
+      "SA",
+      "SQ",
+      "YC",
+      "YO",
+      "ATS"
+    ],
+    "clause_id": "GB/T 4728.7-2022",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "保留符号类型、触点方向及所属器件代号。",
+    "section": null,
+    "source_url": "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=D0D8E532BD220616FADD0B9D3A4E1346",
+    "standard_code": "GB/T 4728.7-2022",
+    "summary": "开关位置、控制线圈和保护器件使用相应简图符号，常开与常闭分别识别。",
+    "text_kind": "summary",
+    "title": "开关、控制和保护器件图形语义"
+  },
+  "GB/T 4728.8": {
+    "applicable_classes": [
+      "PA",
+      "PV",
+      "PJ",
+      "HL",
+      "HA"
+    ],
+    "clause_id": "GB/T 4728.8",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "核对项目采用的图例和标准版本。",
+    "section": null,
+    "source_url": "https://openstd.samr.gov.cn/bzgk/std/std_list?p.p2=GB%2FT+4728.8",
+    "standard_code": "GB/T 4728.8",
+    "summary": "按器件功能保留图形语义和连线端口。",
+    "text_kind": "summary",
+    "title": "测量仪表、灯和信号器件图形语义"
+  },
+  "GB/T 5094.2-2018": {
+    "applicable_classes": [
+      "*"
+    ],
+    "clause_id": "GB/T 5094.2-2018",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "以参照代号和实例 ID 关联图纸与 BOM。",
+    "section": null,
+    "source_url": "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=00788FB20CF181EC7290D07523E3478C",
+    "standard_code": "GB/T 5094.2-2018",
+    "summary": "按适用版的项目功能分类维护参照代号。样例 QF、KM 等行业代号与 IEC 2019 类字母分别记录。",
+    "text_kind": "summary",
+    "title": "项目分类和参照代号"
+  },
+  "GB/T 5226.1-2019 13": {
+    "applicable_classes": [
+      "XT",
+      "WIRE_NO",
+      "TC",
+      "FU"
+    ],
+    "clause_id": "GB/T 5226.1-2019 13",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "按端点核对线号和端子表。",
+    "section": "13",
+    "source_url": "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=BEE78AD7B1CEAA7CD32A4747974489A4",
+    "standard_code": "GB/T 5226.1-2019",
+    "summary": "检查控制接线的端子与导体标识，使接线记录可逐端核对。",
+    "text_kind": "summary",
+    "title": "布线与标识"
+  },
+  "GB/T 5226.1-2019 7.2": {
+    "applicable_classes": [
+      "QF",
+      "FU",
+      "KM_COIL",
+      "TC",
+      "YC"
+    ],
+    "clause_id": "GB/T 5226.1-2019 7.2",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "核对控制电源支路过流保护和下游额定值。",
+    "section": "7.2",
+    "source_url": "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=BEE78AD7B1CEAA7CD32A4747974489A4",
+    "standard_code": "GB/T 5226.1-2019",
+    "summary": "机械电气设备的动力和控制电路应检查过电流保护及保护电器的额定参数。",
+    "text_kind": "summary",
+    "title": "过电流保护"
+  },
+  "GB/T 5226.1-2019 7.3": {
+    "applicable_classes": [
+      "M",
+      "KM_MAIN",
+      "FR",
+      "FR_NC"
+    ],
+    "clause_id": "GB/T 5226.1-2019 7.3",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "核对过载继电器型号和整定区间。",
+    "section": "7.3",
+    "source_url": "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=BEE78AD7B1CEAA7CD32A4747974489A4",
+    "standard_code": "GB/T 5226.1-2019",
+    "summary": "按电机及工况核查过热保护，热继电器是本项目样例采用的方案之一。",
+    "text_kind": "summary",
+    "title": "电动机过热保护"
+  },
+  "GB/T 5226.1-2019 9.2": {
+    "applicable_classes": [
+      "SB_NO",
+      "SB_NC",
+      "KM_COIL",
+      "KM_NO",
+      "KT_COIL"
+    ],
+    "clause_id": "GB/T 5226.1-2019 9.2",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "验证停止或急停动作后不存在绕过停止条件的通路。",
+    "section": "9.2",
+    "source_url": "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=BEE78AD7B1CEAA7CD32A4747974489A4",
+    "standard_code": "GB/T 5226.1-2019",
+    "summary": "停止优先于相关启动功能。对采用继电器自锁的 DOL 回路，项目筛查停止后的常开保持通路。",
+    "text_kind": "summary",
+    "title": "控制功能、停止优先与自锁"
+  },
+  "GB/T 5226.1-2019 9.3": {
+    "applicable_classes": [
+      "KM_NC",
+      "KM_COIL",
+      "SQ",
+      "KA_NC",
+      "YC",
+      "ATS"
+    ],
+    "clause_id": "GB/T 5226.1-2019 9.3",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "将对侧接触器常闭触点串入相应线圈公共路径并复核其他联锁。",
+    "section": "9.3",
+    "source_url": "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=BEE78AD7B1CEAA7CD32A4747974489A4",
+    "standard_code": "GB/T 5226.1-2019",
+    "summary": "互斥动作需有联锁措施。本项目筛查正反转的对侧常闭接点是否串接在所有励磁路径上。",
+    "text_kind": "summary",
+    "title": "联锁保护"
+  },
+  "GB/T 7251.1-2023": {
+    "applicable_classes": [
+      "WB",
+      "QS",
+      "QF",
+      "TA",
+      "TV",
+      "SPD",
+      "C",
+      "L",
+      "PE"
+    ],
+    "clause_id": "GB/T 7251.1-2023",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "结合成套设计验证、设备用法和装配接线图复核。",
+    "section": null,
+    "source_url": "https://openstd.samr.gov.cn/bzgk/std/nd?no=2021",
+    "standard_code": "GB/T 7251.1-2023",
+    "summary": "成套柜需要核对额定电流、短路耐受、防护与导体和器件的配合。",
+    "text_kind": "summary",
+    "title": "低压成套开关设备总则"
+  },
+  "IEC 60947-6-1:2026": {
+    "applicable_classes": [
+      "ATS",
+      "QF",
+      "YC",
+      "YO",
+      "KA_NC",
+      "KT_COIL",
+      "KT_NO"
+    ],
+    "clause_id": "IEC 60947-6-1:2026",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "核查机械互锁、闭合反馈、分合闸顺序和延时设定。",
+    "section": null,
+    "source_url": "https://webstore.iec.ch/en/publication/90494",
+    "standard_code": "IEC 60947-6-1:2026",
+    "summary": "按转换类别核对双电源转换开关和控制器。本项目筛查开路转换 ATS 的互锁与备用电源延时。",
+    "text_kind": "summary",
+    "title": "双电源转换开关"
+  },
+  "IEC 81346-2:2019 表 1": {
+    "applicable_classes": [
+      "*"
+    ],
+    "clause_id": "IEC 81346-2:2019 表 1",
+    "constraint_formula": null,
+    "excerpt": null,
+    "remediation_guide": "按项目采用的分类标准选择类字母。",
+    "section": "表 1",
+    "source_url": "https://webstore.iec.ch/en/publication/29181",
+    "standard_code": "IEC 81346-2:2019",
+    "summary": "按冻结目录映射功能分类。接触器属于控制能量流的 Q 类，图面仍使用行业代号 KM。",
+    "text_kind": "summary",
+    "title": "对象功能分类与类字母"
+  }
+}

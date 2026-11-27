@@ -22,6 +22,25 @@ npm run dev
 
 浏览器访问终端显示的本地地址。Vite 将 `/api` 转发给 FastAPI。前端通过 `npm run build` 构建，也可使用 `npm run preview` 核验构建产物。
 
+## 图枢电析审图工作台
+
+从图枢电析工作区点击「打开审图工作台」，也可直接访问 `/electrical.html`。页面自带四张 ElectroBench-JS 样图、已冻结的标注、规则报告和离线评测。选中检测框、拓扑节点或规则告警可以定位同一个器件。BOM 支持按位号、器件、型号、规格筛选，支持修改位号、型号和规格，并下载 Excel、CSV 或 JSON。当前页面会保留各样图工作副本的修改记录，可撤销最近一次更改，刷新页面后从原图重新开始。
+
+上传解析、重新体检及应用修订需要启动工业赛道本地服务。使用包含 [YOU-267 端到端集成代码](https://github.com/zicheng-yu/AI-creative-competition/pull/10) 的 `01-industrial-electrical-bom` 目录。在 `shared-workbench/` 下运行以下命令。
+
+```bash
+export ELECTRICAL_PIPELINE_DIR="/完整路径/01-industrial-electrical-bom"
+python -m pip install -r backend/requirements.txt \
+  -r "$ELECTRICAL_PIPELINE_DIR/symbol-parser-ocr-requirements.txt" \
+  -r "$ELECTRICAL_PIPELINE_DIR/netlist-requirements.txt" \
+  -r "$ELECTRICAL_PIPELINE_DIR/compliance/requirements.txt"
+python -m uvicorn backend.electrical:app --host 127.0.0.1 --port 8066
+```
+
+Vite 将 `/electrical-api` 转发到该服务。独立托管静态构建产物时，为同源 `/electrical-api` 配置反向代理并去掉该前缀，或构建时用 `VITE_ELECTRICAL_API` 指定兼容的接口前缀。每次支持上传一份不超过 10 MB 的 DXF、单页 PDF 或 PNG。Copilot 支持「查 QF1 的回路」「查级差」「把 OLD 替换为 NEW」。语音输入需要浏览器支持 Web Speech API 和麦克风授权，转写后由用户确认执行文字指令。
+
+可在 `frontend/` 中运行 `npm test`。要从同一版本的工业赛道产物重新生成静态样图，可在 `shared-workbench/` 下运行 `python frontend/scripts/pack-electrical-fixtures.py "$ELECTRICAL_PIPELINE_DIR" frontend/public/electrical`。
+
 ## 契约与数据源
 
 工作区主契约为 [workspace.schema.json](workspace.schema.json)（JSON Schema 2020-12），实例字段可参考 [图枢电析样例](backend/fixtures/electrical.json)。接口说明在本地 FastAPI 的 `/docs`。
