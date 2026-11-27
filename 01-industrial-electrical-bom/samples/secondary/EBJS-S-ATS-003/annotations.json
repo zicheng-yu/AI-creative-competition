@@ -1,0 +1,2263 @@
+{
+  "schema_version": "1.0.0",
+  "dataset": "ElectroBench-JS",
+  "generator_version": "1.0.0",
+  "id": "EBJS-S-ATS-003",
+  "subset": "secondary",
+  "title": "双电源切换控制原理图",
+  "seed": 262,
+  "cabinet": null,
+  "circuit_kind": "ats",
+  "voltage": "主回路 AC380V / 控制 AC220V",
+  "alias": false,
+  "interlock": true,
+  "degradation": null,
+  "notes": [
+    "常用/备用电源经转换开关互斥合闸，备用侧经时间继电器延时。"
+  ],
+  "standards": {
+    "graphical_symbols": "GB/T 4728 / IEC 60617（简图近似，非标准图版复制）",
+    "designations": "图面文字代号沿用成套行业习惯；iec81346 字段为 IEC 81346-2:2019 表1 类字母",
+    "structuring": "GB/T 5094（对应 IEC 81346 的结构与参照代号原则）"
+  },
+  "sheet": {
+    "width_mm": 420.0,
+    "height_mm": 297.0,
+    "px_per_mm": 4,
+    "image_width": 1680,
+    "image_height": 1188
+  },
+  "instances": [
+    {
+      "id": "i001",
+      "tag": "QF1",
+      "class_id": 0,
+      "class_code": "QF",
+      "name_zh": "断路器",
+      "bom_letter": "QF",
+      "iec81346": "Q",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        31.8,
+        242.0,
+        8.4,
+        16.0
+      ],
+      "bbox_px": [
+        127.2,
+        156.0,
+        33.6,
+        64.0
+      ],
+      "ports": {
+        "in": [
+          36.0,
+          258.0
+        ],
+        "out": [
+          36.0,
+          242.0
+        ]
+      },
+      "specs": {
+        "model": "EB-MCCB-250/160",
+        "spec": "In=160A 3P Icu=50kA",
+        "In_A": 160,
+        "frame_A": 250,
+        "poles": "3P",
+        "icu_kA": 50
+      },
+      "label_tag": "QF1",
+      "label_spec": "In=160A 3P Icu=50kA",
+      "circuit": "IN1",
+      "extra": {}
+    },
+    {
+      "id": "i002",
+      "tag": "QF2",
+      "class_id": 0,
+      "class_code": "QF",
+      "name_zh": "断路器",
+      "bom_letter": "QF",
+      "iec81346": "Q",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        31.8,
+        188.0,
+        8.4,
+        16.0
+      ],
+      "bbox_px": [
+        127.2,
+        372.0,
+        33.6,
+        64.0
+      ],
+      "ports": {
+        "in": [
+          36.0,
+          204.0
+        ],
+        "out": [
+          36.0,
+          188.0
+        ]
+      },
+      "specs": {
+        "model": "EB-MCCB-250/160",
+        "spec": "In=160A 3P Icu=50kA",
+        "In_A": 160,
+        "frame_A": 250,
+        "poles": "3P",
+        "icu_kA": 50
+      },
+      "label_tag": "QF2",
+      "label_spec": "In=160A 3P Icu=50kA",
+      "circuit": "IN2",
+      "extra": {}
+    },
+    {
+      "id": "i003",
+      "tag": "ATS1",
+      "class_id": 36,
+      "class_code": "ATS",
+      "name_zh": "双电源转换开关",
+      "bom_letter": "ATS",
+      "iec81346": "Q",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        86.0,
+        215.0,
+        20.0,
+        16.0
+      ],
+      "bbox_px": [
+        344.0,
+        264.0,
+        80.0,
+        64.0
+      ],
+      "ports": {
+        "in1": [
+          86.0,
+          227.0
+        ],
+        "in2": [
+          86.0,
+          219.0
+        ],
+        "out": [
+          106.0,
+          223.0
+        ]
+      },
+      "specs": {
+        "model": "EB-ATS-160",
+        "spec": "160A 3P 自投"
+      },
+      "label_tag": "ATS1",
+      "label_spec": "160A 3P 自投",
+      "circuit": "BUS",
+      "extra": {}
+    },
+    {
+      "id": "i004",
+      "tag": "WL1",
+      "class_id": 38,
+      "class_code": "WL",
+      "name_zh": "导线回路",
+      "bom_letter": "WL",
+      "iec81346": "W",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        120,
+        150,
+        16.02,
+        6.2
+      ],
+      "bbox_px": [
+        480.0,
+        563.2,
+        64.08,
+        24.8
+      ],
+      "ports": {
+        "in": [
+          120,
+          153.0
+        ],
+        "out": [
+          120,
+          153.0
+        ]
+      },
+      "specs": {
+        "model": "YJV",
+        "spec": "YJV-4x70+1x35",
+        "section_mm2": 70,
+        "Iz_A": 171,
+        "Ib_A": 100,
+        "circuit": "WL1"
+      },
+      "label_tag": "WL1",
+      "label_spec": "YJV-4x70+1x35",
+      "circuit": "WL1",
+      "extra": {}
+    },
+    {
+      "id": "i005",
+      "tag": "TC1",
+      "class_id": 19,
+      "class_code": "TC",
+      "name_zh": "控制变压器",
+      "bom_letter": "TC",
+      "iec81346": "T",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        35.8,
+        112.0,
+        8.4,
+        16.0
+      ],
+      "bbox_px": [
+        143.2,
+        676.0,
+        33.6,
+        64.0
+      ],
+      "ports": {
+        "in": [
+          40.0,
+          128.0
+        ],
+        "out": [
+          40.0,
+          112.0
+        ]
+      },
+      "specs": {
+        "model": "EB-TC-150",
+        "spec": "380/220V 150VA"
+      },
+      "label_tag": "TC1",
+      "label_spec": "380/220V 150VA",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i006",
+      "tag": "FU1",
+      "class_id": 14,
+      "class_code": "FU",
+      "name_zh": "熔断器",
+      "bom_letter": "FU",
+      "iec81346": "F",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        32.0,
+        75.6,
+        16.0,
+        4.8
+      ],
+      "bbox_px": [
+        128.0,
+        866.4,
+        64.0,
+        19.2
+      ],
+      "ports": {
+        "in": [
+          32.0,
+          78.0
+        ],
+        "out": [
+          48.0,
+          78.0
+        ]
+      },
+      "specs": {
+        "model": "EB-FU-4",
+        "spec": "In=4A",
+        "In_A": 4
+      },
+      "label_tag": "FU1",
+      "label_spec": "In=4A",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i007",
+      "tag": "SA1",
+      "class_id": 30,
+      "class_code": "SA",
+      "name_zh": "选择开关",
+      "bom_letter": "SA",
+      "iec81346": "S",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        112.0,
+        226.0,
+        16.0,
+        10.0
+      ],
+      "bbox_px": [
+        448.0,
+        244.0,
+        64.0,
+        40.0
+      ],
+      "ports": {
+        "left": [
+          112.0,
+          230.0
+        ],
+        "right": [
+          128.0,
+          230.0
+        ]
+      },
+      "specs": {
+        "model": "EB-SA",
+        "spec": "自动/I/II"
+      },
+      "label_tag": "SA1",
+      "label_spec": "自动/I/II",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i008",
+      "tag": "KA1",
+      "class_id": 7,
+      "class_code": "KA_COIL",
+      "name_zh": "中间继电器线圈",
+      "bom_letter": "KA",
+      "iec81346": "K",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        182.0,
+        245.0,
+        16.0,
+        10.0
+      ],
+      "bbox_px": [
+        728.0,
+        168.0,
+        64.0,
+        40.0
+      ],
+      "ports": {
+        "left": [
+          182.0,
+          250.0
+        ],
+        "right": [
+          198.0,
+          250.0
+        ]
+      },
+      "specs": {
+        "model": "EB-KA",
+        "spec": "I段电压"
+      },
+      "label_tag": "KA1",
+      "label_spec": "I段电压",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i009",
+      "tag": "KA2",
+      "class_id": 7,
+      "class_code": "KA_COIL",
+      "name_zh": "中间继电器线圈",
+      "bom_letter": "KA",
+      "iec81346": "K",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        182.0,
+        191.0,
+        16.0,
+        10.0
+      ],
+      "bbox_px": [
+        728.0,
+        384.0,
+        64.0,
+        40.0
+      ],
+      "ports": {
+        "left": [
+          182.0,
+          196.0
+        ],
+        "right": [
+          198.0,
+          196.0
+        ]
+      },
+      "specs": {
+        "model": "EB-KA",
+        "spec": "II段电压"
+      },
+      "label_tag": "KA2",
+      "label_spec": "II段电压",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i010",
+      "tag": "KA1",
+      "class_id": 8,
+      "class_code": "KA_NO",
+      "name_zh": "中间继电器常开触点",
+      "bom_letter": "KA",
+      "iec81346": "K",
+      "bom_anchor": false,
+      "in_netlist": true,
+      "bbox_mm": [
+        242.0,
+        246.8,
+        16.0,
+        7.4
+      ],
+      "bbox_px": [
+        968.0,
+        171.2,
+        64.0,
+        29.6
+      ],
+      "ports": {
+        "left": [
+          242.0,
+          250.0
+        ],
+        "right": [
+          258.0,
+          250.0
+        ]
+      },
+      "specs": {},
+      "label_tag": "KA1",
+      "label_spec": "",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i011",
+      "tag": "KA1",
+      "class_id": 9,
+      "class_code": "KA_NC",
+      "name_zh": "中间继电器常闭触点",
+      "bom_letter": "KA",
+      "iec81346": "K",
+      "bom_anchor": false,
+      "in_netlist": true,
+      "bbox_mm": [
+        242.0,
+        156.8,
+        16.0,
+        7.4
+      ],
+      "bbox_px": [
+        968.0,
+        531.2,
+        64.0,
+        29.6
+      ],
+      "ports": {
+        "left": [
+          242.0,
+          160.0
+        ],
+        "right": [
+          258.0,
+          160.0
+        ]
+      },
+      "specs": {},
+      "label_tag": "KA1",
+      "label_spec": "",
+      "circuit": "CTRL",
+      "extra": {
+        "interlocks": "QF1"
+      }
+    },
+    {
+      "id": "i012",
+      "tag": "KT1",
+      "class_id": 10,
+      "class_code": "KT_COIL",
+      "name_zh": "时间继电器线圈",
+      "bom_letter": "KT",
+      "iec81346": "K",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        182.0,
+        145.0,
+        16.0,
+        11.8
+      ],
+      "bbox_px": [
+        728.0,
+        560.8,
+        64.0,
+        47.2
+      ],
+      "ports": {
+        "left": [
+          182.0,
+          150.0
+        ],
+        "right": [
+          198.0,
+          150.0
+        ]
+      },
+      "specs": {
+        "model": "EB-KT",
+        "spec": "延时 1-10s"
+      },
+      "label_tag": "KT1",
+      "label_spec": "延时 1-10s",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i013",
+      "tag": "KT1",
+      "class_id": 11,
+      "class_code": "KT_NO",
+      "name_zh": "时间继电器延时常开触点",
+      "bom_letter": "KT",
+      "iec81346": "K",
+      "bom_anchor": false,
+      "in_netlist": true,
+      "bbox_mm": [
+        242.0,
+        120.8,
+        16.0,
+        10.2
+      ],
+      "bbox_px": [
+        968.0,
+        664.0,
+        64.0,
+        40.8
+      ],
+      "ports": {
+        "left": [
+          242.0,
+          124.0
+        ],
+        "right": [
+          258.0,
+          124.0
+        ]
+      },
+      "specs": {},
+      "label_tag": "KT1",
+      "label_spec": "",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i014",
+      "tag": "YC1",
+      "class_id": 34,
+      "class_code": "YC",
+      "name_zh": "合闸线圈",
+      "bom_letter": "YC",
+      "iec81346": "Q",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        322.0,
+        245.0,
+        16.0,
+        10.0
+      ],
+      "bbox_px": [
+        1288.0,
+        168.0,
+        64.0,
+        40.0
+      ],
+      "ports": {
+        "left": [
+          322.0,
+          250.0
+        ],
+        "right": [
+          338.0,
+          250.0
+        ]
+      },
+      "specs": {
+        "model": "EB-YC",
+        "spec": "合闸 AC220V"
+      },
+      "label_tag": "YC1",
+      "label_spec": "合闸 AC220V",
+      "circuit": "IN1",
+      "extra": {}
+    },
+    {
+      "id": "i015",
+      "tag": "YO1",
+      "class_id": 35,
+      "class_code": "YO",
+      "name_zh": "分闸线圈",
+      "bom_letter": "YO",
+      "iec81346": "Q",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        382.0,
+        245.0,
+        16.0,
+        10.0
+      ],
+      "bbox_px": [
+        1528.0,
+        168.0,
+        64.0,
+        40.0
+      ],
+      "ports": {
+        "left": [
+          382.0,
+          250.0
+        ],
+        "right": [
+          398.0,
+          250.0
+        ]
+      },
+      "specs": {
+        "model": "EB-YO",
+        "spec": "分闸 AC220V"
+      },
+      "label_tag": "YO1",
+      "label_spec": "分闸 AC220V",
+      "circuit": "IN1",
+      "extra": {}
+    },
+    {
+      "id": "i016",
+      "tag": "YC2",
+      "class_id": 34,
+      "class_code": "YC",
+      "name_zh": "合闸线圈",
+      "bom_letter": "YC",
+      "iec81346": "Q",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        322.0,
+        119.0,
+        16.0,
+        10.0
+      ],
+      "bbox_px": [
+        1288.0,
+        672.0,
+        64.0,
+        40.0
+      ],
+      "ports": {
+        "left": [
+          322.0,
+          124.0
+        ],
+        "right": [
+          338.0,
+          124.0
+        ]
+      },
+      "specs": {
+        "model": "EB-YC",
+        "spec": "合闸 AC220V"
+      },
+      "label_tag": "YC2",
+      "label_spec": "合闸 AC220V",
+      "circuit": "IN2",
+      "extra": {}
+    },
+    {
+      "id": "i017",
+      "tag": "YO2",
+      "class_id": 35,
+      "class_code": "YO",
+      "name_zh": "分闸线圈",
+      "bom_letter": "YO",
+      "iec81346": "Q",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        382.0,
+        119.0,
+        16.0,
+        10.0
+      ],
+      "bbox_px": [
+        1528.0,
+        672.0,
+        64.0,
+        40.0
+      ],
+      "ports": {
+        "left": [
+          382.0,
+          124.0
+        ],
+        "right": [
+          398.0,
+          124.0
+        ]
+      },
+      "specs": {
+        "model": "EB-YO",
+        "spec": "分闸 AC220V"
+      },
+      "label_tag": "YO2",
+      "label_spec": "分闸 AC220V",
+      "circuit": "IN2",
+      "extra": {}
+    },
+    {
+      "id": "i018",
+      "tag": "HL1",
+      "class_id": 26,
+      "class_code": "HL",
+      "name_zh": "指示灯",
+      "bom_letter": "HL",
+      "iec81346": "P",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        322.0,
+        191.0,
+        16.0,
+        10.0
+      ],
+      "bbox_px": [
+        1288.0,
+        384.0,
+        64.0,
+        40.0
+      ],
+      "ports": {
+        "left": [
+          322.0,
+          196.0
+        ],
+        "right": [
+          338.0,
+          196.0
+        ]
+      },
+      "specs": {
+        "model": "EB-HL-GN",
+        "spec": "I段合位"
+      },
+      "label_tag": "HL1",
+      "label_spec": "I段合位",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i019",
+      "tag": "HL2",
+      "class_id": 26,
+      "class_code": "HL",
+      "name_zh": "指示灯",
+      "bom_letter": "HL",
+      "iec81346": "P",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        382.0,
+        191.0,
+        16.0,
+        10.0
+      ],
+      "bbox_px": [
+        1528.0,
+        384.0,
+        64.0,
+        40.0
+      ],
+      "ports": {
+        "left": [
+          382.0,
+          196.0
+        ],
+        "right": [
+          398.0,
+          196.0
+        ]
+      },
+      "specs": {
+        "model": "EB-HL-YE",
+        "spec": "II段合位"
+      },
+      "label_tag": "HL2",
+      "label_spec": "II段合位",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i020",
+      "tag": "HA1",
+      "class_id": 27,
+      "class_code": "HA",
+      "name_zh": "电铃",
+      "bom_letter": "HA",
+      "iec81346": "P",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        322.0,
+        73.0,
+        16.0,
+        10.0
+      ],
+      "bbox_px": [
+        1288.0,
+        856.0,
+        64.0,
+        40.0
+      ],
+      "ports": {
+        "left": [
+          322.0,
+          78.0
+        ],
+        "right": [
+          338.0,
+          78.0
+        ]
+      },
+      "specs": {
+        "model": "EB-HA",
+        "spec": "故障音响"
+      },
+      "label_tag": "HA1",
+      "label_spec": "故障音响",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i021",
+      "tag": "XT1",
+      "class_id": 32,
+      "class_code": "XT",
+      "name_zh": "端子",
+      "bom_letter": "XT",
+      "iec81346": "X",
+      "bom_anchor": true,
+      "in_netlist": true,
+      "bbox_mm": [
+        114.0,
+        75.6,
+        12.0,
+        4.8
+      ],
+      "bbox_px": [
+        456.0,
+        866.4,
+        48.0,
+        19.2
+      ],
+      "ports": {
+        "left": [
+          114.0,
+          78.0
+        ],
+        "right": [
+          126.0,
+          78.0
+        ]
+      },
+      "specs": {
+        "model": "EB-XT",
+        "spec": "2.5mm2"
+      },
+      "label_tag": "XT1",
+      "label_spec": "2.5mm2",
+      "circuit": "CTRL",
+      "extra": {}
+    },
+    {
+      "id": "i022",
+      "tag": "W1",
+      "class_id": 39,
+      "class_code": "WIRE_NO",
+      "name_zh": "线号",
+      "bom_letter": null,
+      "iec81346": null,
+      "bom_anchor": false,
+      "in_netlist": false,
+      "bbox_mm": [
+        48,
+        90,
+        2.41,
+        2.8
+      ],
+      "bbox_px": [
+        192.0,
+        816.8,
+        9.64,
+        11.2
+      ],
+      "ports": {},
+      "specs": {
+        "wire_no": "1"
+      },
+      "label_tag": "1",
+      "label_spec": "",
+      "circuit": "",
+      "extra": {}
+    },
+    {
+      "id": "i023",
+      "tag": "W3",
+      "class_id": 39,
+      "class_code": "WIRE_NO",
+      "name_zh": "线号",
+      "bom_letter": null,
+      "iec81346": null,
+      "bom_anchor": false,
+      "in_netlist": false,
+      "bbox_mm": [
+        128,
+        210,
+        2.41,
+        2.8
+      ],
+      "bbox_px": [
+        512.0,
+        336.8,
+        9.64,
+        11.2
+      ],
+      "ports": {},
+      "specs": {
+        "wire_no": "3"
+      },
+      "label_tag": "3",
+      "label_spec": "",
+      "circuit": "",
+      "extra": {}
+    },
+    {
+      "id": "i024",
+      "tag": "W5",
+      "class_id": 39,
+      "class_code": "WIRE_NO",
+      "name_zh": "线号",
+      "bom_letter": null,
+      "iec81346": null,
+      "bom_anchor": false,
+      "in_netlist": false,
+      "bbox_mm": [
+        258,
+        236,
+        2.41,
+        2.8
+      ],
+      "bbox_px": [
+        1032.0,
+        232.8,
+        9.64,
+        11.2
+      ],
+      "ports": {},
+      "specs": {
+        "wire_no": "5"
+      },
+      "label_tag": "5",
+      "label_spec": "",
+      "circuit": "",
+      "extra": {}
+    },
+    {
+      "id": "i025",
+      "tag": "W7",
+      "class_id": 39,
+      "class_code": "WIRE_NO",
+      "name_zh": "线号",
+      "bom_letter": null,
+      "iec81346": null,
+      "bom_anchor": false,
+      "in_netlist": false,
+      "bbox_mm": [
+        338,
+        140,
+        2.41,
+        2.8
+      ],
+      "bbox_px": [
+        1352.0,
+        616.8,
+        9.64,
+        11.2
+      ],
+      "ports": {},
+      "specs": {
+        "wire_no": "7"
+      },
+      "label_tag": "7",
+      "label_spec": "",
+      "circuit": "",
+      "extra": {}
+    }
+  ],
+  "netlist": {
+    "nodes": [
+      {
+        "id": "i001",
+        "tag": "QF1",
+        "class_code": "QF",
+        "circuit": "IN1"
+      },
+      {
+        "id": "i002",
+        "tag": "QF2",
+        "class_code": "QF",
+        "circuit": "IN2"
+      },
+      {
+        "id": "i003",
+        "tag": "ATS1",
+        "class_code": "ATS",
+        "circuit": "BUS"
+      },
+      {
+        "id": "i004",
+        "tag": "WL1",
+        "class_code": "WL",
+        "circuit": "WL1"
+      },
+      {
+        "id": "i005",
+        "tag": "TC1",
+        "class_code": "TC",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i006",
+        "tag": "FU1",
+        "class_code": "FU",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i007",
+        "tag": "SA1",
+        "class_code": "SA",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i008",
+        "tag": "KA1",
+        "class_code": "KA_COIL",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i009",
+        "tag": "KA2",
+        "class_code": "KA_COIL",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i010",
+        "tag": "KA1",
+        "class_code": "KA_NO",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i011",
+        "tag": "KA1",
+        "class_code": "KA_NC",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i012",
+        "tag": "KT1",
+        "class_code": "KT_COIL",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i013",
+        "tag": "KT1",
+        "class_code": "KT_NO",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i014",
+        "tag": "YC1",
+        "class_code": "YC",
+        "circuit": "IN1"
+      },
+      {
+        "id": "i015",
+        "tag": "YO1",
+        "class_code": "YO",
+        "circuit": "IN1"
+      },
+      {
+        "id": "i016",
+        "tag": "YC2",
+        "class_code": "YC",
+        "circuit": "IN2"
+      },
+      {
+        "id": "i017",
+        "tag": "YO2",
+        "class_code": "YO",
+        "circuit": "IN2"
+      },
+      {
+        "id": "i018",
+        "tag": "HL1",
+        "class_code": "HL",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i019",
+        "tag": "HL2",
+        "class_code": "HL",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i020",
+        "tag": "HA1",
+        "class_code": "HA",
+        "circuit": "CTRL"
+      },
+      {
+        "id": "i021",
+        "tag": "XT1",
+        "class_code": "XT",
+        "circuit": "CTRL"
+      }
+    ],
+    "edges": [
+      {
+        "id": "e001",
+        "source": "i001",
+        "target": "i003",
+        "kind": "power",
+        "source_port": "out",
+        "target_port": "in1",
+        "points": [
+          [
+            36.0,
+            242.0
+          ],
+          [
+            36.0,
+            227.0
+          ],
+          [
+            86.0,
+            227.0
+          ]
+        ]
+      },
+      {
+        "id": "e002",
+        "source": "i002",
+        "target": "i003",
+        "kind": "power",
+        "source_port": "out",
+        "target_port": "in2",
+        "points": [
+          [
+            36.0,
+            188.0
+          ],
+          [
+            36.0,
+            219.0
+          ],
+          [
+            86.0,
+            219.0
+          ]
+        ]
+      },
+      {
+        "id": "e003",
+        "source": "i003",
+        "target": "i004",
+        "kind": "power",
+        "source_port": "out",
+        "target_port": "in",
+        "points": [
+          [
+            106.0,
+            223.0
+          ],
+          [
+            106.0,
+            153.0
+          ],
+          [
+            120,
+            153.0
+          ]
+        ]
+      },
+      {
+        "id": "e004",
+        "source": "i005",
+        "target": "i006",
+        "kind": "control",
+        "source_port": "out",
+        "target_port": "in",
+        "points": [
+          [
+            40.0,
+            112.0
+          ],
+          [
+            40.0,
+            78.0
+          ],
+          [
+            32.0,
+            78.0
+          ]
+        ]
+      },
+      {
+        "id": "e005",
+        "source": "i006",
+        "target": "i007",
+        "kind": "control",
+        "source_port": "out",
+        "target_port": "left",
+        "points": [
+          [
+            48.0,
+            78.0
+          ],
+          [
+            48.0,
+            230.0
+          ],
+          [
+            112.0,
+            230.0
+          ]
+        ]
+      },
+      {
+        "id": "e006",
+        "source": "i007",
+        "target": "i008",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            128.0,
+            230.0
+          ],
+          [
+            128.0,
+            250.0
+          ],
+          [
+            182.0,
+            250.0
+          ]
+        ]
+      },
+      {
+        "id": "e007",
+        "source": "i007",
+        "target": "i009",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            128.0,
+            230.0
+          ],
+          [
+            128.0,
+            196.0
+          ],
+          [
+            182.0,
+            196.0
+          ]
+        ]
+      },
+      {
+        "id": "e008",
+        "source": "i008",
+        "target": "i010",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            198.0,
+            250.0
+          ],
+          [
+            242.0,
+            250.0
+          ]
+        ]
+      },
+      {
+        "id": "e009",
+        "source": "i010",
+        "target": "i014",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            258.0,
+            250.0
+          ],
+          [
+            322.0,
+            250.0
+          ]
+        ]
+      },
+      {
+        "id": "e010",
+        "source": "i014",
+        "target": "i015",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            338.0,
+            250.0
+          ],
+          [
+            382.0,
+            250.0
+          ]
+        ]
+      },
+      {
+        "id": "e011",
+        "source": "i009",
+        "target": "i012",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            198.0,
+            196.0
+          ],
+          [
+            198.0,
+            150.0
+          ],
+          [
+            182.0,
+            150.0
+          ]
+        ]
+      },
+      {
+        "id": "e012",
+        "source": "i012",
+        "target": "i013",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            198.0,
+            150.0
+          ],
+          [
+            198.0,
+            124.0
+          ],
+          [
+            242.0,
+            124.0
+          ]
+        ]
+      },
+      {
+        "id": "e013",
+        "source": "i013",
+        "target": "i011",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            258.0,
+            124.0
+          ],
+          [
+            242.0,
+            124.0
+          ],
+          [
+            242.0,
+            160.0
+          ]
+        ]
+      },
+      {
+        "id": "e014",
+        "source": "i011",
+        "target": "i016",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            258.0,
+            160.0
+          ],
+          [
+            322.0,
+            160.0
+          ],
+          [
+            322.0,
+            124.0
+          ]
+        ]
+      },
+      {
+        "id": "e015",
+        "source": "i016",
+        "target": "i017",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            338.0,
+            124.0
+          ],
+          [
+            382.0,
+            124.0
+          ]
+        ]
+      },
+      {
+        "id": "e016",
+        "source": "i010",
+        "target": "i018",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            258.0,
+            250.0
+          ],
+          [
+            258.0,
+            196.0
+          ],
+          [
+            322.0,
+            196.0
+          ]
+        ]
+      },
+      {
+        "id": "e017",
+        "source": "i018",
+        "target": "i019",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            338.0,
+            196.0
+          ],
+          [
+            382.0,
+            196.0
+          ]
+        ]
+      },
+      {
+        "id": "e018",
+        "source": "i015",
+        "target": "i021",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "right",
+        "points": [
+          [
+            398.0,
+            250.0
+          ],
+          [
+            398.0,
+            78.0
+          ],
+          [
+            126.0,
+            78.0
+          ]
+        ]
+      },
+      {
+        "id": "e019",
+        "source": "i017",
+        "target": "i020",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            398.0,
+            124.0
+          ],
+          [
+            398.0,
+            78.0
+          ],
+          [
+            322.0,
+            78.0
+          ]
+        ]
+      },
+      {
+        "id": "e020",
+        "source": "i020",
+        "target": "i021",
+        "kind": "control",
+        "source_port": "right",
+        "target_port": "left",
+        "points": [
+          [
+            338.0,
+            78.0
+          ],
+          [
+            114.0,
+            78.0
+          ]
+        ]
+      }
+    ],
+    "children": {
+      "i001": [
+        "i003"
+      ],
+      "i002": [
+        "i003"
+      ],
+      "i003": [
+        "i004"
+      ]
+    },
+    "roots": [
+      "i001",
+      "i002",
+      "i005",
+      "i006",
+      "i007",
+      "i008",
+      "i009",
+      "i010",
+      "i011",
+      "i012",
+      "i013",
+      "i014",
+      "i015",
+      "i016",
+      "i017",
+      "i018",
+      "i019",
+      "i020",
+      "i021"
+    ]
+  },
+  "control_branches": [
+    {
+      "id": "close_1",
+      "coil_tag": "YC1",
+      "pair_tag": "QF2",
+      "series_ids": [
+        "i006",
+        "i007",
+        "i008",
+        "i010",
+        "i014"
+      ]
+    },
+    {
+      "id": "close_2",
+      "coil_tag": "YC2",
+      "pair_tag": "QF1",
+      "series_ids": [
+        "i006",
+        "i012",
+        "i013",
+        "i011",
+        "i016"
+      ]
+    }
+  ],
+  "logic": {
+    "kind": "ats",
+    "equation": "manual SA=1 closes source I only; SA=2 closes source II only; auto prefers source I when KA1 is healthy, otherwise source II after KT",
+    "inputs": [
+      "ka1",
+      "ka2",
+      "sa",
+      "kt"
+    ],
+    "outputs": [
+      "qf1_close",
+      "qf2_close"
+    ],
+    "rows": [
+      {
+        "ka1": 0,
+        "ka2": 0,
+        "sa": 0,
+        "kt": 0,
+        "qf1_close": 0,
+        "qf2_close": 0
+      },
+      {
+        "ka1": 0,
+        "ka2": 0,
+        "sa": 0,
+        "kt": 1,
+        "qf1_close": 0,
+        "qf2_close": 0
+      },
+      {
+        "ka1": 0,
+        "ka2": 0,
+        "sa": 1,
+        "kt": 0,
+        "qf1_close": 1,
+        "qf2_close": 0
+      },
+      {
+        "ka1": 0,
+        "ka2": 0,
+        "sa": 1,
+        "kt": 1,
+        "qf1_close": 1,
+        "qf2_close": 0
+      },
+      {
+        "ka1": 0,
+        "ka2": 0,
+        "sa": 2,
+        "kt": 0,
+        "qf1_close": 0,
+        "qf2_close": 1
+      },
+      {
+        "ka1": 0,
+        "ka2": 0,
+        "sa": 2,
+        "kt": 1,
+        "qf1_close": 0,
+        "qf2_close": 1
+      },
+      {
+        "ka1": 0,
+        "ka2": 1,
+        "sa": 0,
+        "kt": 0,
+        "qf1_close": 0,
+        "qf2_close": 0
+      },
+      {
+        "ka1": 0,
+        "ka2": 1,
+        "sa": 0,
+        "kt": 1,
+        "qf1_close": 0,
+        "qf2_close": 1
+      },
+      {
+        "ka1": 0,
+        "ka2": 1,
+        "sa": 1,
+        "kt": 0,
+        "qf1_close": 1,
+        "qf2_close": 0
+      },
+      {
+        "ka1": 0,
+        "ka2": 1,
+        "sa": 1,
+        "kt": 1,
+        "qf1_close": 1,
+        "qf2_close": 0
+      },
+      {
+        "ka1": 0,
+        "ka2": 1,
+        "sa": 2,
+        "kt": 0,
+        "qf1_close": 0,
+        "qf2_close": 1
+      },
+      {
+        "ka1": 0,
+        "ka2": 1,
+        "sa": 2,
+        "kt": 1,
+        "qf1_close": 0,
+        "qf2_close": 1
+      },
+      {
+        "ka1": 1,
+        "ka2": 0,
+        "sa": 0,
+        "kt": 0,
+        "qf1_close": 1,
+        "qf2_close": 0
+      },
+      {
+        "ka1": 1,
+        "ka2": 0,
+        "sa": 0,
+        "kt": 1,
+        "qf1_close": 1,
+        "qf2_close": 0
+      },
+      {
+        "ka1": 1,
+        "ka2": 0,
+        "sa": 1,
+        "kt": 0,
+        "qf1_close": 1,
+        "qf2_close": 0
+      },
+      {
+        "ka1": 1,
+        "ka2": 0,
+        "sa": 1,
+        "kt": 1,
+        "qf1_close": 1,
+        "qf2_close": 0
+      },
+      {
+        "ka1": 1,
+        "ka2": 0,
+        "sa": 2,
+        "kt": 0,
+        "qf1_close": 0,
+        "qf2_close": 1
+      },
+      {
+        "ka1": 1,
+        "ka2": 0,
+        "sa": 2,
+        "kt": 1,
+        "qf1_close": 0,
+        "qf2_close": 1
+      },
+      {
+        "ka1": 1,
+        "ka2": 1,
+        "sa": 0,
+        "kt": 0,
+        "qf1_close": 1,
+        "qf2_close": 0
+      },
+      {
+        "ka1": 1,
+        "ka2": 1,
+        "sa": 0,
+        "kt": 1,
+        "qf1_close": 1,
+        "qf2_close": 0
+      },
+      {
+        "ka1": 1,
+        "ka2": 1,
+        "sa": 1,
+        "kt": 0,
+        "qf1_close": 1,
+        "qf2_close": 0
+      },
+      {
+        "ka1": 1,
+        "ka2": 1,
+        "sa": 1,
+        "kt": 1,
+        "qf1_close": 1,
+        "qf2_close": 0
+      },
+      {
+        "ka1": 1,
+        "ka2": 1,
+        "sa": 2,
+        "kt": 0,
+        "qf1_close": 0,
+        "qf2_close": 1
+      },
+      {
+        "ka1": 1,
+        "ka2": 1,
+        "sa": 2,
+        "kt": 1,
+        "qf1_close": 0,
+        "qf2_close": 1
+      }
+    ]
+  },
+  "bom": [
+    {
+      "line_no": 1,
+      "instance_id": "i001",
+      "tag": "QF1",
+      "class_code": "QF",
+      "bom_letter": "QF",
+      "name_zh": "断路器",
+      "model": "EB-MCCB-250/160",
+      "spec": "In=160A 3P Icu=50kA",
+      "qty": 1,
+      "unit": "台",
+      "circuit": "IN1"
+    },
+    {
+      "line_no": 2,
+      "instance_id": "i002",
+      "tag": "QF2",
+      "class_code": "QF",
+      "bom_letter": "QF",
+      "name_zh": "断路器",
+      "model": "EB-MCCB-250/160",
+      "spec": "In=160A 3P Icu=50kA",
+      "qty": 1,
+      "unit": "台",
+      "circuit": "IN2"
+    },
+    {
+      "line_no": 3,
+      "instance_id": "i003",
+      "tag": "ATS1",
+      "class_code": "ATS",
+      "bom_letter": "ATS",
+      "name_zh": "双电源转换开关",
+      "model": "EB-ATS-160",
+      "spec": "160A 3P 自投",
+      "qty": 1,
+      "unit": "台",
+      "circuit": "BUS"
+    },
+    {
+      "line_no": 4,
+      "instance_id": "i004",
+      "tag": "WL1",
+      "class_code": "WL",
+      "bom_letter": "WL",
+      "name_zh": "电力电缆",
+      "model": "YJV",
+      "spec": "YJV-4x70+1x35",
+      "qty": 1,
+      "unit": "回路",
+      "circuit": "WL1"
+    },
+    {
+      "line_no": 5,
+      "instance_id": "i005",
+      "tag": "TC1",
+      "class_code": "TC",
+      "bom_letter": "TC",
+      "name_zh": "控制变压器",
+      "model": "EB-TC-150",
+      "spec": "380/220V 150VA",
+      "qty": 1,
+      "unit": "台",
+      "circuit": "CTRL"
+    },
+    {
+      "line_no": 6,
+      "instance_id": "i006",
+      "tag": "FU1",
+      "class_code": "FU",
+      "bom_letter": "FU",
+      "name_zh": "熔断器",
+      "model": "EB-FU-4",
+      "spec": "In=4A",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "CTRL"
+    },
+    {
+      "line_no": 7,
+      "instance_id": "i007",
+      "tag": "SA1",
+      "class_code": "SA",
+      "bom_letter": "SA",
+      "name_zh": "选择开关",
+      "model": "EB-SA",
+      "spec": "自动/I/II",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "CTRL"
+    },
+    {
+      "line_no": 8,
+      "instance_id": "i008",
+      "tag": "KA1",
+      "class_code": "KA_COIL",
+      "bom_letter": "KA",
+      "name_zh": "中间继电器",
+      "model": "EB-KA",
+      "spec": "I段电压",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "CTRL"
+    },
+    {
+      "line_no": 9,
+      "instance_id": "i009",
+      "tag": "KA2",
+      "class_code": "KA_COIL",
+      "bom_letter": "KA",
+      "name_zh": "中间继电器",
+      "model": "EB-KA",
+      "spec": "II段电压",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "CTRL"
+    },
+    {
+      "line_no": 10,
+      "instance_id": "i012",
+      "tag": "KT1",
+      "class_code": "KT_COIL",
+      "bom_letter": "KT",
+      "name_zh": "时间继电器",
+      "model": "EB-KT",
+      "spec": "延时 1-10s",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "CTRL"
+    },
+    {
+      "line_no": 11,
+      "instance_id": "i014",
+      "tag": "YC1",
+      "class_code": "YC",
+      "bom_letter": "YC",
+      "name_zh": "合闸线圈",
+      "model": "EB-YC",
+      "spec": "合闸 AC220V",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "IN1"
+    },
+    {
+      "line_no": 12,
+      "instance_id": "i015",
+      "tag": "YO1",
+      "class_code": "YO",
+      "bom_letter": "YO",
+      "name_zh": "分闸线圈",
+      "model": "EB-YO",
+      "spec": "分闸 AC220V",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "IN1"
+    },
+    {
+      "line_no": 13,
+      "instance_id": "i016",
+      "tag": "YC2",
+      "class_code": "YC",
+      "bom_letter": "YC",
+      "name_zh": "合闸线圈",
+      "model": "EB-YC",
+      "spec": "合闸 AC220V",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "IN2"
+    },
+    {
+      "line_no": 14,
+      "instance_id": "i017",
+      "tag": "YO2",
+      "class_code": "YO",
+      "bom_letter": "YO",
+      "name_zh": "分闸线圈",
+      "model": "EB-YO",
+      "spec": "分闸 AC220V",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "IN2"
+    },
+    {
+      "line_no": 15,
+      "instance_id": "i018",
+      "tag": "HL1",
+      "class_code": "HL",
+      "bom_letter": "HL",
+      "name_zh": "指示灯",
+      "model": "EB-HL-GN",
+      "spec": "I段合位",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "CTRL"
+    },
+    {
+      "line_no": 16,
+      "instance_id": "i019",
+      "tag": "HL2",
+      "class_code": "HL",
+      "bom_letter": "HL",
+      "name_zh": "指示灯",
+      "model": "EB-HL-YE",
+      "spec": "II段合位",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "CTRL"
+    },
+    {
+      "line_no": 17,
+      "instance_id": "i020",
+      "tag": "HA1",
+      "class_code": "HA",
+      "bom_letter": "HA",
+      "name_zh": "电铃",
+      "model": "EB-HA",
+      "spec": "故障音响",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "CTRL"
+    },
+    {
+      "line_no": 18,
+      "instance_id": "i021",
+      "tag": "XT1",
+      "class_code": "XT",
+      "bom_letter": "XT",
+      "name_zh": "端子",
+      "model": "EB-XT",
+      "spec": "2.5mm2",
+      "qty": 1,
+      "unit": "只",
+      "circuit": "CTRL"
+    }
+  ],
+  "bom_summary": [
+    {
+      "bom_letter": "QF",
+      "name_zh": "断路器",
+      "model": "EB-MCCB-250/160",
+      "spec": "In=160A 3P Icu=50kA",
+      "qty": 2,
+      "unit": "台",
+      "tags": [
+        "QF1",
+        "QF2"
+      ],
+      "line_no": 1
+    },
+    {
+      "bom_letter": "ATS",
+      "name_zh": "双电源转换开关",
+      "model": "EB-ATS-160",
+      "spec": "160A 3P 自投",
+      "qty": 1,
+      "unit": "台",
+      "tags": [
+        "ATS1"
+      ],
+      "line_no": 2
+    },
+    {
+      "bom_letter": "WL",
+      "name_zh": "电力电缆",
+      "model": "YJV",
+      "spec": "YJV-4x70+1x35",
+      "qty": 1,
+      "unit": "回路",
+      "tags": [
+        "WL1"
+      ],
+      "line_no": 3
+    },
+    {
+      "bom_letter": "TC",
+      "name_zh": "控制变压器",
+      "model": "EB-TC-150",
+      "spec": "380/220V 150VA",
+      "qty": 1,
+      "unit": "台",
+      "tags": [
+        "TC1"
+      ],
+      "line_no": 4
+    },
+    {
+      "bom_letter": "FU",
+      "name_zh": "熔断器",
+      "model": "EB-FU-4",
+      "spec": "In=4A",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "FU1"
+      ],
+      "line_no": 5
+    },
+    {
+      "bom_letter": "SA",
+      "name_zh": "选择开关",
+      "model": "EB-SA",
+      "spec": "自动/I/II",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "SA1"
+      ],
+      "line_no": 6
+    },
+    {
+      "bom_letter": "KA",
+      "name_zh": "中间继电器",
+      "model": "EB-KA",
+      "spec": "I段电压",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "KA1"
+      ],
+      "line_no": 7
+    },
+    {
+      "bom_letter": "KA",
+      "name_zh": "中间继电器",
+      "model": "EB-KA",
+      "spec": "II段电压",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "KA2"
+      ],
+      "line_no": 8
+    },
+    {
+      "bom_letter": "KT",
+      "name_zh": "时间继电器",
+      "model": "EB-KT",
+      "spec": "延时 1-10s",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "KT1"
+      ],
+      "line_no": 9
+    },
+    {
+      "bom_letter": "YC",
+      "name_zh": "合闸线圈",
+      "model": "EB-YC",
+      "spec": "合闸 AC220V",
+      "qty": 2,
+      "unit": "只",
+      "tags": [
+        "YC1",
+        "YC2"
+      ],
+      "line_no": 10
+    },
+    {
+      "bom_letter": "YO",
+      "name_zh": "分闸线圈",
+      "model": "EB-YO",
+      "spec": "分闸 AC220V",
+      "qty": 2,
+      "unit": "只",
+      "tags": [
+        "YO1",
+        "YO2"
+      ],
+      "line_no": 11
+    },
+    {
+      "bom_letter": "HL",
+      "name_zh": "指示灯",
+      "model": "EB-HL-GN",
+      "spec": "I段合位",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "HL1"
+      ],
+      "line_no": 12
+    },
+    {
+      "bom_letter": "HL",
+      "name_zh": "指示灯",
+      "model": "EB-HL-YE",
+      "spec": "II段合位",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "HL2"
+      ],
+      "line_no": 13
+    },
+    {
+      "bom_letter": "HA",
+      "name_zh": "电铃",
+      "model": "EB-HA",
+      "spec": "故障音响",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "HA1"
+      ],
+      "line_no": 14
+    },
+    {
+      "bom_letter": "XT",
+      "name_zh": "端子",
+      "model": "EB-XT",
+      "spec": "2.5mm2",
+      "qty": 1,
+      "unit": "只",
+      "tags": [
+        "XT1"
+      ],
+      "line_no": 15
+    }
+  ],
+  "defects": []
+}

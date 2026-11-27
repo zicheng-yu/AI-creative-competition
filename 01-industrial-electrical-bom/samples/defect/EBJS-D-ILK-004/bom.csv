@@ -1,0 +1,16 @@
+﻿line_no,instance_id,tag,class_code,bom_letter,name_zh,model,spec,qty,unit,circuit
+1,i001,QF1,QF,QF,断路器,EB-MCB-63/32,In=32A 3P Icu=50kA,1,台,WL1
+2,i002,KMF,KM_MAIN,KM,交流接触器,EB-KM-32,Ie=32A AC220V,1,台,WL1
+3,i003,KMR,KM_MAIN,KM,交流接触器,EB-KM-32,Ie=32A AC220V,1,台,WL1
+4,i004,FR1,FR,FR,热继电器,EB-FR-18,整定18A,1,只,WL1
+5,i005,M1,M,M,电动机,EB-M-7kW,7kW 380V 4P,1,台,WL1
+6,i006,WL1,WL,WL,电力电缆,YJV,YJV-4x6+1x4,1,回路,WL1
+7,i007,FU1,FU,FU,熔断器,EB-FU-4,In=4A,1,只,CTRL
+8,i008,SB1,SB_NC,SB,按钮,EB-SB,停止 常闭,1,只,CTRL
+9,i009,SB2,SB_NO,SB,按钮,EB-SB,正转 常开,1,只,CTRL
+10,i010,SB3,SB_NO,SB,按钮,EB-SB,反转 常开,1,只,CTRL
+11,i011,SQ1,SQ,SQ,行程开关,EB-SQ,正转限位 常闭,1,只,CTRL
+12,i012,SQ2,SQ,SQ,行程开关,EB-SQ,反转限位 常闭,1,只,CTRL
+13,i017,XT1,XT,XT,端子,EB-XT,2.5mm2,1,只,CTRL
+14,i018,HL1,HL,HL,指示灯,EB-HL-GN,正转 绿色,1,只,CTRL
+15,i019,HL2,HL,HL,指示灯,EB-HL-YE,反转 黄色,1,只,CTRL

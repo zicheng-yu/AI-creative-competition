@@ -1,0 +1,143 @@
+{
+  "dataset": "ElectroBench-JS",
+  "schema_version": "1.0.0",
+  "generator_version": "1.0.0",
+  "preset": "sample",
+  "seed": 262,
+  "drawings": [
+    {
+      "id": "EBJS-P-GGD-001",
+      "subset": "primary",
+      "title": "GGD 低压配电柜一次系统图",
+      "defects": [],
+      "degradation": null,
+      "instances": 24,
+      "annotations_sha256": "b6e0b37b86bd4a8383ced83bf92af24aa510157c86f82db99bedf043ff9aff78"
+    },
+    {
+      "id": "EBJS-P-MNS-002",
+      "subset": "primary",
+      "title": "MNS 低压抽出式开关柜一次系统图",
+      "defects": [],
+      "degradation": null,
+      "instances": 29,
+      "annotations_sha256": "2b25bd8511cacef7b7fe7374d3cbdaf7a46995153b636f03cf75bda4a2228b45"
+    },
+    {
+      "id": "EBJS-P-GCS-003",
+      "subset": "primary",
+      "title": "GCS 低压抽出式开关柜一次系统图",
+      "defects": [],
+      "degradation": null,
+      "instances": 25,
+      "annotations_sha256": "cc771064e54ad0755a46c8975d809eb6aed5cf727b635a8fbeedd615815e4fe7"
+    },
+    {
+      "id": "EBJS-P-KYN-004",
+      "subset": "primary",
+      "title": "KYN28 铠装移开式交流金属封闭开关柜一次系统图",
+      "defects": [],
+      "degradation": null,
+      "instances": 18,
+      "annotations_sha256": "77e02297776782e9624843e34828ffc55b0efb502ee415b56f073334cab4bfae"
+    },
+    {
+      "id": "EBJS-S-DOL-001",
+      "subset": "secondary",
+      "title": "电动机启停自锁控制原理图",
+      "defects": [],
+      "degradation": null,
+      "instances": 25,
+      "annotations_sha256": "bce2c7571971b449bafb99191c2cf9e4ff95c196f6665e7c6ebc206554233b63"
+    },
+    {
+      "id": "EBJS-S-FREV-002",
+      "subset": "secondary",
+      "title": "电动机正反转互锁控制原理图",
+      "defects": [],
+      "degradation": null,
+      "instances": 26,
+      "annotations_sha256": "070d3573d1b119dc436a7bfcf8c1bde92dc753e8a396411be1b30ca513b6e099"
+    },
+    {
+      "id": "EBJS-S-ATS-003",
+      "subset": "secondary",
+      "title": "双电源切换控制原理图",
+      "defects": [],
+      "degradation": null,
+      "instances": 25,
+      "annotations_sha256": "b6bd804d32b016d023800455c931c8f4adf16b02c956962f7a55088d267c1e4e"
+    },
+    {
+      "id": "EBJS-D-SEL-001",
+      "subset": "defect",
+      "title": "GGD 低压配电柜一次系统图",
+      "defects": [
+        "selectivity_inversion"
+      ],
+      "degradation": null,
+      "instances": 24,
+      "annotations_sha256": "13ad4592aa36f8805a79615b28476d464098d96c798ac87df60181b97ad60644"
+    },
+    {
+      "id": "EBJS-D-AMP-002",
+      "subset": "defect",
+      "title": "GGD 低压配电柜一次系统图",
+      "defects": [
+        "ampacity_insufficient"
+      ],
+      "degradation": null,
+      "instances": 24,
+      "annotations_sha256": "6fe40d9937e0503b3c21a5c4da81d65754a7bbfae5b098ac232eaac97397ef5d"
+    },
+    {
+      "id": "EBJS-D-MOT-003",
+      "subset": "defect",
+      "title": "MNS 低压抽出式开关柜一次系统图",
+      "defects": [
+        "motor_protection_missing"
+      ],
+      "degradation": null,
+      "instances": 28,
+      "annotations_sha256": "7b15436ed915fc02dca70d93c41380909cd04a768a6b7a592ac4988f0cd4bbac"
+    },
+    {
+      "id": "EBJS-D-ILK-004",
+      "subset": "defect",
+      "title": "电动机正反转互锁控制原理图",
+      "defects": [
+        "interlock_missing"
+      ],
+      "degradation": null,
+      "instances": 24,
+      "annotations_sha256": "452d667e73aedfeaf756b81459ac14a16e069b0119385e2bf020a9d8994e47c1"
+    },
+    {
+      "id": "EBJS-G-ALIAS-003",
+      "subset": "degraded",
+      "title": "GGD 低压配电柜一次系统图",
+      "defects": [],
+      "degradation": "alias",
+      "instances": 24,
+      "annotations_sha256": "3c38e5a7041f03a97e22b0f17a9d1f6a98631425694e8534777d689bcf08d728"
+    },
+    {
+      "id": "EBJS-G-BLUR-001",
+      "subset": "degraded",
+      "title": "GGD 低压配电柜一次系统图",
+      "defects": [],
+      "degradation": "blur",
+      "instances": 24,
+      "annotations_sha256": "5ace9eff8b35d23ab9d617e5a65d9ca69023a6df88763bc01a3cae4861f7cbca"
+    },
+    {
+      "id": "EBJS-G-SKEW-002",
+      "subset": "degraded",
+      "title": "电动机启停自锁控制原理图",
+      "defects": [],
+      "degradation": "skew",
+      "instances": 25,
+      "annotations_sha256": "807b697e9144a67baaec930de63098ea125c5fdf6248e407eee8089d775b49b6"
+    }
+  ]
+}

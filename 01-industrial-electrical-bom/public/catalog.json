@@ -1,0 +1,85 @@
+{
+  "retrieved_on": "2026-11-27",
+  "note": "只收录检索当日能打开、且能核对到名称与许可证陈述的公开资料。本文件不镜像图像。许可证以各落地页当时的声明为准；这里的摘录不是法律意见。",
+  "datasets": [
+    {
+      "id": "cghd",
+      "name": "CGHD (Circuit Graph Hand-Drawn)",
+      "landing_url": "https://doi.org/10.5281/zenodo.17469897",
+      "mirror_urls": [
+        "https://github.com/DFKI/cghd",
+        "https://zenodo.org/records/17469897"
+      ],
+      "version_seen": "Zenodo version 16 (2025-10-25), record describes 3269 annotated images and 59 object classes",
+      "license": "Zenodo dataset record: CC-BY-4.0. The GitHub repository DFKI/cghd is marked CC0-1.0; that repository license is not a substitute for the Zenodo dataset license.",
+      "citation": "Thoma, Bayer, Li, Dengel. A Public Ground-Truth Dataset for Handwritten Circuit Diagram Images. ICDAR 2021. Dataset: Bayer et al., Zenodo, doi:10.5281/zenodo.17469897.",
+      "what_it_contains": "Hand-drawn circuit photographs, Pascal VOC boxes, some segmentation maps and ASC netlists.",
+      "use_in_electrobench": "Cross-style raster-to-graph generalization. Not Chinese switchgear, and not a substitute for the synthetic GB/T volume.",
+      "direct_url": null
+    },
+    {
+      "id": "open-schematics",
+      "name": "Open Schematics",
+      "landing_url": "https://huggingface.co/datasets/bshada/open-schematics",
+      "mirror_urls": [],
+      "version_seen": "Dataset card retrieved 2026-11-27, license tag cc-by-4.0",
+      "license": "Dataset card declares CC-BY-4.0 and tells users to also comply with the licenses of the original hardware projects the files were collected from.",
+      "citation": "bshada. Open Schematics. Hugging Face, https://huggingface.co/datasets/bshada/open-schematics",
+      "what_it_contains": "KiCad and other EDA schematic sources with rendered images and partial structured component metadata.",
+      "use_in_electrobench": "Example of paired source and render. Electronics schematics, not GB/T switchgear single-line diagrams.",
+      "direct_url": null
+    },
+    {
+      "id": "floorplancad",
+      "name": "FloorPlanCAD",
+      "landing_url": "https://floorplancad.github.io/",
+      "mirror_urls": [
+        "https://huggingface.co/datasets/Voxel51/FloorPlanCAD"
+      ],
+      "version_seen": "Project site retrieved 2026-11-27; site says the project shut down in early 2022",
+      "license": "Project site: annotations and the website are CC BY-NC 4.0, and the authors state they do not own the drawing copyright. The Voxel51 Hugging Face card tag says cc-by-sa-4.0 while the card body repeats CC BY-NC 4.0. Treat the project-site statement as the one to follow, and do not assume commercial rights.",
+      "citation": "Fan, Zhu, Li, Chen, Zhu, Tan. FloorPlanCAD: A Large-Scale CAD Drawing Dataset for Panoptic Symbol Spotting. ICCV 2021.",
+      "what_it_contains": "Architectural floor-plan CAD with vector primitives and raster PNG. Not electrical schematics.",
+      "use_in_electrobench": "Methodology reference for vector symbol spotting only.",
+      "direct_url": null
+    },
+    {
+      "id": "pid-symbol-detection",
+      "name": "P&ID symbol detection code and PID_dataset",
+      "landing_url": "https://doi.org/10.5281/zenodo.8028570",
+      "mirror_urls": [
+        "https://github.com/mgupta70/PID_Symbol_Detection"
+      ],
+      "version_seen": "Zenodo record 8028570 (2023-06-12); GitHub repository default branch main",
+      "license": "GitHub code repository: MIT (copyright 2024 Mohit Gupta). The Zenodo dataset metadata retrieved on 2026-11-27 did not state a license. Do not redistribute the Zenodo archive until a license is confirmed.",
+      "citation": "Gupta, Wei, Czerniawski. Semi-supervised symbol detection for piping and instrumentation drawings. Automation in Construction 159 (2024) 105260. Dataset: doi:10.5281/zenodo.8028570.",
+      "what_it_contains": "Industrial P&ID sheets and symbol labels. The code demonstrates overlapping-patch inference.",
+      "use_in_electrobench": "Pipeline reference for large-sheet symbol detection. P&ID symbols are not mapped onto GB/T 4728 switchgear classes in this repo.",
+      "direct_url": null
+    },
+    {
+      "id": "roboflow-leepharma-sld1",
+      "name": "LEEPHARMA_SLD1",
+      "landing_url": "https://universe.roboflow.com/02main-single-line-diagram-sheet13-05102018-1/leepharma_sld1",
+      "mirror_urls": [],
+      "version_seen": "Universe page retrieved 2026-11-27: 315 images, 31 classes including circuit breaker, current transformer, fuse, motor, voltmeter",
+      "license": "The retrieved page did not state a license. Check the Universe license control before download or training. This repo does not mirror the images.",
+      "citation": "Roboflow Universe, LEEPHARMA_SLD1, workspace 02MAIN SINGLE LINE DIAGRAM Sheet13 05102018 1.",
+      "what_it_contains": "Single-line diagram object-detection images.",
+      "use_in_electrobench": "Candidate external style set. Class names are the dataset's own strings; map them onto ElectroBench codes only after reading the label list.",
+      "direct_url": null
+    },
+    {
+      "id": "roboflow-e08-schematic",
+      "name": "E08_Schematic Diagrams_REV5",
+      "landing_url": "https://universe.roboflow.com/02main-single-line-diagram-sheet13-05102018-1/e08_schematic-diagrams_rev5",
+      "mirror_urls": [],
+      "version_seen": "Universe page retrieved 2026-11-27: 120 images, classes include switches, earth-leakage breakers, current transformers, terminal blocks",
+      "license": "The retrieved page did not state a license. Check the Universe license control before use. This repo does not mirror the images.",
+      "citation": "Roboflow Universe, E08_Schematic Diagrams_REV5, same workspace as LEEPHARMA_SLD1.",
+      "what_it_contains": "Schematic-diagram object-detection images.",
+      "use_in_electrobench": "Candidate external style set, same mapping caution as LEEPHARMA_SLD1.",
+      "direct_url": null
+    }
+  ]
+}
