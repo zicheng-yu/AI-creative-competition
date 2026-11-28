@@ -1,0 +1,170 @@
+\input{common.tex}
+\hypersetup{pdftitle={图枢电析 项目计划书},pdfauthor={盼盼法式小面包}}
+\begin{document}
+\contesttitlepage
+  {“人工智能+”工业制造赛道\\赛题 AI-MFG-Q21\\电气图纸智能解析与 BOM 自动生成}
+  {图枢电析}
+  {ElectroGraph BOM}
+  {项目计划书}
+  {电气图纸解析、回路拓扑重建与物料清单复核}
+  {团队：盼盼法式小面包\\组别：创新组\quad 报名编号 REG-2026-000523\\命题单位：中国联合网络通信有限公司镇江市分公司\\2026 年 11 月\quad 初筛版}
+
+\begin{abstract}
+图枢电析面向成套电气来图的报价与复核。冻结评测集 ElectroBench-JS v1.0.0 的主验收集共 11 张图。完整系统在该集上的综合解析为 97.88\%，严格采购明细完整率为 96.92\%，图纸可见字段汇总完整率为 96.65\%，平均耗时 0.070 秒/张。四类合规红灯在该集上为 5 次真阳性、0 次误报、0 次漏报。14 张全集的综合解析为 93.49\%。以上数字引自 \path{benchmark_e2e/results/eval_report.md}。纯多模态基线当前覆盖 0 张，记为待实测。收益表中的图量、费率和实施费用均为试点假设，标为预估。本文不附工作台界面截图。
+\end{abstract}
+\tableofcontents
+\newpage
+
+\section{项目概述}
+图枢电析（ElectroGraph BOM）首先服务配电柜报价和复核岗位。工程师收到一次系统图和二次控制图后，可在原图上确认识别结果，并把复核后的清单交给采购或工艺人员。赛题编号为 AI-MFG-Q21，命题单位为中国联合网络通信有限公司镇江市分公司。团队盼盼法式小面包，组别为创新组，报名编号 REG-2026-000523。
+
+\subsection{来图复核与二次回路}
+同一项目可能来自多个设计端，符号、图层、位号和文字格式不一致。报价人员需把规格与数量逐项与原图核对。控制工程师沿端子和分支核对自锁、互锁与供电路径。图纸框和回路连线共用器件编号。
+
+系统把告警落到具体器件和条文。工程师结合原始设计和工程参数复核保护选择性、载流量、二次互锁和电机保护。首期应用范围是扬中和镇江的成套电气企业，优先选 GGD、KYN28 等柜型的报价或来图初审。工厂保留设计签发权。
+
+江苏省政府 2025 年报道称，扬中有 3000 余家电气制造及配套企业，其中规模以上 325 家。该统计只用于说明产业配套基础。本次排版未重新打开政府网页，页面是否仍可访问，标为待核实\cite{yangzhong}。
+
+\subsection{赛题门槛与本文口径}
+赛题原文要求图纸解析准确率不低于 93\%，BOM 生成完整率不低于 95\%，并支持设计规范的语义匹配\cite{challenge}。仓库把综合解析定义为
+\begin{equation}
+0.40\times\text{符号检测 F1}+0.35\times\text{规格语义准确率}+0.25\times\text{无向边 F1},
+\end{equation}
+见 \path{benchmark_e2e/metrics.py} 的 \path{composite_accuracy}。严格 BOM 明细要求类别与数量一致，且位号或定位匹配；真值有规格时，语义规格也必须一致。主汇总按采购类别、规格语义、单位及总数量匹配。
+
+方案初稿 \path{solution.md} 写过综合解析目标不低于 95.5\%、BOM 完整率不低于 97.0\%、单图不超过 15 秒。冻结主集的实测综合解析 97.88\% 高于 95.5\% 这一档，严格明细 96.92\% 高于 95\% 门槛、低于 97.0\% 这一档。耗时 0.070 秒/张是本机离线评测，不含前端上传、渲染和人工复核。
+
+\section{技术架构}
+原始文件处理、拓扑构建、规则判定和交互展示各自保留可核对的结构化结果。图~\ref{fig:arch} 按仓库中已经接通的边界绘制，不把方案初稿里的 YOLOv11、SAHI 或在线多模态精修画成已接入模块。纯多模态通道 B3 的状态是 \path{pending_vlm_api_key}，评测覆盖 0 张。
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=0.55cm]
+  \node[layer] (dxf) {DXF\\原生图元与文本};
+  \node[layer, right=0.45cm of dxf] (pdf) {单页 PDF\\文本、原语与栅格};
+  \node[layer, right=0.45cm of pdf] (png) {PNG\\RapidOCR\\与视觉匹配};
+  \node[wide, below=0.7cm of pdf] (bind) {近邻文本绑定位号与规格};
+  \node[wide, below=0.45cm of bind] (topo) {端口追线，输出节点、边与端口，并生成实例级 BOM};
+  \node[wide, below=0.45cm of topo] (rule) {离线规则：四类已登记缺陷；条文摘要给出编号、来源和摘录};
+  \node[wide, below=0.45cm of rule] (api) {审图服务 FastAPI（默认端口 8066）\\同源静态前端};
+  \draw[flow] (dxf.south) -- ++(0,-0.28) -| (bind.north);
+  \draw[flow] (pdf) -- (bind);
+  \draw[flow] (png.south) -- ++(0,-0.28) -| (bind.north);
+  \draw[flow] (bind) -- (topo);
+  \draw[flow] (topo) -- (rule);
+  \draw[flow] (rule) -- (api);
+\end{tikzpicture}
+\caption{图枢电析已接通的数据流。容量边界为单文件 10 MB、单页 PDF、PNG 不超过 1600 万像素。目录号补齐需对接企业采购目录。}
+\label{fig:arch}
+\end{figure}
+
+\subsection{图纸接入及符号识别}
+DXF 读取原生图元和文本。PDF 读取文本与原语，并形成栅格预览。PNG 使用离线 RapidOCR 与视觉匹配。近邻文本参与位号及规格绑定。母排规格只从邻近的可见文本补绑。主集 7 张带母排的 DXF 正文没有 TMY 或 LMY 标注，对应规格保留空值并计入遗漏。
+
+\subsection{拓扑、BOM 与规则}
+围绕器件端口追踪导线并消歧，输出节点、边与端口。结构化器件映射到实例级 BOM 与可见字段汇总。离线规则检查四类已登记缺陷：上下级额定电流倒挂、导线与过负荷保护不匹配、电动机主回路配套缺失、正反转对侧常闭互锁缺失或被旁路。知识库给出条文编号、来源和摘要。修订应用到语义工作副本，先给预览，再由用户确认。
+
+\subsection{浏览器端与本次不附的截图}
+Vite 前端调用同源 FastAPI 服务。图纸、拓扑、告警和工作副本共用器件编号。操作记录随页面会话保留，刷新后从原图重新开始。文字指令可查回路、查级差或批量替换型号。语音入口调用浏览器转写；真实麦克风需现场验证，本文不把它记为已测。
+
+先前计划书在流程页放了一张审图界面截图，并写明原始 GGD DXF 解析得到 24 个器件和 23 条连线。本次不附界面截图。冻结标注 \path{samples/primary/EBJS-P-GGD-001/annotations.json} 含 24 个符号实例和 23 条网表边，与该计数一致。
+
+\section{离线性能}
+冻结评测用 14 张合成图，主验收集 11 张（一次 4、二次 3、缺陷 4）。完整系统在主集自动选择 DXF。表~\ref{tab:main} 转录评测报告中的通道对比。全集还含 3 张退化图，因此严格明细低于主集。
+
+\begin{table}[ht]
+\centering
+\caption{主验收集通道对比。连边列为无向边 F1。秒/图为该报告中的均值。全集一行的耗时在原计划书中空缺，此处保持空缺。}
+\label{tab:main}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrr}
+\toprule
+评测输入 & 图数 & 综合 & 连边 F1 & 严格明细 & 可见汇总 & 秒/图 \\
+\midrule
+完整系统（DXF） & 11 & 97.88\% & 95.83\% & 96.92\% & 96.65\% & 0.070 \\
+纯 PDF & 11 & 77.32\% & 62.14\% & 92.95\% & 92.34\% & 4.812 \\
+全光栅 & 11 & 78.45\% & 60.89\% & 90.31\% & 90.91\% & 4.662 \\
+完整系统（全集） & 14 & 93.49\% & 91.65\% & 89.90\% & 89.47\% & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+完整系统主集的符号 F1 为 100.00\%，规格语义为 96.92\%，有向边 F1 为 90.66\%。明细 Precision 与严格明细同为 96.92\%，汇总 Precision 为 96.65\%。含采购目录号的扩展诊断完整率为 13.88\%。原图缺少的目录号需由 ERP 或选型目录补充。
+
+四类合规红灯在冻结主集为 Precision 100.00\%、Recall 100.00\%，5 次真阳性、0 次误报、0 次漏报。7 张一次图与二次图的红灯误报为 0。纯 PDF、全光栅和退化图上，模糊、规格缺字和追线漏边仍然存在，不能把主集 DXF 的分数外推到扫描件。B3 纯多模态基线覆盖 0 张，分数待实测。离线耗时与前端上传、渲染及人工复核的现场耗时分别计量。复现命令和消融表见佐证材料。
+
+\section{竞品与产品定位}
+表~\ref{tab:comp} 沿用既有计划书对厂商公开材料的归纳。本队没有做联合评测，没有这些产品的采购记录，也不引用市占率。产品页本次未重新打开，可访问性待核实。
+
+\begin{table}[ht]
+\centering
+\caption{公开材料中的产品定位。试点仍须按本厂图纸与工作流复核。}
+\label{tab:comp}
+\small
+\begin{tabularx}{\textwidth}{lXX}
+\toprule
+产品 & 公开能力 & 工厂评估方向 \\
+\midrule
+Werk24 & 工程图尺寸、标题栏和物料等结构化提取，提供 API。 & 用于通用工程图字段提取。 \\
+EPLAN Electric P8 & 结构化电气设计，自动生成导线、端子和物料等报表。 & 适合在已有 ECAD 工程数据上出表。 \\
+CADDi Drawer & 工业图纸归档、文本搜索和相似图检索。 & 用于图纸资产检索和复用。 \\
+图枢电析 & 读取既有电气图纸，联动定位回路、BOM 与可追溯规则。 & 面向多来源来图的报价和审图复核。 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+图枢电析首期以 Excel 交接，验证后再扩展企业选型目录和 ERP。采购人员可保留既有主数据与签批流程。
+
+\section{私有化部署与试点分工}
+从本地浏览器与单机解析开始。试点由工厂审批文件、启用功能和确定访问范围。
+
+内网主机上，静态前端与解析进程通过同源反向代理。离线准备 Python wheels 和 OCR 模型，校验版本，按白名单控制网络出口。工程员、复核员、管理员的身份及访问策略是试点部署项，仓库没有现成的账号体系。原始图纸和临时文件遵循工厂保留期限。
+
+厂内默认使用文字指令。IT 根据浏览器实测确认语音识别的网络流量，再决定是否开放。首期导出 Excel 交给报价与采购复核。后续以已批准的映射表接入 ERP、MES 或 PLM，并保留审批与回退。
+
+已在仓库中验证的是本地服务、样图解析和冻结评测。长期账号、持久审计、主数据接入与适配认证列入试点交付，标为待联调。
+
+\section{单厂收益测算（预估）}
+仓库没有扬中或镇江单厂的真实处理图量、工时或报价差错统计。表~\ref{tab:econ} 用年处理图数、每张节省的人工时间和综合费率做情景测算。表内用量、费率和成本均为试点假设，全部标为预估。
+
+小时数等于图数乘以每张节省分钟再除以 60。毛收益（万元/年）等于小时数乘以 120 元/小时再除以 10\,000。稳态净收益再扣除每年 1.2 万元运维。初期一次性实施费用按 2.5 万元估算。基准情景净收益 2.4 万元/年，对应静态回收 \(2.5/2.4\times 12\approx 12.5\) 个月。
+
+\begin{table}[ht]
+\centering
+\caption{预估收益。单位：毛收益与稳态净收益为万元/年。不是已签约收入。}
+\label{tab:econ}
+\begin{tabular}{lrrrrr}
+\toprule
+情景 & 图/年 & 分钟/图 & 小时/年 & 毛收益 & 稳态净收益 \\
+\midrule
+低 & 600 & 10 & 100 & 1.2 & 0.0 \\
+基准 & 1{,}200 & 15 & 300 & 3.6 & 2.4 \\
+高 & 2{,}400 & 20 & 800 & 9.6 & 8.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+拟按基础部署、企业目录适配和运维支持三项报价。试点对同批图纸分别记录人工流程与辅助流程，计时应包含上传、核查、改错和导出。本表只计人工工时节约。返工、采购差错和机会收益留待企业现场测量，不在此预估。
+
+\section{实施路线}
+试点以可追溯的指标决定能否扩大范围。下面的周次是计划，不是已经发生的日历。仓库没有试点开始日期。
+
+\begin{enumerate}
+\item 第 1--2 周，来图与基线。选两类常见柜型，取得脱敏资料授权。人工核对规格、数量、拓扑和告警，保留原始计时。
+\item 第 3--4 周，内网试跑。单机部署，逐图检查严格 BOM 与关键告警。按图源和柜型复盘无法解释的失配。
+\item 第 5--6 周，价值复核。同批图纸对比全流程时间、BOM 首轮采纳率和红灯误报漏报，检查安全出口与资料清理。
+\item 后续，主数据接入。完成审批后接入选型目录和采购流程，按版本保留输入摘要、审批及回退策略。
+\end{enumerate}
+
+赛程以仓库 README 为准：初赛材料在 2026-11-30 截止。该日期是提交截止，不是系统上线日。答辩 PPT、演示视频和网盘链接不在本文件范围内。
+
+\begin{thebibliography}{9}
+\bibitem{challenge} 本仓库 \path{01-industrial-electrical-bom/challenge_info.md} 与 \path{challenge_raw.json}。赛题 AI-MFG-Q21。
+\bibitem{eval} \path{benchmark_e2e/results/eval_report.md}。ElectroBench-JS v1.0.0 端到端离线评测。复现入口为 \path{python -m benchmark_e2e.run_benchmark}。
+\bibitem{readme} \path{01-industrial-electrical-bom/README.md} 与 \path{samples/STATS.md}。生成命令为 \path{python -m electrobench generate --preset sample --seed 262}。
+\bibitem{metrics} \path{benchmark_e2e/metrics.py}，函数 \path{composite_accuracy}。
+\bibitem{yangzhong} 江苏省人民政府，扬中智能电气产业集群，2025-06-30。条目转录自既有计划书。本次未重新打开网页，可访问性待核实。
+\bibitem{vendors} Werk24 技术图纸数据提取产品页；EPLAN Electric P8 产品性能说明；CADDi Drawer 二维图纸检索产品公告。转录自既有计划书，未附 URL，可访问性待核实。
+\end{thebibliography}
+\end{document}

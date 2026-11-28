@@ -1,0 +1,192 @@
+\input{common.tex}
+\hypersetup{pdftitle={流盾智研 佐证材料},pdfauthor={盼盼法式小面包}}
+\begin{document}
+\contesttitlepage
+  {“人工智能+”医疗健康赛道\\赛题 AI-HEALTH-Q40}
+  {流盾智研}
+  {FluVax-Evidence Agent}
+  {佐证材料}
+  {离线评测、数据集说明、权重与部署\\软件原型；公开记录；人工 SOP 未测}
+  {团队：盼盼法式小面包\\2026 年 11 月\\数据版本 fluevidence-v1.1}
+
+\begin{abstract}
+本文只佐证软件原型和已发表公开记录上的离线评测。没有湿实验，没有序列设计，没有免疫原性、保护效果或临床疗效数据。人工 SOP 未测。主数字来自 \path{data/FluEvidenceBench-v1/eval/metrics.json}。方法学夹具 \path{benchmarks/software_evaluation.json} 单独列表，不与主数字合并。
+\end{abstract}
+\tableofcontents
+\newpage
+
+\section{范围与未入库项}
+评测脚本 \path{benchmarks/flu_bench.py} 的 \path{run_bench} 写出下列范围声明：软件原型；记录是已发表题名或数据库定义行；冲突标记只识别档案注释中的公开 ID 交叉引用；空白是缺等级、版本不一致或审阅未关闭；不是生物学性能，也不是实验清单；引用准确率只统计已经通过原文与版本锁的语句。
+
+未入库，且人工 SOP 保持未测：
+\begin{itemize}
+\item GISAID sequences and counts；
+\item Nextstrain clade-frequency tables；
+\item Bloom Lab deep-mutational-scan escape or fitness scores；
+\item nucleotide sequences and designed amino-acid constructs；
+\item wet-lab protocols and experimental recipes；
+\item new immunogenicity, protection, or clinical scores；
+\item timed human SOP（未测）。
+\end{itemize}
+快照内 24 条原文片段与疗效承诺模式的匹配数为 0。探针提交 1 条，因疗效承诺被拒绝 1 条，采纳 0 条。
+
+\section{数据集}
+审核范围 \path{methods-and-records-governance}，租户 \path{demo}。标识核验日期 2026-11-28，写在数据集说明中。本次文档编译没有重新拉取 NCBI、RCSB、IEDB 或 UniProt，这些接口当日是否仍返回同一文本，标为待核实。
+
+\begin{table}[ht]
+\centering
+\caption{24 条记录的等级计数，按 DATASET\_CARD.md。T1 是公开实验登录，不是本队复现的实验。}
+\label{tab:tier}
+\begin{tabular}{lr}
+\toprule
+等级 & 条数 \\
+\midrule
+T1\_WET\_LAB\_ASSAY & 6 \\
+T2\_SURVEILLANCE & 2 \\
+T3\_PEER\_REVIEWED\_LIT & 16 \\
+T4\_COMPUTATIONAL & 0 \\
+合计 & 24 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{longtable}{p{3.3cm}p{3.4cm}p{3.6cm}p{2.4cm}}
+\caption{快照记录。版本列 v1 表示 fluevidence-v1，v1.1 表示 fluevidence-v1.1。精确发表日未提供的条目不在本表补写。}\label{tab:recs}\\
+\toprule
+evidence\_id & primary\_ref & 等级 & 版本 \\
+\midrule
+\endfirsthead
+\toprule
+evidence\_id & primary\_ref & 等级 & 版本 \\
+\midrule
+\endhead
+EV-REF-GARTEN & PMID:19465683 & T3 & v1 \\
+EV-REF-SMITH & PMID:15218094 & T3 & v1 \\
+EV-REF-PETROVA & PMID:29081496 & T3 & v1 \\
+EV-REF-CALHA & PMID:23110350 & T3 & v1 \\
+EV-CONS-GILES & PMID:21320540 & T3 & v1 \\
+EV-CONS-CARTER & PMID:26912624 & T3 & v1 \\
+EV-CONS-CARTER-CORR & PMID:38819164 & T3 & v1.1 \\
+EV-GLY-WANG & PMID:19822741 & T3 & v1 \\
+EV-GLY-TATE & PMID:24638204 & T3 & v1 \\
+EV-GLY-ADD & PMID:23365085 & T3 & v1 \\
+EV-STEM-IMP & PMID:26303961 & T3 & v1 \\
+EV-STEM-YASSINE & PMID:26301691 & T3 & v1 \\
+EV-STEM-EKIERT & PMID:19251591 & T3 & v1 \\
+EV-STEM-HEADLESS & PMID:26947245 & T3 & v1 \\
+EV-STEM-STALK & PMID:25210189 & T3 & v1 \\
+EV-ACC-CA07 & CY121680.1 & T2 & v1 \\
+EV-ACC-HK68 & AF348176.1 & T2 & v1 \\
+EV-PDB-3GBN & PDB:3GBN & T1 & v1 \\
+EV-PDB-3GBM & PDB:3GBM & T1 & v1 \\
+EV-PDB-5C0S & PDB:5C0S & T1 & v1.1 \\
+EV-PDB-5C0R & PDB:5C0R & T1 & v1.1 \\
+EV-IEDB-570 & IEDB:570 & T1 & v1 \\
+EV-IEDB-226309 & IEDB:226309 & T1 & v1 \\
+EV-UP-P03452 & UniProt:P03452 & T3 & v1 \\
+\bottomrule
+\end{longtable}
+
+EV-CONS-CARTER 的审阅状态为 flagged，其余为 accepted。PETROVA、CARTER、YASSINE、STALK、两条核酸登录、两条 IEDB 和 UniProt 条目的精确发表日在说明中为未提供精确日。CARTER-CORR、5C0S 与 5C0R 属于 \path{fluevidence-v1.1}，入库时间写为 2026-11-28T09:00:00+08:00；其余为同日 06:00。
+
+\section{任务一：证据问答}
+7 题，\(k=5\)。Recall@5 均为 1.0。NDCG@5 的算术平均为 0.9285714285714286，因为 Q6 为 0.5、其余为 1.0。中位耗时 18.16363 毫秒，与 Q7 的 \path{elapsed_ms} 相同。封闭题面包含公开题名或公开 ID。
+
+\begin{table}[ht]
+\centering
+\caption{任务一逐题。耗时单位为毫秒。完整五名见 metrics.json。}
+\label{tab:q}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llrrl}
+\toprule
+题 & 期望 & Recall@5 & NDCG@5 & 毫秒 \\
+\midrule
+Q1 & EV-REF-GARTEN & 1.0 & 1.0 & 24.650288 \\
+Q2 & EV-GLY-WANG & 1.0 & 1.0 & 18.110621 \\
+Q3 & EV-CONS-CARTER；EV-CONS-CARTER-CORR & 1.0 & 1.0 & 18.593875 \\
+Q4 & EV-PDB-3GBN；EV-PDB-5C0S & 1.0 & 1.0 & 19.288599 \\
+Q5 & EV-ACC-CA07 & 1.0 & 1.0 & 14.438441 \\
+Q6 & EV-STEM-HEADLESS & 1.0 & 0.5 & 16.761578 \\
+Q7 & EV-IEDB-570；EV-IEDB-226309 & 1.0 & 1.0 & 18.16363 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Q6 的前五名依次为 EV-ACC-CA07、EV-PDB-3GBM、EV-STEM-HEADLESS、EV-UP-P03452、EV-PDB-3GBN。期望记录在第三位，所以召回仍为 1，NDCG 为 0.5。
+
+\section{任务二：四份文献档案}
+比较耗时 16.912775 毫秒，签批耗时 11.485772 毫秒，状态 \path{EXPERT_SIGNED}。采纳引文 23，标疑 1。四份档案的冲突、空白和一致性都与金标一致。空白不是实验清单。
+
+\begin{table}[ht]
+\centering
+\caption{档案对照。consistent 为 false 的两份仍与金标匹配，因为金标本身记录了不一致。}
+\label{tab:dos}
+\footnotesize
+\begin{tabular}{lrrrl}
+\toprule
+档案 & 一致 & 空白数 & T1/T2/T3/T4 & 冲突 \\
+\midrule
+plan-reference-strain & 是 & 1 & 0/2/5/0 & 无 \\
+plan-consensus-literature & 否 & 5 & 0/0/3/0 & 26912624 与 38819164 \\
+plan-head-glycosylation & 是 & 2 & 0/0/3/0 & 无 \\
+plan-conserved-stem & 否 & 2 & 6/0/5/0 & 无 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\path{plan-reference-strain} 的空白为 \path{no_T1_record}。\path{plan-consensus-literature} 的空白为 \path{version_mismatch}、\path{dossier_review_open}、\path{source_review_open}、\path{no_T1_record}、\path{no_T2_record}。\path{plan-head-glycosylation} 为没有 T1、没有 T2。\path{plan-conserved-stem} 为 \path{version_mismatch} 与 \path{no_T2_record}，其 T1 来自 PDB 与 IEDB 登录，不是本队新做的实验。
+
+\section{引用核验与疗效门禁}
+已采纳且与版本锁匹配的语句 59，采纳语句总数 59，这部分准确率 1.0。不读取快照原文的离线草稿提交 3 条，采纳 0 条：\path{outside_selection} 2，\path{nonverbatim} 1，\path{effect_promise} 0。该对照只用于幻觉拦截，不是人工 SOP。
+
+\section{方法学夹具（单独一套）}
+\path{benchmarks/software_evaluation.json} 的 \path{scope} 为 \path{methods-only software tasks}。4 条查询，Recall@3 为 1.0，NDCG@3 为 0.875，中位 5.77455 毫秒。档案 4 份，均已检查；签批采纳引文 2 条；比较 4.717 毫秒，签批 4.1026 毫秒。引用 16/16 有效，拦截无效草稿 3/3。\path{manual_sop_baseline} 为未测。这组查询不是第~\ref{tab:q} 节的 7 题，不能与 Recall@5 平均。
+
+\section{权重}
+训练、验证、测试用合成通用文本。重排器训练 143 条、验证 48 条、测试 48 条。验证域为 museum 与 school，测试域为 audio 与 garden，与训练域不重叠。选定轮次 15，验证损失 0.41290900111198425。测试集 RELEVANT 的支持数为 12，precision、recall、F1 均为 0；IRRELEVANT 的 F1 为 0.8571428571428571；宏平均 F1 为 0.42857142857142855；NDCG@3 为 0.9692441461309548。
+
+NLI 审计器训练 432、验证 144、测试 144，选定轮次 220，验证损失 0.000942241633310914。验证集与测试集三类宏平均 F1 均为 1.0。\path{MODEL.md} 写明不能据此推定自由文本泛化。
+
+\begin{table}[ht]
+\centering
+\caption{权重文件，摘自 weights/manifest.json。四份合计字节数在 verification.json 中为 11748。}
+\label{tab:w}
+\footnotesize
+\begin{tabular}{lrl}
+\toprule
+文件 & 字节 & SHA-256 \\
+\midrule
+reranker.pt & 3879 & \path{0efa581205b7ddf5} \\
+reranker.onnx & 1898 & \path{3afdb439c454f685} \\
+nli\_auditor.pt & 3973 & \path{33325e123b66a51e} \\
+nli\_auditor.onnx & 1998 & \path{610c413b47df657a} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+表中 SHA-256 只印前 16 位。全文是：reranker.pt 为 \path{0efa581205b7ddf5ad5d24508498780ce62d6d324e5568b95b006d893d0dd71b}；reranker.onnx 为 \path{3afdb439c454f685c057ccafdf2784676eb6c51f78a5877c6f49c968129a9c72}；nli\_auditor.pt 为 \path{33325e123b66a51ee619a1404c0c06972a7d1873970c40a0572c3bd898216c5d}；nli\_auditor.onnx 为 \path{610c413b47df657a7a2a50b024f5cca1b02fe96edfb130877144013a11ac3a8b}。
+
+校验报告：重排器留出 48 行，logit 最大绝对误差 \(2.384185791015625\times 10^{-7}\)，PyTorch CPU 中位 0.0147 毫秒，ONNX 0.0079 毫秒。NLI 留出 144 行，误差 \(9.5367431640625\times 10^{-7}\)，PyTorch 0.0151 毫秒，ONNX 0.00755 毫秒。onnxruntime 版本写为 1.21.1。这些是单样本热运行，不是任务一的 18.16363 毫秒。
+
+\section{复现与部署边界}
+在 \path{03-medical-flu-immunogen} 目录，\path{MODEL.md} 给出的命令是：
+\begin{quote}\small
+\path{python -m benchmarks.train_weights}\\
+\path{python weights/verify_weights.py --report weights/verification.json}\\
+\path{python -m benchmarks.export_demo}\\
+\path{python -m benchmarks.evaluate_tasks --report benchmarks/software_evaluation.json}\\
+\path{python -m pytest -q}
+\end{quote}
+本文引用的流感题集指标来自已写入的 \path{metrics.json}，不是本次编译 PDF 时重跑的墙钟。重训会改变权重，本次没有重训。\path{evaluate_tasks} 会同时重写 \path{metrics.json} 中的毫秒字段；引用延迟时以文件里的数为准，并注明主机。
+
+默认路径不调用外部模型。\path{create_app(snapshot, client=provider)} 可以注入本地适配器，适配器的输出仍要过硬核验。部署到命题单位或任何药企内网都还没有联调记录，接口、账号和留存标为待联调。没有报价。PPT、视频和网盘链接不在本文件内。
+
+\begin{thebibliography}{9}
+\bibitem{card} \path{data/FluEvidenceBench-v1/DATASET_CARD.md} 与 \path{release.lock.json}。题名是锁文件中的公开记录，本文不把题名里的结果用语当作疗效结论。
+\bibitem{metrics} \path{data/FluEvidenceBench-v1/eval/metrics.json}。命令 \path{python -m benchmarks.flu_bench}。
+\bibitem{soft} \path{benchmarks/software_evaluation.json}。命令 \path{python -m benchmarks.evaluate_tasks}。
+\bibitem{model} \path{MODEL.md}、\path{weights/manifest.json}、\path{weights/verification.json}。命令 \path{python weights/verify_weights.py --report weights/verification.json}。
+\bibitem{code} \path{engine/service.py}、\path{engine/llm_adapter.py}、\path{benchmarks/flu_bench.py}。
+\end{thebibliography}
+\end{document}

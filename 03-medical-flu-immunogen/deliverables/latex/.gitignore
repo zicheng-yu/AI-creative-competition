@@ -1,0 +1,10 @@
+*.aux
+*.log
+*.out
+*.toc
+*.xdv
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+plan.pdf
+evidence.pdf

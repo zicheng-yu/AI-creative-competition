@@ -1,0 +1,66 @@
+% Shared academic preamble. White page, black text, serif body.
+\documentclass[a4paper,11pt,fontset=none]{ctexart}
+\setmainfont{Noto Serif}
+\setCJKmainfont{Noto Serif CJK SC}[BoldFont={Noto Serif CJK SC Bold}]
+\setCJKsansfont{Noto Sans CJK SC}[BoldFont={Noto Sans CJK SC Bold}]
+\setCJKmonofont{Noto Sans CJK SC}
+\usepackage{geometry}
+\geometry{a4paper,margin=2.3cm,headheight=14pt}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usepackage{float}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf,skip=6pt}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\setstretch{1.15}
+\usepackage{enumitem}
+\setlist[itemize]{itemsep=0.2em,topsep=0.35em,leftmargin=1.6em}
+\setlist[enumerate]{itemsep=0.2em,topsep=0.35em,leftmargin=1.6em}
+\usepackage{amsmath}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small 盼盼法式小面包}
+\fancyhead[R]{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+\emergencystretch=2em
+\Urlmuskip=0mu plus 1mu
+\tikzset{
+  layer/.style={draw, align=flush center, font=\small, inner sep=5pt, text width=3.35cm, minimum height=1.05cm},
+  wide/.style={draw, align=flush center, font=\small, inner sep=6pt, text width=14.2cm},
+  flow/.style={-{Stealth[length=2.2mm]}, semithick}
+}
+\newcommand{\contesttitlepage}[6]{%
+  \begin{titlepage}
+  \thispagestyle{empty}
+  \centering
+  \vspace*{1.5cm}
+  {\large 首届江苏省“人工智能+”创新应用大赛\par}
+  \vspace{0.55cm}
+  {\large #1\par}
+  \vspace{1.35cm}
+  {\rule{0.42\textwidth}{0.5pt}\par}
+  \vspace{0.75cm}
+  {\Huge\bfseries #2\par}
+  \vspace{0.4cm}
+  {\Large #3\par}
+  \vspace{0.95cm}
+  {\LARGE #4\par}
+  \vspace{0.5cm}
+  {\large #5\par}
+  \vspace{0.75cm}
+  {\rule{0.42\textwidth}{0.5pt}\par}
+  \vfill
+  {\large #6\par}
+  \vspace*{1.1cm}
+  \end{titlepage}
+}
