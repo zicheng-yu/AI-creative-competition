@@ -1,0 +1,15 @@
+{
+  "commit": "4a184f33dfb3f1d5277e84e35dc255fec726c57b",
+  "baseUrl": "https://raw.githubusercontent.com/wenan4/AI-creative-competition/4a184f33dfb3f1d5277e84e35dc255fec726c57b/02-sansu-computing-dispatch/frontend_demo_data/",
+  "files": {
+    "benchmarks_summary.json": "92a5988e10774c60aa77ecb55de8e46f130dd71eea3be58fbeeb899ec0c55597",
+    "fault_failover_trace.json": "bfd405ae7ffa7fcd23f944a3d71c54d6fa1a48127c583a3c2c28aae1138e1d97",
+    "ledger_sample.json": "9ed2bd194ceca593606e68b746b5943508792093b94bc04474c725e83825488c",
+    "scenario_fault_stress.json": "7c74e375f15f5dab0c3d372758ed2c263daeec25ae4ed42bf0201569cc4f44a7",
+    "scenario_high_renewable.json": "f6d21663f235c740a9db8adc24ef4b14d0576c8ab84b0444fd7064341a40f029",
+    "scenario_normal_weekday.json": "7ec59a9dc012e8f13fddde9d7c22307f45c70e1054030eb6067b58be5da6dc31",
+    "scenario_peak_shaving.json": "6dd53ed3312af012112815407e24674ce3c3d6f29a418fce4acb646d695df169",
+    "scenarios_4x4.json": "05fae15eb27e2eb21b954ca9ffdfdf11699a62190b3fbef78e63999b3bffabad",
+    "topology.json": "2b48356015e61b57727668d1f4d67ad2f5a05ac9837a3d186ea8907e34313245"
+  }
+}

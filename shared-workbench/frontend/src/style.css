@@ -91,7 +91,8 @@ main { min-width: 0; max-width: 1536px; padding: 0 clamp(18px, 3vw, 46px) 38px; 
 .version { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
 .mode-dot { background: var(--focus); width: 7px; height: 7px; border-radius: 50%; }
 .mode-dot.real { background: var(--pass); }
-.import-control { flex: none; padding-bottom: 3px; }
+.import-control { display: flex; flex: none; align-items: center; gap: 7px; padding-bottom: 3px; }
+.workbench-link { display: inline-block; text-decoration: none; }
 .quiet { padding: 8px 12px; border: 1px solid var(--rule); border-radius: 4px; background: var(--panel); color: var(--ink); font-size: 13px; }
 .quiet:hover { border-color: var(--accent); color: var(--accent); }
 .state-note, .import-note { display: flex; align-items: center; gap: 12px; margin: 16px 0; padding: 10px 15px; background: var(--panel); border: 1px solid var(--rule); border-left: 3px solid var(--accent); }
