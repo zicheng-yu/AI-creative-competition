@@ -1,253 +1,98 @@
 \input{common.tex}
-\hypersetup{pdftitle={苏算绿枢 项目计划书},pdfauthor={盼盼法式小面包}}
+\hypersetup{pdftitle={SuCompute 项目计划书},pdfauthor={盼盼法式小面包}}
 \begin{document}
 \contesttitlepage
   {“三苏”创新应用赛道\\赛题 AI-JIANGSU-Q36\\异构算力智能调度与能效优化}
-  {苏算绿枢}
-  {SuCompute-Opt}
+  {SuCompute}
+  {盼盼法式小面包}
   {项目计划书}
-  {行业解决方案白皮书\\异构算力调度与能效}
-  {团队：盼盼法式小面包\\组别：创新组\quad 报名编号 REG-2026-000524\\2026 年 11 月\quad 初筛版}
+  {异构算力调度与能效的可复算策略}
+  {创新组\quad 报名编号 REG-2026-000524\\命题单位：江苏省数据集团有限公司\\2026 年 11 月}
 
 \begin{abstract}
-苏算绿枢是面向赛题 AI-JIANGSU-Q36 的调度策略引擎、离线仿真和本地边车。四场景等权、种子 313 的合成周上，SuCompute 的 SLA 为 99.83\%，有效在线利用率为 80.01\%，相对 RR-Local 的单位能耗降幅为 21.23\%。这些是 \path{python benchmarks/run_benchmark.py --seed 313 --workers 2} 的结果，不是全省已经实现的运行成绩。政府网页本次没有逐条重新打开，可访问性标为待核实。电费情景全部标为预估。
+SuCompute 在合成周上比较调度策略，并给出本地边车建议和任务凭证。种子 313、四场景等权：有效在线利用率 80.01\%，服务等级 99.83\%，相对轮询就近的单位能耗降幅 21.23\%。团队盼盼法式小面包，创新组。
 \end{abstract}
-\tableofcontents
-\newpage
 
-\section{对准赛题原文，而不是全省成绩单}
-苏算绿枢（SuCompute-Opt）给出可复算的策略对比，不代替省一体化算力监测调度平台，也不把合成周的指标写成全省已经实现的运行成绩。命题单位是江苏省数据集团有限公司。团队盼盼法式小面包，组别为创新组。
+\section{问题}
+命题原文写明：省级调度核心加 13 个市级节点，纳管 313 个在用数据中心，总算力 271.8 EFlops，并与上海、浙江、安徽互联。调度要同时处理四件事：通算、智算、超算和国产、进口芯片的统一度量；训练、微调、推理的错配与空转；PUE、能耗和绿电进入调度；长三角多主体的服务等级与故障切换。\footnote{待核实：政府网页本次未重开。审题笔记中的平台上线日和 2026-11-18 省政府文件未进入赛题原文，不作为论据。分市座数、芯片份额和各市 PUE 不在原文中，仿真分配是假设。1/5/10 ms 为设计时延。}
 
-\subsection{命题原文里的规模}
-\path{challenge_raw.json} 的命题背景写明：平台已形成“省级调度核心 + 13 个市级节点”，纳管 313 个在用数据中心，总算力规模 271.8 EFlops，面向地市开放子门户，并与上海、浙江、安徽互联，作为中国算力网江苏分平台与国家平台贯通。这几项按命题原文引用。
-
-\subsection{原文里的四件调度难事}
-\begin{itemize}
-\item 异构资源统一难：通算、智算、超算并存，国产与进口芯片混合，口径不一，匹配依赖人工经验。
-\item 供需错配与空转并存：训练、微调、推理特征不同，闲时空转和高峰排队同时存在。
-\item 绿色算力量化难：PUE、能耗和算力产出缺少统一的在线度量，绿电与能耗双控进不了调度。
-\item 跨域协同复杂：长三角多主体的交易、计费、SLA 和故障切换缺少智能决策。
-\end{itemize}
-
-分市机房座数、分市 EFlops、芯片份额和各市 PUE 都不在命题原文里。仓库里的小时环境按 GDP 份额分配，五分钟引擎按另一组座数向量分配，两套都是假设。城域 1 ms、省内 5 ms、长三角 10 ms 是仿真设计时延，\path{docs/DATA_CONSTRUCTION.md} 写明不是实测 RTT。
-
-\section{白皮书口径：能引用的数，和必须标预估的数}
-行业方案只使用仓库已经写明出处的公开数。表~\ref{tab:sources} 抄自 \path{docs/DATA_CONSTRUCTION.md} 与 \path{configs/energy.yaml}。本次写计划书时没有逐条重新打开政府网页，页面是否仍可访问，标为待核实。
-
-\begin{table}[ht]
-\centering
-\caption{仓库中的公开数与其性质。网页可访问性待核实。}
-\label{tab:sources}
-\small
-\begin{tabularx}{\textwidth}{lXX}
-\toprule
-量 & 仓库中的取值 & 性质 \\
-\midrule
-313 座、271.8 EFlops、1+13、沪浙皖 & 命题原文 & 按 \path{challenge_raw} 引用 \\
-13 市 GDP & 2024 年 1--12 月分市表，13 市合计 137291.46 亿元 & 只作小时环境的比例，不是算力普查 \\
-2025-08 110 kV 两部制 & 谷 0.3485 / 平 0.6263 / 峰 0.9682 / 尖 1.1221 元/kWh & 小时环境使用。五分钟引擎的电价是另一条演示曲线 \\
-2022 年电力碳因子 & 华东 0.5617；苏 0.5978；沪 0.5849；浙 0.5153；皖 0.6782 & 年平均因子。五分钟引擎用演示值 0.55，不写成 0.5617 \\
-盐城、南通、连云港风光装机 & 时点分别为 2024-08、2024 年末、2025-05 & 资源禀赋，不是机房绿电合同 \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-小时环境把江苏 271.8 EFlops 按 GDP 份额分到 13 市，尾差补在宿迁；三个枢纽各设 12 EFlops。五分钟引擎把 313 座按代码中的座数向量拆开，再乘 271.8/313，枢纽另设上海 26、浙江 20、芜湖 18 EFlops，全网装机 335.8 EFlops。\path{MODEL.md} 写明枢纽容量是假设。
-
-\path{challenge_info.md} 审题笔记中的“2025 年 11 月平台上线”和“2026 年 11 月 18 日省政府办公厅文件”没有收进 \path{challenge_raw}。这两条标为待核实，不作为本计划书的论据。方案目标里的利用率 +15\% 至 +22\%、能耗降低 12\% 至 18\% 等，是 \path{solution.md} 的设计区间，不是已验证的全省幅度。
-
-\section{代码里接通的五段}
-\path{solution.md} 初稿写过 Transformer / PatchTST。仓库里实际训练并用于五分钟评测的预报器是季节残差时间卷积（\path{backend/models.py} 的 Forecaster），不是 PatchTST，也不是 LightGBM。权重说明里的 “seasonal residual TCN” 与此一致。图~\ref{fig:arch} 只画已经接通的路径。
+\section{方案}
+五分钟引擎分四层，见图~\ref{fig:arch}。数据层是 16 个节点、6 类芯片池、5 类任务，以及电价和绿电曲线。算法层用季节残差时间卷积预报未来 24 小时的到达和绿电比例（1706 个参数），用 24 期滚动整数规划做配额，再用约束策略网络在可行域内打分（1466 个参数，违约率目标 0.5\%）。服务层写出配额、故障编排和带校验和的任务凭证。交互层回放十三个设区市及上海、浙江、芜湖，并接受中文指令。
 
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}[node distance=0.42cm]
-  \node[wide] (topo) {16 个节点、6 类芯片池、5 类任务；设计时延 1/5/10 ms};
-  \node[wide, below=of topo] (fc) {季节残差 TCN：输入 [16,4,24]，输出未来 24 小时到达与绿电比例，1706 个参数};
-  \node[wide, below=of fc] (milp) {每小时 scipy.optimize.milp，24 期滚动配额；国产有效份额下限 30\%};
-  \node[wide, below=of milp] (ppo) {PPO 对候选节点打分，拉格朗日约束指向 0.5\% 违约率；1466 个参数，ONNX opset 17};
-  \node[wide, below=of ppo] (led) {默认定模板解释；每条任务 SHA-256 凭证。外部大模型本次未调用};
-  \draw[flow] (topo) -- (fc);
-  \draw[flow] (fc) -- (milp);
-  \draw[flow] (milp) -- (ppo);
-  \draw[flow] (ppo) -- (led);
+\begin{tikzpicture}[x=1mm,y=1mm]
+  \draw[black!40, fill=black!3] (18,71) rectangle (112,85);
+  \draw[black!40, fill=black!3] (18,49) rectangle (112,63);
+  \draw[black!40, fill=black!3] (18,27) rectangle (112,41);
+  \draw[black!40, fill=black!3] (18,5) rectangle (112,19);
+  \node[alab] at (8,78) {交互};
+  \node[alab] at (8,56) {服务};
+  \node[alab] at (8,34) {算法};
+  \node[alab] at (8,12) {数据};
+  \node[abox] at (35,78) {十三市回放\\加沪浙皖};
+  \node[abox] at (67,78) {中文指令\\权重与故障};
+  \node[abox] at (99,78) {边车建议\\与凭证};
+  \node[abox] at (35,56) {滚动配额\\国产份额 $\ge$ 30\%};
+  \node[abox] at (67,56) {可行域打分};
+  \node[abox] at (99,56) {任务凭证};
+  \node[abox] at (35,34) {季节残差卷积\\1706 参数};
+  \node[abox] at (67,34) {24 期整数规划};
+  \node[abox] at (99,34) {约束策略网络\\1466 参数};
+  \node[abox] at (35,12) {16 节点\\6 类芯片};
+  \node[abox] at (67,12) {合成周\\种子 313};
+  \node[abox] at (99,12) {电价与绿电};
+  \node[sbox] at (136,12) {小时级仿真\\单独成表};
+  \node[sbox] at (136,78) {叙述模板};
+  \draw[aflow] (67,19) -- (67,27);
+  \draw[aflow] (67,41) -- (67,49);
+  \draw[aflow] (67,63) -- (67,71);
+  \draw[aside] (124,12) -- (112,12);
+  \draw[aside] (124,78) -- (112,78);
+  \node[font=\scriptsize, anchor=west] at (18,0) {实线：主数据流。虚线框：旁路。};
 \end{tikzpicture}
-\caption{五分钟引擎的接通顺序。小时级 Gym 只比较 random 与 least-loaded greedy，不并入这张图的百分比。}
+\caption{SuCompute 分层架构。小时级仿真使用另一套功率系数，不与五分钟结果相减。}
 \label{fig:arch}
 \end{figure}
 
-拓扑为 16 个节点、6 类芯片池、5 类任务。推理受 1/5/10 ms 设计时延圈约束，江苏城市之间默认 5 ms，跨到沪浙皖为 10 ms。预报器是共享卷积，三层 Conv1d，参数 1706 个。宏观 MILP 每小时做 24 期滚动配额，目标含电费、碳、网络、利用率和拒单。先取 LP 对偶，再解整数规划。微观 Safe-RL 在可行域内取最大分。解释默认读亲和度、影子价格、PUE、绿电和动作概率。可选的大模型只改写叙述。
+五分钟引擎峰值取 10{,}000 kW/EF，空闲系数 0.32，保活 15 分钟，碳因子用演示值 0.55 kgCO\textsubscript{2}/kWh。小时环境取 1{,}000 kW/EFlops 和分省年平均因子。全网装机在五分钟模型中为 335.8 EFlops，其中上海 26、浙江 20、芜湖 18 为假设容量。绿电抵扣碳排，不抵扣电费。本次叙述走模板，外部模型未调用。
 
-小时级 Gym（\path{js_computesim}）的 \path{planning_snapshot()} 把生成器剩余到达原样交给外部读取方。这条路径不是五分钟引擎里的卷积预报。两套结果不能拼进同一张百分比表。
+验证集上，到达的平均绝对误差为 2.086、百分比误差 43.96\%（非零样本 45{,}179）；绿电比例的相应值为 0.0204 和 12.54\%（50{,}688）。预报训练 18 个轮次。百分比误差说明移峰仍受日周期残差限制。
 
-\section{预报很粗，安全约束写在训练目标里}
-预报训练集种子 41--43，验证种子 72，评测种子 313。训练从独立的 120 小时轨迹取窗，预报只能看到切点之前 48 小时。MAPE 去掉真实值为 0 的点。表~\ref{tab:mape} 是 \path{weights/forecast_metrics.json} 的验证集。本次 \path{verify_weights.py} 只检查权重能否前向，没有重训。
-
-\begin{table}[ht]
-\centering
-\caption{验证集。训练 18 个 epoch。到达 MAPE 约 44\%，逐小时作业数仍然粗糙。}
-\label{tab:mape}
-\begin{tabular}{lrrr}
-\toprule
-验证变量 & MAE & MAPE & 非零样本 \\
-\midrule
-到达（作业/小时） & 2.086 & 43.96\% & 45{,}179 \\
-绿电占峰值功率 & 0.0204 & 12.54\% & 50{,}688 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-PPO 日志 \path{weights/ppo_training.csv} 有 160 次更新。违约率目标是 0.5\%。训练初期有探索性时延违约，末段乘子多次回到 0。这是训练曲线，不是四场景周 SLA。周 SLA 以评测报告为准。脚本画出的 \path{training.png} 不嵌入本文，读数以该 CSV 和佐证材料中的表为准。
-
-功耗在两套模型里不是同一个系数。五分钟引擎取峰值 10{,}000 kW/EF，空闲系数 0.32，保活 15 分钟，碳核算乘演示值 0.55 kgCO\textsubscript{2}/kWh。小时环境取 1{,}000 kW/EFlops，并使用分省年平均因子。绝对电量、电费和吨碳都随系数线性放大。同一系数下比策略才有意义，不能换成全省能源平衡。因此后文所有“降低百分之几”都是合成负载上的相对差。外推到江苏省电费时单独列表，并写成预估。
-
-\section{沙盘、归因和碳足迹凭证}
-数字孪生沙盘读取 \path{frontend_demo_data} 的静态回放，页面在 \path{shared-workbench/frontend/sucompute.html}。地图是 13 个设区市加上海、浙江、芜湖。它回放仿真，不是省平台的实时监视画面。本文不附该页面截图。
-
-本地边车是无状态的 FastAPI：\path{python -m uvicorn server:app}。指令解析是确定性文法。仓库预设四句：迎峰度夏把碳排权重调到 0.6、注入南京 30\% 算力故障、优先绿电消纳、解释调度。带百分数的“宕机”按容量损失解析，不带百分数才是整节点离线。调权重或注入故障后按同一输入重算。
-
-账本来自 PR \#19。每条任务记录有效 EF$\cdot$h、分摊电费、碳排、相对“同等电量全购电网”的减排、SLA，以及去掉展示字段后的 SHA-256。绿电只抵扣碳排，不抵扣电费。电价用 \path{world.py} 的 \path{weather()} 演示曲线，碳因子用 \path{GRID=0.55}。代码注释写明不要把 0.55 说成公告里的 0.5617。
-
-同时设置环境变量 \path{LLM_BASE_URL} 和 \path{LLM_API_KEY} 时，才把单任务叙述交给兼容 OpenAI Chat Completions 的接口改写；超时、失败或回复丢失原凭证哈希，就退回模板。本次复现没有设置这两项，实际路径是模板。没有调用外部大模型。
-
-\section{同一合成周上的四种策略}
-表~\ref{tab:kpi} 是本次 \path{python benchmarks/run_benchmark.py --seed 313 --workers 2} 写出的四场景等权均值，保留报告原文的四舍五入。对照还包括消融，完整六行在佐证材料里。有效在线利用率的分母含 15 分钟保活。
+\section{实测}
+表~\ref{tab:kpi} 为四场景等权、种子 313 的周均值。有效在线利用率的分母含 15 分钟保活。消融、移峰次数和墙钟见佐证。
 
 \begin{table}[ht]
 \centering
-\caption{四条策略。RR-Local 是轮询并保留就近溢出；Least-Loaded 选负载最低池；Cost-First 选最低电价。三者与 SuCompute 接受同一批任务和故障。}
+\caption{同一批任务上的四条策略。}
 \label{tab:kpi}
 \footnotesize
 \setlength{\tabcolsep}{3.5pt}
 \begin{tabular}{lrrrrrr}
 \toprule
-策略 & 利用率 & SLA & kWh/EF$\cdot$h & PUE & 绿电 & kgCO\textsubscript{2}/EF$\cdot$h \\
+策略 & 利用率 & 服务等级 & kWh/EF$\cdot$h & PUE & 绿电 & 碳强度 \\
 \midrule
-RR-Local & 62.72\% & 95.72\% & 17705.0 & 1.3760 & 25.26\% & 7277.5 \\
-Least-Loaded & 60.92\% & 98.13\% & 18181.2 & 1.3497 & 25.98\% & 7401.3 \\
-Cost-First & 68.98\% & 94.97\% & 16271.5 & 1.3093 & 27.26\% & 6509.9 \\
+轮询就近 & 62.72\% & 95.72\% & 17705.0 & 1.3760 & 25.26\% & 7277.5 \\
+最短队列 & 60.92\% & 98.13\% & 18181.2 & 1.3497 & 25.98\% & 7401.3 \\
+成本优先 & 68.98\% & 94.97\% & 16271.5 & 1.3093 & 27.26\% & 6509.9 \\
 SuCompute & 80.01\% & 99.83\% & 13945.7 & 1.2957 & 35.95\% & 4911.9 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-相对 RR-Local，报告印出的利用率差是 +27.57\%，SLA 差 +4.12 个百分点，单位能耗 +21.23\%，碳强度 +32.51\%。这些是合成周结果。脚本把它们和方案目标的下限作了比较，并印出“达到”；那只说明仿真内越过了脚本里的下限，不是江苏省已验收的运行指标。
+相对轮询就近：利用率 +27.57\%，服务等级 +4.12 个百分点，单位能耗 +21.23\%，碳强度 +32.51\%，PUE 降低 0.0803。脚本对设计下限印出“达到”，范围是这一合成周。本机滚动规划最长 0.0957 秒，故障编排最长 0.0629 秒。
 
-\section{竞品对照停在公开材料}
-表~\ref{tab:comp} 归纳 \path{research.md} 对公开产品定位的整理。本队没有做联合评测，没有这些产品的采购记录或客户名单，也不引用市占率。
+\section{创新与应用}
+同一合成周里同时优化时延圈、电价、碳、绿电和故障，并用整数规划与约束策略网络消融。每条任务有校验和凭证。边车读指标、出建议，执行仍留在现有队列。阶段 0 已可断网复跑；只读影子、人工确认和闭环是后续计划，字段对接标为待联调。
 
-\begin{table}[ht]
-\centering
-\caption{公开定位。右列是和本赛题并排时，公开材料里看不到的部分。}
-\label{tab:comp}
-\small
-\begin{tabularx}{\textwidth}{lXX}
-\toprule
-产品 & 公开定位 & 并排时看不到的部分 \\
-\midrule
-Run:ai & GPU 切分与集群配额 & 省级多品牌芯片当量、绿电和跨省碳凭证 \\
-Cast AI & 多云成本与竞价实例 & 国产智算卡、城域时延圈、PUE 与绿电移峰 \\
-阿里云灵骏 & 自有云万卡与故障恢复 & 厂商中立的省级跨运营主体调度 \\
-华为云昇腾 & 昇腾栈、Volcano、液冷 & 全省多厂商混部的同一套配额 \\
-无问芯穹 & 多品牌芯片上的模型服务 & 分时电价、苏北绿电和跨主体结算 \\
-国家超算互联网 & 全国算力门户与供需对接 & 细到任务槽的多目标调度引擎 \\
-\bottomrule
-\end{tabularx}
-\end{table}
+公开产品（Run:ai、Cast AI、阿里云灵骏、华为云昇腾、无问芯穹、国家超算互联网）的材料未覆盖省级多厂商配额与绿电移峰的同一张表。本队未做联合评测，也不引用市占率。SuCompute 尚未接入省平台。
 
-苏算绿枢放在这一列里，只表示它的代码边界：不绑定单一芯片厂商，策略以边车形式输出，仿真里同时看时延、电价、碳和故障。它还没有接到省平台，因此不是上述产品的替代部署。
+没有签约和报价。\footnote{预估年电费变化 $=E\times 0.6263$ 元/kWh $\times 21.23\%$。$E$ 取 0.5 / 2.0 / 8.0 亿 kWh 时，约为 665 / 2{,}659 / 10{,}637 万元。0.6263 为小时环境引用的平段电价。精确降幅 21.232856\%。未乘碳价。}就业、客户和财政贡献未估。
 
-\path{research.md} 还列出 HAMi、Volcano、Koordinator、Kueue 作为将来集群侧执行器的候选。本仓库没有集成它们。写进部署方案时只作为后续选项，不作为已接入组件。
-
-\section{经济效益是假设情景}
-仓库没有江苏省数据中心用电统计，也没有可调度电量占比。电费不能从仿真周的绝对 kWh 直接除出来：五分钟引擎的 10{,}000 kW/EF 会把电量线性放大。下面只做一件事：把本次相对 RR-Local 的单位能耗降幅，乘到三档假设年用电上。
-
-预估年电费变化 \(= E \times 0.6263\) 元/kWh \(\times 21.23\%\)。21.23\% 是本次报告相对 RR-Local 印出的单位能耗降幅。0.6263 是小时环境引用的 2025 年 8 月 110 kV 两部制平段电价，不是五分钟引擎的演示电价，也不是企业到户账单。三档 \(E\) 都是假设，不是统计公报。
-
-\begin{table}[ht]
-\centering
-\caption{预估年电费变化。精确降幅是 21.232856\%（13945.7273 / 17705.0057）。金额表用报告印出的 21.23\%。未使用碳价，也没有把碳强度降幅再乘一次电费。}
-\label{tab:econ}
-\begin{tabular}{lrr}
-\toprule
-情景 & 假设年用电 \(E\) & 预估年电费变化（万元） \\
-\midrule
-低 & 0.5 亿 kWh & 665 \\
-基准 & 2.0 亿 kWh & 2{,}659 \\
-高 & 8.0 亿 kWh & 10{,}637 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-社会侧只复述仿真内已经分开计量的两项。四场景等权 SLA：SuCompute 99.83\%，RR-Local 95.72\%。绿电占设施用电：35.95\% 对 25.26\%。后者是沙盘里就地消纳的份额，不是全省可再生能源利用率，也不能换成弃风弃光的实物电量。就业人数、签约客户和财政贡献，仓库里没有，这里不估。
-
-上表全部是预估。若试点测到真实可调度电量和到户电价，应替换 \(E\) 和 0.6263，而不是沿用这三档。
-
-\section{商业设想与还没有发生的对接}
-没有签约客户，也没有报价。若命题方组织试点，费用按部署联调、接口适配和年度运维分列，价格另行核定。本计划书不写单价，避免把设想写成合同。
-
-\begin{itemize}
-\item 阶段 0，仓库内已有：合成仿真、权重、静态回放、本机无状态 API。评测可以断网重跑。
-\item 阶段 1，计划：只读影子。边车订阅平台已经采集的负载、电价和健康度，只写建议，不发调度指令。
-\item 阶段 2，计划：建议单由值班员确认后，才进入现有工单或集群队列。
-\item 阶段 3，计划：在书面 SLA 约束内闭环。进入这一阶段之前，需要生产日志上的对照，而不是再引用本仿真。
-\end{itemize}
-
-阶段 1 依赖省平台或地市子门户提供只读指标。仓库没有这份接口说明书，字段映射写在佐证材料的部署章，未对接的部分标为待联调。商业上可复用的是策略计算和凭证，不是把 271.8 EFlops 重新包一层售卖。算力商品、绿证交易和跨省结算规则都不在本仓库的实现范围内。
-
-\section{分工、路线和会失真的地方}
-仓库没有编制和职务表。表~\ref{tab:wp} 按已合并的工作包划分，不表示对外头衔。
-
-\begin{table}[ht]
-\centering
-\caption{工作包与仓库位置。}
-\label{tab:wp}
-\small
-\begin{tabularx}{\textwidth}{lXl}
-\toprule
-工作包 & 仓库中的位置 & 状态 \\
-\midrule
-小时级 Gym 与数据口径 & \path{js_computesim/}、\path{docs/DATA_CONSTRUCTION.md} & 可复跑 random / greedy \\
-五分钟引擎、卷积、MILP、PPO & \path{backend/}、\path{weights/}、\path{benchmarks/} & 权重已校验，周评测已复跑 \\
-Copilot 与碳足迹账本 & \path{backend/copilot.py}，PR \#19 & 默认模板；外部模型本次未调用 \\
-1+13 回放沙盘 & \path{frontend_demo_data/}、\path{sucompute.html} & 静态回放，不是省平台实况 \\
-计划书与佐证 & \path{deliverables/}，YOU-284 & 本文件 \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-赛程以仓库 README 为准：初赛材料在 2026-11-30 截止，12 月 1--3 日线上评审，12 月中旬路演。技术路线不把这些日期写成系统上线日。阶段 1 以后的试点没有开始日期，因为还没有联调环境。
-
-\begin{itemize}
-\item 合成轨迹不是江苏生产日志。到达验证 MAPE 约 44\%，移峰质量受此限制。
-\item 两套功率系数不能相加，绝对电量和电费不能外推全省。
-\item 墙钟随机器变化。本次滚动规划最长 0.0957 秒，SuCompute 故障编排最长 0.0629 秒。仓库冻结报告中的 0.0891 秒和 0.0803 秒是另一台机器的记录，本次没有复现这两个原数。
-\item 本次逐小时 CSV 的 SHA-256 与冻结包不同，差异在苏算绿枢小时电量的数值噪声，周报表的四舍五入仍一致。详见佐证。
-\item 未接入省平台，没有试点合同。Copilot 的外接大模型本次没有运行。
-\end{itemize}
-
-\section{材料索引}
-阅读顺序按“命题原文、口径、代码、本次复现”排列。政府网页的可访问性本次未复核，标为待核实。
-
-\begin{enumerate}
-\item \path{challenge_raw.json}：313 座、271.8 EFlops、1+13 与长三角互联的命题原文。
-\item \path{docs/DATA_CONSTRUCTION.md}、\path{configs/energy.yaml}：GDP、电价、碳因子、风光装机和全部假设旋钮。
-\item \path{MODEL.md}、\path{API_CONTRACT.md}：五分钟引擎的指标分母、预报、账本和边车接口。
-\item \path{weights/manifest.json}、\path{weights/forecast_metrics.json}、本次 \path{verify_weights.txt}。
-\item \path{deliverables/repro/results_report.md} 与 \path{results_summary.json}：本次 seed 313 复现。
-\item \path{deliverables/repro/baseline_seed313.md}：小时环境的 random 与 greedy，单独成表。
-\item \path{research.md}：竞品与开源栈的公开材料归纳。
-\item 佐证材料 PDF：评测全文、权重和边车部署步骤。
-\end{enumerate}
-
-答辩 PPT 和演示视频不在本文件范围内。百度网盘链接尚未填写。
+团队为盼盼法式小面包。初赛材料截止 2026-11-30，12 月 1--3 日评审，12 月中旬路演。
 
 \begin{thebibliography}{9}
-\bibitem{raw} \path{02-sansu-computing-dispatch/challenge_raw.json} 与 \path{challenge_info.md}。
-\bibitem{data} \path{docs/DATA_CONSTRUCTION.md} 与 \path{configs/energy.yaml}。网页可访问性待核实。
-\bibitem{model} \path{MODEL.md} 与 \path{API_CONTRACT.md}。
-\bibitem{repro} \path{deliverables/repro/results_report.md}。命令 \path{python benchmarks/run_benchmark.py --seed 313 --workers 2}。
-\bibitem{fc} \path{weights/forecast_metrics.json}。命令 \path{python weights/verify_weights.py} 只做前向校验。
-\bibitem{base} \path{deliverables/repro/baseline_seed313.md}。命令 \path{python scripts/run_baselines.py --seed 313}。
+\bibitem{raw} 赛题 AI-JIANGSU-Q36 原文。313 座与 271.8 EFlops 按原文引用。
+\bibitem{repro} 种子 313 四场景周评测。明细表见佐证。
 \end{thebibliography}
 \end{document}

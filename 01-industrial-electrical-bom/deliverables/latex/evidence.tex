@@ -1,147 +1,112 @@
 \input{common.tex}
-\hypersetup{pdftitle={图枢电析 数据集与评测佐证},pdfauthor={盼盼法式小面包}}
+\hypersetup{pdftitle={ElectronicBOM 佐证材料},pdfauthor={盼盼法式小面包}}
 \begin{document}
 \contesttitlepage
   {“人工智能+”工业制造赛道\\赛题 AI-MFG-Q21}
-  {图枢电析}
-  {ElectroGraph BOM}
-  {数据集与评测佐证}
-  {ElectroBench-JS v1.0.0\\冻结数据、离线评测与复现说明}
-  {团队：盼盼法式小面包\\2026 年 11 月\\冻结评测版本 dc21c96902e6}
+  {ElectronicBOM}
+  {盼盼法式小面包}
+  {佐证材料}
+  {ElectroBench-JS v1.0.0\\冻结评测}
+  {2026 年 11 月\\评测提交 dc21c96902e6}
 
 \begin{abstract}
-本文给出 ElectroBench-JS v1.0.0 的样本划分、评分口径和冻结评测数字。主验收集 11 张，综合解析 97.88\%，严格 BOM 明细完整率 96.92\%。全集 14 张，综合解析 93.49\%，严格明细 89.90\%。符号实例 345 个，符号类别 40/40。人工界面截图不收入本文；级差样图由 1 条红灯到 0 条，引自合规报告中的补丁复检，而不是截图说明。
+主集 11 张：综合解析 97.88\%，严格明细 96.92\%，四类红灯 5 次真阳性、0 误报、0 漏报。全集 14 张综合解析 93.49\%。符号实例 345，类别 40/40。
 \end{abstract}
-\tableofcontents
-\newpage
 
-\section{数据集与样本划分}
-合成样本由仓库内生成器形成，以 CC BY 4.0 发布。外部公开数据集保持各自许可证，不进入本仓库。评估以冻结数据清单为准。规范版本与生成器版本均为 1.0.0。固定种子 262。几何不随种子变化，种子写入元数据。
+\section{数据}
+合成样例以 CC BY 4.0 发布。规范版本与生成器版本均为 1.0.0，种子 262。
 
 \begin{table}[ht]
 \centering
-\caption{冻结卷分层。主集为一次、二次与缺陷，共 11 张。退化 3 张只进入全集和单列对照。}
-\label{tab:split}
+\caption{分层。主集为一次、二次与缺陷。}
 \small
 \begin{tabularx}{\textwidth}{lrlX}
 \toprule
-子集 & 数量 & 图纸类型 & 参与口径 \\
+子集 & 数量 & 图纸 & 口径 \\
 \midrule
 一次系统 & 4 & GGD、MNS、GCS、KYN28 & 主集 / 全集 \\
-二次控制 & 3 & 启停自锁、正反转互锁、双电源切换 & 主集 / 全集 \\
+二次控制 & 3 & 启停、正反转、双电源 & 主集 / 全集 \\
 缺陷 & 4 & 级差、载流量、互锁、电机保护 & 主集 / 全集 \\
-退化 & 3 & 模糊、倾斜、简写 & 全集 / 单列 \\
+退化 & 3 & 模糊、倾斜、简写 & 全集 \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-可用的 DXF、PDF、PNG 与 \path{annotations.json} 同属图纸编号。BOM 明细、汇总、COCO 与 YOLO 标签来自同一份标注。模糊和倾斜样本只有光栅和标注。冻结卷覆盖 40 类符号，记录像素框、毫米框、端口、网表、BOM 锚点和缺陷。二次图可附逻辑表达式及真值表。
+缺陷真值：级差倒挂 1，载流量不足 1，电机保护缺配 1，二次互锁缺失 2。一次、二次和退化图的真值缺陷为 0。每张图的矢量、PDF、光栅和标注同源；模糊与倾斜只有光栅和标注。
 
-缺陷规则命中条数为：\path{selectivity_inversion} 1，\path{ampacity_insufficient} 1，\path{motor_protection_missing} 1，\path{interlock_missing} 2。一次图、二次图和退化图的真值缺陷为 0。校验命令是 \path{python -m electrobench validate samples}。清单记录样本文件与 SHA-256。评测前评分器核对标注哈希。
+综合解析 $=0.40\times$ 符号 F1 $+0.35\times$ 规格语义 $+0.25\times$ 无向边 F1，门槛 93\%。严格明细门槛 95\%。
 
-\section{验收口径与数据隔离}
-驱动把单张原始图纸写入中性文件名。推理只读取该图以及公开字典和规则资料。评分器在推理之后单独匹配预测与真值。综合指标的分母包含漏检器件。所有通道共用同一评分器。
-
-综合解析为 \(0.40\times\) 符号检测 F1 \(+0.35\times\) 规格语义准确率 \(+0.25\times\) 无向边 F1，硬门槛不低于 93\%。严格 BOM 完整率逐行匹配真值，严格规格与数量均需一致，硬门槛不低于 95\%。另报图纸可见字段汇总，以及含目录号的扩展诊断。合规红灯按规则标识和排序后的实例标识核对真阳性、假阳性和假阴性。耗时分别记录解析、连线与合规，并受机器影响。
-
-主集 11 张包含一次 4、二次 3、缺陷 4。完整系统在主集自动使用 DXF。全集另含三张退化图。
-
-\section{主集与全集结果}
-表~\ref{tab:channels} 与计划书中的通道表相同，并补上报告里的有向边和符号 F1 注记。数字来自 \path{benchmark_e2e/results/eval_report.md}。
-
+\section{主结果}
 \begin{table}[ht]
 \centering
-\caption{通道对比。连边列为无向边 F1。完整系统主集有向边 F1 为 90.66\%，全集符号 F1 为 98.09\%。目录号扩展诊断完整率为 13.88\%。}
-\label{tab:channels}
+\caption{通道对比。连边为无向边 F1。全集耗时原记录空缺。}
+\label{tab:ch}
 \footnotesize
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{lrrrrrr}
 \toprule
-评测输入 & 图数 & 综合 & 连边 F1 & 严格明细 & 可见汇总 & 秒/图 \\
+输入 & 图数 & 综合 & 连边 F1 & 严格明细 & 可见汇总 & 秒/张 \\
 \midrule
-完整系统（DXF） & 11 & 97.88\% & 95.83\% & 96.92\% & 96.65\% & 0.070 \\
+完整系统，矢量 & 11 & 97.88\% & 95.83\% & 96.92\% & 96.65\% & 0.070 \\
 纯 PDF & 11 & 77.32\% & 62.14\% & 92.95\% & 92.34\% & 4.812 \\
 全光栅 & 11 & 78.45\% & 60.89\% & 90.31\% & 90.91\% & 4.662 \\
-完整系统（全集） & 14 & 93.49\% & 91.65\% & 89.90\% & 89.47\% & --- \\
+完整系统，全集 & 14 & 93.49\% & 91.65\% & 89.90\% & 89.47\% & --- \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-报告同时给出主集分层：一次 4 张综合 98.48\%，二次 3 张综合 97.31\%，缺陷 4 张综合 97.88\%。退化 3 张在完整系统路径上综合 75.84\%。两次完整运行的非耗时评测载荷规范化为 UTF-8 JSON 后逐字节一致，SHA-256 为 \path{0e95158cddab20e7c7b5c8d6ec8bdfc35799d6eb30899e7bc35d1abd46766cea}。
+主集有向边 F1 为 90.66\%，全集符号 F1 为 98.09\%，含目录号的扩展诊断完整率为 13.88\%。主集分层：一次 4 张综合 98.48\%，二次 3 张 97.31\%，缺陷 4 张 97.88\%。两次非耗时评测载荷的 SHA-256 为 \path{0e95158cddab20e7c7b5c8d6ec8bdfc35799d6eb30899e7bc35d1abd46766cea}。
 
 \begin{table}[ht]
 \centering
-\caption{主集四类红灯。Precision 与 Recall 均为 100\%。7 张一次图与二次图未产生红灯误报。该结果只覆盖冻结样本。}
-\label{tab:red}
+\caption{主集四类红灯。7 张标准图误报为 0。}
 \begin{tabular}{lrrr}
 \toprule
-缺陷类别 & TP & FP & FN \\
+类别 & TP & FP & FN \\
 \midrule
 载流量不足 & 1 & 0 & 0 \\
 二次互锁缺失 & 2 & 0 & 0 \\
 电机保护缺配 & 1 & 0 & 0 \\
-断路器级差倒挂 & 1 & 0 & 0 \\
+级差倒挂 & 1 & 0 & 0 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-主集完整系统耗时：解析均值 0.044 秒（P50 0.039，P95 0.077），拓扑 0.022 秒，合规 0.004 秒，合计 0.070 秒（P50 0.066，P95 0.106）。全光栅合计均值 4.662 秒，纯 PDF 合计均值 4.812 秒。耗时是本机单进程顺序测量，复现时与数值指标分开比较。
+主集完整系统耗时：解析均值 0.044 秒，拓扑 0.022 秒，合规 0.004 秒，合计 0.070 秒（P50 0.066，P95 0.106）。全光栅合计 4.662 秒，纯 PDF 合计 4.812 秒。
 
 \section{基线与消融}
-各方案共用评分器。B3 等待真实纯多模态预测，当前保留缺项，标为待实测。
-
 \begin{table}[ht]
 \centering
-\caption{主集基线。连边列为无向边 F1。B1 含 OCR 和文本明细抽取，器件定位和拓扑项为 0。}
-\label{tab:base}
+\caption{主集基线。连边为无向边 F1。纯多模态通道待实测。}
 \begin{tabular}{lrrrr}
 \toprule
 方案 & 图数 & 综合 & 连边 F1 & 严格明细 \\
 \midrule
 完整系统 & 11 & 97.88\% & 95.83\% & 96.92\% \\
-OCR 正则 B1 & 11 & 0.00\% & 0.00\% & 60.35\% \\
-纯光栅 B2 & 11 & 75.23\% & 48.02\% & 90.31\% \\
-纯 VLM B3 & 0 & 待实测 & 待实测 & 待实测 \\
-朴素连线 A2 & 11 & 89.95\% & 64.13\% & 96.92\% \\
-关闭合规模块 A3 & 11 & 97.88\% & 95.83\% & 96.92\% \\
+OCR 正则 & 11 & 0.00\% & 0.00\% & 60.35\% \\
+纯光栅 & 11 & 75.23\% & 48.02\% & 90.31\% \\
+纯多模态 & 0 & 待实测 & 待实测 & 待实测 \\
+朴素连线 & 11 & 89.95\% & 64.13\% & 96.92\% \\
+关闭合规 & 11 & 97.88\% & 95.83\% & 96.92\% \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-冻结消融表中，完整拓扑相对朴素连线（\path{no_topology}）使无向边 F1 提高 31.69 个百分点，综合提高 7.92 个百分点，红灯召回提高 20.00 个百分点，BOM 明细变化为 0。关闭合规模块后，主集解析与 BOM 指标持平，端到端红灯召回降至 0\%；模块自身的 Precision 与 Recall 在报告中留空，因为该通道不发出告警。
+完整拓扑相对朴素连线：无向边 F1 $+31.69$ 个百分点，综合 $+7.92$ 个百分点，红灯召回 $+20.00$ 个百分点。关闭合规后红灯召回为 0\%。退化 3 张综合 75.84\%；同组原始光栅 59.76\%。模糊单图在增强且追线阈值 180 时综合 45.95\%。别名图关闭条文归一后，输出规格精确由 43.48\% 降至 4.35\%，明细由 65.22\% 降至 43.48\%，综合仍为 56.79\%。
 
-全集 3 张退化图综合为 75.84\%。同一组 3 张原始 PNG 综合为 59.76\%。模糊单图 EBJS-G-BLUR-001 在增强输入且追线阈值 180 时综合为 45.95\%，符号 F1 75.00\%，规格语义 8.70\%，无向边 F1 51.61\%，仍需复核。别名图在关闭知识库归一后，输出规格精确由 43.48\% 降到 4.35\%，BOM 明细由 65.22\% 降到 43.48\%，综合仍为 56.79\%。报告写明 YOU-263 自身会解析常见别名，关闭知识库时保留其内置解析能力。
+自动归因计数：规格缺文 17，疑似文字混淆 3，符号误检 2，符号漏检 11，多余连线 13，逻辑分支或端口缺失 9，端点缺失 17，疑似断线 11，未匹配端点 1。
 
-主验收 PNG 中 0/11 张触发增强。差错计数允许同一器件在不同阶段出现。报告列出的自动归因数量为：规格缺文 17，疑似 OCR 混淆 3，符号误检 2，符号漏检 11，拓扑多余连线 13，逻辑分支或端口缺失 9，端点缺失 17，疑似光栅断线 11，未匹配端点 1。这些是自动归因线索，需回到原图复核。
+四张缺陷图施加红灯语义补丁后复检，红灯清零。级差样图 EBJS-D-SEL-001 的真值为 1 条。14 张以实例加网表为输入时，红灯结果一致。
 
-\section{合规复检记录}
-\path{compliance/eval_report.md} 与端到端报告使用同一组四类红灯：匹配 5 条，额外红灯 0，漏检 0，7 张标准图误报 0。级差样图 EBJS-D-SEL-001 的真值为 1 条 \path{selectivity_inversion}，预测红灯与之对应。该报告写明：四张缺陷图分别应用全部红灯语义补丁后复检，红灯均清零。先前佐证把“严重问题从 1 条降为 0”写在界面截图下。本文改为引用这一复检记录，不附截图。
+\section{附录}
+评测提交 \path{dc21c96902e60bc8a8d29f1eaaf4c575e0841620}，审图提交 \path{2cc0463fb71665643ead74de86a62d56caaf07e6}。审图服务默认端口 8066。身份、留存和语音出网标为待联调。
 
-全部 14 张以纯实例加网表为输入时，红灯结果一致。别名、模糊、倾斜三张退化图分别与对应的标准图在规则、分级及位号上一致。黄灯包括图纸证据不足和项目筛查阈值，不计入上述红灯 Precision。
-
-\section{版本与离线启动}
-两份提交分别对应评测代码和审图工作台。\path{git cat-file} 确认二者在本仓库中均为提交对象。
-
-\begin{itemize}
-\item 评测代码与冻结数据：\path{dc21c96902e60bc8a8d29f1eaaf4c575e0841620}。
-\item 审图工作台与本地服务：\path{2cc0463fb71665643ead74de86a62d56caaf07e6}。
-\end{itemize}
-
-在 \path{01-industrial-electrical-bom} 目录：
 \begin{quote}\small
-\path{python -m pip install -r benchmark_e2e/requirements.txt}\\
 \path{python -m electrobench validate samples}\\
 \path{python -m benchmark_e2e.run_benchmark --verify-repeat}
 \end{quote}
-B3 在配置环境后另运行 \path{python -m benchmark_e2e.vlm_baseline}，再把预测文件交给 \path{run_benchmark --vlm-predictions}。本次没有该项预测，故保持待实测。
-
-内网可预置离线 Python wheels 与 OCR 模型，核对来源、哈希及权限。审图服务默认端口 8066，由浏览器经同源代理访问。企业部署的身份、留存、审计和语音出网由现场单独验收，标为待联调。数值以逐图 CSV 和汇总 JSON 为准；若复跑只改变耗时，数值指标仍与上述 SHA-256 载荷对照。
 
 \begin{thebibliography}{9}
-\bibitem{eval} \path{benchmark_e2e/results/eval_report.md}。命令 \path{python -m benchmark_e2e.run_benchmark}。
-\bibitem{stats} \path{samples/STATS.md} 与 \path{README.md}。命令 \path{python -m electrobench validate samples}。
-\bibitem{metrics} \path{benchmark_e2e/metrics.py}，\path{composite_accuracy}。
-\bibitem{compliance} \path{compliance/eval_report.md}。
-\bibitem{schema} \path{docs/SCHEMA.md}。
+\bibitem{eval} ElectroBench-JS v1.0.0 端到端评测与合规复检。
 \end{thebibliography}
 \end{document}

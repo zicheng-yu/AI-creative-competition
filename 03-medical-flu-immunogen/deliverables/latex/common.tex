@@ -37,7 +37,14 @@
 \tikzset{
   layer/.style={draw, align=flush center, font=\small, inner sep=5pt, text width=3.35cm, minimum height=1.05cm},
   wide/.style={draw, align=flush center, font=\small, inner sep=6pt, text width=14.2cm},
-  flow/.style={-{Stealth[length=2.2mm]}, semithick}
+  flow/.style={-{Stealth[length=2.2mm]}, semithick},
+  abox/.style={draw, fill=white, align=flush center, font=\scriptsize, inner sep=2.5pt,
+    text width=27mm, minimum height=11mm},
+  sbox/.style={draw, dashed, fill=white, align=flush center, font=\scriptsize, inner sep=2.5pt,
+    text width=24mm, minimum height=11mm},
+  alab/.style={font=\scriptsize\bfseries, align=center, text width=12mm},
+  aflow/.style={-{Stealth[length=1.6mm]}, semithick},
+  aside/.style={-{Stealth[length=1.6mm]}, densely dashed, semithick}
 }
 \newcommand{\contesttitlepage}[6]{%
   \begin{titlepage}

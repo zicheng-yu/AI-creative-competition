@@ -1,98 +1,78 @@
 \input{common.tex}
-\hypersetup{pdftitle={流盾智研 项目计划书},pdfauthor={盼盼法式小面包}}
+\hypersetup{pdftitle={FluVax-Evidence 项目计划书},pdfauthor={盼盼法式小面包}}
 \begin{document}
 \contesttitlepage
   {“人工智能+”医疗健康赛道\\赛题 AI-HEALTH-Q40\\流感病毒免疫原辅助设计智能体研发和应用}
-  {流盾智研}
-  {FluVax-Evidence Agent}
+  {FluVax-Evidence}
+  {盼盼法式小面包}
   {项目计划书}
-  {软件原型与已发表公开记录的离线评测\\不设计序列，不做湿实验，不声称疗效}
-  {团队：盼盼法式小面包\\组别：创新组\quad 报名编号 REG-2026-000525\\命题单位：宿迁市楚润数据集团有限公司\\2026 年 11 月}
+  {已发表公开记录的离线证据审阅}
+  {创新组\quad 报名编号 REG-2026-000525\\命题单位：宿迁市楚润数据集团有限公司\\2026 年 11 月}
 
 \begin{abstract}
-范围只有两件事：软件原型，以及对已发表公开记录的离线评测。没有湿实验，没有序列设计，没有免疫原性、保护效果或临床疗效承诺。人工检索 SOP 未测。FluEvidenceBench-v1 在 7 道封闭题上的 Recall@5 为 1.0，NDCG@5 为 0.9285714285714286，中位耗时 18.16363 毫秒；四份文献档案与金标一致的为 4/4。这些是该题集上的测得值，不是赛题目标，也不是生物学性能。引用准确率只统计已经通过原文与版本锁的语句。
+FluVax-Evidence 把已发表公开记录收成可签批的问答和方案档案对照。7 道封闭题的 Recall@5 为 1.0，NDCG@5 为 0.9285714285714286；四份档案与金标一致；已通过原文与版本锁的语句为 59/59。人工检索 SOP 未测。团队盼盼法式小面包，创新组。
 \end{abstract}
-\tableofcontents
-\newpage
 
-\section{范围}
-本阶段交付软件原型，以及对已发表公开记录的离线评测。评测对象是题名、NCBI 定义行、RCSB 题名、IEDB 的 \path{epitope_summary} 或 UniProt FASTA 首行。系统不提供湿实验步骤，不设计核苷酸或氨基酸构建体，不输出新的免疫原性、保护效果或临床分数。
+\section{问题与范围}
+流感免疫原相关资料分散在文献、核酸库、结构库和表位库中，版本和出处需要留在每一条结论上。赛题要求软件原型完成检索、关联、既有方案比较和报告，并由专业人员复核。\footnote{范围：软件原型与公开记录离线评测。湿实验、序列设计和疗效结论不在本阶段交付内。人工检索 SOP 未测；草案中的耗时与召回目标未测。}
 
-下列内容明确未入库，与 \path{data/FluEvidenceBench-v1/eval/metrics.json} 的 \path{declined} 列表一致：GISAID 序列与计数；Nextstrain 分支频率表；Bloom Lab 深度突变扫描的逃逸或适应度分数；核苷酸序列和设计的氨基酸构建体；湿实验方案；新的免疫原性、保护或临床分数；计时的人工 SOP（保持未测）。
+命题单位是宿迁市楚润数据集团有限公司。团队报名编号 REG-2026-000525。
 
-证据空白在评测里指缺等级、版本不一致或审阅未关闭。它不是实验清单，也不是待做的湿实验方案。计算分数不作为候选方案的优劣结论。\path{T4_COMPUTATIONAL} 在本快照中的计数为 0。
-
-人工流程基线未测。没有与药剂师、实验员或临床终点的对照。方案初稿 \path{solution.md} 第 4.2 节写过一张设计目标表，其中包括人工耗时 180--360 分钟、召回不低于 90\%、引用核验准确率不低于 98\%。该表没有实测记录，本文不把它当作结果。
-
-\section{赛题与已实现的原型}
-赛题 AI-HEALTH-Q40 要求科研辅助智能体原型，完成授权资料接入、证据检索、知识关联、既有候选方案的多维证据比较和报告生成。输出须标明来源、数据版本、不确定性和待验证事项，并由专业人员复核。官方原文写明：本阶段交付软件原型与离线评测，不以实验有效性或临床效果作为承诺\cite{challenge}。
-
-仓库中的原型是离线证据审阅流程，入口在 \path{engine/service.py}。默认客户端是 \path{OfflineClient}，把已选记录的原文片段原样装成引文。\path{engine/llm_adapter.py} 留有注释 \texttt{TODO(zicheng): plug in LLM provider}。本次没有接入外部大模型。每一条输出仍经过同一套原文与版本锁核验；自然语言推理的概率不能代替这次核验。
-
-\section{技术架构}
-图~\ref{fig:arch} 按已经写进代码的四个步骤绘制。时序模块汇总的是文献与登录记录的发表日、入库日和发行日，不是分支频率，也不是突变斜率。
+\section{方案}
+图~\ref{fig:arch} 为四层结构。数据层锁定 24 条公开记录（版本 fluevidence-v1.1）：文献题名、核酸库定义行、结构库题名、表位摘要和蛋白质条目首行。算法层合并词频检索、384 维稠密向量和 1 至 3 跳图检索，再用 362 参数的重排器和 387 参数的忠实度判别器。服务层核对逐字引文与版本，并比较四份已发表方案档案。交互层给出问答、对照表和签批；签批前报告保持草稿。默认把选中记录的原文装成引文。外部大模型本次未接入。
 
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}[node distance=0.42cm]
-  \node[wide] (snap) {已批准快照：24 条公开记录，版本锁与 SHA-256};
-  \node[wide, below=of snap] (ret) {BM25、384 维本地稠密向量、NetworkX 1--3 跳；RRF 后再由重排器给相关性概率};
-  \node[wide, below=of ret] (audit) {UncertaintyAuditAgent：原文逐字与版本锁；NLI 只作附加信号};
-  \node[wide, below=of audit] (cmp) {DossierComparisonAgent：来源覆盖、版本一致、注释中的公开 ID 交叉、T1--T4 与空白};
-  \node[wide, below=of cmp] (hitl) {ReviewStore：专家采纳或标疑，签批前保持草稿};
-  \draw[flow] (snap) -- (ret);
-  \draw[flow] (ret) -- (audit);
-  \draw[flow] (audit) -- (cmp);
-  \draw[flow] (cmp) -- (hitl);
+\begin{tikzpicture}[x=1mm,y=1mm]
+  \draw[black!40, fill=black!3] (18,71) rectangle (112,85);
+  \draw[black!40, fill=black!3] (18,49) rectangle (112,63);
+  \draw[black!40, fill=black!3] (18,27) rectangle (112,41);
+  \draw[black!40, fill=black!3] (18,5) rectangle (112,19);
+  \node[alab] at (8,78) {交互};
+  \node[alab] at (8,56) {服务};
+  \node[alab] at (8,34) {算法};
+  \node[alab] at (8,12) {数据};
+  \node[abox] at (35,78) {循证问答};
+  \node[abox] at (67,78) {四份档案对照};
+  \node[abox] at (99,78) {专家签批};
+  \node[abox] at (35,56) {发表与入库\\时间汇总};
+  \node[abox] at (67,56) {逐字与版本核验};
+  \node[abox] at (99,56) {来源与等级比较};
+  \node[abox] at (35,34) {词频与精确标识};
+  \node[abox] at (67,34) {稠密向量与图};
+  \node[abox] at (99,34) {重排与忠实度};
+  \node[abox] at (35,12) {24 条公开记录};
+  \node[abox] at (67,12) {版本锁};
+  \node[abox] at (99,12) {四份文献档案};
+  \node[sbox] at (136,34) {离线原文组装};
+  \node[sbox] at (136,56) {疗效语句检查};
+  \draw[aflow] (67,19) -- (67,27);
+  \draw[aflow] (67,41) -- (67,49);
+  \draw[aflow] (67,63) -- (67,71);
+  \draw[aside] (124,34) -- (112,34);
+  \draw[aside] (124,56) -- (112,56);
+  \node[font=\scriptsize, anchor=west] at (18,0) {实线：主数据流。虚线框：旁路。};
 \end{tikzpicture}
-\caption{流盾智研的离线审阅数据流。旁边还有 MetadataTimelineAgent，只对元数据做月或季汇总。不设计序列，不调用湿实验，不生成疗效语句。}
+\caption{FluVax-Evidence 分层架构。}
 \label{fig:arch}
 \end{figure}
 
-检索三路为 BM25、384 维本地稠密余弦、以及 Document、Topic、Evidence、Snapshot 四类节点上的 1--3 跳。精确引用标识优先。重排器与 NLI 审计器共用 12 项文本特征，单隐层 24 单元。重排器 362 个参数，NLI 审计器 387 个参数。二者在合成通用文本上训练，领域词表按划分隔离，训练不读取这份流感快照\cite{model}。
+证据等级按公开记录的类型标注：结构与表位实验登录 6 条，核酸库元数据 2 条，文献与审校蛋白条目 16 条，计算预测 0 条。标识核验日为 2026-11-28。\footnote{待核实：本次未重新请求核酸库、结构库、表位库和蛋白质库接口。}
 
-图谱不是方案初稿中的“毒株--突变--表位--证据”全量生物网络。代码里的 \path{ProvenanceGraph} 连接文档、主题、证据和快照。方案初稿中的 Koel 位点、糖基化扫描和五维雷达分数没有作为本快照的计算字段交付。
+重排器在合成测试集上“相关”类 F1 为 0，宏平均 F1 为 0.42857142857142855，NDCG@3 为 0.9692441461309548，因此排序用相关性概率。忠实度判别器在合成留出集上三类宏平均 F1 为 1.0。两套权重都在通用合成句上训练。
 
-\section{数据}
-数据集说明见 \path{data/FluEvidenceBench-v1/DATASET_CARD.md}。版本为 \path{fluevidence-v1}，以及增补更正通知与两条茎部结构登录的 \path{fluevidence-v1.1}。评测文件中的 \path{dataset_version} 为 \path{fluevidence-v1.1}，\path{snapshot_id} 为 \path{fbf7ca92a9eee35217389ca65b85bd132f5bffae9a0dbdd50f38cb2a87613847}，记录数 24。标识核验日期写在数据集说明中，为 2026-11-28。来源是当时的 NCBI esummary/efetch、RCSB Data API、IEDB query API 和 UniProt FASTA 首行。本次排版没有重新请求这些接口，接口是否仍返回同一文本，标为待核实。
+\section{实测}
+任务一 7 题、取前 5 条：Recall@5 $=1.0$，NDCG@5 $=0.9285714285714286$，中位 18.16363 毫秒。第 6 题的目标记录位于第三位，该题 NDCG@5 为 0.5。任务二比较 4 份档案，16.912775 毫秒完成比较，11.485772 毫秒完成签批，采纳 23 条、标疑 1 条，4 份均与金标一致。已采纳语句与版本锁一致者为 59/59。不读原文的对照草稿 3 条全部被拒。疗效承诺探针 1 条被拒。方法学夹具另有 4 题，Recall@3 $=1.0$、NDCG@3 $=0.875$，与上述 7 题分开。逐题与逐档案表见佐证。
 
-等级映射按数据集说明：IEDB 与 RCSB 实验登录记为 \path{T1_WET_LAB_ASSAY}，表示公开实验记录，不是本队复现的实验；NCBI nuccore 元数据记为 \path{T2_SURVEILLANCE}；PubMed 题名记为 \path{T3_PEER_REVIEWED_LIT}；UniProt 已审校蛋白条目也记为 T3，表示蛋白质数据库中的审校记录，不是期刊论文，也不是新的计算结果。按说明中的表计数：T1 为 6 条，T2 为 2 条，T3 为 16 条，T4 为 0 条。
+\section{创新与应用}
+每条结论带回来源、数据版本和证据等级。档案对照同时给出来源覆盖、版本是否一致、公开标识交叉和等级分布。专家签批前，报告保持草稿。疗效承诺语句在门禁处被拒绝。
 
-任务一是证据问答，题面使用公开题名或公开 ID，答案只能引用快照原文。任务二比较四份已经发表的文献档案：参考株、共识序列文献、头部糖基化文献、保守茎部文献。比较维度是来源覆盖、版本一致性、档案注释里的公开 ID 交叉、T1--T4 分布和证据空白。
+使用方式是院所或数据机构的内网资料整理：问答和四份方案的对照表供专业人员签批。仓库没有签约、报价和到户部署，金额不估算，商务接触标为待核实。运行记录中的环境为 Windows 与 Python 3.13，评测可对本地快照断网进行。
 
-\section{两类任务的测得结果}
-数字来自 \path{data/FluEvidenceBench-v1/eval/metrics.json}，由 \path{python -m benchmarks.flu_bench} 或 \path{python -m benchmarks.evaluate_tasks} 写入。题面包含公开题名或公开 ID。这是该题集上的召回，不是赛题目标值。
-
-任务一：\(k=5\)，7 题，Recall@5 \(=1.0\)，NDCG@5 \(=0.9285714285714286\)，中位耗时 18.16363 毫秒。七题里六题 NDCG@5 为 1.0。Q6 的期望记录 \path{EV-STEM-HEADLESS} 出现在前五名的第三位，该题 NDCG@5 为 0.5。
-
-任务二：4 份档案，比较耗时 16.912775 毫秒，签批耗时 11.485772 毫秒，签批状态 \path{EXPERT_SIGNED}，采纳引文 23 条，标疑 1 条，与金标一致的档案 4/4。其中 \path{plan-consensus-literature} 与 \path{plan-conserved-stem} 的 \path{consistent} 为 false。前者的交叉标识是 PMID:26912624 与 PMID:38819164，空白包括版本不一致、档案审阅未关闭、来源审阅未关闭，以及没有 T1、没有 T2。这是注释交叉与版本状态，不是生物学性能，也不是实验清单。
-
-已通过原文与版本锁的语句为 59/59，这部分的准确率为 1.0。被拒绝的草稿另行计数，不记为正确引用。不读取快照原文的对照草稿提交 3 条，采纳 0 条，拒绝原因是超出选择 2 条、非逐字 1 条。快照中 24 条原文片段均不匹配疗效承诺模式；探针提交 1 条疗效承诺，拒绝 1 条，采纳 0 条。
-
-另一份 \path{benchmarks/software_evaluation.json} 是方法学夹具，不是上述 7 题。它记录 4 条查询的 Recall@3 为 1.0、NDCG@3 为 0.875、中位 5.77455 毫秒，以及 4 份档案、采纳引文 2 条。两套数字不能相加。人工 SOP 在两份文件里都是未测。
-
-\section{权重与它不能说明的事}
-\path{weights/manifest.json} 记录合成语料上的分类器。重排器验证集宏平均 F1 为 1.0，NDCG@3 为 1.0；测试集上 RELEVANT 的 precision、recall、F1 均为 0，宏平均 F1 为 0.42857142857142855，NDCG@3 为 0.9692441461309548。因此排序使用相关性概率，不用二分类阈值做准入。阈值 0.47619760036468506 只留在清单里。NLI 三类在合成验证集和测试集上的宏平均 F1 均为 1.0。\path{MODEL.md} 写明样例规则简单，不能据此推定真实自由文本泛化。
-
-\path{weights/verification.json} 记录重排器留出 48 行、logit 最大绝对误差 \(2.384185791015625\times 10^{-7}\)；NLI 留出 144 行、误差 \(9.5367431640625\times 10^{-7}\)。该文件中的 CPU 中位耗时是模型单样本热运行，与任务级的 TestClient 延迟不是同一个数。
-
-方案初稿写过生物医学 Cross-Encoder 或 LoRA。已发布权重不是那一套，训练语料的领域名是 archive、governance、library 等合成域，不是流感文献。
-
-\section{部署、竞品与商业}
-运行说明中的环境是 Windows、Python 3.13，以及 torch 2.7.0+cpu、numpy 2.2.4、onnx 1.18.0 等。评测可以在断网条件下对本地快照进行。可选 HTTP 服务另需 uvicorn。密钥和外部模型不在本仓库的默认路径上。
-
-\path{research.md} 把 FutureHouse、Elicit、Consensus、Scite 以及若干蛋白生成平台列为公开材料中的相邻产品。那是调研笔记，不是联合评测，没有客户名单和市占率。本原型与它们的差别，只按代码边界陈述：答案限制在锁定快照的逐字片段内，T4 计数为 0，疗效承诺探针被拒绝，签批前不是正式报告。
-
-仓库没有签约、报价和到户部署记录。不估算金额，相关商务数字标为待核实。命题单位是宿迁市楚润数据集团有限公司。方案初稿里的园区名单是设想，不是已接入客户。
-
-赛程以仓库 README 为准，初赛材料截止 2026-11-30。该日期不是上线日。答辩 PPT、演示视频和网盘链接不在本文件内。界面截图不附。
+团队为盼盼法式小面包。初赛材料截止 2026-11-30。
 
 \begin{thebibliography}{9}
-\bibitem{challenge} \path{03-medical-flu-immunogen/challenge_info.md} 与 \path{challenge_raw.json}。赛题 AI-HEALTH-Q40。
-\bibitem{card} \path{data/FluEvidenceBench-v1/DATASET_CARD.md}。
-\bibitem{metrics} \path{data/FluEvidenceBench-v1/eval/metrics.json}。命令 \path{python -m benchmarks.flu_bench}。
-\bibitem{soft} \path{benchmarks/software_evaluation.json}。命令 \path{python -m benchmarks.evaluate_tasks --report benchmarks/software_evaluation.json}。
-\bibitem{model} \path{MODEL.md}、\path{weights/manifest.json}、\path{weights/verification.json}。
-\bibitem{lock} \path{data/FluEvidenceBench-v1/release.lock.json}。参考文献中的题名以该锁文件收录的公开记录为准，不构成疗效或临床结论。
+\bibitem{challenge} 赛题 AI-HEALTH-Q40。命题单位：宿迁市楚润数据集团有限公司。
+\bibitem{bench} FluEvidenceBench-v1.1，24 条公开记录。评测数字见佐证。
 \end{thebibliography}
 \end{document}
