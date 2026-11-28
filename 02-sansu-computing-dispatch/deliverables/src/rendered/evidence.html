@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<title>苏算绿枢 佐证材料</title>
+<style>@page { size: A4; margin: 0; }
+
+* { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #163044;
+  font-family: "Noto Sans CJK SC", "Noto Sans CJK JP", "WenQuanYi Micro Hei", sans-serif;
+  font-weight: 400;
+  font-size: 10.5pt;
+  line-height: 1.55;
+}
+
+.sheet {
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  overflow: hidden;
+  page-break-after: always;
+  break-after: page;
+}
+
+.cover {
+  background: #0f2c3d;
+  color: #f4f7f8;
+  padding: 22mm 18mm 16mm 18mm;
+}
+
+.cover-bar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8mm;
+  height: 297mm;
+  background: #c45c3e;
+}
+
+.kicker {
+  font-size: 10.5pt;
+  line-height: 1.45;
+  color: #d5e0e6;
+  margin: 0 0 28mm 0;
+}
+
+.cover h1 {
+  margin: 0;
+  font-size: 42pt;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+}
+
+.cover .en {
+  margin: 4mm 0 0 0;
+  font-size: 16pt;
+  font-weight: 500;
+  color: #d7e4ea;
+}
+
+.cover h2 {
+  margin: 18mm 0 0 0;
+  font-size: 22pt;
+  font-weight: 700;
+  color: #fff;
+}
+
+.cover .sub {
+  margin: 2mm 0 0 0;
+  font-size: 11pt;
+  color: #d5e0e6;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6mm;
+  margin-top: 16mm;
+  padding-top: 6mm;
+  border-top: 0.3mm solid rgba(255,255,255,0.35);
+}
+
+.metrics b {
+  display: block;
+  font-size: 20pt;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.15;
+}
+
+.metrics span {
+  display: block;
+  margin-top: 1.5mm;
+  font-size: 9pt;
+  line-height: 1.35;
+  color: #d5e0e6;
+}
+
+.cover-foot {
+  position: absolute;
+  left: 18mm;
+  right: 18mm;
+  bottom: 16mm;
+  padding-top: 4mm;
+  border-top: 0.3mm solid rgba(255,255,255,0.35);
+  font-size: 10.5pt;
+  line-height: 1.45;
+}
+
+.cover-foot small {
+  display: block;
+  color: #d5e0e6;
+  font-size: 10pt;
+}
+
+.body {
+  padding: 13mm 15mm 16mm 15mm;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8mm;
+  padding-bottom: 2.5mm;
+  border-bottom: 0.25mm solid #d5dde3;
+  color: #5d6d78;
+  font-size: 8.5pt;
+}
+
+.body h2 {
+  margin: 7mm 0 3mm 0;
+  font-size: 18pt;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #143044;
+}
+
+.lead { margin: 0 0 3.5mm 0; }
+
+h3 {
+  margin: 3.2mm 0 0.6mm 0;
+  font-size: 11pt;
+  line-height: 1.35;
+  font-weight: 700;
+  color: #0e6e78;
+}
+
+p { margin: 0 0 2.2mm 0; }
+
+ul { margin: 0.5mm 0 2.4mm 0; padding-left: 4.5mm; }
+li { margin: 0 0 0.8mm 0; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5mm 0 1.5mm 0;
+  font-size: 8.4pt;
+  line-height: 1.35;
+}
+
+th {
+  text-align: left;
+  color: #0e6e78;
+  font-weight: 700;
+  padding: 1.1mm 1.4mm 1.1mm 0;
+  border-bottom: 0.3mm solid #c5d0d6;
+  vertical-align: bottom;
+}
+
+td {
+  padding: 1.15mm 1.4mm 1.15mm 0;
+  border-bottom: 0.2mm solid #e4eaee;
+  vertical-align: top;
+}
+
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.caption {
+  margin: -0.5mm 0 2.5mm 0;
+  color: #5d6d78;
+  font-size: 8pt;
+  line-height: 1.4;
+}
+
+.note {
+  margin: 2.5mm 0 0 0;
+  padding: 2.4mm 3.2mm 2.4mm 3.4mm;
+  background: #f6f1e8;
+  border-left: 0.9mm solid #c45c3e;
+  font-size: 9pt;
+  line-height: 1.45;
+}
+
+.stack { margin: 1mm 0 2mm 0; }
+.stack div {
+  display: grid;
+  grid-template-columns: 32mm 1fr;
+  gap: 3mm;
+  padding: 1.5mm 0;
+  border-bottom: 0.2mm solid #e4eaee;
+}
+.stack b { color: #0e6e78; font-weight: 700; }
+
+img.fig {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 1.5mm 0 1mm 0;
+}
+
+img.chart {
+  width: 100%;
+  max-height: 78mm;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.foot {
+  position: absolute;
+  left: 15mm;
+  right: 15mm;
+  bottom: 7mm;
+  display: flex;
+  justify-content: space-between;
+  color: #7b8b94;
+  font-size: 8pt;
+}
+
+code, .mono { font-family: "JetBrains Mono", "Noto Sans CJK SC", monospace; font-size: 0.92em; }
+</style>
+</head>
+<body>
+
+            <section class="sheet cover">
+              <div class="cover-bar"></div>
+              <p class="kicker">2026 江苏“人工智能+”创新应用大赛<br/>“三苏”创新应用赛道 · AI-JIANGSU-Q36</p>
+              <h1>苏算绿枢</h1>
+              <p class="en">SuCompute-Opt</p>
+              <h2>佐证材料</h2>
+              <p class="sub">仿真评测 · 权重说明 · 边车部署方案</p>
+              <div class="metrics"><div><b>seed 313</b><span>四场景 × 168 小时</span></div><div><b>0.0957 秒</b><span>本次滚动规划最长</span></div><div><b>0.0629 秒</b><span>本次故障编排最长</span></div></div>
+              <div class="cover-foot">盼盼法式小面包<small>2026 年 11 月 · 复现主机 4 vCPU · Python 3.12.3 · torch 2.7.0+cpu</small></div>
+            </section>
+        <section class="sheet body">
+          <div class="head"><span>苏算绿枢 · SuCompute-Opt</span><span>佐证材料</span></div>
+          <h2>两次命令，两套不能混用的模型</h2>
+          <p>评测在 02-sansu-computing-dispatch 目录执行。依赖见 requirements.txt。本次使用仓库内已训练权重，没有重训。</p><ul><li>python weights/verify_weights.py</li><li>python scripts/run_baselines.py --seed 313</li><li>python benchmarks/run_benchmark.py --seed 313 --workers 2 --out &lt;目录&gt;</li></ul><p>第一条检查五份权重的 SHA-256、ONNX 与 PyTorch  logits，并做一次卷积前向。第二条只跑小时级 Gym 的 random 和 least-loaded greedy。第三条才产生 RR-Local、Least-Loaded、Cost-First、SuCompute、MILP-only、Safe-RL-only。</p><table><thead><tr><th class="">沙盘</th><th class="">步长</th><th class="">功率系数</th><th class="">碳因子</th><th class="">策略</th></tr></thead><tbody><tr><td class="">js_computesim</td><td class="">1 小时</td><td class="">1,000 kW/EFlops</td><td class="">分省年平均</td><td class="">random、greedy</td></tr><tr><td class="">backend 五分钟引擎</td><td class="">5 分钟</td><td class="">10,000 kW/EF</td><td class="">演示值 0.55</td><td class="">六策略，含三条基线</td></tr></tbody></table><p>本次 verify 输出：Verified 5 hashes, 38987 bytes; max logit error 3.81e-06; forecast (24, 16, 2)。运行环境见 results_summary.json：Python 3.12.3，x86_64，scipy 1.15.2，torch 2.7.0+cpu。</p><div class="note">逐小时 CSV 的 SHA-256 本次为 034b8c871e44310fd2f1c5131979a8ad1418e328e1577e137b6c8e3b486626d7。仓库冻结 benchmarks/results_detail.csv 为 07625d6e37ac223cf1d6b936b6cc3b972d0b16c0ceb32d21cefc413e09437f7d。周报表四舍五入一致，但哈希不同，原因见后文，不以冻结哈希冒充本次复现。</div>
+          <div class="foot"><span>盼盼法式小面包 · AI-JIANGSU-Q36</span><span>02 / 12</span></div>
+        </section>
+        <section class="sheet body">
+          <div class="head"><span>苏算绿枢 · SuCompute-Opt</span><span>佐证材料</span></div>
+          <h2>六策略周指标</h2>
+          <p>四个场景等权。有效在线利用率 = 按 η 折算的有效工作量 / 含保活的已通电容量时。SLA 分母是到达任务数，拒单计入违约。国产有效份额的约束下限是 30%，表中是实际份额。</p><table><thead><tr><th class="">策略</th><th class="num">利用率</th><th class="num">SLA</th><th class="num">kWh/EF·h</th><th class="num">PUE</th><th class="num">绿电</th><th class="num">碳强度</th><th class="num">高峰 SLA</th><th class="num">国产份额</th></tr></thead><tbody><tr><td class="">RR-Local</td><td class="num">62.72%</td><td class="num">95.72%</td><td class="num">17705.0</td><td class="num">1.3760</td><td class="num">25.26%</td><td class="num">7277.5</td><td class="num">92.64%</td><td class="num">56.30%</td></tr><tr><td class="">Least-Loaded</td><td class="num">60.92%</td><td class="num">98.13%</td><td class="num">18181.2</td><td class="num">1.3497</td><td class="num">25.98%</td><td class="num">7401.3</td><td class="num">97.04%</td><td class="num">54.79%</td></tr><tr><td class="">Cost-First</td><td class="num">68.98%</td><td class="num">94.97%</td><td class="num">16271.5</td><td class="num">1.3093</td><td class="num">27.26%</td><td class="num">6509.9</td><td class="num">93.69%</td><td class="num">56.93%</td></tr><tr><td class="">SuCompute</td><td class="num">80.01%</td><td class="num">99.83%</td><td class="num">13945.7</td><td class="num">1.2957</td><td class="num">35.95%</td><td class="num">4911.9</td><td class="num">99.80%</td><td class="num">52.19%</td></tr><tr><td class="">MILP-only</td><td class="num">74.10%</td><td class="num">99.83%</td><td class="num">14298.4</td><td class="num">1.3177</td><td class="num">35.57%</td><td class="num">5066.2</td><td class="num">99.81%</td><td class="num">52.20%</td></tr><tr><td class="">Safe-RL-only</td><td class="num">80.14%</td><td class="num">99.81%</td><td class="num">13954.4</td><td class="num">1.2965</td><td class="num">35.71%</td><td class="num">4933.7</td><td class="num">99.76%</td><td class="num">51.83%</td></tr></tbody></table><p class="caption">高峰时段为每日 09–11 与 17–19 时到达的任务。碳强度单位是 kgCO₂/EF·h。</p><img class="fig chart" src="kpi_zh.png" alt="四条策略的中文图，数值来自本次 results_summary.json。横轴依次为 RR-Local、Least-Loaded、Cost-First、SuCompute。消融留在上表。"/><p class="caption">四条策略的中文图，数值来自本次 results_summary.json。横轴依次为 RR-Local、Least-Loaded、Cost-First、SuCompute。消融留在上表。</p>
+          <div class="foot"><span>盼盼法式小面包 · AI-JIANGSU-Q36</span><span>03 / 12</span></div>
+        </section>
+        <section class="sheet body">
+          <div class="head"><span>苏算绿枢 · SuCompute-Opt</span><span>佐证材料</span></div>
+          <h2>脚本直接保存的对比图</h2>
+          <p>下图是 benchmarks/run_benchmark.py 写出的 comparison.png，没有在画布上改数。英文标题是脚本原文。六组柱从左到右为 RR-Local、Least-Loaded、Cost-First、SuCompute、MILP-only、Safe-RL-only。横轴四个场景为常规工作日、绿电大发、尖峰保电、故障压测。</p><img class="fig" src="comparison.png" alt="同一脚本还写出 training.png，见权重一节。周指标的中文读数在上一页和下一页。"/><p class="caption">同一脚本还写出 training.png，见权重一节。周指标的中文读数在上一页和下一页。</p>
+          <div class="foot"><span>盼盼法式小面包 · AI-JIANGSU-Q36</span><span>04 / 12</span></div>
+        </section>
+        <section class="sheet body">
+          <div class="head"><span>苏算绿枢 · SuCompute-Opt</span><span>佐证材料</span></div>
+          <h2>相对差和脚本里的下限</h2>
+          <table><thead><tr><th class="">对照</th><th class="num">利用率</th><th class="num">SLA 百分点</th><th class="num">能耗</th><th class="num">PUE</th><th class="num">绿电</th><th class="num">碳强度</th></tr></thead><tbody><tr><td class="">RR-Local</td><td class="num">+27.57%</td><td class="num">+4.12</td><td class="num">+21.23%</td><td class="num">+0.0803</td><td class="num">+42.31%</td><td class="num">+32.51%</td></tr><tr><td class="">Least-Loaded</td><td class="num">+31.33%</td><td class="num">+1.70</td><td class="num">+23.30%</td><td class="num">+0.0540</td><td class="num">+38.36%</td><td class="num">+33.63%</td></tr><tr><td class="">Cost-First</td><td class="num">+15.99%</td><td class="num">+4.87</td><td class="num">+14.29%</td><td class="num">+0.0136</td><td class="num">+31.90%</td><td class="num">+24.55%</td></tr><tr><td class="">MILP-only</td><td class="num">+7.97%</td><td class="num">+0.01</td><td class="num">+2.47%</td><td class="num">+0.0220</td><td class="num">+1.08%</td><td class="num">+3.05%</td></tr><tr><td class="">Safe-RL-only</td><td class="num">-0.16%</td><td class="num">+0.03</td><td class="num">+0.06%</td><td class="num">+0.0007</td><td class="num">+0.67%</td><td class="num">+0.44%</td></tr></tbody></table><p class="caption">利用率、能耗、绿电、碳强度是相对变化。SLA 是百分点差。PUE 是绝对差。能耗列的正号表示苏算绿枢更低。</p><table><thead><tr><th class="">脚本中的下限</th><th class="num">本次印出值</th><th class="">脚本结论</th></tr></thead><tbody><tr><td class="">利用率 +15%～22%</td><td class="num">27.57%</td><td class="">达到</td></tr><tr><td class="">各场景 SLA ≥99.2%</td><td class="num">99.80%</td><td class="">达到</td></tr><tr><td class="">单位能耗降低 12%～18%</td><td class="num">21.23%</td><td class="">达到</td></tr><tr><td class="">有效在线利用率 ≥78%</td><td class="num">80.01%</td><td class="">达到</td></tr><tr><td class="">绿电相对提升 18%～25%</td><td class="num">42.31%</td><td class="">达到</td></tr><tr><td class="">碳强度降低 15%～22%</td><td class="num">32.51%</td><td class="">达到</td></tr><tr><td class="">加权 PUE 降低 ≥0.06</td><td class="num">0.0803</td><td class="">达到</td></tr><tr><td class="">最长故障编排 ≤3 秒</td><td class="num">0.0629 秒</td><td class="">达到</td></tr></tbody></table><p class="caption">“达到”是脚本相对 RR-Local 的下限判断，作用域是这次合成周。最后一行的秒数是本机墙钟，不是冻结报告里的 0.0891 / 0.0803。</p>
+          <div class="foot"><span>盼盼法式小面包 · AI-JIANGSU-Q36</span><span>05 / 12</span></div>
+        </section>
+        <section class="sheet body">
+          <div class="head"><span>苏算绿枢 · SuCompute-Opt</span><span>佐证材料</span></div>
+          <h2>移峰、重排和本机墙钟</h2>
+          <p>MILP-only 保留同一套滚动计划和重排，用配额贪心代替 PPO。Safe-RL-only 加载同一个 PPO，但没有预报、移峰和逐小时重排。批任务“推迟至少 2 小时”只统计预训练和微调里首次开工推迟不少于 24 个五分钟槽的作业。</p><table><thead><tr><th class="">场景</th><th class="">策略</th><th class="num">推迟≥2h</th><th class="num">重排次数</th><th class="num">高峰 SLA</th><th class="num">全装机有效利用率</th></tr></thead><tbody><tr><td class="">normal_weekday</td><td class="">SuCompute</td><td class="num">3305</td><td class="num">1354</td><td class="num">99.83%</td><td class="num">32.38%</td></tr><tr><td class="">normal_weekday</td><td class="">MILP-only</td><td class="num">3060</td><td class="num">2334</td><td class="num">99.83%</td><td class="num">32.33%</td></tr><tr><td class="">normal_weekday</td><td class="">Safe-RL-only</td><td class="num">0</td><td class="num">0</td><td class="num">99.78%</td><td class="num">32.36%</td></tr><tr><td class="">high_renewable</td><td class="">SuCompute</td><td class="num">3485</td><td class="num">1152</td><td class="num">99.76%</td><td class="num">32.34%</td></tr><tr><td class="">high_renewable</td><td class="">MILP-only</td><td class="num">3144</td><td class="num">1967</td><td class="num">99.78%</td><td class="num">32.33%</td></tr><tr><td class="">high_renewable</td><td class="">Safe-RL-only</td><td class="num">0</td><td class="num">0</td><td class="num">99.73%</td><td class="num">32.34%</td></tr><tr><td class="">peak_shaving</td><td class="">SuCompute</td><td class="num">3508</td><td class="num">1470</td><td class="num">99.82%</td><td class="num">34.27%</td></tr><tr><td class="">peak_shaving</td><td class="">MILP-only</td><td class="num">3327</td><td class="num">2467</td><td class="num">99.84%</td><td class="num">34.22%</td></tr><tr><td class="">peak_shaving</td><td class="">Safe-RL-only</td><td class="num">0</td><td class="num">0</td><td class="num">99.78%</td><td class="num">34.20%</td></tr><tr><td class="">fault_stress</td><td class="">SuCompute</td><td class="num">3299</td><td class="num">1402</td><td class="num">99.80%</td><td class="num">32.34%</td></tr><tr><td class="">fault_stress</td><td class="">MILP-only</td><td class="num">3051</td><td class="num">2475</td><td class="num">99.80%</td><td class="num">32.31%</td></tr><tr><td class="">fault_stress</td><td class="">Safe-RL-only</td><td class="num">0</td><td class="num">0</td><td class="num">99.74%</td><td class="num">32.35%</td></tr></tbody></table><p class="caption">Safe-RL-only 的推迟和重排为 0，因为它不移动批任务的开工时刻。全装机口径的分母含未通电容量，所以远低于“有效在线利用率”。</p><p>本次全体滚动规划最长 0.0957 秒，出现在故障场景的 MILP-only。SuCompute 在故障场景的编排最长 0.0629 秒，solve_max_s 为 0.0681 秒，measured_solves = 168。故障轨迹的 elapsed_s 含计划重算和内存中的切流，不含生产环境的检查点字节复制。</p><div class="note">仓库冻结 results_report.md 写的是规划 0.0891 秒、故障编排 0.0803 秒。那是生成冻结包的机器的墙钟。本机是 4 vCPU 的 Intel Xeon 虚拟机，两个数都变了，两个都仍小于脚本里的 3 秒和 1 秒门槛。引用时间以本页为准。</div>
+          <div class="foot"><span>盼盼法式小面包 · AI-JIANGSU-Q36</span><span>06 / 12</span></div>
+        </section>
+        <section class="sheet body">
+          <div class="head"><span>苏算绿枢 · SuCompute-Opt</span><span>佐证材料</span></div>
+          <h2>小时级 Gym 是另一张表</h2>
+          <p>scripts/run_baselines.py 不产生 RR-Local、Cost-First 或 SuCompute。random 与 greedy 都不看电价和绿电，所以绿电大发日的放置与常规工作日相同，只有碳和绿电份额变化。绝对 MWh、吨和万元使用 1,000 kW/EFlops，脚本原文写明这不是全省能源平衡。</p><table><thead><tr><th class="">场景</th><th class="">策略</th><th class="num">完成比</th><th class="num">SLA 违约</th><th class="num">平均利用率</th><th class="num">加权 PUE</th><th class="num">绿电份额</th></tr></thead><tbody><tr><td class="">weekday</td><td class="">random</td><td class="num">0.8109</td><td class="num">0.1891</td><td class="num">0.8873</td><td class="num">37615.8845</td><td class="num">0.0280</td></tr><tr><td class="">weekday</td><td class="">greedy</td><td class="num">0.9404</td><td class="num">0.0596</td><td class="num">0.8464</td><td class="num">36517.3900</td><td class="num">0.0288</td></tr><tr><td class="">green_surplus</td><td class="">random</td><td class="num">0.8109</td><td class="num">0.1891</td><td class="num">0.8873</td><td class="num">36144.9595</td><td class="num">0.0660</td></tr><tr><td class="">green_surplus</td><td class="">greedy</td><td class="num">0.9404</td><td class="num">0.0596</td><td class="num">0.8464</td><td class="num">35046.4324</td><td class="num">0.0679</td></tr><tr><td class="">peak_conservation</td><td class="">random</td><td class="num">0.6874</td><td class="num">0.3126</td><td class="num">0.9065</td><td class="num">36021.1673</td><td class="num">0.0292</td></tr><tr><td class="">peak_conservation</td><td class="">greedy</td><td class="num">0.8043</td><td class="num">0.1957</td><td class="num">0.8921</td><td class="num">35810.8230</td><td class="num">0.0294</td></tr><tr><td class="">node_failure</td><td class="">random</td><td class="num">0.8049</td><td class="num">0.1951</td><td class="num">0.8913</td><td class="num">37415.1237</td><td class="num">0.0281</td></tr><tr><td class="">node_failure</td><td class="">greedy</td><td class="num">0.9337</td><td class="num">0.0663</td><td class="num">0.8541</td><td class="num">36451.9217</td><td class="num">0.0289</td></tr></tbody></table><p class="caption">完成比是 served_ratio。SLA 违约是 sla_violation_ratio，方向与五分钟引擎的“SLA 达标率”相反。</p><p>常规工作日 greedy 的完成比是 0.9404，违约 0.0596；random 的完成比是 0.8109，违约 0.1891。尖峰保电日 greedy 违约升到 0.1957。这些数只说明该 Gym 在种子 313 下的放置，不能拿来和支持卷积预报的五分钟 SLA 99.83% 相减。</p><div class="note">小时环境的预测接口当前等于生成器真值。把它换成真实预报器时，替换 planning_snapshot() 的到达数组即可。这次基线复现没有做这件替换。</div>
+          <div class="foot"><span>盼盼法式小面包 · AI-JIANGSU-Q36</span><span>07 / 12</span></div>
+        </section>
+        <section class="sheet body">
+          <div class="head"><span>苏算绿枢 · SuCompute-Opt</span><span>佐证材料</span></div>
+          <h2>权重包是时间卷积和小型 PPO</h2>
+          <p>manifest.json 的 version 为 2。预报器是季节残差 TCN：Conv1d(4→24, k=5) 、Conv1d(24→16, k=3, dilation=2)、Conv1d(16→2, k=1)，残差接在滞后 24 小时与 48 小时的平均上，输出经 clamp 不低于 0。策略网是两层 Tanh 的候选打分器和价值头，输入 15 维特征，部署前还要加上 dispatch_bias 和可行性掩码。</p><table><thead><tr><th class="">文件</th><th class="">字节</th><th class="">SHA-256 前 16 位</th><th class="">说明</th></tr></thead><tbody><tr><td class="">policy.pt</td><td class="">9,669</td><td class="">fc11e917392a9140…</td><td class="">PPO actor and critic state_dict</td></tr><tr><td class="">forecast.pt</td><td class="">9,621</td><td class="">4153bc439493ff61…</td><td class="">seasonal residual TCN state_dict</td></tr><tr><td class="">policy.onnx</td><td class="">5,437</td><td class="">2f7b6d8032225469…</td><td class="">portable actor logits, opset 17</td></tr><tr><td class="">forecast_metrics.json</td><td class="">707</td><td class="">5ccb04478642254c…</td><td class="">independent train/validation MAE and positive-target MAPE</td></tr><tr><td class="">ppo_training.csv</td><td class="">8,539</td><td class="">6d3543ee4dd1219e…</td><td class="">on-policy sample reward, violation rate and projected multiplier</td></tr></tbody></table><p>五份文件合计 38987 字节，低于仓库设定的 15 MB 上限。本次校验：Verified 5 hashes, 38987 bytes; max logit error 3.81e-06; forecast (24, 16, 2)。ONNX 只导出策略 logits，预报仍用 PyTorch。</p><p>特征顺序与代码 FEATURES 一致：eta、tariff、green_fraction、pue_excess、pool_fill、marginal_powered_efh_per_efh、latency_ratio、cross、domestic、quota、sla_risk、wait_fraction_of_6h、energy_per_work、available、urgent。</p><div class="note">不要把这套权重描述成 PatchTST 或 LightGBM。research.md 和 solution.md 里出现过这两个名字，是选型笔记，不是已发布权重。重新训练的入口是 benchmarks/train_forecast.py 与 train_policy.py，训练后再跑 verify_weights.py --release。本次没有执行训练。</div>
+          <div class="foot"><span>盼盼法式小面包 · AI-JIANGSU-Q36</span><span>08 / 12</span></div>
+        </section>
+        <section class="sheet body">
+          <div class="head"><span>苏算绿枢 · SuCompute-Opt</span><span>佐证材料</span></div>
+          <h2>预报误差和 PPO 曲线</h2>
+          <table><thead><tr><th class="">划分</th><th class="">变量</th><th class="">MAE</th><th class="">MAPE</th><th class="">非零样本</th></tr></thead><tbody><tr><td class="">训练</td><td class="">到达（作业/小时）</td><td class="">2.042</td><td class="">43.71%</td><td class="">137,010</td></tr><tr><td class="">训练</td><td class="">绿电比例</td><td class="">0.0198</td><td class="">12.43%</td><td class="">152,064</td></tr><tr><td class="">验证</td><td class="">到达（作业/小时）</td><td class="">2.086</td><td class="">43.96%</td><td class="">45,179</td></tr><tr><td class="">验证</td><td class="">绿电比例</td><td class="">0.0204</td><td class="">12.54%</td><td class="">50,688</td></tr></tbody></table><p class="caption">验证种子 72。评测周使用种子 313，不在这张误差表里。</p><img class="fig short" src="training.png" alt="run_benchmark.py 按 weights/ppo_training.csv 绘制。绿线是 10 次更新的滑动平均，红虚线是违约率 0.5%。"/><p class="caption">run_benchmark.py 按 weights/ppo_training.csv 绘制。绿线是 10 次更新的滑动平均，红虚线是违约率 0.5%。</p><div class="note">验证集到达 MAPE 43.96% 说明卷积只抓住了日周期的一部分。周评测里的移峰仍然使用这份预报，因此利用率优势不能解释成“预报已经准确”。</div>
+          <div class="foot"><span>盼盼法式小面包 · AI-JIANGSU-Q36</span><span>09 / 12</span></div>
+        </section>
+        <section class="sheet body">
+          <div class="head"><span>苏算绿枢 · SuCompute-Opt</span><span>佐证材料</span></div>
+          <h2>边车怎么接到省平台：现在能做的和还不能做的</h2>
+          <p>部署形态是策略边车，不是替换省级调度核心。计算放在只读副本旁边：读指标、出建议、写凭证。执行仍走平台现有队列。本仓库的 server.py 是这个边车的本地、无状态版本，注释写明 Optional stateless sidecar。</p><h3>本机已经能启动的部分</h3><ul><li>用 CPU 加载 policy.onnx 与 forecast.pt。本次校验在 CPUExecutionProvider 上完成，logit 最大误差 3.81e-06。</li><li>POST /api/v1/simulate 在独立内存日历上从种子重放，默认种子 313，小时数 1–168。</li><li>POST /api/v1/fault/inject 注入离线、容量损失或 PUE 抬升。</li><li>POST /api/v1/copilot/command 解析中文指令并重算。</li><li>POST /api/v1/ledger 与 /api/v1/ledger/csv 导出凭证。</li></ul><h3>三阶段的进入条件（计划，尚未开始）</h3><ul><li>影子：平台提供至少 14 天只读时序，边车每天出一份与现行策略并列的建议。不对生产队列写指令。</li><li>人工确认：建议单包含任务标识、目的节点、预计时延圈、演示电价下的电费和凭证哈希。值班员否决时保留否决原因。</li><li>闭环：先在书面变更里限定任务类型和回退开关。生产检查点复制的耗时要单独计量，不能沿用仿真 elapsed_s。</li></ul><div class="note">仓库没有省平台或 13 个地市子门户的接口文档。上表的进入条件是对接方案，不是已完成的联调记录。</div>
+          <div class="foot"><span>盼盼法式小面包 · AI-JIANGSU-Q36</span><span>10 / 12</span></div>
+        </section>
+        <section class="sheet body">
+          <div class="head"><span>苏算绿枢 · SuCompute-Opt</span><span>佐证材料</span></div>
+          <h2>建议映射、一张真实凭证和上线前要改的默认值</h2>
+          <p>下表是边车希望读取的量。右列只说明仓库里用什么字段模拟它。省平台的真实字段名待联调时替换，不能把仿真字段名当成接口规范。</p><table><thead><tr><th class="">边车要读的量</th><th class="">仿真里对应的来源</th><th class="">对接状态</th></tr></thead><tbody><tr><td class="">任务类型、到达、时延上限、截止期</td><td class="">Trace 的五类任务</td><td class="">待联调</td></tr><tr><td class="">节点健康、PUE、队列</td><td class="">world.health 与功率模型</td><td class="">待联调</td></tr><tr><td class="">分时电价</td><td class="">weather() 演示曲线；公告价只在小时环境</td><td class="">待核实到户电价</td></tr><tr><td class="">绿电可用功率</td><td class="">场景参数，不是机房电表</td><td class="">待联调</td></tr><tr><td class="">跨域带宽与时延</td><td class="">设计矩阵 1/5/10 ms，带宽为假设</td><td class="">待核实</td></tr><tr><td class="">回写调度指令</td><td class="">无。API 不发生产指令</td><td class="">阶段 1 保持不回写</td></tr></tbody></table><p>本次账本样例取自这次 run_benchmark 写出的 ledger_sample.json，不是冻结前端包。常规工作日、SuCompute、任务 1：HPC，来源南京，槽 0–14，节点盐城 / DCU，动作概率 0.975，绿电份额 98.07%，PUE 1.157。有效 1.984 EF·h，分摊电量 27,600 kWh，演示电价下 10,212 元，碳排 293.0 kg，相对全购电少 14,887 kg，SLA 满足。SHA-256 e699c16ae9430f01cab21b2efbe628acc9a1f5f99edbd2189af096163dafcc78。</p><div class="note">这张凭证的电量和电费随 10,000 kW/EF 放大，不能当成账单或碳资产。server.py 当前把 CORS 设为允许任意来源，只适合本机演示；接到平台前必须改成指定源，并把 LLM 密钥留在环境变量里，不写入仓库。</div>
+          <div class="foot"><span>盼盼法式小面包 · AI-JIANGSU-Q36</span><span>11 / 12</span></div>
+        </section>
+        <section class="sheet body">
+          <div class="head"><span>苏算绿枢 · SuCompute-Opt</span><span>佐证材料</span></div>
+          <h2>验收时对照什么</h2>
+          <ul><li>权重：verify_weights.py 通过，五份 SHA-256 与 manifest.json 一致。</li><li>周指标：复跑 run_benchmark.py 后，四场景等权表与当时的 results_report.md 一致；墙钟允许变化，并写明主机。</li><li>哈希：逐小时 CSV 的 SHA-256 与当次 summary 的 detail_sha256 一致。不要要求它等于冻结包的 07625d6e37ac223cf1d6b936b6cc3b972d0b16c0ceb32d21cefc413e09437f7d，除非在同一数值路径上复现到逐小时电量。</li><li>账本：抽一条凭证，用 backend.report.receipt_hash 重算。展示字段 selection_reason 不进入哈希。</li><li>影子试点：连续只读运行，建议单可导出 CSV，生产队列无写入。这项尚未开始。</li></ul><p>本次复现已经完成前三项里的权重校验和周评测。逐小时哈希等于本次 summary，不等于冻结包。第四项的哈希算法在代码和 API_CONTRACT 里，计划书引用的那条样例来自本次账本文件。第五项没有环境，不能勾。</p><div class="note">PPT、录屏和网盘链接不在这份佐证里。优化幅度若没有出现在本次 results_report.md，就不能写成已验证。</div>
+          <div class="foot"><span>盼盼法式小面包 · AI-JIANGSU-Q36</span><span>12 / 12</span></div>
+        </section>
+</body>
+</html>
