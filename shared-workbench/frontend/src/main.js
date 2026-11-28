@@ -53,6 +53,7 @@ function render() {
           <span>${html(item.title)}</span><small>${html(item.subtitle)}</small>
         </button>`).join('')}
       </nav>
+      <a class="rail-entry" href="./fluvax.html"><span>流盾智研</span><small>证据工作台</small></a>
       <button class="theme-button" data-theme aria-pressed="${state.theme === 'dark'}">${state.theme === 'dark' ? '☀ 切换浅色' : '◐ 切换深色'}</button>
     </aside>
     <main id="main" tabindex="-1">

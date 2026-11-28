@@ -13,6 +13,10 @@ const proxy = {
     target: process.env.ELECTRICAL_PROXY_TARGET || 'http://127.0.0.1:8066',
     rewrite: (path) => path.replace(/^\/electrical-api/, ''),
   },
+  '/fluvax-api': {
+    target: process.env.FLUVAX_PROXY_TARGET || 'http://127.0.0.1:8765',
+    rewrite: (path) => path.replace(/^\/fluvax-api/, ''),
+  },
 };
 
 export default defineConfig({
@@ -23,6 +27,7 @@ export default defineConfig({
         workbench: here('./index.html'),
         sucompute: here('./sucompute.html'),
         electrical: here('./electrical.html'),
+        fluvax: here('./fluvax.html'),
       },
       output: {
         manualChunks(id) {

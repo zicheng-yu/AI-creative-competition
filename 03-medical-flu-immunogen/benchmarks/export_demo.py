@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from benchmarks.demo_tasks import approved_snapshot, run
+from benchmarks.flu_bench import attach_records, export_workbench, materialize, run_bench, workbench_document
 from engine.provenance import ProvenanceGraph
 
 
@@ -18,4 +19,8 @@ if __name__ == "__main__":
     path = destination.with_name("provenance_graph.json")
     ProvenanceGraph(snapshot).save(path)
     ProvenanceGraph.load(snapshot, path)
-    print(json.dumps(metrics, ensure_ascii=False))
+    flu_snapshot = materialize()
+    flu_bundle, flu_metrics = run_bench(flu_snapshot)
+    export_workbench(attach_records(workbench_document(flu_bundle, flu_metrics), flu_snapshot))
+    print(json.dumps({"methods": metrics, "flu_recall_at_5": flu_metrics["task_1"]["recall_at_5"],
+                      "manual_sop_baseline": flu_metrics["manual_sop_baseline"]}, ensure_ascii=False))

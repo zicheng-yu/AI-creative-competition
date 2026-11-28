@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="160" role="img">
+<title>Task-2 证据空白条数（不是实验清单）</title>
+<rect width="100%" height="100%" fill="#f7fbfd"/>
+<text x="16" y="22" font-family="sans-serif" font-size="14" fill="#173246">Task-2 证据空白条数（不是实验清单）</text>
+<text x="16" y="48" font-family="sans-serif" font-size="12" fill="#245">plan-reference-strain</text>
+<rect x="280" y="36" width="80.0" height="16" fill="#216b8b"/>
+<text x="368.0" y="48" font-family="sans-serif" font-size="12" fill="#245">1.000</text>
+<text x="16" y="76" font-family="sans-serif" font-size="12" fill="#245">plan-consensus-literature</text>
+<rect x="280" y="64" width="400.0" height="16" fill="#216b8b"/>
+<text x="688.0" y="76" font-family="sans-serif" font-size="12" fill="#245">5.000</text>
+<text x="16" y="104" font-family="sans-serif" font-size="12" fill="#245">plan-head-glycosylation</text>
+<rect x="280" y="92" width="160.0" height="16" fill="#216b8b"/>
+<text x="448.0" y="104" font-family="sans-serif" font-size="12" fill="#245">2.000</text>
+<text x="16" y="132" font-family="sans-serif" font-size="12" fill="#245">plan-conserved-stem</text>
+<rect x="280" y="120" width="160.0" height="16" fill="#216b8b"/>
+<text x="448.0" y="132" font-family="sans-serif" font-size="12" fill="#245">2.000</text>
+</svg>

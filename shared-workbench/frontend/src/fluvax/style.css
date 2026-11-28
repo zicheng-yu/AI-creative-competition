@@ -1,0 +1,27 @@
+.flu-app { max-width: 1180px; margin: 0 auto; padding: 24px 20px 48px; }
+.flu-top, .flu-filters, .flu-actions, .flu-questions, .flu-views { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.flu-top { justify-content: space-between; }
+.flu-kicker { margin: 0; color: var(--muted); letter-spacing: .08em; }
+.flu-top h1 { margin: 0; font-size: 28px; }
+.flu-banner { margin: 16px 0; padding: 12px 14px; background: var(--warn-bg); color: var(--warn); border-radius: 8px; }
+.flu-banner p { margin: 0 0 6px; }
+.flu-views { margin-bottom: 16px; }
+.flu-views button, .flu-questions button, .flu-actions button, .flu-badge {
+  border: 1px solid var(--rule); background: var(--panel); color: var(--ink); border-radius: 999px; padding: 6px 12px;
+}
+.flu-views button[aria-pressed="true"], .flu-questions button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); }
+.flu-note { color: var(--muted); }
+.flu-table { width: 100%; border-collapse: collapse; background: var(--panel); }
+.flu-table th, .flu-table td { border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; padding: 8px; }
+.flu-badge { font-family: ui-monospace, monospace; font-size: 12px; }
+.flu-chart { height: 320px; margin: 12px 0; background: var(--panel); border-radius: 8px; }
+.flu-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.flu-card { background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 12px; }
+.flu-card.is-open { background: var(--warn-bg); border-color: var(--warn); }
+.flu-watermark { font-weight: 700; }
+.flu-statements { display: grid; gap: 12px; padding: 0; list-style: none; }
+.flu-statements li { background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 12px; }
+.flu-tier { margin-left: 8px; color: var(--muted); }
+.quiet { color: var(--accent); }
+#flu-drawer { max-width: 640px; border: 0; border-radius: 12px; padding: 18px; }
+#flu-drawer::backdrop { background: rgba(18, 32, 44, .45); }

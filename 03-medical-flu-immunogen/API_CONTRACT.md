@@ -8,7 +8,10 @@
 
 ```bash
 python -m uvicorn server:demo_app --factory --host 127.0.0.1 --port 8765
+python -m uvicorn server:flu_app --factory --host 127.0.0.1 --port 8765
 ```
+
+`demo_app` 仍然只加载方法学夹具。`flu_app` 加载 `data/FluEvidenceBench-v1` 的已审核快照，请求体不能改快照路径。工作台在接口不可用时使用 `frontend_demo_data/fluvax_workbench.json`。
 
 单个服务实例绑定一个由部署方配置的可信快照及租户。请求体无法切换租户或设置文件路径。不同授权租户应运行在独立服务配置中。此演示将报告和操作历史存于进程内存，复核者字符串由本地调用方填写，部署时需要独立的访问身份与持久化机制。
 
@@ -19,7 +22,7 @@ python -m uvicorn server:demo_app --factory --host 127.0.0.1 --port 8765
 | 字段 | 约定 |
 | --- | --- |
 | `evidence_id`、`dataset_version` | 联合标识和查验键。同一 ID 可出现在不同版本。 |
-| `source_type`、`primary_ref` | 当前适配批准的 `PUBMED_LITERATURE`／`PMID:<已核验编号>` 和 `SYNTHETIC_METHODS`／`SYNTHETIC:<条目名>`。 |
+| `source_type`、`primary_ref` | 批准的 `PUBMED_LITERATURE`／`PMID:<已核验编号>` 和 `SYNTHETIC_METHODS`／`SYNTHETIC:<条目名>` 保持不变。FluEvidenceBench-v1 另接受 `public_database`：`PDB_STRUCTURE`／`PDB:<四位 RCSB 编号>`、`IEDB_EPITOPE`／`IEDB:<编号>`、`NCBI_NUCCORE`／`Accession:<登录号>`、`UNIPROT_RECORD`／`UniProt:<登录号>`，链接必须与对应公开页一致。 |
 | `ingested_at` | 带时区的 ISO 8601 接入时间。 |
 | `evidence_tier` | `T1_WET_LAB_ASSAY`、`T2_SURVEILLANCE`、`T3_PEER_REVIEWED_LIT` 或 `T4_COMPUTATIONAL`。计算记录保持 T4。 |
 | `subtype_context`、`claim_summary`、`raw_snippet` | 原字段保持兼容。当前样本的上下文与检索摘要均限定为资料治理，`raw_snippet` 是可引用原文。 |

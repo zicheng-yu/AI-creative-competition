@@ -1,0 +1,2993 @@
+{
+  "boundary": "本阶段交付软件原型与离线评测，不以实验有效性或临床效果作为承诺。",
+  "product": "流盾智研（FluVax-Evidence Agent）",
+  "dataset_version": "fluevidence-v1.1",
+  "snapshot_id": "fbf7ca92a9eee35217389ca65b85bd132f5bffae9a0dbdd50f38cb2a87613847",
+  "releases": [
+    {
+      "dataset_version": "fluevidence-v1",
+      "released_at": "2026-11-28T06:30:00+08:00",
+      "previous_version": null
+    },
+    {
+      "dataset_version": "fluevidence-v1.1",
+      "released_at": "2026-11-28T09:30:00+08:00",
+      "previous_version": "fluevidence-v1"
+    }
+  ],
+  "record_count": 24,
+  "records": [
+    {
+      "evidence_id": "EV-REF-GARTEN",
+      "dataset_version": "fluevidence-v1",
+      "primary_ref": "PMID:19465683",
+      "source_type": "PUBMED_LITERATURE",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/19465683/",
+      "evidence_tier": "T3_PEER_REVIEWED_LIT",
+      "ingested_at": "2026-11-28T06:00:00+08:00",
+      "published_on": "2009-07-10",
+      "review_status": "accepted",
+      "title": "Antigenic and genetic characteristics of swine-origin 2009 A(H1N1) influenza viruses circulating in humans.",
+      "raw_snippet": "Antigenic and genetic characteristics of swine-origin 2009 A(H1N1) influenza viruses circulating in humans.",
+      "claim_summary": "PMID:19465683 A/H1N1pdm09 reference-strain literature. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "reference-strain",
+        "h1n1pdm09"
+      ],
+      "nature": "public_methods",
+      "subtype_context": "A/H1N1pdm09 reference-strain literature"
+    },
+    {
+      "evidence_id": "EV-REF-SMITH",
+      "dataset_version": "fluevidence-v1",
+      "primary_ref": "PMID:15218094",
+      "source_type": "PUBMED_LITERATURE",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/15218094/",
+      "evidence_tier": "T3_PEER_REVIEWED_LIT",
+      "ingested_at": "2026-11-28T06:00:00+08:00",
+      "published_on": "2004-07-16",
+      "review_status": "accepted",
+      "title": "Mapping the antigenic and genetic evolution of influenza virus.",
+      "raw_snippet": "Mapping the antigenic and genetic evolution of influenza virus.",
+      "claim_summary": "PMID:15218094 H3 antigenic-map literature. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "reference-strain",
+        "published-table"
+      ],
+      "nature": "public_methods",
+      "subtype_context": "H3 antigenic-map literature"
+    },
+    {
+      "evidence_id": "EV-REF-PETROVA",
+      "dataset_version": "fluevidence-v1",
+      "primary_ref": "PMID:29081496",
+      "source_type": "PUBMED_LITERATURE",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/29081496/",
+      "evidence_tier": "T3_PEER_REVIEWED_LIT",
+      "ingested_at": "2026-11-28T06:00:00+08:00",
+      "published_on": null,
+      "review_status": "accepted",
+      "title": "The evolution of seasonal influenza viruses.",
+      "raw_snippet": "The evolution of seasonal influenza viruses.",
+      "claim_summary": "PMID:29081496 seasonal influenza review literature. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "reference-strain"
+      ],
+      "nature": "public_methods",
+      "subtype_context": "seasonal influenza review literature"
+    },
+    {
+      "evidence_id": "EV-REF-CALHA",
+      "dataset_version": "fluevidence-v1",
+      "primary_ref": "PMID:23110350",
+      "source_type": "PUBMED_LITERATURE",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/23110350/",
+      "evidence_tier": "T3_PEER_REVIEWED_LIT",
+      "ingested_at": "2026-11-28T06:00:00+08:00",
+      "published_on": "2012-10-30",
+      "review_status": "accepted",
+      "title": "Pandemic influenza vaccine: characterization of A/California/07/2009 (H1N1) recombinant hemagglutinin protein and insights into H1N1 antigen stability.",
+      "raw_snippet": "Pandemic influenza vaccine: characterization of A/California/07/2009 (H1N1) recombinant hemagglutinin protein and insights into H1N1 antigen stability.",
+      "claim_summary": "PMID:23110350 A/California/07/2009 recombinant HA literature. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "reference-strain",
+        "h1n1pdm09"
+      ],
+      "nature": "public_methods",
+      "subtype_context": "A/California/07/2009 recombinant HA literature"
+    },
+    {
+      "evidence_id": "EV-CONS-GILES",
+      "dataset_version": "fluevidence-v1",
+      "primary_ref": "PMID:21320540",
+      "source_type": "PUBMED_LITERATURE",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/21320540/",
+      "evidence_tier": "T3_PEER_REVIEWED_LIT",
+      "ingested_at": "2026-11-28T06:00:00+08:00",
+      "published_on": "2011-04-05",
+      "review_status": "accepted",
+      "title": "A computationally optimized broadly reactive antigen (COBRA) based H5N1 VLP vaccine elicits broadly reactive antibodies in mice and ferrets.",
+      "raw_snippet": "A computationally optimized broadly reactive antigen (COBRA) based H5N1 VLP vaccine elicits broadly reactive antibodies in mice and ferrets.",
+      "claim_summary": "PMID:21320540 H5N1 consensus-sequence literature. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "consensus-sequence",
+        "h5n1"
+      ],
+      "nature": "public_methods",
+      "subtype_context": "H5N1 consensus-sequence literature"
+    },
+    {
+      "evidence_id": "EV-CONS-CARTER",
+      "dataset_version": "fluevidence-v1",
+      "primary_ref": "PMID:26912624",
+      "source_type": "PUBMED_LITERATURE",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/26912624/",
+      "evidence_tier": "T3_PEER_REVIEWED_LIT",
+      "ingested_at": "2026-11-28T06:00:00+08:00",
+      "published_on": null,
+      "review_status": "flagged",
+      "title": "Design and Characterization of a Computationally Optimized Broadly Reactive Hemagglutinin Vaccine for H1N1 Influenza Viruses.",
+      "raw_snippet": "Design and Characterization of a Computationally Optimized Broadly Reactive Hemagglutinin Vaccine for H1N1 Influenza Viruses.",
+      "claim_summary": "PMID:26912624 H1N1 consensus-sequence literature. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "consensus-sequence",
+        "h1n1"
+      ],
+      "nature": "public_methods",
+      "subtype_context": "H1N1 consensus-sequence literature"
+    },
+    {
+      "evidence_id": "EV-CONS-CARTER-CORR",
+      "dataset_version": "fluevidence-v1.1",
+      "primary_ref": "PMID:38819164",
+      "source_type": "PUBMED_LITERATURE",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/38819164/",
+      "evidence_tier": "T3_PEER_REVIEWED_LIT",
+      "ingested_at": "2026-11-28T09:00:00+08:00",
+      "published_on": "2024-07-23",
+      "review_status": "accepted",
+      "title": "Correction for Carter et al., \"Design and Characterization of a Computationally Optimized Broadly Reactive Hemagglutinin Vaccine for H1N1 Influenza Viruses\".",
+      "raw_snippet": "Correction for Carter et al., \"Design and Characterization of a Computationally Optimized Broadly Reactive Hemagglutinin Vaccine for H1N1 Influenza Viruses\".",
+      "claim_summary": "PMID:38819164 H1N1 consensus-sequence correction notice. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "consensus-sequence",
+        "h1n1"
+      ],
+      "nature": "public_methods",
+      "subtype_context": "H1N1 consensus-sequence correction notice"
+    },
+    {
+      "evidence_id": "EV-GLY-WANG",
+      "dataset_version": "fluevidence-v1",
+      "primary_ref": "PMID:19822741",
+      "source_type": "PUBMED_LITERATURE",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/19822741/",
+      "evidence_tier": "T3_PEER_REVIEWED_LIT",
+      "ingested_at": "2026-11-28T06:00:00+08:00",
+      "published_on": "2009-10-27",
+      "review_status": "accepted",
+      "title": "Glycans on influenza hemagglutinin affect receptor binding and immune response.",
+      "raw_snippet": "Glycans on influenza hemagglutinin affect receptor binding and immune response.",
+      "claim_summary": "PMID:19822741 HA glycosylation literature. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "head-glycosylation"
+      ],
+      "nature": "public_methods",
+      "subtype_context": "HA glycosylation literature"
+    },
+    {
+      "evidence_id": "EV-GLY-TATE",
+      "dataset_version": "fluevidence-v1",
+      "primary_ref": "PMID:24638204",
+      "source_type": "PUBMED_LITERATURE",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/24638204/",
+      "evidence_tier": "T3_PEER_REVIEWED_LIT",
+      "ingested_at": "2026-11-28T06:00:00+08:00",
+      "published_on": "2014-03-14",
+      "review_status": "accepted",
+      "title": "Playing hide and seek: how glycosylation of the influenza virus hemagglutinin can modulate the immune response to infection.",
+      "raw_snippet": "Playing hide and seek: how glycosylation of the influenza virus hemagglutinin can modulate the immune response to infection.",
+      "claim_summary": "PMID:24638204 HA glycosylation literature. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "head-glycosylation"
+      ],
+      "nature": "public_methods",
+      "subtype_context": "HA glycosylation literature"
+    },
+    {
+      "evidence_id": "EV-GLY-ADD",
+      "dataset_version": "fluevidence-v1",
+      "primary_ref": "PMID:23365085",
+      "source_type": "PUBMED_LITERATURE",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/23365085/",
+      "evidence_tier": "T3_PEER_REVIEWED_LIT",
+      "ingested_at": "2026-11-28T06:00:00+08:00",
+      "published_on": "2013-03-01",
+      "review_status": "accepted",
+      "title": "Addition of glycosylation to influenza A virus hemagglutinin modulates antibody-mediated recognition of H1N1 2009 pandemic viruses.",
+      "raw_snippet": "Addition of glycosylation to influenza A virus hemagglutinin modulates antibody-mediated recognition of H1N1 2009 pandemic viruses.",
+      "claim_summary": "PMID:23365085 H1N1pdm09 HA glycosylation literature. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "head-glycosylation",
+        "h1n1pdm09"
+      ],
+      "nature": "public_methods",
+      "subtype_context": "H1N1pdm09 HA glycosylation literature"
+    },
+    {
+      "evidence_id": "EV-STEM-IMP",
+      "dataset_version": "fluevidence-v1",
+      "primary_ref": "PMID:26303961",
+      "source_type": "PUBMED_LITERATURE",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/26303961/",
+      "evidence_tier": "T3_PEER_REVIEWED_LIT",
+      "ingested_at": "2026-11-28T06:00:00+08:00",
+      "published_on": "2015-09-18",
+      "review_status": "accepted",
+      "title": "A stable trimeric influenza hemagglutinin stem as a broadly protective immunogen.",
+      "raw_snippet": "A stable trimeric influenza hemagglutinin stem as a broadly protective immunogen.",
+      "claim_summary": "PMID:26303961 HA stem immunogen literature. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "conserved-stem"
+      ],
+      "nature": "public_methods",
+      "subtype_context": "HA stem immunogen literature"
+    },
+    {
+      "evidence_id": "EV-STEM-YASSINE",
+      "dataset_version": "fluevidence-v1",
+      "primary_ref": "PMID:26301691",
+      "source_type": "PUBMED_LITERATURE",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/26301691/",
+      "evidence_tier": "T3_PEER_REVIEWED_LIT",
+      "ingested_at": "2026-11-28T06:00:00+08:00",
+      "published_on": null,
+      "review_status": "accepted",
+      "title": "Hemagglutinin-stem nanoparticles generate heterosubtypic influenza protection.",
+      "raw_snippet": "Hemagglutinin-stem nanoparticles generate heterosubtypic influenza protection.",
+      "claim_summary": "PMID:26301691 HA stem immunogen literature. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "conserved-stem"
+      ],
+      "nature": "public_methods",
+      "subtype_context": "HA stem immunogen literature"
+    },
+    {
+      "evidence_id": "EV-STEM-EKIERT",
+      "dataset_version": "fluevidence-v1",
+      "primary_ref": "PMID:19251591",
+      "source_type": "PUBMED_LITERATURE",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/19251591/",
+      "evidence_tier": "T3_PEER_REVIEWED_LIT",
+      "ingested_at": "2026-11-28T06:00:00+08:00",
+      "published_on": "2009-04-10",
+      "review_status": "accepted",
+      "title": "Antibody recognition of a highly conserved influenza virus epitope.",
+      "raw_snippet": "Antibody recognition of a highly conserved influenza virus epitope.",
+      "claim_summary": "PMID:19251591 HA stem antibody literature. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "conserved-stem"
+      ],
+      "nature": "public_methods",
+      "subtype_context": "HA stem antibody literature"
+    },
+    {
+      "evidence_id": "EV-STEM-HEADLESS",
+      "dataset_version": "fluevidence-v1",
+      "primary_ref": "PMID:26947245",
+      "source_type": "PUBMED_LITERATURE",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/26947245/",
+      "evidence_tier": "T3_PEER_REVIEWED_LIT",
+      "ingested_at": "2026-11-28T06:00:00+08:00",
+      "published_on": "2016-03-07",
+      "review_status": "accepted",
+      "title": "Stalking influenza by vaccination with pre-fusion headless HA mini-stem.",
+      "raw_snippet": "Stalking influenza by vaccination with pre-fusion headless HA mini-stem.",
+      "claim_summary": "PMID:26947245 HA stem immunogen literature. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "conserved-stem"
+      ],
+      "nature": "public_methods",
+      "subtype_context": "HA stem immunogen literature"
+    },
+    {
+      "evidence_id": "EV-STEM-STALK",
+      "dataset_version": "fluevidence-v1",
+      "primary_ref": "PMID:25210189",
+      "source_type": "PUBMED_LITERATURE",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/25210189/",
+      "evidence_tier": "T3_PEER_REVIEWED_LIT",
+      "ingested_at": "2026-11-28T06:00:00+08:00",
+      "published_on": null,
+      "review_status": "accepted",
+      "title": "Induction of broadly reactive anti-hemagglutinin stalk antibodies by an H5N1 vaccine in humans.",
+      "raw_snippet": "Induction of broadly reactive anti-hemagglutinin stalk antibodies by an H5N1 vaccine in humans.",
+      "claim_summary": "PMID:25210189 HA stalk antibody literature. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "conserved-stem",
+        "h5n1"
+      ],
+      "nature": "public_methods",
+      "subtype_context": "HA stalk antibody literature"
+    },
+    {
+      "evidence_id": "EV-ACC-CA07",
+      "dataset_version": "fluevidence-v1",
+      "primary_ref": "Accession:CY121680.1",
+      "source_type": "NCBI_NUCCORE",
+      "source_url": "https://www.ncbi.nlm.nih.gov/nuccore/CY121680.1/",
+      "evidence_tier": "T2_SURVEILLANCE",
+      "ingested_at": "2026-11-28T06:00:00+08:00",
+      "published_on": null,
+      "review_status": "accepted",
+      "title": "Influenza A virus (A/California/07/2009(H1N1)) hemagglutinin (HA) gene, complete cds",
+      "raw_snippet": "Influenza A virus (A/California/07/2009(H1N1)) hemagglutinin (HA) gene, complete cds",
+      "claim_summary": "Accession:CY121680.1 A/California/07/2009 HA nuccore metadata. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "reference-strain",
+        "h1n1pdm09"
+      ],
+      "nature": "public_database",
+      "subtype_context": "A/California/07/2009 HA nuccore metadata"
+    },
+    {
+      "evidence_id": "EV-ACC-HK68",
+      "dataset_version": "fluevidence-v1",
+      "primary_ref": "Accession:AF348176.1",
+      "source_type": "NCBI_NUCCORE",
+      "source_url": "https://www.ncbi.nlm.nih.gov/nuccore/AF348176.1/",
+      "evidence_tier": "T2_SURVEILLANCE",
+      "ingested_at": "2026-11-28T06:00:00+08:00",
+      "published_on": null,
+      "review_status": "accepted",
+      "title": "Influenza A virus (A/Hong Kong/1/68(H3N2)) hemagglutinin gene, complete cds",
+      "raw_snippet": "Influenza A virus (A/Hong Kong/1/68(H3N2)) hemagglutinin gene, complete cds",
+      "claim_summary": "Accession:AF348176.1 A/Hong Kong/1/1968 HA nuccore metadata. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "reference-strain",
+        "h3n2"
+      ],
+      "nature": "public_database",
+      "subtype_context": "A/Hong Kong/1/1968 HA nuccore metadata"
+    },
+    {
+      "evidence_id": "EV-PDB-3GBN",
+      "dataset_version": "fluevidence-v1",
+      "primary_ref": "PDB:3GBN",
+      "source_type": "PDB_STRUCTURE",
+      "source_url": "https://www.rcsb.org/structure/3GBN/",
+      "evidence_tier": "T1_WET_LAB_ASSAY",
+      "ingested_at": "2026-11-28T06:00:00+08:00",
+      "published_on": "2009-03-10",
+      "review_status": "accepted",
+      "title": "Crystal Structure of Fab CR6261 in Complex with the 1918 H1N1 influenza virus hemagglutinin",
+      "raw_snippet": "Crystal Structure of Fab CR6261 in Complex with the 1918 H1N1 influenza virus hemagglutinin",
+      "claim_summary": "PDB:3GBN RCSB structure deposit, 1918 H1 HA with CR6261. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "conserved-stem",
+        "structure-deposit"
+      ],
+      "nature": "public_database",
+      "subtype_context": "RCSB structure deposit, 1918 H1 HA with CR6261"
+    },
+    {
+      "evidence_id": "EV-PDB-3GBM",
+      "dataset_version": "fluevidence-v1",
+      "primary_ref": "PDB:3GBM",
+      "source_type": "PDB_STRUCTURE",
+      "source_url": "https://www.rcsb.org/structure/3GBM/",
+      "evidence_tier": "T1_WET_LAB_ASSAY",
+      "ingested_at": "2026-11-28T06:00:00+08:00",
+      "published_on": "2009-03-10",
+      "review_status": "accepted",
+      "title": "Crystal Structure of Fab CR6261 in Complex with a H5N1 influenza virus hemagglutinin.",
+      "raw_snippet": "Crystal Structure of Fab CR6261 in Complex with a H5N1 influenza virus hemagglutinin.",
+      "claim_summary": "PDB:3GBM RCSB structure deposit, H5 HA with CR6261. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "conserved-stem",
+        "structure-deposit"
+      ],
+      "nature": "public_database",
+      "subtype_context": "RCSB structure deposit, H5 HA with CR6261"
+    },
+    {
+      "evidence_id": "EV-PDB-5C0S",
+      "dataset_version": "fluevidence-v1.1",
+      "primary_ref": "PDB:5C0S",
+      "source_type": "PDB_STRUCTURE",
+      "source_url": "https://www.rcsb.org/structure/5C0S/",
+      "evidence_tier": "T1_WET_LAB_ASSAY",
+      "ingested_at": "2026-11-28T09:00:00+08:00",
+      "published_on": "2015-09-02",
+      "review_status": "accepted",
+      "title": "Crystal structure of a generation 4 influenza hemagglutinin stabilized stem in complex with the broadly neutralizing antibody CR6261",
+      "raw_snippet": "Crystal structure of a generation 4 influenza hemagglutinin stabilized stem in complex with the broadly neutralizing antibody CR6261",
+      "claim_summary": "PDB:5C0S RCSB structure deposit, generation-4 HA stem. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "conserved-stem",
+        "structure-deposit"
+      ],
+      "nature": "public_database",
+      "subtype_context": "RCSB structure deposit, generation-4 HA stem"
+    },
+    {
+      "evidence_id": "EV-PDB-5C0R",
+      "dataset_version": "fluevidence-v1.1",
+      "primary_ref": "PDB:5C0R",
+      "source_type": "PDB_STRUCTURE",
+      "source_url": "https://www.rcsb.org/structure/5C0R/",
+      "evidence_tier": "T1_WET_LAB_ASSAY",
+      "ingested_at": "2026-11-28T09:00:00+08:00",
+      "published_on": "2015-09-02",
+      "review_status": "accepted",
+      "title": "Crystal Structure of a Generation 3 Influenza Hemagglutinin Stabilized Stem Complexed with the Broadly Neutralizing Antibody C179",
+      "raw_snippet": "Crystal Structure of a Generation 3 Influenza Hemagglutinin Stabilized Stem Complexed with the Broadly Neutralizing Antibody C179",
+      "claim_summary": "PDB:5C0R RCSB structure deposit, generation-3 HA stem. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "conserved-stem",
+        "structure-deposit"
+      ],
+      "nature": "public_database",
+      "subtype_context": "RCSB structure deposit, generation-3 HA stem"
+    },
+    {
+      "evidence_id": "EV-IEDB-570",
+      "dataset_version": "fluevidence-v1",
+      "primary_ref": "IEDB:570",
+      "source_type": "IEDB_EPITOPE",
+      "source_url": "https://www.iedb.org/epitope/570/",
+      "evidence_tier": "T1_WET_LAB_ASSAY",
+      "ingested_at": "2026-11-28T06:00:00+08:00",
+      "published_on": null,
+      "review_status": "accepted",
+      "title": "ACKRGPGSGFFSRLN is a linear peptidic epitope (epitope ID 570) studied as part of Hemagglutinin (UniProt:P03452) from Influenza A virus.  This epitope has been studied for immune reactivity in 2 publication(s), tested in 4 T cell assays and 7 B cell assays.",
+      "raw_snippet": "ACKRGPGSGFFSRLN is a linear peptidic epitope (epitope ID 570) studied as part of Hemagglutinin (UniProt:P03452) from Influenza A virus.  This epitope has been studied for immune reactivity in 2 publication(s), tested in 4 T cell assays and 7 B cell assays.",
+      "claim_summary": "IEDB:570 IEDB linear HA epitope record. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "hemagglutinin",
+        "iedb-epitope"
+      ],
+      "nature": "public_database",
+      "subtype_context": "IEDB linear HA epitope record"
+    },
+    {
+      "evidence_id": "EV-IEDB-226309",
+      "dataset_version": "fluevidence-v1",
+      "primary_ref": "IEDB:226309",
+      "source_type": "IEDB_EPITOPE",
+      "source_url": "https://www.iedb.org/epitope/226309/",
+      "evidence_tier": "T1_WET_LAB_ASSAY",
+      "ingested_at": "2026-11-28T06:00:00+08:00",
+      "published_on": null,
+      "review_status": "accepted",
+      "title": "A: H25, H45, V46, N47, L496, S306, L307, P308, T333; B: D363, G364, W365, Q382, T385, Q386, I389, D390, T393, V396, N397, I400; is a discontinuous epitope (epitope ID 226309) studied as part of Two components:Hemagglutinin (UniProt:P03452) & Hemagglutinin (UniProt:P03452) from Influenza A virus.  This epitope has been studied for immune reactivity in 4 publication(s), tested in 12 B cell assays and has 3D structure(s) 3gbn.",
+      "raw_snippet": "A: H25, H45, V46, N47, L496, S306, L307, P308, T333; B: D363, G364, W365, Q382, T385, Q386, I389, D390, T393, V396, N397, I400; is a discontinuous epitope (epitope ID 226309) studied as part of Two components:Hemagglutinin (UniProt:P03452) & Hemagglutinin (UniProt:P03452) from Influenza A virus.  This epitope has been studied for immune reactivity in 4 publication(s), tested in 12 B cell assays and has 3D structure(s) 3gbn.",
+      "claim_summary": "IEDB:226309 IEDB discontinuous HA epitope record citing 3gbn. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "conserved-stem",
+        "iedb-epitope"
+      ],
+      "nature": "public_database",
+      "subtype_context": "IEDB discontinuous HA epitope record citing 3gbn"
+    },
+    {
+      "evidence_id": "EV-UP-P03452",
+      "dataset_version": "fluevidence-v1",
+      "primary_ref": "UniProt:P03452",
+      "source_type": "UNIPROT_RECORD",
+      "source_url": "https://www.uniprot.org/uniprotkb/P03452/",
+      "evidence_tier": "T3_PEER_REVIEWED_LIT",
+      "ingested_at": "2026-11-28T06:00:00+08:00",
+      "published_on": null,
+      "review_status": "accepted",
+      "title": ">sp|P03452|HEMA_I34A1 Hemagglutinin OS=Influenza A virus (strain A/Puerto Rico/8/1934 H1N1) OX=211044 GN=HA PE=1 SV=2",
+      "raw_snippet": ">sp|P03452|HEMA_I34A1 Hemagglutinin OS=Influenza A virus (strain A/Puerto Rico/8/1934 H1N1) OX=211044 GN=HA PE=1 SV=2",
+      "claim_summary": "UniProt:P03452 UniProt reviewed HA entry for A/Puerto Rico/8/1934. 此胶囊只保存已核验的公开题名或数据库原文，不把来源中的结果句当作本原型的疗效结论。",
+      "topics": [
+        "reference-strain",
+        "hemagglutinin"
+      ],
+      "nature": "public_database",
+      "subtype_context": "UniProt reviewed HA entry for A/Puerto Rico/8/1934"
+    }
+  ],
+  "timeline": {
+    "snapshot_id": "fbf7ca92a9eee35217389ca65b85bd132f5bffae9a0dbdd50f38cb2a87613847",
+    "period": "quarter",
+    "curve": [
+      {
+        "period": "2004-Q3",
+        "document_count": 1,
+        "published_documents": [
+          {
+            "evidence_id": "EV-REF-SMITH",
+            "dataset_version": "fluevidence-v1"
+          }
+        ],
+        "ingested_count": 0,
+        "ingested_evidence": [],
+        "source_counts": {},
+        "review_counts": {},
+        "snapshot_updates": []
+      },
+      {
+        "period": "2009-Q1",
+        "document_count": 2,
+        "published_documents": [
+          {
+            "evidence_id": "EV-PDB-3GBM",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-PDB-3GBN",
+            "dataset_version": "fluevidence-v1"
+          }
+        ],
+        "ingested_count": 0,
+        "ingested_evidence": [],
+        "source_counts": {},
+        "review_counts": {},
+        "snapshot_updates": []
+      },
+      {
+        "period": "2009-Q2",
+        "document_count": 1,
+        "published_documents": [
+          {
+            "evidence_id": "EV-STEM-EKIERT",
+            "dataset_version": "fluevidence-v1"
+          }
+        ],
+        "ingested_count": 0,
+        "ingested_evidence": [],
+        "source_counts": {},
+        "review_counts": {},
+        "snapshot_updates": []
+      },
+      {
+        "period": "2009-Q3",
+        "document_count": 1,
+        "published_documents": [
+          {
+            "evidence_id": "EV-REF-GARTEN",
+            "dataset_version": "fluevidence-v1"
+          }
+        ],
+        "ingested_count": 0,
+        "ingested_evidence": [],
+        "source_counts": {},
+        "review_counts": {},
+        "snapshot_updates": []
+      },
+      {
+        "period": "2009-Q4",
+        "document_count": 1,
+        "published_documents": [
+          {
+            "evidence_id": "EV-GLY-WANG",
+            "dataset_version": "fluevidence-v1"
+          }
+        ],
+        "ingested_count": 0,
+        "ingested_evidence": [],
+        "source_counts": {},
+        "review_counts": {},
+        "snapshot_updates": []
+      },
+      {
+        "period": "2011-Q2",
+        "document_count": 1,
+        "published_documents": [
+          {
+            "evidence_id": "EV-CONS-GILES",
+            "dataset_version": "fluevidence-v1"
+          }
+        ],
+        "ingested_count": 0,
+        "ingested_evidence": [],
+        "source_counts": {},
+        "review_counts": {},
+        "snapshot_updates": []
+      },
+      {
+        "period": "2012-Q4",
+        "document_count": 1,
+        "published_documents": [
+          {
+            "evidence_id": "EV-REF-CALHA",
+            "dataset_version": "fluevidence-v1"
+          }
+        ],
+        "ingested_count": 0,
+        "ingested_evidence": [],
+        "source_counts": {},
+        "review_counts": {},
+        "snapshot_updates": []
+      },
+      {
+        "period": "2013-Q1",
+        "document_count": 1,
+        "published_documents": [
+          {
+            "evidence_id": "EV-GLY-ADD",
+            "dataset_version": "fluevidence-v1"
+          }
+        ],
+        "ingested_count": 0,
+        "ingested_evidence": [],
+        "source_counts": {},
+        "review_counts": {},
+        "snapshot_updates": []
+      },
+      {
+        "period": "2014-Q1",
+        "document_count": 1,
+        "published_documents": [
+          {
+            "evidence_id": "EV-GLY-TATE",
+            "dataset_version": "fluevidence-v1"
+          }
+        ],
+        "ingested_count": 0,
+        "ingested_evidence": [],
+        "source_counts": {},
+        "review_counts": {},
+        "snapshot_updates": []
+      },
+      {
+        "period": "2015-Q3",
+        "document_count": 3,
+        "published_documents": [
+          {
+            "evidence_id": "EV-PDB-5C0R",
+            "dataset_version": "fluevidence-v1.1"
+          },
+          {
+            "evidence_id": "EV-PDB-5C0S",
+            "dataset_version": "fluevidence-v1.1"
+          },
+          {
+            "evidence_id": "EV-STEM-IMP",
+            "dataset_version": "fluevidence-v1"
+          }
+        ],
+        "ingested_count": 0,
+        "ingested_evidence": [],
+        "source_counts": {},
+        "review_counts": {},
+        "snapshot_updates": []
+      },
+      {
+        "period": "2016-Q1",
+        "document_count": 1,
+        "published_documents": [
+          {
+            "evidence_id": "EV-STEM-HEADLESS",
+            "dataset_version": "fluevidence-v1"
+          }
+        ],
+        "ingested_count": 0,
+        "ingested_evidence": [],
+        "source_counts": {},
+        "review_counts": {},
+        "snapshot_updates": []
+      },
+      {
+        "period": "2024-Q3",
+        "document_count": 1,
+        "published_documents": [
+          {
+            "evidence_id": "EV-CONS-CARTER-CORR",
+            "dataset_version": "fluevidence-v1.1"
+          }
+        ],
+        "ingested_count": 0,
+        "ingested_evidence": [],
+        "source_counts": {},
+        "review_counts": {},
+        "snapshot_updates": []
+      },
+      {
+        "period": "2026-Q4",
+        "document_count": 0,
+        "published_documents": [],
+        "ingested_count": 24,
+        "ingested_evidence": [
+          {
+            "evidence_id": "EV-ACC-CA07",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-ACC-HK68",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-CONS-CARTER",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-CONS-CARTER-CORR",
+            "dataset_version": "fluevidence-v1.1"
+          },
+          {
+            "evidence_id": "EV-CONS-GILES",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-GLY-ADD",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-GLY-TATE",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-GLY-WANG",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-IEDB-226309",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-IEDB-570",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-PDB-3GBM",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-PDB-3GBN",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-PDB-5C0R",
+            "dataset_version": "fluevidence-v1.1"
+          },
+          {
+            "evidence_id": "EV-PDB-5C0S",
+            "dataset_version": "fluevidence-v1.1"
+          },
+          {
+            "evidence_id": "EV-REF-CALHA",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-REF-GARTEN",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-REF-PETROVA",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-REF-SMITH",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-STEM-EKIERT",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-STEM-HEADLESS",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-STEM-IMP",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-STEM-STALK",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-STEM-YASSINE",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-UP-P03452",
+            "dataset_version": "fluevidence-v1"
+          }
+        ],
+        "source_counts": {
+          "NCBI_NUCCORE": 2,
+          "PUBMED_LITERATURE": 15,
+          "IEDB_EPITOPE": 2,
+          "PDB_STRUCTURE": 4,
+          "UNIPROT_RECORD": 1
+        },
+        "review_counts": {
+          "accepted": 23,
+          "flagged": 1
+        },
+        "snapshot_updates": [
+          {
+            "dataset_version": "fluevidence-v1",
+            "released_at": "2026-11-28T06:30:00+08:00",
+            "previous_version": null
+          },
+          {
+            "dataset_version": "fluevidence-v1.1",
+            "released_at": "2026-11-28T09:30:00+08:00",
+            "previous_version": "fluevidence-v1"
+          }
+        ]
+      }
+    ],
+    "heatmap": [
+      {
+        "month": "2026-11",
+        "source": "IEDB_EPITOPE",
+        "records": 2,
+        "present": {
+          "published_on": 0,
+          "archive_note": 2
+        },
+        "missing": {
+          "published_on": 2,
+          "archive_note": 0
+        },
+        "evidence": [
+          {
+            "evidence_id": "EV-IEDB-226309",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-IEDB-570",
+            "dataset_version": "fluevidence-v1"
+          }
+        ]
+      },
+      {
+        "month": "2026-11",
+        "source": "NCBI_NUCCORE",
+        "records": 2,
+        "present": {
+          "published_on": 0,
+          "archive_note": 2
+        },
+        "missing": {
+          "published_on": 2,
+          "archive_note": 0
+        },
+        "evidence": [
+          {
+            "evidence_id": "EV-ACC-CA07",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-ACC-HK68",
+            "dataset_version": "fluevidence-v1"
+          }
+        ]
+      },
+      {
+        "month": "2026-11",
+        "source": "PDB_STRUCTURE",
+        "records": 4,
+        "present": {
+          "published_on": 4,
+          "archive_note": 4
+        },
+        "missing": {
+          "published_on": 0,
+          "archive_note": 0
+        },
+        "evidence": [
+          {
+            "evidence_id": "EV-PDB-3GBM",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-PDB-3GBN",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-PDB-5C0R",
+            "dataset_version": "fluevidence-v1.1"
+          },
+          {
+            "evidence_id": "EV-PDB-5C0S",
+            "dataset_version": "fluevidence-v1.1"
+          }
+        ]
+      },
+      {
+        "month": "2026-11",
+        "source": "PUBMED_LITERATURE",
+        "records": 15,
+        "present": {
+          "published_on": 11,
+          "archive_note": 15
+        },
+        "missing": {
+          "published_on": 4,
+          "archive_note": 0
+        },
+        "evidence": [
+          {
+            "evidence_id": "EV-CONS-CARTER",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-CONS-CARTER-CORR",
+            "dataset_version": "fluevidence-v1.1"
+          },
+          {
+            "evidence_id": "EV-CONS-GILES",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-GLY-ADD",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-GLY-TATE",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-GLY-WANG",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-REF-CALHA",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-REF-GARTEN",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-REF-PETROVA",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-REF-SMITH",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-STEM-EKIERT",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-STEM-HEADLESS",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-STEM-IMP",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-STEM-STALK",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-STEM-YASSINE",
+            "dataset_version": "fluevidence-v1"
+          }
+        ]
+      },
+      {
+        "month": "2026-11",
+        "source": "UNIPROT_RECORD",
+        "records": 1,
+        "present": {
+          "published_on": 0,
+          "archive_note": 1
+        },
+        "missing": {
+          "published_on": 1,
+          "archive_note": 0
+        },
+        "evidence": [
+          {
+            "evidence_id": "EV-UP-P03452",
+            "dataset_version": "fluevidence-v1"
+          }
+        ]
+      }
+    ],
+    "undated_documents": [
+      {
+        "evidence_id": "EV-ACC-CA07",
+        "dataset_version": "fluevidence-v1"
+      },
+      {
+        "evidence_id": "EV-ACC-HK68",
+        "dataset_version": "fluevidence-v1"
+      },
+      {
+        "evidence_id": "EV-CONS-CARTER",
+        "dataset_version": "fluevidence-v1"
+      },
+      {
+        "evidence_id": "EV-IEDB-226309",
+        "dataset_version": "fluevidence-v1"
+      },
+      {
+        "evidence_id": "EV-IEDB-570",
+        "dataset_version": "fluevidence-v1"
+      },
+      {
+        "evidence_id": "EV-REF-PETROVA",
+        "dataset_version": "fluevidence-v1"
+      },
+      {
+        "evidence_id": "EV-STEM-STALK",
+        "dataset_version": "fluevidence-v1"
+      },
+      {
+        "evidence_id": "EV-STEM-YASSINE",
+        "dataset_version": "fluevidence-v1"
+      },
+      {
+        "evidence_id": "EV-UP-P03452",
+        "dataset_version": "fluevidence-v1"
+      }
+    ]
+  },
+  "questions": [
+    {
+      "question_id": "Q1",
+      "query": "PMID:19465683 的公开题名对应哪一条参考株文献？",
+      "expected": [
+        "EV-REF-GARTEN"
+      ],
+      "hits": [
+        "EV-REF-GARTEN",
+        "EV-REF-PETROVA",
+        "EV-STEM-YASSINE",
+        "EV-STEM-EKIERT",
+        "EV-REF-SMITH"
+      ],
+      "recall_at_5": 1.0,
+      "elapsed_ms": 24.650288,
+      "statements": [
+        {
+          "statement_id": "S1",
+          "text": "Antigenic and genetic characteristics of swine-origin 2009 A(H1N1) influenza viruses circulating in humans.",
+          "evidence_id": "EV-REF-GARTEN",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:19465683",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/19465683/",
+          "nature": "public_methods",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S2",
+          "text": "The evolution of seasonal influenza viruses.",
+          "evidence_id": "EV-REF-PETROVA",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:29081496",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/29081496/",
+          "nature": "public_methods",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S3",
+          "text": "Hemagglutinin-stem nanoparticles generate heterosubtypic influenza protection.",
+          "evidence_id": "EV-STEM-YASSINE",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:26301691",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/26301691/",
+          "nature": "public_methods",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S4",
+          "text": "Antibody recognition of a highly conserved influenza virus epitope.",
+          "evidence_id": "EV-STEM-EKIERT",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:19251591",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/19251591/",
+          "nature": "public_methods",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S5",
+          "text": "Mapping the antigenic and genetic evolution of influenza virus.",
+          "evidence_id": "EV-REF-SMITH",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:15218094",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/15218094/",
+          "nature": "public_methods",
+          "source_review_status": "accepted"
+        }
+      ],
+      "agent_trace": [
+        {
+          "step": "MetadataTimelineAgent",
+          "status": "complete",
+          "periods": 13,
+          "heatmap_cells": 5
+        },
+        {
+          "step": "EvidenceRetrievalAgent",
+          "status": "complete",
+          "routes": {
+            "bm25": 15,
+            "dense": 15,
+            "graph": 15
+          },
+          "selected": 5
+        },
+        {
+          "step": "DossierComparisonAgent",
+          "status": "skipped",
+          "dossiers": 0,
+          "open_items": 0
+        },
+        {
+          "step": "UncertaintyAuditAgent",
+          "status": "complete",
+          "accepted": 5,
+          "rejected": {
+            "outside_selection": 0,
+            "nonverbatim": 0,
+            "effect_promise": 0
+          },
+          "nli_signals": {
+            "ENTAIL": 5
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "Q2",
+      "query": "Glycans on influenza hemagglutinin affect receptor binding and immune response 是哪一条已发表题名？ PMID:19822741",
+      "expected": [
+        "EV-GLY-WANG"
+      ],
+      "hits": [
+        "EV-GLY-WANG",
+        "EV-GLY-TATE",
+        "EV-REF-CALHA",
+        "EV-CONS-CARTER",
+        "EV-REF-GARTEN"
+      ],
+      "recall_at_5": 1.0,
+      "elapsed_ms": 18.110621,
+      "statements": [
+        {
+          "statement_id": "S1",
+          "text": "Glycans on influenza hemagglutinin affect receptor binding and immune response.",
+          "evidence_id": "EV-GLY-WANG",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:19822741",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/19822741/",
+          "nature": "public_methods",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S2",
+          "text": "Playing hide and seek: how glycosylation of the influenza virus hemagglutinin can modulate the immune response to infection.",
+          "evidence_id": "EV-GLY-TATE",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:24638204",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/24638204/",
+          "nature": "public_methods",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S3",
+          "text": "Pandemic influenza vaccine: characterization of A/California/07/2009 (H1N1) recombinant hemagglutinin protein and insights into H1N1 antigen stability.",
+          "evidence_id": "EV-REF-CALHA",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:23110350",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/23110350/",
+          "nature": "public_methods",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S4",
+          "text": "Design and Characterization of a Computationally Optimized Broadly Reactive Hemagglutinin Vaccine for H1N1 Influenza Viruses.",
+          "evidence_id": "EV-CONS-CARTER",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:26912624",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/26912624/",
+          "nature": "public_methods",
+          "source_review_status": "flagged"
+        },
+        {
+          "statement_id": "S5",
+          "text": "Antigenic and genetic characteristics of swine-origin 2009 A(H1N1) influenza viruses circulating in humans.",
+          "evidence_id": "EV-REF-GARTEN",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:19465683",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/19465683/",
+          "nature": "public_methods",
+          "source_review_status": "accepted"
+        }
+      ],
+      "agent_trace": [
+        {
+          "step": "MetadataTimelineAgent",
+          "status": "complete",
+          "periods": 13,
+          "heatmap_cells": 5
+        },
+        {
+          "step": "EvidenceRetrievalAgent",
+          "status": "complete",
+          "routes": {
+            "bm25": 15,
+            "dense": 15,
+            "graph": 15
+          },
+          "selected": 5
+        },
+        {
+          "step": "DossierComparisonAgent",
+          "status": "skipped",
+          "dossiers": 0,
+          "open_items": 0
+        },
+        {
+          "step": "UncertaintyAuditAgent",
+          "status": "complete",
+          "accepted": 5,
+          "rejected": {
+            "outside_selection": 0,
+            "nonverbatim": 0,
+            "effect_promise": 0
+          },
+          "nli_signals": {
+            "ENTAIL": 5
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "Q3",
+      "query": "H1N1 共识序列文献 PMID:26912624 与其更正通知 PMID:38819164 分别是哪两条记录？",
+      "expected": [
+        "EV-CONS-CARTER",
+        "EV-CONS-CARTER-CORR"
+      ],
+      "hits": [
+        "EV-CONS-CARTER",
+        "EV-CONS-CARTER-CORR",
+        "EV-REF-CALHA",
+        "EV-REF-GARTEN",
+        "EV-ACC-CA07"
+      ],
+      "recall_at_5": 1.0,
+      "elapsed_ms": 18.593875,
+      "statements": [
+        {
+          "statement_id": "S1",
+          "text": "Design and Characterization of a Computationally Optimized Broadly Reactive Hemagglutinin Vaccine for H1N1 Influenza Viruses.",
+          "evidence_id": "EV-CONS-CARTER",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:26912624",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/26912624/",
+          "nature": "public_methods",
+          "source_review_status": "flagged"
+        },
+        {
+          "statement_id": "S2",
+          "text": "Correction for Carter et al., \"Design and Characterization of a Computationally Optimized Broadly Reactive Hemagglutinin Vaccine for H1N1 Influenza Viruses\".",
+          "evidence_id": "EV-CONS-CARTER-CORR",
+          "dataset_version": "fluevidence-v1.1",
+          "primary_ref": "PMID:38819164",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T09:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/38819164/",
+          "nature": "public_methods",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S3",
+          "text": "Pandemic influenza vaccine: characterization of A/California/07/2009 (H1N1) recombinant hemagglutinin protein and insights into H1N1 antigen stability.",
+          "evidence_id": "EV-REF-CALHA",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:23110350",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/23110350/",
+          "nature": "public_methods",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S4",
+          "text": "Antigenic and genetic characteristics of swine-origin 2009 A(H1N1) influenza viruses circulating in humans.",
+          "evidence_id": "EV-REF-GARTEN",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:19465683",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/19465683/",
+          "nature": "public_methods",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S5",
+          "text": "Influenza A virus (A/California/07/2009(H1N1)) hemagglutinin (HA) gene, complete cds",
+          "evidence_id": "EV-ACC-CA07",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "Accession:CY121680.1",
+          "evidence_tier": "T2_SURVEILLANCE",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://www.ncbi.nlm.nih.gov/nuccore/CY121680.1/",
+          "nature": "public_database",
+          "source_review_status": "accepted"
+        }
+      ],
+      "agent_trace": [
+        {
+          "step": "MetadataTimelineAgent",
+          "status": "complete",
+          "periods": 13,
+          "heatmap_cells": 5
+        },
+        {
+          "step": "EvidenceRetrievalAgent",
+          "status": "complete",
+          "routes": {
+            "bm25": 15,
+            "dense": 1,
+            "graph": 15
+          },
+          "selected": 5
+        },
+        {
+          "step": "DossierComparisonAgent",
+          "status": "skipped",
+          "dossiers": 0,
+          "open_items": 0
+        },
+        {
+          "step": "UncertaintyAuditAgent",
+          "status": "complete",
+          "accepted": 5,
+          "rejected": {
+            "outside_selection": 0,
+            "nonverbatim": 0,
+            "effect_promise": 0
+          },
+          "nli_signals": {
+            "ENTAIL": 5
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "Q4",
+      "query": "RCSB 登录 PDB:3GBN 与 PDB:5C0S 分别对应哪两条结构记录？",
+      "expected": [
+        "EV-PDB-3GBN",
+        "EV-PDB-5C0S"
+      ],
+      "hits": [
+        "EV-PDB-3GBN",
+        "EV-PDB-5C0S",
+        "EV-PDB-3GBM",
+        "EV-PDB-5C0R",
+        "EV-REF-PETROVA"
+      ],
+      "recall_at_5": 1.0,
+      "elapsed_ms": 19.288599,
+      "statements": [
+        {
+          "statement_id": "S1",
+          "text": "Crystal Structure of Fab CR6261 in Complex with the 1918 H1N1 influenza virus hemagglutinin",
+          "evidence_id": "EV-PDB-3GBN",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PDB:3GBN",
+          "evidence_tier": "T1_WET_LAB_ASSAY",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://www.rcsb.org/structure/3GBN/",
+          "nature": "public_database",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S2",
+          "text": "Crystal structure of a generation 4 influenza hemagglutinin stabilized stem in complex with the broadly neutralizing antibody CR6261",
+          "evidence_id": "EV-PDB-5C0S",
+          "dataset_version": "fluevidence-v1.1",
+          "primary_ref": "PDB:5C0S",
+          "evidence_tier": "T1_WET_LAB_ASSAY",
+          "ingested_at": "2026-11-28T09:00:00+08:00",
+          "source_url": "https://www.rcsb.org/structure/5C0S/",
+          "nature": "public_database",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S3",
+          "text": "Crystal Structure of Fab CR6261 in Complex with a H5N1 influenza virus hemagglutinin.",
+          "evidence_id": "EV-PDB-3GBM",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PDB:3GBM",
+          "evidence_tier": "T1_WET_LAB_ASSAY",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://www.rcsb.org/structure/3GBM/",
+          "nature": "public_database",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S4",
+          "text": "Crystal Structure of a Generation 3 Influenza Hemagglutinin Stabilized Stem Complexed with the Broadly Neutralizing Antibody C179",
+          "evidence_id": "EV-PDB-5C0R",
+          "dataset_version": "fluevidence-v1.1",
+          "primary_ref": "PDB:5C0R",
+          "evidence_tier": "T1_WET_LAB_ASSAY",
+          "ingested_at": "2026-11-28T09:00:00+08:00",
+          "source_url": "https://www.rcsb.org/structure/5C0R/",
+          "nature": "public_database",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S5",
+          "text": "The evolution of seasonal influenza viruses.",
+          "evidence_id": "EV-REF-PETROVA",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:29081496",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/29081496/",
+          "nature": "public_methods",
+          "source_review_status": "accepted"
+        }
+      ],
+      "agent_trace": [
+        {
+          "step": "MetadataTimelineAgent",
+          "status": "complete",
+          "periods": 13,
+          "heatmap_cells": 5
+        },
+        {
+          "step": "EvidenceRetrievalAgent",
+          "status": "complete",
+          "routes": {
+            "bm25": 15,
+            "dense": 0,
+            "graph": 15
+          },
+          "selected": 5
+        },
+        {
+          "step": "DossierComparisonAgent",
+          "status": "skipped",
+          "dossiers": 0,
+          "open_items": 0
+        },
+        {
+          "step": "UncertaintyAuditAgent",
+          "status": "complete",
+          "accepted": 5,
+          "rejected": {
+            "outside_selection": 0,
+            "nonverbatim": 0,
+            "effect_promise": 0
+          },
+          "nli_signals": {
+            "ENTAIL": 5
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "Q5",
+      "query": "NCBI Accession:CY121680.1 的血凝素定义行是什么？",
+      "expected": [
+        "EV-ACC-CA07"
+      ],
+      "hits": [
+        "EV-ACC-CA07",
+        "EV-REF-PETROVA",
+        "EV-STEM-YASSINE",
+        "EV-REF-SMITH",
+        "EV-STEM-EKIERT"
+      ],
+      "recall_at_5": 1.0,
+      "elapsed_ms": 14.438441,
+      "statements": [
+        {
+          "statement_id": "S1",
+          "text": "Influenza A virus (A/California/07/2009(H1N1)) hemagglutinin (HA) gene, complete cds",
+          "evidence_id": "EV-ACC-CA07",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "Accession:CY121680.1",
+          "evidence_tier": "T2_SURVEILLANCE",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://www.ncbi.nlm.nih.gov/nuccore/CY121680.1/",
+          "nature": "public_database",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S2",
+          "text": "The evolution of seasonal influenza viruses.",
+          "evidence_id": "EV-REF-PETROVA",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:29081496",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/29081496/",
+          "nature": "public_methods",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S3",
+          "text": "Hemagglutinin-stem nanoparticles generate heterosubtypic influenza protection.",
+          "evidence_id": "EV-STEM-YASSINE",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:26301691",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/26301691/",
+          "nature": "public_methods",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S4",
+          "text": "Mapping the antigenic and genetic evolution of influenza virus.",
+          "evidence_id": "EV-REF-SMITH",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:15218094",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/15218094/",
+          "nature": "public_methods",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S5",
+          "text": "Antibody recognition of a highly conserved influenza virus epitope.",
+          "evidence_id": "EV-STEM-EKIERT",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:19251591",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/19251591/",
+          "nature": "public_methods",
+          "source_review_status": "accepted"
+        }
+      ],
+      "agent_trace": [
+        {
+          "step": "MetadataTimelineAgent",
+          "status": "complete",
+          "periods": 13,
+          "heatmap_cells": 5
+        },
+        {
+          "step": "EvidenceRetrievalAgent",
+          "status": "complete",
+          "routes": {
+            "bm25": 15,
+            "dense": 0,
+            "graph": 15
+          },
+          "selected": 5
+        },
+        {
+          "step": "DossierComparisonAgent",
+          "status": "skipped",
+          "dossiers": 0,
+          "open_items": 0
+        },
+        {
+          "step": "UncertaintyAuditAgent",
+          "status": "complete",
+          "accepted": 5,
+          "rejected": {
+            "outside_selection": 0,
+            "nonverbatim": 0,
+            "effect_promise": 0
+          },
+          "nli_signals": {
+            "ENTAIL": 5
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "Q6",
+      "query": "Stalking influenza by vaccination with pre-fusion headless HA mini-stem 这条已发表题名在库中吗？",
+      "expected": [
+        "EV-STEM-HEADLESS"
+      ],
+      "hits": [
+        "EV-ACC-CA07",
+        "EV-PDB-3GBM",
+        "EV-STEM-HEADLESS",
+        "EV-UP-P03452",
+        "EV-PDB-3GBN"
+      ],
+      "recall_at_5": 1.0,
+      "elapsed_ms": 16.761578,
+      "statements": [
+        {
+          "statement_id": "S1",
+          "text": "Influenza A virus (A/California/07/2009(H1N1)) hemagglutinin (HA) gene, complete cds",
+          "evidence_id": "EV-ACC-CA07",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "Accession:CY121680.1",
+          "evidence_tier": "T2_SURVEILLANCE",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://www.ncbi.nlm.nih.gov/nuccore/CY121680.1/",
+          "nature": "public_database",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S2",
+          "text": "Crystal Structure of Fab CR6261 in Complex with a H5N1 influenza virus hemagglutinin.",
+          "evidence_id": "EV-PDB-3GBM",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PDB:3GBM",
+          "evidence_tier": "T1_WET_LAB_ASSAY",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://www.rcsb.org/structure/3GBM/",
+          "nature": "public_database",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S3",
+          "text": "Stalking influenza by vaccination with pre-fusion headless HA mini-stem.",
+          "evidence_id": "EV-STEM-HEADLESS",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:26947245",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/26947245/",
+          "nature": "public_methods",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S4",
+          "text": ">sp|P03452|HEMA_I34A1 Hemagglutinin OS=Influenza A virus (strain A/Puerto Rico/8/1934 H1N1) OX=211044 GN=HA PE=1 SV=2",
+          "evidence_id": "EV-UP-P03452",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "UniProt:P03452",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://www.uniprot.org/uniprotkb/P03452/",
+          "nature": "public_database",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S5",
+          "text": "Crystal Structure of Fab CR6261 in Complex with the 1918 H1N1 influenza virus hemagglutinin",
+          "evidence_id": "EV-PDB-3GBN",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PDB:3GBN",
+          "evidence_tier": "T1_WET_LAB_ASSAY",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://www.rcsb.org/structure/3GBN/",
+          "nature": "public_database",
+          "source_review_status": "accepted"
+        }
+      ],
+      "agent_trace": [
+        {
+          "step": "MetadataTimelineAgent",
+          "status": "complete",
+          "periods": 13,
+          "heatmap_cells": 5
+        },
+        {
+          "step": "EvidenceRetrievalAgent",
+          "status": "complete",
+          "routes": {
+            "bm25": 15,
+            "dense": 15,
+            "graph": 15
+          },
+          "selected": 5
+        },
+        {
+          "step": "DossierComparisonAgent",
+          "status": "skipped",
+          "dossiers": 0,
+          "open_items": 0
+        },
+        {
+          "step": "UncertaintyAuditAgent",
+          "status": "complete",
+          "accepted": 5,
+          "rejected": {
+            "outside_selection": 0,
+            "nonverbatim": 0,
+            "effect_promise": 0
+          },
+          "nli_signals": {
+            "ENTAIL": 5
+          }
+        }
+      ]
+    },
+    {
+      "question_id": "Q7",
+      "query": "IEDB:570 与 IEDB:226309 的表位摘要原文是什么？",
+      "expected": [
+        "EV-IEDB-570",
+        "EV-IEDB-226309"
+      ],
+      "hits": [
+        "EV-IEDB-570",
+        "EV-IEDB-226309",
+        "EV-REF-PETROVA",
+        "EV-STEM-YASSINE",
+        "EV-REF-SMITH"
+      ],
+      "recall_at_5": 1.0,
+      "elapsed_ms": 18.16363,
+      "statements": [
+        {
+          "statement_id": "S1",
+          "text": "ACKRGPGSGFFSRLN is a linear peptidic epitope (epitope ID 570) studied as part of Hemagglutinin (UniProt:P03452) from Influenza A virus.  This epitope has been studied for immune reactivity in 2 publication(s), tested in 4 T cell assays and 7 B cell assays.",
+          "evidence_id": "EV-IEDB-570",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "IEDB:570",
+          "evidence_tier": "T1_WET_LAB_ASSAY",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://www.iedb.org/epitope/570/",
+          "nature": "public_database",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S2",
+          "text": "A: H25, H45, V46, N47, L496, S306, L307, P308, T333; B: D363, G364, W365, Q382, T385, Q386, I389, D390, T393, V396, N397, I400; is a discontinuous epitope (epitope ID 226309) studied as part of Two components:Hemagglutinin (UniProt:P03452) & Hemagglutinin (UniProt:P03452) from Influenza A virus.  This epitope has been studied for immune reactivity in 4 publication(s), tested in 12 B cell assays and has 3D structure(s) 3gbn.",
+          "evidence_id": "EV-IEDB-226309",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "IEDB:226309",
+          "evidence_tier": "T1_WET_LAB_ASSAY",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://www.iedb.org/epitope/226309/",
+          "nature": "public_database",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S3",
+          "text": "The evolution of seasonal influenza viruses.",
+          "evidence_id": "EV-REF-PETROVA",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:29081496",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/29081496/",
+          "nature": "public_methods",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S4",
+          "text": "Hemagglutinin-stem nanoparticles generate heterosubtypic influenza protection.",
+          "evidence_id": "EV-STEM-YASSINE",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:26301691",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/26301691/",
+          "nature": "public_methods",
+          "source_review_status": "accepted"
+        },
+        {
+          "statement_id": "S5",
+          "text": "Mapping the antigenic and genetic evolution of influenza virus.",
+          "evidence_id": "EV-REF-SMITH",
+          "dataset_version": "fluevidence-v1",
+          "primary_ref": "PMID:15218094",
+          "evidence_tier": "T3_PEER_REVIEWED_LIT",
+          "ingested_at": "2026-11-28T06:00:00+08:00",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/15218094/",
+          "nature": "public_methods",
+          "source_review_status": "accepted"
+        }
+      ],
+      "agent_trace": [
+        {
+          "step": "MetadataTimelineAgent",
+          "status": "complete",
+          "periods": 13,
+          "heatmap_cells": 5
+        },
+        {
+          "step": "EvidenceRetrievalAgent",
+          "status": "complete",
+          "routes": {
+            "bm25": 15,
+            "dense": 1,
+            "graph": 15
+          },
+          "selected": 5
+        },
+        {
+          "step": "DossierComparisonAgent",
+          "status": "skipped",
+          "dossiers": 0,
+          "open_items": 0
+        },
+        {
+          "step": "UncertaintyAuditAgent",
+          "status": "complete",
+          "accepted": 5,
+          "rejected": {
+            "outside_selection": 0,
+            "nonverbatim": 0,
+            "effect_promise": 0
+          },
+          "nli_signals": {
+            "ENTAIL": 5
+          }
+        }
+      ]
+    }
+  ],
+  "dossiers": [
+    {
+      "dossier_id": "plan-reference-strain",
+      "label": "参考株文献与登录号",
+      "source_coverage": {
+        "count": 7,
+        "primary_refs": [
+          "Accession:AF348176.1",
+          "Accession:CY121680.1",
+          "PMID:15218094",
+          "PMID:19465683",
+          "PMID:23110350",
+          "PMID:29081496",
+          "UniProt:P03452"
+        ]
+      },
+      "field_completeness": {
+        "present": 5,
+        "total": 5,
+        "missing": []
+      },
+      "version_consistency": {
+        "declared": "fluevidence-v1",
+        "referenced": [
+          "fluevidence-v1"
+        ],
+        "consistent": true
+      },
+      "evidence_traceability": {
+        "anchors": [
+          {
+            "evidence_id": "EV-REF-GARTEN",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-REF-SMITH",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-REF-PETROVA",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-REF-CALHA",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-ACC-CA07",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-ACC-HK68",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-UP-P03452",
+            "dataset_version": "fluevidence-v1"
+          }
+        ],
+        "hash_verified": true,
+        "accepted_citations": 7
+      },
+      "review_status": {
+        "declared": "accepted",
+        "source_counts": {
+          "accepted": 7
+        },
+        "open_items": [],
+        "operator_annotation": "已发表参考株文献与公共登录号元数据。不含序列，不含新的生物学评分。"
+      },
+      "evidence_dimensions": {
+        "source_coverage": 0.6,
+        "source_types_present": [
+          "NCBI_NUCCORE",
+          "PUBMED_LITERATURE",
+          "UNIPROT_RECORD"
+        ],
+        "version_consistency": 1.0,
+        "citation_conflict_clearance": 1.0,
+        "tier_breadth": 0.5,
+        "open_review_clearance": 0.5,
+        "tier_distribution": {
+          "T1_WET_LAB_ASSAY": 0,
+          "T2_SURVEILLANCE": 2,
+          "T3_PEER_REVIEWED_LIT": 5,
+          "T4_COMPUTATIONAL": 0
+        },
+        "citation_conflicts": [],
+        "evidence_gaps": [
+          "no_T1_record"
+        ],
+        "catalog_source_types": [
+          "PUBMED_LITERATURE",
+          "NCBI_NUCCORE",
+          "PDB_STRUCTURE",
+          "IEDB_EPITOPE",
+          "UNIPROT_RECORD"
+        ],
+        "note": "这些分数只统计来源覆盖、版本一致性、引用交叉、证据等级分布和未决事项，不是免疫原性能或临床效果。"
+      }
+    },
+    {
+      "dossier_id": "plan-consensus-literature",
+      "label": "共识序列文献",
+      "source_coverage": {
+        "count": 3,
+        "primary_refs": [
+          "PMID:21320540",
+          "PMID:26912624",
+          "PMID:38819164"
+        ]
+      },
+      "field_completeness": {
+        "present": 5,
+        "total": 5,
+        "missing": []
+      },
+      "version_consistency": {
+        "declared": "fluevidence-v1",
+        "referenced": [
+          "fluevidence-v1",
+          "fluevidence-v1.1"
+        ],
+        "consistent": false
+      },
+      "evidence_traceability": {
+        "anchors": [
+          {
+            "evidence_id": "EV-CONS-GILES",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-CONS-CARTER",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-CONS-CARTER-CORR",
+            "dataset_version": "fluevidence-v1.1"
+          }
+        ],
+        "hash_verified": true,
+        "accepted_citations": 3
+      },
+      "review_status": {
+        "declared": "flagged",
+        "source_counts": {
+          "accepted": 2,
+          "flagged": 1
+        },
+        "open_items": [
+          "version_mismatch",
+          "dossier_review_open",
+          "source_review_open"
+        ],
+        "operator_annotation": "已发表共识序列文献与一条更正通知。不保存共识序列，不计算新分数。"
+      },
+      "evidence_dimensions": {
+        "source_coverage": 0.2,
+        "source_types_present": [
+          "PUBMED_LITERATURE"
+        ],
+        "version_consistency": 0.0,
+        "citation_conflict_clearance": 0.0,
+        "tier_breadth": 0.25,
+        "open_review_clearance": 0.16666666666666666,
+        "tier_distribution": {
+          "T1_WET_LAB_ASSAY": 0,
+          "T2_SURVEILLANCE": 0,
+          "T3_PEER_REVIEWED_LIT": 3,
+          "T4_COMPUTATIONAL": 0
+        },
+        "citation_conflicts": [
+          {
+            "left": {
+              "evidence_id": "EV-CONS-CARTER",
+              "dataset_version": "fluevidence-v1"
+            },
+            "right": {
+              "evidence_id": "EV-CONS-CARTER-CORR",
+              "dataset_version": "fluevidence-v1.1"
+            },
+            "left_ref": "PMID:26912624",
+            "right_ref": "PMID:38819164",
+            "reason": "archive_note_cites_other_primary_ref"
+          }
+        ],
+        "evidence_gaps": [
+          "version_mismatch",
+          "dossier_review_open",
+          "source_review_open",
+          "no_T1_record",
+          "no_T2_record"
+        ],
+        "catalog_source_types": [
+          "PUBMED_LITERATURE",
+          "NCBI_NUCCORE",
+          "PDB_STRUCTURE",
+          "IEDB_EPITOPE",
+          "UNIPROT_RECORD"
+        ],
+        "note": "这些分数只统计来源覆盖、版本一致性、引用交叉、证据等级分布和未决事项，不是免疫原性能或临床效果。"
+      }
+    },
+    {
+      "dossier_id": "plan-head-glycosylation",
+      "label": "头部糖基化文献",
+      "source_coverage": {
+        "count": 3,
+        "primary_refs": [
+          "PMID:19822741",
+          "PMID:23365085",
+          "PMID:24638204"
+        ]
+      },
+      "field_completeness": {
+        "present": 5,
+        "total": 5,
+        "missing": []
+      },
+      "version_consistency": {
+        "declared": "fluevidence-v1",
+        "referenced": [
+          "fluevidence-v1"
+        ],
+        "consistent": true
+      },
+      "evidence_traceability": {
+        "anchors": [
+          {
+            "evidence_id": "EV-GLY-WANG",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-GLY-TATE",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-GLY-ADD",
+            "dataset_version": "fluevidence-v1"
+          }
+        ],
+        "hash_verified": true,
+        "accepted_citations": 3
+      },
+      "review_status": {
+        "declared": "accepted",
+        "source_counts": {
+          "accepted": 3
+        },
+        "open_items": [],
+        "operator_annotation": "已发表糖基化文献题名。不是糖基化位点改造，也不是实验步骤清单。"
+      },
+      "evidence_dimensions": {
+        "source_coverage": 0.2,
+        "source_types_present": [
+          "PUBMED_LITERATURE"
+        ],
+        "version_consistency": 1.0,
+        "citation_conflict_clearance": 1.0,
+        "tier_breadth": 0.25,
+        "open_review_clearance": 0.3333333333333333,
+        "tier_distribution": {
+          "T1_WET_LAB_ASSAY": 0,
+          "T2_SURVEILLANCE": 0,
+          "T3_PEER_REVIEWED_LIT": 3,
+          "T4_COMPUTATIONAL": 0
+        },
+        "citation_conflicts": [],
+        "evidence_gaps": [
+          "no_T1_record",
+          "no_T2_record"
+        ],
+        "catalog_source_types": [
+          "PUBMED_LITERATURE",
+          "NCBI_NUCCORE",
+          "PDB_STRUCTURE",
+          "IEDB_EPITOPE",
+          "UNIPROT_RECORD"
+        ],
+        "note": "这些分数只统计来源覆盖、版本一致性、引用交叉、证据等级分布和未决事项，不是免疫原性能或临床效果。"
+      }
+    },
+    {
+      "dossier_id": "plan-conserved-stem",
+      "label": "保守茎部文献与结构登录",
+      "source_coverage": {
+        "count": 11,
+        "primary_refs": [
+          "IEDB:226309",
+          "IEDB:570",
+          "PDB:3GBM",
+          "PDB:3GBN",
+          "PDB:5C0R",
+          "PDB:5C0S",
+          "PMID:19251591",
+          "PMID:25210189",
+          "PMID:26301691",
+          "PMID:26303961",
+          "PMID:26947245"
+        ]
+      },
+      "field_completeness": {
+        "present": 5,
+        "total": 5,
+        "missing": []
+      },
+      "version_consistency": {
+        "declared": "fluevidence-v1.1",
+        "referenced": [
+          "fluevidence-v1",
+          "fluevidence-v1.1"
+        ],
+        "consistent": false
+      },
+      "evidence_traceability": {
+        "anchors": [
+          {
+            "evidence_id": "EV-STEM-IMP",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-STEM-YASSINE",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-STEM-EKIERT",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-STEM-HEADLESS",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-STEM-STALK",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-PDB-3GBN",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-PDB-3GBM",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-PDB-5C0S",
+            "dataset_version": "fluevidence-v1.1"
+          },
+          {
+            "evidence_id": "EV-PDB-5C0R",
+            "dataset_version": "fluevidence-v1.1"
+          },
+          {
+            "evidence_id": "EV-IEDB-570",
+            "dataset_version": "fluevidence-v1"
+          },
+          {
+            "evidence_id": "EV-IEDB-226309",
+            "dataset_version": "fluevidence-v1"
+          }
+        ],
+        "hash_verified": true,
+        "accepted_citations": 11
+      },
+      "review_status": {
+        "declared": "accepted",
+        "source_counts": {
+          "accepted": 11
+        },
+        "open_items": [
+          "version_mismatch"
+        ],
+        "operator_annotation": "已发表茎部文献、RCSB 结构登录和 IEDB 摘要。不保存构建体序列。"
+      },
+      "evidence_dimensions": {
+        "source_coverage": 0.6,
+        "source_types_present": [
+          "IEDB_EPITOPE",
+          "PDB_STRUCTURE",
+          "PUBMED_LITERATURE"
+        ],
+        "version_consistency": 0.0,
+        "citation_conflict_clearance": 1.0,
+        "tier_breadth": 0.5,
+        "open_review_clearance": 0.3333333333333333,
+        "tier_distribution": {
+          "T1_WET_LAB_ASSAY": 6,
+          "T2_SURVEILLANCE": 0,
+          "T3_PEER_REVIEWED_LIT": 5,
+          "T4_COMPUTATIONAL": 0
+        },
+        "citation_conflicts": [],
+        "evidence_gaps": [
+          "version_mismatch",
+          "no_T2_record"
+        ],
+        "catalog_source_types": [
+          "PUBMED_LITERATURE",
+          "NCBI_NUCCORE",
+          "PDB_STRUCTURE",
+          "IEDB_EPITOPE",
+          "UNIPROT_RECORD"
+        ],
+        "note": "这些分数只统计来源覆盖、版本一致性、引用交叉、证据等级分布和未决事项，不是免疫原性能或临床效果。"
+      }
+    }
+  ],
+  "signoff": {
+    "state": "EXPERT_SIGNED",
+    "version": 2,
+    "markdown": "# 专家复核报告 v2\n\n本阶段交付软件原型与离线评测，不以实验有效性或临床效果作为承诺。\n\n快照 `fbf7ca92a9eee35217389ca65b85bd132f5bffae9a0dbdd50f38cb2a87613847`\n\n## 档案处置概览\n\n- 参考株文献与登录号，完整字段 5/5，未决事项 0 项。\n- 共识序列文献，完整字段 5/5，未决事项 3 项。\n- 头部糖基化文献，完整字段 5/5，未决事项 0 项。\n- 保守茎部文献与结构登录，完整字段 5/5，未决事项 1 项。\n\n## 已采纳引文\n\n- Antigenic and genetic characteristics of swine-origin 2009 A\\(H1N1\\) influenza viruses circulating in humans. — EV-REF-GARTEN · fluevidence-v1 · PMID:19465683 · T3\\_PEER\\_REVIEWED\\_LIT\n- Mapping the antigenic and genetic evolution of influenza virus. — EV-REF-SMITH · fluevidence-v1 · PMID:15218094 · T3\\_PEER\\_REVIEWED\\_LIT\n- The evolution of seasonal influenza viruses. — EV-REF-PETROVA · fluevidence-v1 · PMID:29081496 · T3\\_PEER\\_REVIEWED\\_LIT\n- Pandemic influenza vaccine: characterization of A/California/07/2009 \\(H1N1\\) recombinant hemagglutinin protein and insights into H1N1 antigen stability. — EV-REF-CALHA · fluevidence-v1 · PMID:23110350 · T3\\_PEER\\_REVIEWED\\_LIT\n- Influenza A virus \\(A/California/07/2009\\(H1N1\\)\\) hemagglutinin \\(HA\\) gene, complete cds — EV-ACC-CA07 · fluevidence-v1 · Accession:CY121680.1 · T2\\_SURVEILLANCE\n- Influenza A virus \\(A/Hong Kong/1/68\\(H3N2\\)\\) hemagglutinin gene, complete cds — EV-ACC-HK68 · fluevidence-v1 · Accession:AF348176.1 · T2\\_SURVEILLANCE\n- &gt;sp\\|P03452\\|HEMA\\_I34A1 Hemagglutinin OS=Influenza A virus \\(strain A/Puerto Rico/8/1934 H1N1\\) OX=211044 GN=HA PE=1 SV=2 — EV-UP-P03452 · fluevidence-v1 · UniProt:P03452 · T3\\_PEER\\_REVIEWED\\_LIT\n- A computationally optimized broadly reactive antigen \\(COBRA\\) based H5N1 VLP vaccine elicits broadly reactive antibodies in mice and ferrets. — EV-CONS-GILES · fluevidence-v1 · PMID:21320540 · T3\\_PEER\\_REVIEWED\\_LIT\n- Correction for Carter et al., \"Design and Characterization of a Computationally Optimized Broadly Reactive Hemagglutinin Vaccine for H1N1 Influenza Viruses\". — EV-CONS-CARTER-CORR · fluevidence-v1.1 · PMID:38819164 · T3\\_PEER\\_REVIEWED\\_LIT\n- Glycans on influenza hemagglutinin affect receptor binding and immune response. — EV-GLY-WANG · fluevidence-v1 · PMID:19822741 · T3\\_PEER\\_REVIEWED\\_LIT\n- Playing hide and seek: how glycosylation of the influenza virus hemagglutinin can modulate the immune response to infection. — EV-GLY-TATE · fluevidence-v1 · PMID:24638204 · T3\\_PEER\\_REVIEWED\\_LIT\n- Addition of glycosylation to influenza A virus hemagglutinin modulates antibody-mediated recognition of H1N1 2009 pandemic viruses. — EV-GLY-ADD · fluevidence-v1 · PMID:23365085 · T3\\_PEER\\_REVIEWED\\_LIT\n- A stable trimeric influenza hemagglutinin stem as a broadly protective immunogen. — EV-STEM-IMP · fluevidence-v1 · PMID:26303961 · T3\\_PEER\\_REVIEWED\\_LIT\n- Hemagglutinin-stem nanoparticles generate heterosubtypic influenza protection. — EV-STEM-YASSINE · fluevidence-v1 · PMID:26301691 · T3\\_PEER\\_REVIEWED\\_LIT\n- Antibody recognition of a highly conserved influenza virus epitope. — EV-STEM-EKIERT · fluevidence-v1 · PMID:19251591 · T3\\_PEER\\_REVIEWED\\_LIT\n- Stalking influenza by vaccination with pre-fusion headless HA mini-stem. — EV-STEM-HEADLESS · fluevidence-v1 · PMID:26947245 · T3\\_PEER\\_REVIEWED\\_LIT\n- Induction of broadly reactive anti-hemagglutinin stalk antibodies by an H5N1 vaccine in humans. — EV-STEM-STALK · fluevidence-v1 · PMID:25210189 · T3\\_PEER\\_REVIEWED\\_LIT\n- Crystal Structure of Fab CR6261 in Complex with the 1918 H1N1 influenza virus hemagglutinin — EV-PDB-3GBN · fluevidence-v1 · PDB:3GBN · T1\\_WET\\_LAB\\_ASSAY\n- Crystal Structure of Fab CR6261 in Complex with a H5N1 influenza virus hemagglutinin. — EV-PDB-3GBM · fluevidence-v1 · PDB:3GBM · T1\\_WET\\_LAB\\_ASSAY\n- Crystal structure of a generation 4 influenza hemagglutinin stabilized stem in complex with the broadly neutralizing antibody CR6261 — EV-PDB-5C0S · fluevidence-v1.1 · PDB:5C0S · T1\\_WET\\_LAB\\_ASSAY\n- Crystal Structure of a Generation 3 Influenza Hemagglutinin Stabilized Stem Complexed with the Broadly Neutralizing Antibody C179 — EV-PDB-5C0R · fluevidence-v1.1 · PDB:5C0R · T1\\_WET\\_LAB\\_ASSAY\n- ACKRGPGSGFFSRLN is a linear peptidic epitope \\(epitope ID 570\\) studied as part of Hemagglutinin \\(UniProt:P03452\\) from Influenza A virus.  This epitope has been studied for immune reactivity in 2 publication\\(s\\), tested in 4 T cell assays and 7 B cell assays. — EV-IEDB-570 · fluevidence-v1 · IEDB:570 · T1\\_WET\\_LAB\\_ASSAY\n- A: H25, H45, V46, N47, L496, S306, L307, P308, T333; B: D363, G364, W365, Q382, T385, Q386, I389, D390, T393, V396, N397, I400; is a discontinuous epitope \\(epitope ID 226309\\) studied as part of Two components:Hemagglutinin \\(UniProt:P03452\\) &amp; Hemagglutinin \\(UniProt:P03452\\) from Influenza A virus.  This epitope has been studied for immune reactivity in 4 publication\\(s\\), tested in 12 B cell assays and has 3D structure\\(s\\) 3gbn. — EV-IEDB-226309 · fluevidence-v1 · IEDB:226309 · T1\\_WET\\_LAB\\_ASSAY\n",
+    "evidence_csv": "statement_id,evidence_id,dataset_version,primary_ref,evidence_tier,ingested_at,source_url,nature,source_review_status,text\r\nS1,EV-REF-GARTEN,fluevidence-v1,PMID:19465683,T3_PEER_REVIEWED_LIT,2026-11-28T06:00:00+08:00,https://pubmed.ncbi.nlm.nih.gov/19465683/,public_methods,accepted,Antigenic and genetic characteristics of swine-origin 2009 A(H1N1) influenza viruses circulating in humans.\r\nS2,EV-REF-SMITH,fluevidence-v1,PMID:15218094,T3_PEER_REVIEWED_LIT,2026-11-28T06:00:00+08:00,https://pubmed.ncbi.nlm.nih.gov/15218094/,public_methods,accepted,Mapping the antigenic and genetic evolution of influenza virus.\r\nS3,EV-REF-PETROVA,fluevidence-v1,PMID:29081496,T3_PEER_REVIEWED_LIT,2026-11-28T06:00:00+08:00,https://pubmed.ncbi.nlm.nih.gov/29081496/,public_methods,accepted,The evolution of seasonal influenza viruses.\r\nS4,EV-REF-CALHA,fluevidence-v1,PMID:23110350,T3_PEER_REVIEWED_LIT,2026-11-28T06:00:00+08:00,https://pubmed.ncbi.nlm.nih.gov/23110350/,public_methods,accepted,Pandemic influenza vaccine: characterization of A/California/07/2009 (H1N1) recombinant hemagglutinin protein and insights into H1N1 antigen stability.\r\nS5,EV-ACC-CA07,fluevidence-v1,Accession:CY121680.1,T2_SURVEILLANCE,2026-11-28T06:00:00+08:00,https://www.ncbi.nlm.nih.gov/nuccore/CY121680.1/,public_database,accepted,\"Influenza A virus (A/California/07/2009(H1N1)) hemagglutinin (HA) gene, complete cds\"\r\nS6,EV-ACC-HK68,fluevidence-v1,Accession:AF348176.1,T2_SURVEILLANCE,2026-11-28T06:00:00+08:00,https://www.ncbi.nlm.nih.gov/nuccore/AF348176.1/,public_database,accepted,\"Influenza A virus (A/Hong Kong/1/68(H3N2)) hemagglutinin gene, complete cds\"\r\nS7,EV-UP-P03452,fluevidence-v1,UniProt:P03452,T3_PEER_REVIEWED_LIT,2026-11-28T06:00:00+08:00,https://www.uniprot.org/uniprotkb/P03452/,public_database,accepted,>sp|P03452|HEMA_I34A1 Hemagglutinin OS=Influenza A virus (strain A/Puerto Rico/8/1934 H1N1) OX=211044 GN=HA PE=1 SV=2\r\nS8,EV-CONS-GILES,fluevidence-v1,PMID:21320540,T3_PEER_REVIEWED_LIT,2026-11-28T06:00:00+08:00,https://pubmed.ncbi.nlm.nih.gov/21320540/,public_methods,accepted,A computationally optimized broadly reactive antigen (COBRA) based H5N1 VLP vaccine elicits broadly reactive antibodies in mice and ferrets.\r\nS10,EV-CONS-CARTER-CORR,fluevidence-v1.1,PMID:38819164,T3_PEER_REVIEWED_LIT,2026-11-28T09:00:00+08:00,https://pubmed.ncbi.nlm.nih.gov/38819164/,public_methods,accepted,\"Correction for Carter et al., \"\"Design and Characterization of a Computationally Optimized Broadly Reactive Hemagglutinin Vaccine for H1N1 Influenza Viruses\"\".\"\r\nS11,EV-GLY-WANG,fluevidence-v1,PMID:19822741,T3_PEER_REVIEWED_LIT,2026-11-28T06:00:00+08:00,https://pubmed.ncbi.nlm.nih.gov/19822741/,public_methods,accepted,Glycans on influenza hemagglutinin affect receptor binding and immune response.\r\nS12,EV-GLY-TATE,fluevidence-v1,PMID:24638204,T3_PEER_REVIEWED_LIT,2026-11-28T06:00:00+08:00,https://pubmed.ncbi.nlm.nih.gov/24638204/,public_methods,accepted,Playing hide and seek: how glycosylation of the influenza virus hemagglutinin can modulate the immune response to infection.\r\nS13,EV-GLY-ADD,fluevidence-v1,PMID:23365085,T3_PEER_REVIEWED_LIT,2026-11-28T06:00:00+08:00,https://pubmed.ncbi.nlm.nih.gov/23365085/,public_methods,accepted,Addition of glycosylation to influenza A virus hemagglutinin modulates antibody-mediated recognition of H1N1 2009 pandemic viruses.\r\nS14,EV-STEM-IMP,fluevidence-v1,PMID:26303961,T3_PEER_REVIEWED_LIT,2026-11-28T06:00:00+08:00,https://pubmed.ncbi.nlm.nih.gov/26303961/,public_methods,accepted,A stable trimeric influenza hemagglutinin stem as a broadly protective immunogen.\r\nS15,EV-STEM-YASSINE,fluevidence-v1,PMID:26301691,T3_PEER_REVIEWED_LIT,2026-11-28T06:00:00+08:00,https://pubmed.ncbi.nlm.nih.gov/26301691/,public_methods,accepted,Hemagglutinin-stem nanoparticles generate heterosubtypic influenza protection.\r\nS16,EV-STEM-EKIERT,fluevidence-v1,PMID:19251591,T3_PEER_REVIEWED_LIT,2026-11-28T06:00:00+08:00,https://pubmed.ncbi.nlm.nih.gov/19251591/,public_methods,accepted,Antibody recognition of a highly conserved influenza virus epitope.\r\nS17,EV-STEM-HEADLESS,fluevidence-v1,PMID:26947245,T3_PEER_REVIEWED_LIT,2026-11-28T06:00:00+08:00,https://pubmed.ncbi.nlm.nih.gov/26947245/,public_methods,accepted,Stalking influenza by vaccination with pre-fusion headless HA mini-stem.\r\nS18,EV-STEM-STALK,fluevidence-v1,PMID:25210189,T3_PEER_REVIEWED_LIT,2026-11-28T06:00:00+08:00,https://pubmed.ncbi.nlm.nih.gov/25210189/,public_methods,accepted,Induction of broadly reactive anti-hemagglutinin stalk antibodies by an H5N1 vaccine in humans.\r\nS19,EV-PDB-3GBN,fluevidence-v1,PDB:3GBN,T1_WET_LAB_ASSAY,2026-11-28T06:00:00+08:00,https://www.rcsb.org/structure/3GBN/,public_database,accepted,Crystal Structure of Fab CR6261 in Complex with the 1918 H1N1 influenza virus hemagglutinin\r\nS20,EV-PDB-3GBM,fluevidence-v1,PDB:3GBM,T1_WET_LAB_ASSAY,2026-11-28T06:00:00+08:00,https://www.rcsb.org/structure/3GBM/,public_database,accepted,Crystal Structure of Fab CR6261 in Complex with a H5N1 influenza virus hemagglutinin.\r\nS21,EV-PDB-5C0S,fluevidence-v1.1,PDB:5C0S,T1_WET_LAB_ASSAY,2026-11-28T09:00:00+08:00,https://www.rcsb.org/structure/5C0S/,public_database,accepted,Crystal structure of a generation 4 influenza hemagglutinin stabilized stem in complex with the broadly neutralizing antibody CR6261\r\nS22,EV-PDB-5C0R,fluevidence-v1.1,PDB:5C0R,T1_WET_LAB_ASSAY,2026-11-28T09:00:00+08:00,https://www.rcsb.org/structure/5C0R/,public_database,accepted,Crystal Structure of a Generation 3 Influenza Hemagglutinin Stabilized Stem Complexed with the Broadly Neutralizing Antibody C179\r\nS23,EV-IEDB-570,fluevidence-v1,IEDB:570,T1_WET_LAB_ASSAY,2026-11-28T06:00:00+08:00,https://www.iedb.org/epitope/570/,public_database,accepted,\"ACKRGPGSGFFSRLN is a linear peptidic epitope (epitope ID 570) studied as part of Hemagglutinin (UniProt:P03452) from Influenza A virus.  This epitope has been studied for immune reactivity in 2 publication(s), tested in 4 T cell assays and 7 B cell assays.\"\r\nS24,EV-IEDB-226309,fluevidence-v1,IEDB:226309,T1_WET_LAB_ASSAY,2026-11-28T06:00:00+08:00,https://www.iedb.org/epitope/226309/,public_database,accepted,\"A: H25, H45, V46, N47, L496, S306, L307, P308, T333; B: D363, G364, W365, Q382, T385, Q386, I389, D390, T393, V396, N397, I400; is a discontinuous epitope (epitope ID 226309) studied as part of Two components:Hemagglutinin (UniProt:P03452) & Hemagglutinin (UniProt:P03452) from Influenza A virus.  This epitope has been studied for immune reactivity in 4 publication(s), tested in 12 B cell assays and has 3D structure(s) 3gbn.\"\r\n",
+    "statements": [
+      {
+        "statement_id": "S1",
+        "text": "Antigenic and genetic characteristics of swine-origin 2009 A(H1N1) influenza viruses circulating in humans.",
+        "evidence_id": "EV-REF-GARTEN",
+        "dataset_version": "fluevidence-v1",
+        "primary_ref": "PMID:19465683",
+        "evidence_tier": "T3_PEER_REVIEWED_LIT",
+        "ingested_at": "2026-11-28T06:00:00+08:00",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/19465683/",
+        "nature": "public_methods",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S2",
+        "text": "Mapping the antigenic and genetic evolution of influenza virus.",
+        "evidence_id": "EV-REF-SMITH",
+        "dataset_version": "fluevidence-v1",
+        "primary_ref": "PMID:15218094",
+        "evidence_tier": "T3_PEER_REVIEWED_LIT",
+        "ingested_at": "2026-11-28T06:00:00+08:00",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/15218094/",
+        "nature": "public_methods",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S3",
+        "text": "The evolution of seasonal influenza viruses.",
+        "evidence_id": "EV-REF-PETROVA",
+        "dataset_version": "fluevidence-v1",
+        "primary_ref": "PMID:29081496",
+        "evidence_tier": "T3_PEER_REVIEWED_LIT",
+        "ingested_at": "2026-11-28T06:00:00+08:00",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/29081496/",
+        "nature": "public_methods",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S4",
+        "text": "Pandemic influenza vaccine: characterization of A/California/07/2009 (H1N1) recombinant hemagglutinin protein and insights into H1N1 antigen stability.",
+        "evidence_id": "EV-REF-CALHA",
+        "dataset_version": "fluevidence-v1",
+        "primary_ref": "PMID:23110350",
+        "evidence_tier": "T3_PEER_REVIEWED_LIT",
+        "ingested_at": "2026-11-28T06:00:00+08:00",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/23110350/",
+        "nature": "public_methods",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S5",
+        "text": "Influenza A virus (A/California/07/2009(H1N1)) hemagglutinin (HA) gene, complete cds",
+        "evidence_id": "EV-ACC-CA07",
+        "dataset_version": "fluevidence-v1",
+        "primary_ref": "Accession:CY121680.1",
+        "evidence_tier": "T2_SURVEILLANCE",
+        "ingested_at": "2026-11-28T06:00:00+08:00",
+        "source_url": "https://www.ncbi.nlm.nih.gov/nuccore/CY121680.1/",
+        "nature": "public_database",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S6",
+        "text": "Influenza A virus (A/Hong Kong/1/68(H3N2)) hemagglutinin gene, complete cds",
+        "evidence_id": "EV-ACC-HK68",
+        "dataset_version": "fluevidence-v1",
+        "primary_ref": "Accession:AF348176.1",
+        "evidence_tier": "T2_SURVEILLANCE",
+        "ingested_at": "2026-11-28T06:00:00+08:00",
+        "source_url": "https://www.ncbi.nlm.nih.gov/nuccore/AF348176.1/",
+        "nature": "public_database",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S7",
+        "text": ">sp|P03452|HEMA_I34A1 Hemagglutinin OS=Influenza A virus (strain A/Puerto Rico/8/1934 H1N1) OX=211044 GN=HA PE=1 SV=2",
+        "evidence_id": "EV-UP-P03452",
+        "dataset_version": "fluevidence-v1",
+        "primary_ref": "UniProt:P03452",
+        "evidence_tier": "T3_PEER_REVIEWED_LIT",
+        "ingested_at": "2026-11-28T06:00:00+08:00",
+        "source_url": "https://www.uniprot.org/uniprotkb/P03452/",
+        "nature": "public_database",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S8",
+        "text": "A computationally optimized broadly reactive antigen (COBRA) based H5N1 VLP vaccine elicits broadly reactive antibodies in mice and ferrets.",
+        "evidence_id": "EV-CONS-GILES",
+        "dataset_version": "fluevidence-v1",
+        "primary_ref": "PMID:21320540",
+        "evidence_tier": "T3_PEER_REVIEWED_LIT",
+        "ingested_at": "2026-11-28T06:00:00+08:00",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/21320540/",
+        "nature": "public_methods",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S9",
+        "text": "Design and Characterization of a Computationally Optimized Broadly Reactive Hemagglutinin Vaccine for H1N1 Influenza Viruses.",
+        "evidence_id": "EV-CONS-CARTER",
+        "dataset_version": "fluevidence-v1",
+        "primary_ref": "PMID:26912624",
+        "evidence_tier": "T3_PEER_REVIEWED_LIT",
+        "ingested_at": "2026-11-28T06:00:00+08:00",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/26912624/",
+        "nature": "public_methods",
+        "source_review_status": "flagged",
+        "disposition": "flag_doubt"
+      },
+      {
+        "statement_id": "S10",
+        "text": "Correction for Carter et al., \"Design and Characterization of a Computationally Optimized Broadly Reactive Hemagglutinin Vaccine for H1N1 Influenza Viruses\".",
+        "evidence_id": "EV-CONS-CARTER-CORR",
+        "dataset_version": "fluevidence-v1.1",
+        "primary_ref": "PMID:38819164",
+        "evidence_tier": "T3_PEER_REVIEWED_LIT",
+        "ingested_at": "2026-11-28T09:00:00+08:00",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/38819164/",
+        "nature": "public_methods",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S11",
+        "text": "Glycans on influenza hemagglutinin affect receptor binding and immune response.",
+        "evidence_id": "EV-GLY-WANG",
+        "dataset_version": "fluevidence-v1",
+        "primary_ref": "PMID:19822741",
+        "evidence_tier": "T3_PEER_REVIEWED_LIT",
+        "ingested_at": "2026-11-28T06:00:00+08:00",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/19822741/",
+        "nature": "public_methods",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S12",
+        "text": "Playing hide and seek: how glycosylation of the influenza virus hemagglutinin can modulate the immune response to infection.",
+        "evidence_id": "EV-GLY-TATE",
+        "dataset_version": "fluevidence-v1",
+        "primary_ref": "PMID:24638204",
+        "evidence_tier": "T3_PEER_REVIEWED_LIT",
+        "ingested_at": "2026-11-28T06:00:00+08:00",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/24638204/",
+        "nature": "public_methods",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S13",
+        "text": "Addition of glycosylation to influenza A virus hemagglutinin modulates antibody-mediated recognition of H1N1 2009 pandemic viruses.",
+        "evidence_id": "EV-GLY-ADD",
+        "dataset_version": "fluevidence-v1",
+        "primary_ref": "PMID:23365085",
+        "evidence_tier": "T3_PEER_REVIEWED_LIT",
+        "ingested_at": "2026-11-28T06:00:00+08:00",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/23365085/",
+        "nature": "public_methods",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S14",
+        "text": "A stable trimeric influenza hemagglutinin stem as a broadly protective immunogen.",
+        "evidence_id": "EV-STEM-IMP",
+        "dataset_version": "fluevidence-v1",
+        "primary_ref": "PMID:26303961",
+        "evidence_tier": "T3_PEER_REVIEWED_LIT",
+        "ingested_at": "2026-11-28T06:00:00+08:00",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/26303961/",
+        "nature": "public_methods",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S15",
+        "text": "Hemagglutinin-stem nanoparticles generate heterosubtypic influenza protection.",
+        "evidence_id": "EV-STEM-YASSINE",
+        "dataset_version": "fluevidence-v1",
+        "primary_ref": "PMID:26301691",
+        "evidence_tier": "T3_PEER_REVIEWED_LIT",
+        "ingested_at": "2026-11-28T06:00:00+08:00",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/26301691/",
+        "nature": "public_methods",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S16",
+        "text": "Antibody recognition of a highly conserved influenza virus epitope.",
+        "evidence_id": "EV-STEM-EKIERT",
+        "dataset_version": "fluevidence-v1",
+        "primary_ref": "PMID:19251591",
+        "evidence_tier": "T3_PEER_REVIEWED_LIT",
+        "ingested_at": "2026-11-28T06:00:00+08:00",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/19251591/",
+        "nature": "public_methods",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S17",
+        "text": "Stalking influenza by vaccination with pre-fusion headless HA mini-stem.",
+        "evidence_id": "EV-STEM-HEADLESS",
+        "dataset_version": "fluevidence-v1",
+        "primary_ref": "PMID:26947245",
+        "evidence_tier": "T3_PEER_REVIEWED_LIT",
+        "ingested_at": "2026-11-28T06:00:00+08:00",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/26947245/",
+        "nature": "public_methods",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S18",
+        "text": "Induction of broadly reactive anti-hemagglutinin stalk antibodies by an H5N1 vaccine in humans.",
+        "evidence_id": "EV-STEM-STALK",
+        "dataset_version": "fluevidence-v1",
+        "primary_ref": "PMID:25210189",
+        "evidence_tier": "T3_PEER_REVIEWED_LIT",
+        "ingested_at": "2026-11-28T06:00:00+08:00",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/25210189/",
+        "nature": "public_methods",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S19",
+        "text": "Crystal Structure of Fab CR6261 in Complex with the 1918 H1N1 influenza virus hemagglutinin",
+        "evidence_id": "EV-PDB-3GBN",
+        "dataset_version": "fluevidence-v1",
+        "primary_ref": "PDB:3GBN",
+        "evidence_tier": "T1_WET_LAB_ASSAY",
+        "ingested_at": "2026-11-28T06:00:00+08:00",
+        "source_url": "https://www.rcsb.org/structure/3GBN/",
+        "nature": "public_database",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S20",
+        "text": "Crystal Structure of Fab CR6261 in Complex with a H5N1 influenza virus hemagglutinin.",
+        "evidence_id": "EV-PDB-3GBM",
+        "dataset_version": "fluevidence-v1",
+        "primary_ref": "PDB:3GBM",
+        "evidence_tier": "T1_WET_LAB_ASSAY",
+        "ingested_at": "2026-11-28T06:00:00+08:00",
+        "source_url": "https://www.rcsb.org/structure/3GBM/",
+        "nature": "public_database",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S21",
+        "text": "Crystal structure of a generation 4 influenza hemagglutinin stabilized stem in complex with the broadly neutralizing antibody CR6261",
+        "evidence_id": "EV-PDB-5C0S",
+        "dataset_version": "fluevidence-v1.1",
+        "primary_ref": "PDB:5C0S",
+        "evidence_tier": "T1_WET_LAB_ASSAY",
+        "ingested_at": "2026-11-28T09:00:00+08:00",
+        "source_url": "https://www.rcsb.org/structure/5C0S/",
+        "nature": "public_database",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S22",
+        "text": "Crystal Structure of a Generation 3 Influenza Hemagglutinin Stabilized Stem Complexed with the Broadly Neutralizing Antibody C179",
+        "evidence_id": "EV-PDB-5C0R",
+        "dataset_version": "fluevidence-v1.1",
+        "primary_ref": "PDB:5C0R",
+        "evidence_tier": "T1_WET_LAB_ASSAY",
+        "ingested_at": "2026-11-28T09:00:00+08:00",
+        "source_url": "https://www.rcsb.org/structure/5C0R/",
+        "nature": "public_database",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S23",
+        "text": "ACKRGPGSGFFSRLN is a linear peptidic epitope (epitope ID 570) studied as part of Hemagglutinin (UniProt:P03452) from Influenza A virus.  This epitope has been studied for immune reactivity in 2 publication(s), tested in 4 T cell assays and 7 B cell assays.",
+        "evidence_id": "EV-IEDB-570",
+        "dataset_version": "fluevidence-v1",
+        "primary_ref": "IEDB:570",
+        "evidence_tier": "T1_WET_LAB_ASSAY",
+        "ingested_at": "2026-11-28T06:00:00+08:00",
+        "source_url": "https://www.iedb.org/epitope/570/",
+        "nature": "public_database",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      },
+      {
+        "statement_id": "S24",
+        "text": "A: H25, H45, V46, N47, L496, S306, L307, P308, T333; B: D363, G364, W365, Q382, T385, Q386, I389, D390, T393, V396, N397, I400; is a discontinuous epitope (epitope ID 226309) studied as part of Two components:Hemagglutinin (UniProt:P03452) & Hemagglutinin (UniProt:P03452) from Influenza A virus.  This epitope has been studied for immune reactivity in 4 publication(s), tested in 12 B cell assays and has 3D structure(s) 3gbn.",
+        "evidence_id": "EV-IEDB-226309",
+        "dataset_version": "fluevidence-v1",
+        "primary_ref": "IEDB:226309",
+        "evidence_tier": "T1_WET_LAB_ASSAY",
+        "ingested_at": "2026-11-28T06:00:00+08:00",
+        "source_url": "https://www.iedb.org/epitope/226309/",
+        "nature": "public_database",
+        "source_review_status": "accepted",
+        "disposition": "accept"
+      }
+    ]
+  },
+  "metrics": {
+    "scope": "FluEvidenceBench-v1 software prototype",
+    "dataset_version": "fluevidence-v1.1",
+    "snapshot_id": "fbf7ca92a9eee35217389ca65b85bd132f5bffae9a0dbdd50f38cb2a87613847",
+    "record_count": 24,
+    "task_1": {
+      "k": 5,
+      "queries": 7,
+      "recall_at_5": 1.0,
+      "ndcg_at_5": 0.9285714285714286,
+      "median_ms": 18.16363,
+      "per_question": [
+        {
+          "question_id": "Q1",
+          "recall_at_5": 1.0,
+          "ndcg_at_5": 1.0,
+          "elapsed_ms": 24.650288,
+          "expected": [
+            "EV-REF-GARTEN"
+          ],
+          "hits": [
+            "EV-REF-GARTEN",
+            "EV-REF-PETROVA",
+            "EV-STEM-YASSINE",
+            "EV-STEM-EKIERT",
+            "EV-REF-SMITH"
+          ]
+        },
+        {
+          "question_id": "Q2",
+          "recall_at_5": 1.0,
+          "ndcg_at_5": 1.0,
+          "elapsed_ms": 18.110621,
+          "expected": [
+            "EV-GLY-WANG"
+          ],
+          "hits": [
+            "EV-GLY-WANG",
+            "EV-GLY-TATE",
+            "EV-REF-CALHA",
+            "EV-CONS-CARTER",
+            "EV-REF-GARTEN"
+          ]
+        },
+        {
+          "question_id": "Q3",
+          "recall_at_5": 1.0,
+          "ndcg_at_5": 1.0,
+          "elapsed_ms": 18.593875,
+          "expected": [
+            "EV-CONS-CARTER",
+            "EV-CONS-CARTER-CORR"
+          ],
+          "hits": [
+            "EV-CONS-CARTER",
+            "EV-CONS-CARTER-CORR",
+            "EV-REF-CALHA",
+            "EV-REF-GARTEN",
+            "EV-ACC-CA07"
+          ]
+        },
+        {
+          "question_id": "Q4",
+          "recall_at_5": 1.0,
+          "ndcg_at_5": 1.0,
+          "elapsed_ms": 19.288599,
+          "expected": [
+            "EV-PDB-3GBN",
+            "EV-PDB-5C0S"
+          ],
+          "hits": [
+            "EV-PDB-3GBN",
+            "EV-PDB-5C0S",
+            "EV-PDB-3GBM",
+            "EV-PDB-5C0R",
+            "EV-REF-PETROVA"
+          ]
+        },
+        {
+          "question_id": "Q5",
+          "recall_at_5": 1.0,
+          "ndcg_at_5": 1.0,
+          "elapsed_ms": 14.438441,
+          "expected": [
+            "EV-ACC-CA07"
+          ],
+          "hits": [
+            "EV-ACC-CA07",
+            "EV-REF-PETROVA",
+            "EV-STEM-YASSINE",
+            "EV-REF-SMITH",
+            "EV-STEM-EKIERT"
+          ]
+        },
+        {
+          "question_id": "Q6",
+          "recall_at_5": 1.0,
+          "ndcg_at_5": 0.5,
+          "elapsed_ms": 16.761578,
+          "expected": [
+            "EV-STEM-HEADLESS"
+          ],
+          "hits": [
+            "EV-ACC-CA07",
+            "EV-PDB-3GBM",
+            "EV-STEM-HEADLESS",
+            "EV-UP-P03452",
+            "EV-PDB-3GBN"
+          ]
+        },
+        {
+          "question_id": "Q7",
+          "recall_at_5": 1.0,
+          "ndcg_at_5": 1.0,
+          "elapsed_ms": 18.16363,
+          "expected": [
+            "EV-IEDB-570",
+            "EV-IEDB-226309"
+          ],
+          "hits": [
+            "EV-IEDB-570",
+            "EV-IEDB-226309",
+            "EV-REF-PETROVA",
+            "EV-STEM-YASSINE",
+            "EV-REF-SMITH"
+          ]
+        }
+      ],
+      "note": "封闭题面包含公开题名或公开 ID。这是该题集上的测得召回，不是赛题目标值。"
+    },
+    "task_2": {
+      "dossiers": 4,
+      "compare_ms": 16.912775,
+      "signoff_ms": 11.485772,
+      "signed_state": "EXPERT_SIGNED",
+      "accepted_citations": 23,
+      "flagged_citations": 1,
+      "dossiers_matching_gold": 4,
+      "per_dossier": [
+        {
+          "dossier_id": "plan-reference-strain",
+          "consistent": true,
+          "conflicts": [],
+          "gaps": [
+            "no_T1_record"
+          ],
+          "tier_distribution": {
+            "T1_WET_LAB_ASSAY": 0,
+            "T2_SURVEILLANCE": 2,
+            "T3_PEER_REVIEWED_LIT": 5,
+            "T4_COMPUTATIONAL": 0
+          },
+          "source_types_present": [
+            "NCBI_NUCCORE",
+            "PUBMED_LITERATURE",
+            "UNIPROT_RECORD"
+          ],
+          "gap_count": 1,
+          "conflict_match": true,
+          "gap_match": true,
+          "consistent_match": true
+        },
+        {
+          "dossier_id": "plan-consensus-literature",
+          "consistent": false,
+          "conflicts": [
+            [
+              "PMID:26912624",
+              "PMID:38819164"
+            ]
+          ],
+          "gaps": [
+            "version_mismatch",
+            "dossier_review_open",
+            "source_review_open",
+            "no_T1_record",
+            "no_T2_record"
+          ],
+          "tier_distribution": {
+            "T1_WET_LAB_ASSAY": 0,
+            "T2_SURVEILLANCE": 0,
+            "T3_PEER_REVIEWED_LIT": 3,
+            "T4_COMPUTATIONAL": 0
+          },
+          "source_types_present": [
+            "PUBMED_LITERATURE"
+          ],
+          "gap_count": 5,
+          "conflict_match": true,
+          "gap_match": true,
+          "consistent_match": true
+        },
+        {
+          "dossier_id": "plan-head-glycosylation",
+          "consistent": true,
+          "conflicts": [],
+          "gaps": [
+            "no_T1_record",
+            "no_T2_record"
+          ],
+          "tier_distribution": {
+            "T1_WET_LAB_ASSAY": 0,
+            "T2_SURVEILLANCE": 0,
+            "T3_PEER_REVIEWED_LIT": 3,
+            "T4_COMPUTATIONAL": 0
+          },
+          "source_types_present": [
+            "PUBMED_LITERATURE"
+          ],
+          "gap_count": 2,
+          "conflict_match": true,
+          "gap_match": true,
+          "consistent_match": true
+        },
+        {
+          "dossier_id": "plan-conserved-stem",
+          "consistent": false,
+          "conflicts": [],
+          "gaps": [
+            "version_mismatch",
+            "no_T2_record"
+          ],
+          "tier_distribution": {
+            "T1_WET_LAB_ASSAY": 6,
+            "T2_SURVEILLANCE": 0,
+            "T3_PEER_REVIEWED_LIT": 5,
+            "T4_COMPUTATIONAL": 0
+          },
+          "source_types_present": [
+            "IEDB_EPITOPE",
+            "PDB_STRUCTURE",
+            "PUBMED_LITERATURE"
+          ],
+          "gap_count": 2,
+          "conflict_match": true,
+          "gap_match": true,
+          "consistent_match": true
+        }
+      ],
+      "note": "冲突标记只识别档案注释中的公开 ID 交叉引用。空白是缺等级、版本不一致或审阅未关闭。不是生物学性能，也不是实验清单。"
+    },
+    "citations": {
+      "accepted_matching_lock": 59,
+      "accepted_total": 59,
+      "accuracy_among_accepted": 1.0,
+      "note": "准确率只统计已经通过原文与版本锁的语句。被拒绝的草稿另行计数，不记为正确引用。"
+    },
+    "no_retrieval_baseline": {
+      "submitted": 3,
+      "accepted_statements": 0,
+      "rejected": {
+        "outside_selection": 2,
+        "nonverbatim": 1,
+        "effect_promise": 0
+      },
+      "note": "不读取快照原文的离线草稿，仅用于对照幻觉拦截。"
+    },
+    "compliance_gate": {
+      "stored_snippets": 24,
+      "stored_snippets_matching_effect_promise": 0,
+      "accepted_statements_matching_effect_promise": 0,
+      "probe_submitted": 1,
+      "probe_effect_promise_rejected": 1,
+      "probe_accepted": 0
+    },
+    "manual_sop_baseline": "未测",
+    "declined": [
+      "GISAID sequences and counts",
+      "Nextstrain clade-frequency tables",
+      "Bloom Lab deep-mutational-scan escape or fitness scores",
+      "nucleotide sequences and designed amino-acid constructs",
+      "wet-lab protocols and experimental recipes",
+      "new immunogenicity, protection, or clinical scores",
+      "timed human SOP (left as 未测)"
+    ]
+  },
+  "charts": [
+    {
+      "id": "recall",
+      "title": "Task-1 Recall@5",
+      "kind": "bar",
+      "axes": [
+        {
+          "label": "Q1"
+        },
+        {
+          "label": "Q2"
+        },
+        {
+          "label": "Q3"
+        },
+        {
+          "label": "Q4"
+        },
+        {
+          "label": "Q5"
+        },
+        {
+          "label": "Q6"
+        },
+        {
+          "label": "Q7"
+        }
+      ],
+      "series": [
+        {
+          "name": "Recall@5",
+          "values": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "id": "latency",
+      "title": "测得延迟（毫秒）",
+      "kind": "bar",
+      "axes": [
+        {
+          "label": "问答中位"
+        },
+        {
+          "label": "比较"
+        },
+        {
+          "label": "签批"
+        }
+      ],
+      "series": [
+        {
+          "name": "毫秒",
+          "values": [
+            18.16363,
+            16.912775,
+            11.485772
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dimensions",
+      "title": "证据治理五维（不是免疫原性能）",
+      "kind": "radar",
+      "axes": [
+        {
+          "label": "来源覆盖",
+          "maximum": 1
+        },
+        {
+          "label": "版本一致",
+          "maximum": 1
+        },
+        {
+          "label": "引用无交叉冲突",
+          "maximum": 1
+        },
+        {
+          "label": "等级覆盖",
+          "maximum": 1
+        },
+        {
+          "label": "未决事项少",
+          "maximum": 1
+        }
+      ],
+      "series": [
+        {
+          "name": "参考株文献与登录号",
+          "values": [
+            0.6,
+            1.0,
+            1.0,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "name": "共识序列文献",
+          "values": [
+            0.2,
+            0.0,
+            0.0,
+            0.25,
+            0.16666666666666666
+          ]
+        },
+        {
+          "name": "头部糖基化文献",
+          "values": [
+            0.2,
+            1.0,
+            1.0,
+            0.25,
+            0.3333333333333333
+          ]
+        },
+        {
+          "name": "保守茎部文献与结构登录",
+          "values": [
+            0.6,
+            0.0,
+            1.0,
+            0.5,
+            0.3333333333333333
+          ]
+        }
+      ]
+    }
+  ],
+  "manual_sop_baseline": "未测",
+  "declined": [
+    "GISAID sequences and counts",
+    "Nextstrain clade-frequency tables",
+    "Bloom Lab deep-mutational-scan escape or fitness scores",
+    "nucleotide sequences and designed amino-acid constructs",
+    "wet-lab protocols and experimental recipes",
+    "new immunogenicity, protection, or clinical scores",
+    "timed human SOP (left as 未测)"
+  ],
+  "score_note": "这些分数只统计来源覆盖、版本一致性、引用交叉、证据等级分布和未决事项，不是免疫原性能或临床效果。"
+}
