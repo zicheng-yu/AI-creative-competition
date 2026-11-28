@@ -186,12 +186,18 @@ def _cable_checks(d, check):
             if energy is not None and k is not None:
                 check("cable_short_circuit_thermal", energy > (k * section)**2, [node],
                       {"I2t_A2s": energy, "limit_A2s": (k * section)**2, "section_mm2": section})
-        if ib is None or iz is None:
+        if iz is None:
             continue
         for protector, current in currents.items():
             if current is None:
                 continue
             evidence = {"In_A": current, "Ib_A": ib, "Iz_A": iz, "section_mm2": section}
+            if ib is None:
+                # In > Iz disproves the inequality independently of the
+                # load current. Keep otherwise indeterminate checks unscored.
+                if current > iz:
+                    check("ampacity_insufficient", True, [protector, node], evidence)
+                continue
             bad = not 0 <= ib <= current <= iz
             margin = (iz - current) / current if current > 0 else None
             low = not bad and margin is not None and margin < 0.10
