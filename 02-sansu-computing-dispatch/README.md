@@ -67,3 +67,34 @@ obs, reward, terminated, truncated, info = env.step(env.action_space.sample())
 `run_episode(scenario, policy, seed)`，`policy` 为 `random` 或 `greedy`。贪心按「有效吞吐 / 上一小时池利用率」铺开，不看电价。种子同时决定到达序列和随机策略的动作。
 
 结果表见 `results/baseline_seed313.md`。
+
+## 调度 Copilot 与碳足迹账本
+
+默认不访问任何模型服务。指令解析是确定性文法，归因是模板。设置 `LLM_BASE_URL`、`LLM_API_KEY`、`LLM_MODEL` 后，单任务说明会交给兼容 OpenAI Chat Completions 的接口改写；超时、连接失败或回复里丢掉凭证哈希时，自动退回模板。不要把密钥写进仓库。
+
+电费用 `backend/world.py` 的 `weather()` 演示分时电价。碳因子是同一文件里的演示参数 `GRID = 0.55` kgCO₂/kWh。生态环境部、国家统计局公告 2024 年第 33 号给出的 2022 年华东因子是 **0.5617**，分省因子和江苏 2025 年 8 月 110 kV 两部制公告价写在 [docs/DATA_CONSTRUCTION.md](docs/DATA_CONSTRUCTION.md)，供小时级 `JS-ComputeSim-313` 使用。账本不把 0.55 说成那份公告里的数字。
+
+```bash
+cd 02-sansu-computing-dispatch
+python -m uvicorn server:app --host 127.0.0.1 --port 8000
+```
+
+另一个终端：
+
+```bash
+curl -s localhost:8000/api/v1/copilot/presets
+curl -s -X POST localhost:8000/api/v1/copilot/command \
+  -H 'content-type: application/json' \
+  -d '{"hours":2,"text":"迎峰度夏保电模式：碳排权重调至 0.6"}'
+curl -s -X POST localhost:8000/api/v1/copilot/command \
+  -H 'content-type: application/json' \
+  -d '{"hours":2,"text":"注入南京节点 30% 算力宕机故障"}'
+curl -s -X POST localhost:8000/api/v1/copilot/command \
+  -H 'content-type: application/json' \
+  -d '{"hours":2,"strategy":"SuCompute","text":"解释调度"}'
+curl -s -X POST localhost:8000/api/v1/ledger/csv \
+  -H 'content-type: application/json' \
+  -d '{"hours":2,"strategy":"SuCompute"}' -o ledger.csv
+```
+
+沙盘在 `shared-workbench/frontend/sucompute.html`。预设按钮和输入框走 `/api/v1/copilot/command`，调权重或注入故障后会按同一输入重算四种策略。审计抽屉展示亲和度、影子价格、PUE、绿电占比、Safe-RL 概率、电费、碳排和 SHA-256，并可以导出账本 CSV。带百分数的“宕机”按容量损失解析，例如 30% 是 `capacity=0.3`；不带百分数的“节点宕机”才是整节点离线。

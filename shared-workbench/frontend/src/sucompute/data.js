@@ -23,6 +23,15 @@ export const TREND_KEYS = ['utilization', 'pue', 'kgco2_per_efh'];
 export const DAYS = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
 export const FAULTS = { outage: '节点宕机', capacity: '容量下降', pue: 'PUE 上升' };
 
+export const COMMAND_PRESETS = [
+  { label: '迎峰度夏保电', text: '迎峰度夏保电模式：碳排权重调至 0.6' },
+  { label: '南京 30% 算力故障', text: '注入南京节点 30% 算力宕机故障' },
+  { label: '优先绿电消纳', text: '优先绿电消纳' },
+  { label: '解释调度', text: '解释调度' },
+];
+
+export const ACCOUNTING_NOTE = '电费来自调度后端 weather() 的演示分时电价，碳因子是演示参数 GRID=0.55 kgCO₂/kWh。生态环境部、国家统计局公告 2024 年第 33 号公布的 2022 年华东区域因子是 0.5617，本凭证不把 0.55 写成那份公告的数字。凭证是计量 JSON 的 SHA-256，不含中文选中理由。';
+
 const formats = new Map();
 export function decimal(value, digits = 1) {
   if (value == null || !Number.isFinite(value)) return '—';
@@ -113,6 +122,62 @@ export function dailyChart(runs, index, key) {
     values: runs[name].hourly.slice(start, end).map((data) => data[key] == null ? null : Number((data[key] * metric.scale).toFixed(metric.digits))),
   }));
   return { id: key, kind: 'line', title: `${metric.short}日内变化`, unit: metric.unit, tightValueAxis: key === 'pue', axes, series };
+}
+
+export function isCrossRegion(receipt) {
+  if (typeof receipt?.cross_region === 'boolean') return receipt.cross_region;
+  return (receipt?.segments ?? []).some((segment) => segment.latency_ms === 10);
+}
+
+export function presentReceipt(receipt, topology) {
+  if (Array.isArray(receipt?.candidate_affinity)) {
+    const candidates = receipt.candidate_affinity.map((item) => ({
+      node: item.node,
+      city: topology.nodes[item.node]?.city,
+      latency: item.latency_ms,
+      resource: item.resource_shadow,
+      carbon: item.carbon_shadow,
+      pools: topology.pools.map((pool, index) => ({
+        pool, score: item.scores?.[index], feasible: Boolean(item.feasible?.[index]),
+      })),
+    }));
+    return { ...receipt, candidates };
+  }
+  return { ...receipt, candidates: receiptCandidates(receipt, topology) };
+}
+
+export function ledgerCsv(receipts, topology) {
+  const header = ['任务编号', '场景', '策略', '种子', '来源城市', '目的城市', '是否跨域', '任务类型',
+    '算力当量EF·h', '电量kWh', '电费元', '碳排kg', '减排kg', 'SLA达成', '芯片池', '亲和度', '时延ms',
+    'PUE', '绿电占比', '动作概率', '资源影子价格', '碳影子价格', '凭证SHA256', '选中理由'];
+  const rows = [header];
+  for (const receipt of receipts) {
+    const view = presentReceipt(receipt, topology);
+    const segment = receipt.segments?.[0];
+    const node = view.candidates?.find((item) => item.node === segment?.node);
+    const pool = node?.pools?.find((item) => item.pool === segment?.pool);
+    rows.push([
+      receipt.task_id, receipt.scenario, receipt.strategy, receipt.seed,
+      topology.nodes[receipt.source]?.city ?? '', topology.nodes[segment?.node]?.city ?? '',
+      isCrossRegion(receipt) ? '是' : '否', receipt.task_class,
+      receipt.effective_efh, receipt.energy_kwh, receipt.electricity_cny, receipt.co2_kg,
+      receipt.avoided_vs_grid_kg, receipt.sla_met ? '达成' : '未达成', segment?.pool ?? '',
+      pool?.score ?? '', segment?.latency_ms ?? '', segment?.pue ?? '', segment?.green_share ?? '',
+      segment?.probability ?? '', segment?.resource_shadow ?? '', segment?.carbon_shadow ?? '',
+      receipt.sha256, receipt.selection_reason ?? '',
+    ]);
+  }
+  return '\uFEFF' + rows.map((row) => row.map(csvCell).join(',')).join('\r\n') + '\r\n';
+}
+
+export async function postText(base, path, payload, request = fetch) {
+  const host = base.replace(/\/$/, '');
+  const response = await request(`${host}/api/v1/${path}`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload),
+  });
+  const text = await response.text();
+  if (!response.ok) throw new Error(text || `接口返回 ${response.status}`);
+  return text;
 }
 
 export function receiptCandidates(receipt, topology) {

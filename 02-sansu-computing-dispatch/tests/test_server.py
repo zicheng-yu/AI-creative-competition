@@ -12,7 +12,9 @@ def api():
 def test_health_and_contract(api):
     assert api.get("/api/v1/health").json()["status"]=="ok"
     paths=api.get("/openapi.json").json()["paths"]
-    assert len(paths)==4
+    assert set(paths)=={"/api/v1/health","/api/v1/simulate","/api/v1/fault/inject",
+                        "/api/v1/copilot/presets","/api/v1/copilot/command",
+                        "/api/v1/ledger","/api/v1/ledger/csv"}
     assert api.options("/api/v1/simulate",headers={"Origin":"http://localhost:3000",
                "Access-Control-Request-Method":"POST"}).headers["access-control-allow-origin"]=="*"
 

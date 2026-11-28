@@ -81,10 +81,13 @@ python -m uvicorn server:app --host 127.0.0.1 --port 8000
 | `GET /api/v1/health` | 无请求体 | `{"status":"ok","simulator":"JS-ComputeSim-313"}` |
 | `POST /api/v1/simulate` | `{"seed":313,"hours":24,"scenario":"high_renewable","strategy":"SuCompute","weights":{"carbon":0.8}}` | Replay，含 `kpis,hourly,daily,nodes,flights`。静态包另附可查样例 ID |
 | `POST /api/v1/fault/inject` | `{"hours":4,"slot":18,"fault":{"city":"南京","kind":"capacity","severity":0.3,"duration_slots":12}}` | `{"fault":{…},"kpis":{…}}`，fault 与静态事件字段相同，场景和策略由请求给出 |
-| `POST /api/v1/copilot/command` | `{"hours":2,"text":"碳排权重调至0.6"}`，或 `{"text":"注入南京30%算力故障"}`，或 `{"text":"解释调度","task_id":0}` | `{"action":{"kind":"weights","weights":{"carbon":0.6},"fault":null},"result":{…}}`。调权返回重算 KPI，故障返回事件和 KPI，解释返回 summary 和 evidence |
+| `GET /api/v1/copilot/presets` | 无请求体 | `{"presets":[{"id","label","text"}]}`。沙盘预设与自由文本使用同一解析器 |
+| `POST /api/v1/copilot/command` | `{"hours":2,"text":"迎峰度夏保电模式：碳排权重调至 0.6"}`，或 `{"text":"注入南京节点 30% 算力宕机故障"}`，或 `{"text":"解释调度","task_id":0}` | `{"action":{…},"result":{…},"narrative":"…"}`。调权返回重算 KPI，`action.scenario` 可改场景；故障返回事件和 KPI；解释返回中文 `summary`、`global_summary` 和 `evidence`（含凭证哈希、亲和度、影子价格、PUE、绿电占比、动作概率） |
+| `POST /api/v1/ledger` | `{"hours":2,"strategy":"SuCompute","limit":1}`，可选 `task_id`、`cross_region_only` | `index` 覆盖窗口内每个任务，`receipts` 是带选中理由的紧凑凭证。`sha256` 仍是去掉展示字段后的计量 JSON |
+| `POST /api/v1/ledger/csv` | 与 ledger 相同，忽略 `limit` | UTF-8 CSV。列含算力当量、电费、SLA、碳减排和凭证 SHA-256 |
 
 故障类型 `outage` 表示全节点离线，`capacity` 的 severity 表示损失比例，`pue` 的 severity 表示 PUE 数值增量。slot 为故障开始的五分钟槽。实测秒数包含计划重算、剩余预留释放、重新选址与切流/Checkpoint 编排。轨迹描述内存仿真中的剩余服务量与已保存进度，生产链路的 checkpoint 字节复制未计入。
 
-### zicheng 的 Copilot 接入点
+### Copilot 接入点
 
-`TODO(zicheng): plug in LLM provider`。实现 `backend/copilot.py` 中的 `BaseCopilotAdapter.parse_command(text) -> SchedulingControlAction` 与 `explain_decision(attribution_payload) -> ExplanationResult`。在应用装配处注入 `app.dependency_overrides[get_adapter] = lambda: MyAdapter()`。默认依赖是纯本地确定性 `RuleBasedCopilotStub`。结构化动作和审计凭证已覆盖两端边界。`weights` 重新经 Simulation 数据校验，故障经 Injection 校验。静态站可直接显示已导出的结构化归因。
+默认依赖是纯本地 `RuleBasedCopilotStub`：文法解析加模板归因，测试和演示不需要密钥。同时设置 `LLM_BASE_URL` 与 `LLM_API_KEY`（可选 `LLM_MODEL`）时，`default_adapter()` 改用兼容 OpenAI Chat Completions 的改写；失败或回复不含原凭证哈希则退回模板。替换实现仍可 `app.dependency_overrides[get_adapter] = lambda: MyAdapter()`。`weights` 和场景会重新经 Simulation 校验，故障经 Injection 校验，然后立即重算。展示字段 `selection_reason`、`cross_region` 不进入 `receipt_hash`。

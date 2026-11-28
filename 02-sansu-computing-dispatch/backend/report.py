@@ -1,6 +1,7 @@
 """Interval energy integration and canonical SHA256 accounting receipts."""
 import csv
 import hashlib
+import io
 import json
 from collections import defaultdict
 
@@ -17,10 +18,71 @@ COORDS = [(118.80,32.06),(120.59,31.30),(120.31,31.49),(119.97,31.81),(119.45,32
 METRICS = ("utilization","sla","kwh_per_efh","pue","green_share","kgco2_per_efh")
 
 
+# Prose and flags added for the audit drawer. They are not part of the voucher.
+DISPLAY_FIELDS = ("sha256","selection_reason","cross_region")
+
+
 def receipt_hash(payload):
-    data = {k:v for k,v in payload.items() if k!="sha256"}
+    data = {k:v for k,v in payload.items() if k not in DISPLAY_FIELDS}
     return hashlib.sha256(json.dumps(data,sort_keys=True,ensure_ascii=False,
                           separators=(",",":"),allow_nan=False).encode()).hexdigest()
+
+
+def is_cross_region(receipt):
+    """True when any executed segment uses the 10 ms Yangtze River Delta link."""
+    return any(bool(CROSS[receipt["source"],segment["node"]]) for segment in receipt["segments"])
+
+
+LEDGER_COLUMNS = (
+    ("task_id","任务编号"),("scenario","场景"),("strategy","策略"),("seed","种子"),
+    ("source_city","来源城市"),("dest_city","目的城市"),("cross_region","是否跨域"),
+    ("task_class","任务类型"),("effective_efh","算力当量EF·h"),("energy_kwh","电量kWh"),
+    ("electricity_cny","电费元"),("co2_kg","碳排kg"),("avoided_vs_grid_kg","减排kg"),
+    ("sla_met","SLA达成"),("pool","芯片池"),("affinity","亲和度"),("latency_ms","时延ms"),
+    ("pue","PUE"),("green_share","绿电占比"),("probability","动作概率"),
+    ("resource_shadow","资源影子价格"),("carbon_shadow","碳影子价格"),
+    ("sha256","凭证SHA256"),("selection_reason","选中理由"),
+)
+
+
+def ledger_row(receipt,selection_reason=""):
+    segment = receipt["segments"][0] if receipt["segments"] else None
+    score = latency = pue = green = probability = resource = carbon = None
+    pool = dest = ""
+    if segment:
+        pool = segment["pool"]
+        dest = CITIES[segment["node"]]
+        latency = segment["latency_ms"]
+        pue = segment["pue"]
+        green = segment["green_share"]
+        probability = segment["probability"]
+        resource = segment["resource_shadow"]
+        carbon = segment["carbon_shadow"]
+        if receipt.get("candidate_affinity"):
+            chosen = receipt["candidate_affinity"][segment["node"]]
+            score = chosen["scores"][POOLS.index(pool)]
+        else:
+            score = float(ETA[KINDS.index(receipt["task_class"]),POOLS.index(pool)])
+    values = dict(task_id=receipt["task_id"],scenario=receipt["scenario"],strategy=receipt["strategy"],
+                  seed=receipt["seed"],source_city=CITIES[receipt["source"]],dest_city=dest,
+                  cross_region="是" if is_cross_region(receipt) else "否",task_class=receipt["task_class"],
+                  effective_efh=receipt["effective_efh"],energy_kwh=receipt["energy_kwh"],
+                  electricity_cny=receipt["electricity_cny"],co2_kg=receipt["co2_kg"],
+                  avoided_vs_grid_kg=receipt["avoided_vs_grid_kg"],
+                  sla_met="达成" if receipt["sla_met"] else "未达成",pool=pool,affinity=score,
+                  latency_ms=latency,pue=pue,green_share=green,probability=probability,
+                  resource_shadow=resource,carbon_shadow=carbon,sha256=receipt["sha256"],
+                  selection_reason=selection_reason)
+    return {label:values[key] for key,label in LEDGER_COLUMNS}
+
+
+def ledger_csv(rows):
+    buffer = io.StringIO()
+    fields = [label for _,label in LEDGER_COLUMNS]
+    writer = csv.DictWriter(buffer,fieldnames=fields,lineterminator="\r\n",extrasaction="ignore")
+    writer.writeheader()
+    writer.writerows(rows)
+    return "\ufeff"+buffer.getvalue()
 
 
 def topology():

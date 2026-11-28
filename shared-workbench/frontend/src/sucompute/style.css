@@ -143,7 +143,9 @@
 .dashboard-footer { font-size: 11px; color: var(--muted); margin-top: 15px; }
 
 .sucompute dialog { padding: 0; border: 1px solid var(--rule); }
-.audit-drawer { width: min(540px, 100%); }
+.audit-drawer { width: min(760px, 100%); }
+.audit-toolbar { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 18px 0; }
+.accounting-note { font-size: 12px; color: var(--muted); line-height: 1.5; }
 .drawer-top { border-bottom: 1px solid var(--rule); padding: 15px 18px; display: flex; justify-content: space-between; align-items: center; gap: 11px; }
 .drawer-top h2 { font-size: 21px; margin: 4px 0 0; }
 .drawer-close { font-size: 19px; min-height: 33px; padding: 4px 9px; }
