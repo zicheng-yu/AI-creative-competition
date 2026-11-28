@@ -1,0 +1,802 @@
+{
+  "dataset_version": "1.0.0",
+  "defect_metrics": {
+    "ampacity_insufficient": {
+      "fn": 0,
+      "fp": 0,
+      "tp": 1
+    },
+    "interlock_missing": {
+      "fn": 0,
+      "fp": 0,
+      "tp": 2
+    },
+    "motor_protection_missing": {
+      "fn": 0,
+      "fp": 0,
+      "tp": 1
+    },
+    "selectivity_inversion": {
+      "fn": 0,
+      "fp": 0,
+      "tp": 1
+    }
+  },
+  "degradation_checks": [
+    {
+      "behavior_match": true,
+      "id": "EBJS-G-ALIAS-003",
+      "source_id": "EBJS-P-GGD-001"
+    },
+    {
+      "behavior_match": true,
+      "id": "EBJS-G-BLUR-001",
+      "source_id": "EBJS-P-GGD-001"
+    },
+    {
+      "behavior_match": true,
+      "id": "EBJS-G-SKEW-002",
+      "source_id": "EBJS-S-DOL-001"
+    }
+  ],
+  "drawings": [
+    {
+      "error": 1,
+      "errors": [
+        {
+          "instance_ids": [
+            "i011",
+            "i012"
+          ],
+          "rule_id": "ampacity_insufficient"
+        }
+      ],
+      "expected": 1,
+      "fn": 0,
+      "fp": 0,
+      "id": "EBJS-D-AMP-002",
+      "pass": 157,
+      "subset": "defect",
+      "tp": 1,
+      "warning": 7
+    },
+    {
+      "error": 2,
+      "errors": [
+        {
+          "instance_ids": [
+            "i015"
+          ],
+          "rule_id": "interlock_missing"
+        },
+        {
+          "instance_ids": [
+            "i016"
+          ],
+          "rule_id": "interlock_missing"
+        }
+      ],
+      "expected": 2,
+      "fn": 0,
+      "fp": 0,
+      "id": "EBJS-D-ILK-004",
+      "pass": 95,
+      "subset": "defect",
+      "tp": 2,
+      "warning": 1
+    },
+    {
+      "error": 1,
+      "errors": [
+        {
+          "instance_ids": [
+            "i013"
+          ],
+          "rule_id": "motor_protection_missing"
+        }
+      ],
+      "expected": 1,
+      "fn": 0,
+      "fp": 0,
+      "id": "EBJS-D-MOT-003",
+      "pass": 182,
+      "subset": "defect",
+      "tp": 1,
+      "warning": 8
+    },
+    {
+      "error": 1,
+      "errors": [
+        {
+          "instance_ids": [
+            "i003",
+            "i011"
+          ],
+          "rule_id": "selectivity_inversion"
+        }
+      ],
+      "expected": 1,
+      "fn": 0,
+      "fp": 0,
+      "id": "EBJS-D-SEL-001",
+      "pass": 157,
+      "subset": "defect",
+      "tp": 1,
+      "warning": 9
+    },
+    {
+      "error": 0,
+      "errors": [],
+      "expected": 0,
+      "fn": 0,
+      "fp": 0,
+      "id": "EBJS-G-ALIAS-003",
+      "pass": 158,
+      "subset": "degraded",
+      "tp": 0,
+      "warning": 8
+    },
+    {
+      "error": 0,
+      "errors": [],
+      "expected": 0,
+      "fn": 0,
+      "fp": 0,
+      "id": "EBJS-G-BLUR-001",
+      "pass": 158,
+      "subset": "degraded",
+      "tp": 0,
+      "warning": 8
+    },
+    {
+      "error": 0,
+      "errors": [],
+      "expected": 0,
+      "fn": 0,
+      "fp": 0,
+      "id": "EBJS-G-SKEW-002",
+      "pass": 93,
+      "subset": "degraded",
+      "tp": 0,
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "errors": [],
+      "expected": 0,
+      "fn": 0,
+      "fp": 0,
+      "id": "EBJS-P-GCS-003",
+      "pass": 166,
+      "subset": "primary",
+      "tp": 0,
+      "warning": 6
+    },
+    {
+      "error": 0,
+      "errors": [],
+      "expected": 0,
+      "fn": 0,
+      "fp": 0,
+      "id": "EBJS-P-GGD-001",
+      "pass": 158,
+      "subset": "primary",
+      "tp": 0,
+      "warning": 8
+    },
+    {
+      "error": 0,
+      "errors": [],
+      "expected": 0,
+      "fn": 0,
+      "fp": 0,
+      "id": "EBJS-P-KYN-004",
+      "pass": 106,
+      "subset": "primary",
+      "tp": 0,
+      "warning": 5
+    },
+    {
+      "error": 0,
+      "errors": [],
+      "expected": 0,
+      "fn": 0,
+      "fp": 0,
+      "id": "EBJS-P-MNS-002",
+      "pass": 187,
+      "subset": "primary",
+      "tp": 0,
+      "warning": 8
+    },
+    {
+      "error": 0,
+      "errors": [],
+      "expected": 0,
+      "fn": 0,
+      "fp": 0,
+      "id": "EBJS-S-ATS-003",
+      "pass": 105,
+      "subset": "secondary",
+      "tp": 0,
+      "warning": 4
+    },
+    {
+      "error": 0,
+      "errors": [],
+      "expected": 0,
+      "fn": 0,
+      "fp": 0,
+      "id": "EBJS-S-DOL-001",
+      "pass": 93,
+      "subset": "secondary",
+      "tp": 0,
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "errors": [],
+      "expected": 0,
+      "fn": 0,
+      "fp": 0,
+      "id": "EBJS-S-FREV-002",
+      "pass": 99,
+      "subset": "secondary",
+      "tp": 0,
+      "warning": 1
+    }
+  ],
+  "repair_checks": [
+    {
+      "applied": 1,
+      "id": "EBJS-D-AMP-002",
+      "remaining_errors": 0
+    },
+    {
+      "applied": 2,
+      "id": "EBJS-D-ILK-004",
+      "remaining_errors": 0
+    },
+    {
+      "applied": 1,
+      "id": "EBJS-D-MOT-003",
+      "remaining_errors": 0
+    },
+    {
+      "applied": 1,
+      "id": "EBJS-D-SEL-001",
+      "remaining_errors": 0
+    }
+  ],
+  "rules": [
+    {
+      "error": 1,
+      "failure_severity": "error",
+      "family": "selectivity",
+      "id": "selectivity_inversion",
+      "pass": 35,
+      "title": "上下级额定电流倒挂",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "selectivity",
+      "id": "selectivity_margin_low",
+      "pass": 33,
+      "title": "上下级电流筛查级差不足",
+      "warning": 2
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "selectivity",
+      "id": "breaking_coordination_review",
+      "pass": 36,
+      "title": "上下级分断配合需复核",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "error",
+      "family": "selectivity",
+      "id": "breaker_frame_overload",
+      "pass": 51,
+      "title": "额定电流超过壳架等级",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "error",
+      "family": "selectivity",
+      "id": "breaker_short_circuit_rating",
+      "pass": 0,
+      "title": "安装点短路电流超过分断能力",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "selectivity",
+      "id": "incoming_isolation_missing",
+      "pass": 9,
+      "title": "进线缺少明确的隔离器件",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "selectivity",
+      "id": "incoming_isolation_order",
+      "pass": 9,
+      "title": "进线隔离与保护顺序待核",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "selectivity",
+      "id": "isolator_current_rating",
+      "pass": 9,
+      "title": "进线隔离器额定电流偏低",
+      "warning": 0
+    },
+    {
+      "error": 1,
+      "failure_severity": "error",
+      "family": "ampacity",
+      "id": "ampacity_insufficient",
+      "pass": 47,
+      "title": "导线与过负荷保护不匹配",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "ampacity",
+      "id": "ampacity_margin_low",
+      "pass": 16,
+      "title": "导线载流量余量低于 10%",
+      "warning": 31
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "ampacity",
+      "id": "cable_ampacity_table_mismatch",
+      "pass": 47,
+      "title": "标称载流量与筛查表不符",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "ampacity",
+      "id": "cable_mechanical_minimum",
+      "pass": 0,
+      "title": "电缆截面低于机械强度下限",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "ampacity",
+      "id": "cable_neutral_section",
+      "pass": 25,
+      "title": "中性线截面低于设计下限",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "ampacity",
+      "id": "cable_pe_section",
+      "pass": 47,
+      "title": "保护导体截面低于设计下限",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "ampacity",
+      "id": "cable_unprotected",
+      "pass": 47,
+      "title": "电缆上游保护证据缺失",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "ampacity",
+      "id": "cable_rating_incomplete",
+      "pass": 47,
+      "title": "导线载流量计算缺少参数",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "error",
+      "family": "ampacity",
+      "id": "cable_conventional_trip_current",
+      "pass": 0,
+      "title": "约定动作电流超过导体条件",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "error",
+      "family": "ampacity",
+      "id": "cable_short_circuit_thermal",
+      "pass": 0,
+      "title": "电缆短路热稳定不足",
+      "warning": 0
+    },
+    {
+      "error": 1,
+      "failure_severity": "error",
+      "family": "equipment",
+      "id": "motor_protection_missing",
+      "pass": 15,
+      "title": "电动机主回路配套缺失",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "error",
+      "family": "equipment",
+      "id": "motor_contactor_rating",
+      "pass": 0,
+      "title": "接触器额定工作电流小于电机电流",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "equipment",
+      "id": "motor_overload_setting",
+      "pass": 0,
+      "title": "电机过载整定偏离设计区间",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "equipment",
+      "id": "motor_pe_missing",
+      "pass": 2,
+      "title": "电机图未显示保护接地证据",
+      "warning": 14
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "equipment",
+      "id": "ct_ratio_load",
+      "pass": 0,
+      "title": "CT 变比与回路电流匹配存疑",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "equipment",
+      "id": "ct_secondary_open",
+      "pass": 0,
+      "title": "CT 二次闭合或短接证据不足",
+      "warning": 15
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "equipment",
+      "id": "ct_meter_rating",
+      "pass": 9,
+      "title": "CT 二次额定电流与仪表输入不符",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "equipment",
+      "id": "vt_ratio_voltage",
+      "pass": 0,
+      "title": "PT 一次额定值与回路电压不符",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "equipment",
+      "id": "vt_meter_missing",
+      "pass": 9,
+      "title": "PT 测量支路证据不足",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "equipment",
+      "id": "capacitor_reactor_missing",
+      "pass": 1,
+      "title": "补偿支路缺少串联电抗器",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "equipment",
+      "id": "capacitor_switch_protection",
+      "pass": 1,
+      "title": "补偿支路投切或保护证据不足",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "equipment",
+      "id": "spd_backup_missing",
+      "pass": 0,
+      "title": "SPD 后备保护证据不足",
+      "warning": 8
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "equipment",
+      "id": "spd_pe_missing",
+      "pass": 8,
+      "title": "SPD 接地路径证据不足",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "equipment",
+      "id": "kyn_vacuum_breaker",
+      "pass": 3,
+      "title": "KYN28 断路器真空或电压规格待核",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "equipment",
+      "id": "kyn_switchgear_members",
+      "pass": 1,
+      "title": "KYN28 隔离或接地器件证据不足",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "equipment",
+      "id": "kyn_five_preventions",
+      "pass": 0,
+      "title": "KYN28 五防闭锁证据不全",
+      "warning": 1
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "equipment",
+      "id": "kyn_earthing_path",
+      "pass": 1,
+      "title": "KYN28 接地开关接地路径待核",
+      "warning": 0
+    },
+    {
+      "error": 2,
+      "failure_severity": "error",
+      "family": "control",
+      "id": "interlock_missing",
+      "pass": 2,
+      "title": "正反转对侧常闭互锁缺失或被旁路",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "control",
+      "id": "control_coil_unreachable",
+      "pass": 8,
+      "title": "线圈控制供电路径不完整",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "control",
+      "id": "control_return_missing",
+      "pass": 8,
+      "title": "线圈返回端未发现端子路径",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "control",
+      "id": "control_self_hold_missing",
+      "pass": 6,
+      "title": "启动按钮缺少对应的并联自锁",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "control",
+      "id": "control_stop_bypass",
+      "pass": 6,
+      "title": "停止按钮缺失或可被旁路",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "control",
+      "id": "control_emergency_stop_priority",
+      "pass": 0,
+      "title": "急停可被旁路或缺少常闭接点",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "control",
+      "id": "control_overload_contact",
+      "pass": 2,
+      "title": "主回路过载常闭触点未覆盖线圈",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "control",
+      "id": "control_fuse_missing",
+      "pass": 8,
+      "title": "控制电源缺少串联熔断器",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "control",
+      "id": "ats_electrical_interlock",
+      "pass": 1,
+      "title": "ATS 转换侧电气闭锁证据不足",
+      "warning": 1
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "control",
+      "id": "ats_mechanical_interlock",
+      "pass": 0,
+      "title": "ATS 机械互锁证据不足",
+      "warning": 1
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "control",
+      "id": "ats_transfer_delay",
+      "pass": 1,
+      "title": "ATS 备用侧延时链证据不足",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "control",
+      "id": "ats_source_count",
+      "pass": 1,
+      "title": "ATS 转换输入源数量有误",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "control",
+      "id": "control_terminal_missing",
+      "pass": 16,
+      "title": "网表引用了不存在的端子",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "control",
+      "id": "control_wire_number_mismatch",
+      "pass": 0,
+      "title": "网表两端线号不一致",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "error",
+      "family": "bom",
+      "id": "duplicate_bom_tag",
+      "pass": 287,
+      "title": "同范围采购锚点位号重复",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "bom",
+      "id": "bom_breaker_poles_missing",
+      "pass": 51,
+      "title": "断路器极数缺失或无法解析",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "bom",
+      "id": "bom_rated_current_missing",
+      "pass": 62,
+      "title": "保护器缺少有效额定电流",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "bom",
+      "id": "bom_anchor_spec_missing",
+      "pass": 287,
+      "title": "采购锚点规格信息不足",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "bom",
+      "id": "bom_anchor_tag_missing",
+      "pass": 287,
+      "title": "采购锚点缺少位号",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "bom",
+      "id": "bom_detail_anchor_mismatch",
+      "pass": 14,
+      "title": "BOM 明细与采购锚点不一致",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "bom",
+      "id": "bom_summary_quantity_mismatch",
+      "pass": 14,
+      "title": "BOM 汇总数量异常",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "bom",
+      "id": "symbol_class_unknown",
+      "pass": 345,
+      "title": "无法解析冻结符号类别",
+      "warning": 0
+    },
+    {
+      "error": 0,
+      "failure_severity": "warning",
+      "family": "bom",
+      "id": "netlist_dangling_edge",
+      "pass": 0,
+      "title": "网表边引用缺失实例",
+      "warning": 0
+    }
+  ],
+  "totals": {
+    "conforming_errors": 0,
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 5
+  }
+}
