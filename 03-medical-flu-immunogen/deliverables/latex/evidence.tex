@@ -1,0 +1,149 @@
+\input{common.tex}
+\hypersetup{pdftitle={FluVax-Evidence 佐证材料},pdfauthor={盼盼法式小面包}}
+\begin{document}
+\contesttitlepage
+  {“人工智能+”医疗健康赛道\\赛题 AI-HEALTH-Q40}
+  {FluVax-Evidence}
+  {盼盼法式小面包}
+  {佐证材料}
+  {公开记录的离线评测}
+  {2026 年 11 月\\数据版本 fluevidence-v1.1}
+
+\begin{abstract}
+24 条公开记录。7 题 Recall@5 为 1.00，NDCG@5 为 0.929。四份档案与金标一致。已采纳语句与版本锁一致者为 59/59。
+\end{abstract}
+
+\section{数据}
+评测只使用已经发表的题名、定义行、结构库题名、表位摘要和蛋白质条目首行。每条记录有公开标识、版本、入库时间和证据等级。问答的标准答案和档案的金标都落在这 24 条之内。人工检索 SOP 在记录中为未测，不参与下表的分数。
+版本 fluevidence-v1，增补更正与两条茎部结构后为 fluevidence-v1.1。快照 \path{fbf7ca92a9eee35217389ca65b85bd132f5bffae9a0dbdd50f38cb2a87613847}。标识核验日 2026-11-28。\footnote{待核实：本次未重请求各公开库接口。}实验登录 6 条，监测元数据 2 条，文献与审校条目 16 条，计算预测 0 条。未收录：GISAID 序列与计数，Nextstrain 分支频率，深度突变扫描分数，核苷酸与设计构建体，湿实验步骤，新的免疫原性或临床分数。
+
+\begin{longtable}{p{3.5cm}p{3.6cm}p{3.2cm}p{2.2cm}}
+\caption{24 条记录。v1.1 为更正通知与两条茎部结构。}\label{tab:recs}\\
+\toprule
+记录 & 公开标识 & 等级 & 版本 \\
+\midrule
+\endfirsthead
+\toprule
+记录 & 公开标识 & 等级 & 版本 \\
+\midrule
+\endhead
+EV-REF-GARTEN & PMID:19465683 & 文献 & v1 \\
+EV-REF-SMITH & PMID:15218094 & 文献 & v1 \\
+EV-REF-PETROVA & PMID:29081496 & 文献 & v1 \\
+EV-REF-CALHA & PMID:23110350 & 文献 & v1 \\
+EV-CONS-GILES & PMID:21320540 & 文献 & v1 \\
+EV-CONS-CARTER & PMID:26912624 & 文献 & v1 \\
+EV-CONS-CARTER-CORR & PMID:38819164 & 文献 & v1.1 \\
+EV-GLY-WANG & PMID:19822741 & 文献 & v1 \\
+EV-GLY-TATE & PMID:24638204 & 文献 & v1 \\
+EV-GLY-ADD & PMID:23365085 & 文献 & v1 \\
+EV-STEM-IMP & PMID:26303961 & 文献 & v1 \\
+EV-STEM-YASSINE & PMID:26301691 & 文献 & v1 \\
+EV-STEM-EKIERT & PMID:19251591 & 文献 & v1 \\
+EV-STEM-HEADLESS & PMID:26947245 & 文献 & v1 \\
+EV-STEM-STALK & PMID:25210189 & 文献 & v1 \\
+EV-ACC-CA07 & CY121680.1 & 监测 & v1 \\
+EV-ACC-HK68 & AF348176.1 & 监测 & v1 \\
+EV-PDB-3GBN & PDB:3GBN & 实验登录 & v1 \\
+EV-PDB-3GBM & PDB:3GBM & 实验登录 & v1 \\
+EV-PDB-5C0S & PDB:5C0S & 实验登录 & v1.1 \\
+EV-PDB-5C0R & PDB:5C0R & 实验登录 & v1.1 \\
+EV-IEDB-570 & IEDB:570 & 实验登录 & v1 \\
+EV-IEDB-226309 & IEDB:226309 & 实验登录 & v1 \\
+EV-UP-P03452 & UniProt:P03452 & 审校条目 & v1 \\
+\bottomrule
+\end{longtable}
+
+EV-CONS-CARTER 的审阅状态为标疑，其余为已接受。若干条目的精确发表日在说明中未提供，此处不补。
+
+\section{任务一}
+七题取前 5 条，Recall@5 均为 1.00。NDCG@5 平均 0.929，其中第 6 题为 0.50，其余为 1.00。中位耗时 18.2 毫秒。
+
+\begin{table}[ht]
+\centering
+\caption{任务一。耗时单位为毫秒。}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llrrl}
+\toprule
+题 & 期望记录 & Recall@5 & NDCG@5 & 毫秒 \\
+\midrule
+Q1 & EV-REF-GARTEN & 1.00 & 1.00 & 24.7 \\
+Q2 & EV-GLY-WANG & 1.00 & 1.00 & 18.1 \\
+Q3 & 两条 CARTER 记录 & 1.00 & 1.00 & 18.6 \\
+Q4 & EV-PDB-3GBN；EV-PDB-5C0S & 1.00 & 1.00 & 19.3 \\
+Q5 & EV-ACC-CA07 & 1.00 & 1.00 & 14.4 \\
+Q6 & EV-STEM-HEADLESS & 1.00 & 0.50 & 16.8 \\
+Q7 & EV-IEDB-570；EV-IEDB-226309 & 1.00 & 1.00 & 18.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Q6 的前五名依次为 EV-ACC-CA07、EV-PDB-3GBM、EV-STEM-HEADLESS、EV-UP-P03452、EV-PDB-3GBN。
+
+\section{任务二与引用}
+比较 16.9 毫秒，签批 11.5 毫秒，状态为专家已签批。采纳 23，标疑 1。四份档案的交叉、空白和一致性均与金标相同。空白项计缺等级、版本不一致和审阅未关闭。
+
+\begin{table}[ht]
+\centering
+\caption{四份档案。等级列为实验登录 / 监测 / 文献或审校 / 计算预测。}
+\footnotesize
+\begin{tabular}{lrrrl}
+\toprule
+档案 & 版本一致 & 空白数 & 等级计数 & 交叉标识 \\
+\midrule
+参考株 & 是 & 1 & 0/2/5/0 & 无 \\
+共识文献 & 否 & 5 & 0/0/3/0 & 26912624 与 38819164 \\
+头部糖基化 & 是 & 2 & 0/0/3/0 & 无 \\
+保守茎部 & 否 & 2 & 6/0/5/0 & 无 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+参考株的空白为缺少实验登录。共识文献另有版本不一致、档案与来源审阅未关闭，以及缺少监测记录。头部糖基化缺少实验登录和监测记录。保守茎部为版本不一致且缺少监测记录；其 6 条实验登录来自结构和表位库。
+
+已采纳且匹配版本锁的语句 59/59。不读原文的草稿提交 3 条、采纳 0 条：超出选择 2，非逐字 1。快照 24 条原文与疗效承诺模式的匹配数为 0；探针 1 条被拒。
+
+方法学夹具另有 4 条查询：Recall@3 为 1.00，NDCG@3 为 0.875，中位 5.8 毫秒；比较 4.7 毫秒，签批 4.1 毫秒，采纳引文 2 条；引用 16/16，拦截无效草稿 3/3。人工 SOP 记为未测。
+
+\section{权重}
+重排器训练 143、验证 48、测试 48 条，选定第 15 轮，验证损失 0.413。判别器训练 432、验证 144、测试 144 条，第 220 轮，验证损失 0.001。留出集分数见表~\ref{tab:f1}。
+
+\begin{table}[ht]
+\centering
+\caption{合成留出集。重排器测试集“相关”类 F1 为 0.00，支持数 12；“不相关”类 F1 为 0.86。}
+\label{tab:f1}
+\begin{tabular}{llrr}
+\toprule
+模型 & 划分 & 宏平均 F1 & NDCG@3 \\
+\midrule
+重排器 & 验证 & 1.00 & 1.00 \\
+重排器 & 测试 & 0.43 & 0.969 \\
+判别器 & 验证 & 1.00 & --- \\
+判别器 & 测试 & 1.00 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+排序使用相关性概率。四份权重合计 11{,}748 字节。重排器留出 48 行，对数几率误差 $2.4\times 10^{-7}$，CPU 中位 0.015 毫秒（可移植格式 0.008）。判别器留出 144 行，误差 $9.5\times 10^{-7}$，中位 0.015 毫秒（可移植格式 0.008）。这些是单样本热运行。
+
+\begin{quote}\footnotesize
+重排权重 SHA-256 \path{0efa581205b7ddf5ad5d24508498780ce62d6d324e5568b95b006d893d0dd71b}（3879 字节）。
+可移植重排 \path{3afdb439c454f685c057ccafdf2784676eb6c51f78a5877c6f49c968129a9c72}（1898 字节）。
+判别权重 \path{33325e123b66a51ee619a1404c0c06972a7d1873970c40a0572c3bd898216c5d}（3973 字节）。
+可移植判别 \path{610c413b47df657a7a2a50b024f5cca1b02fe96edfb130877144013a11ac3a8b}（1998 字节）。
+\end{quote}
+
+方法学夹具与七题使用不同的问题集。夹具 4 题的 Recall@3 为 1.00，NDCG@3 为 0.875；比较 4.7 毫秒，签批 4.1 毫秒。权重的训练、验证和测试使用不同领域的合成句，流感快照不参与训练。留出集分数见表~\ref{tab:f1}。
+
+七题的标准答案都能在前 5 条中找到。Q1 至 Q5 与 Q7 的 NDCG@5 为 1.00，Q6 为 0.50，平均 0.929。档案四行的版本判断和交叉标识与金标相同：共识文献把 PMID:26912624 和更正 PMID:38819164 连在一起，茎部档案带 6 条实验登录。已采纳的 59 条语句与版本锁一致。疗效承诺探针 1 条被拒绝，快照原文 24 条都不含该模式。人工检索 SOP 在评测记录中为未测。
+
+\clearpage
+\section{附录}
+评测入口：\path{python -m benchmarks.flu_bench}。方法学夹具：\path{python -m benchmarks.evaluate_tasks}。权重校验：\path{python weights/verify_weights.py}。本次编译 PDF 未重跑评测，毫秒数取已写入的记录。内网部署的账号与留存标为待联调。没有报价。
+
+\begin{thebibliography}{9}
+\bibitem{card} FluEvidenceBench-v1 数据集说明与发行锁。题名是公开记录，本文件不把题名转写成疗效结论。
+\bibitem{metrics} 七题、四份档案、引用核验与权重清单。
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,178 @@
+\input{common.tex}
+\hypersetup{pdftitle={ElectronicBOM 佐证材料},pdfauthor={盼盼法式小面包}}
+\begin{document}
+\contesttitlepage
+  {“人工智能+”工业制造赛道\\赛题 AI-MFG-Q21}
+  {ElectronicBOM}
+  {盼盼法式小面包}
+  {佐证材料}
+  {ElectroBench-JS v1.0.0\\冻结评测}
+  {2026 年 11 月\\评测提交 dc21c96902e6}
+
+\begin{abstract}
+主集 11 张：综合解析 97.88\%，严格明细 96.92\%，四类红灯 5 次真阳性、0 误报、0 漏报。全集 14 张综合解析 93.49\%。符号实例 345，类别 40/40。
+\end{abstract}
+
+\section{数据}
+合成样例以 CC BY 4.0 发布。规范版本与生成器版本均为 1.0.0，种子 262。
+
+\begin{table}[ht]
+\centering
+\caption{分层。主集为一次、二次与缺陷。}
+\small
+\begin{tabularx}{\textwidth}{lrlX}
+\toprule
+子集 & 数量 & 图纸 & 口径 \\
+\midrule
+一次系统 & 4 & GGD、MNS、GCS、KYN28 & 主集 / 全集 \\
+二次控制 & 3 & 启停、正反转、双电源 & 主集 / 全集 \\
+缺陷 & 4 & 级差、载流量、互锁、电机保护 & 主集 / 全集 \\
+退化 & 3 & 模糊、倾斜、简写 & 全集 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+缺陷真值：级差倒挂 1，载流量不足 1，电机保护缺配 1，二次互锁缺失 2。一次、二次和退化图的真值缺陷为 0。每张图的矢量、PDF、光栅和标注同源；模糊与倾斜只有光栅和标注。
+
+综合解析 $=0.40\times$ 符号 F1 $+0.35\times$ 规格语义 $+0.25\times$ 无向边 F1，门槛 93\%。严格明细门槛 95\%。
+
+\section{主结果}
+\begin{table}[ht]
+\centering
+\caption{通道对比。连边为无向边 F1。全集耗时原记录空缺。}
+\label{tab:ch}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrr}
+\toprule
+输入 & 图数 & 综合 & 连边 F1 & 严格明细 & 可见汇总 & 秒/张 \\
+\midrule
+完整系统，矢量 & 11 & 97.88\% & 95.83\% & 96.92\% & 96.65\% & 0.070 \\
+纯 PDF & 11 & 77.32\% & 62.14\% & 92.95\% & 92.34\% & 4.812 \\
+全光栅 & 11 & 78.45\% & 60.89\% & 90.31\% & 90.91\% & 4.662 \\
+完整系统，全集 & 14 & 93.49\% & 91.65\% & 89.90\% & 89.47\% & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+主集有向边 F1 为 90.66\%，全集符号 F1 为 98.09\%，含目录号的扩展诊断完整率为 13.88\%。主集分层：一次 4 张综合 98.48\%，二次 3 张 97.31\%，缺陷 4 张 97.88\%。两次非耗时评测载荷的 SHA-256 为 \path{0e95158cddab20e7c7b5c8d6ec8bdfc35799d6eb30899e7bc35d1abd46766cea}。
+
+\begin{table}[ht]
+\centering
+\caption{主集四类红灯。7 张标准图误报为 0。}
+\begin{tabular}{lrrr}
+\toprule
+类别 & TP & FP & FN \\
+\midrule
+载流量不足 & 1 & 0 & 0 \\
+二次互锁缺失 & 2 & 0 & 0 \\
+电机保护缺配 & 1 & 0 & 0 \\
+级差倒挂 & 1 & 0 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+主集完整系统耗时：解析均值 0.044 秒，拓扑 0.022 秒，合规 0.004 秒，合计 0.070 秒（P50 0.066，P95 0.106）。全光栅合计 4.662 秒，纯 PDF 合计 4.812 秒。
+
+\begin{table}[ht]
+\centering
+\caption{主集分阶段耗时，单位为秒。}
+\footnotesize
+\begin{tabular}{llrrr}
+\toprule
+通道 & 阶段 & 均值 & P50 & P95 \\
+\midrule
+完整系统 & 解析 & 0.044 & 0.039 & 0.077 \\
+完整系统 & 追线 & 0.022 & 0.021 & 0.027 \\
+完整系统 & 合规 & 0.004 & 0.004 & 0.006 \\
+完整系统 & 合计 & 0.070 & 0.066 & 0.106 \\
+全光栅 & 合计 & 4.66 & 4.48 & 5.27 \\
+纯 PDF & 合计 & 4.81 & 4.85 & 5.09 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+分层综合：一次图 98.48\%（4 张），二次图 97.31\%（3 张），缺陷图 97.88\%（4 张），退化图 75.84\%（3 张）。
+
+\section{基线与消融}
+\begin{table}[ht]
+\centering
+\caption{主集基线。连边为无向边 F1。纯多模态通道待实测。}
+\begin{tabular}{lrrrr}
+\toprule
+方案 & 图数 & 综合 & 连边 F1 & 严格明细 \\
+\midrule
+完整系统 & 11 & 97.88\% & 95.83\% & 96.92\% \\
+OCR 正则 & 11 & 0.00\% & 0.00\% & 60.35\% \\
+纯光栅 & 11 & 75.23\% & 48.02\% & 90.31\% \\
+纯多模态 & 0 & 待实测 & 待实测 & 待实测 \\
+朴素连线 & 11 & 89.95\% & 64.13\% & 96.92\% \\
+关闭合规 & 11 & 97.88\% & 95.83\% & 96.92\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+完整拓扑相对朴素连线：无向边 F1 $+31.69$ 个百分点，综合 $+7.92$ 个百分点，红灯召回 $+20.00$ 个百分点。关闭合规后红灯召回为 0\%。退化 3 张综合 75.84\%；同组原始光栅 59.76\%。模糊单图在增强且追线阈值 180 时综合 45.95\%。别名图关闭条文归一后，输出规格精确由 43.48\% 降至 4.35\%，明细由 65.22\% 降至 43.48\%，综合仍为 56.79\%。
+
+自动归因计数：规格缺文 17，疑似文字混淆 3，符号误检 2，符号漏检 11，多余连线 13，逻辑分支或端口缺失 9，端点缺失 17，疑似断线 11，未匹配端点 1。
+
+四张缺陷图施加红灯语义补丁后复检，红灯清零。级差样图 EBJS-D-SEL-001 的真值为 1 条。14 张以实例加网表为输入时，红灯结果一致。
+
+\begin{table}[ht]
+\centering
+\caption{相对完整系统的变化，单位为百分点。正号表示完整系统更高。}
+\footnotesize
+\begin{tabular}{lrrrr}
+\toprule
+对照 & 图数 & 综合 & 无向边 F1 & 红灯召回 \\
+\midrule
+全光栅 & 11 & +19.43 & +34.93 & +40.00 \\
+朴素连线 & 11 & +7.92 & +31.69 & +20.00 \\
+关闭合规 & 11 & 0.00 & 0.00 & +100.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+关闭合规时解析分数不变，红灯不再发出，故召回差为 100 个百分点。退化三图中，模糊图增强后综合 45.95\%，倾斜图综合 82.95\%，别名图综合 56.79\%。符号漏检较多的类别是导线回路。这些计数用于回到原图复核，不替代主集门槛。
+
+\begin{table}[ht]
+\centering
+\caption{冻结卷 14 张图。}
+\footnotesize
+\begin{tabular}{lll}
+\toprule
+编号 & 子集 & 内容 \\
+\midrule
+EBJS-P-GGD-001 & 一次 & GGD \\
+EBJS-P-MNS-002 & 一次 & MNS \\
+EBJS-P-GCS-003 & 一次 & GCS \\
+EBJS-P-KYN-004 & 一次 & KYN28 \\
+EBJS-S-DOL-001 & 二次 & 启停自锁 \\
+EBJS-S-FREV-002 & 二次 & 正反转 \\
+EBJS-S-ATS-003 & 二次 & 双电源 \\
+EBJS-D-SEL-001 & 缺陷 & 级差倒挂 \\
+EBJS-D-AMP-002 & 缺陷 & 载流量 \\
+EBJS-D-MOT-003 & 缺陷 & 电机保护 \\
+EBJS-D-ILK-004 & 缺陷 & 互锁 \\
+EBJS-G-BLUR-001 & 退化 & 模糊 \\
+EBJS-G-SKEW-002 & 退化 & 倾斜 \\
+EBJS-G-ALIAS-003 & 退化 & 简写 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+主集 11 张的读法：矢量通道是报价主路径，综合 97.88\%、严格明细 96.92\%、0.070 秒/张。纯 PDF 与全光栅保留给扫描件，综合分别是 77.32\% 和 78.45\%，明细仍在 90\% 以上。全集 14 张把三张退化图算进去，综合 93.49\%，严格明细 89.90\%。红灯只在四张缺陷图上按真值命中，标准图误报为 0。纯多模态通道本批为 0 张，记为待实测。
+
+\clearpage
+\section{附录}
+评测提交 \path{dc21c96902e60bc8a8d29f1eaaf4c575e0841620}，审图提交 \path{2cc0463fb71665643ead74de86a62d56caaf07e6}。审图服务默认端口 8066。身份、留存和语音出网标为待联调。
+
+\begin{quote}\small
+\path{python -m electrobench validate samples}\\
+\path{python -m benchmark_e2e.run_benchmark --verify-repeat}
+\end{quote}
+
+\begin{thebibliography}{9}
+\bibitem{eval} ElectroBench-JS v1.0.0 端到端评测与合规复检。
+\end{thebibliography}
+\end{document}
