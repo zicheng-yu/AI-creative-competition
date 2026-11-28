@@ -1,5 +1,5 @@
 import { html } from '../format.js';
-import { DAYS, FAULTS, METRICS, SCENARIOS, STRATEGIES, STRATEGY_NAMES, decimal, hourLabel, metricValue, receiptCandidates, slotLabel } from './data.js';
+import { ACCOUNTING_NOTE, COMMAND_PRESETS, DAYS, FAULTS, METRICS, SCENARIOS, STRATEGIES, STRATEGY_NAMES, decimal, hourLabel, isCrossRegion, metricValue, presentReceipt, slotLabel } from './data.js';
 
 const strategies = STRATEGIES.map((key) => `<option value="${key}" ${key === 'SuCompute' ? 'selected' : ''}>${STRATEGY_NAMES[key]}</option>`).join('');
 
@@ -60,7 +60,7 @@ export const shell = `<header class="control-header">
     <section class="command-panel" aria-labelledby="command-title">
       <div class="section-bar"><h2 id="command-title">调度 Copilot</h2><span>本地仿真接口</span></div>
       <form id="command-form"><label for="command" class="sr-only">调度指令</label><div class="command-row"><input id="command" maxlength="500" placeholder="例如：碳排权重调至 0.6" autocomplete="off" required><button class="s-button primary" type="submit">执行指令</button></div></form>
-      <div class="command-presets"><button class="s-button outline" type="button" data-command="优先绿电消纳">优先绿电消纳</button><button class="s-button outline" type="button" data-command="解释调度">解释调度</button><button id="open-inject" class="s-button outline" type="button">注入自选故障</button><button id="fixed-replay" class="s-button ghost" type="button">恢复固定回放</button></div>
+      <div class="command-presets">${COMMAND_PRESETS.map((preset) => `<button class="s-button outline" type="button" data-command="${html(preset.text)}">${html(preset.label)}</button>`).join('')}<button id="open-inject" class="s-button outline" type="button">注入自选故障</button><button id="fixed-replay" class="s-button ghost" type="button">恢复固定回放</button></div>
       <div id="command-result" class="command-result" aria-live="polite"></div>
     </section>
   </div>
@@ -114,32 +114,39 @@ export function faultSummary(item, topology) {
 
 const auditHeader = `<header class="drawer-top"><div><span class="region-name">跨域计量</span><h2 id="audit-title">任务轨迹与碳足迹</h2></div><button class="s-button ghost drawer-close" data-close="audit" type="button" aria-label="关闭任务审计">×</button></header>`;
 
+export function paragraphs(text) {
+  return String(text || '').split(/\n+/).filter(Boolean).map((line) => `<p>${html(line)}</p>`).join('');
+}
+
 export function auditShell(list, current, body) {
   const choices = list.map((id) => `<option value="${id}" ${id === current ? 'selected' : ''}>任务 #${id}</option>`).join('');
-  return `${auditHeader}${choices ? `<label class="audit-picker" for="audit-task">离线审计样本<select class="dash-select" id="audit-task">${choices}</select></label>` : ''}<div id="audit-body">${body}</div>`;
+  return `${auditHeader}<div class="audit-toolbar"><button type="button" class="s-button outline" data-ledger="csv">导出账本 CSV</button><button type="button" class="s-button outline" data-ledger="api">加载本窗口完整账本</button></div>${choices ? `<label class="audit-picker" for="audit-task">任务凭证<select class="dash-select" id="audit-task">${choices}</select></label>` : ''}<div id="audit-body">${body}</div>`;
 }
 
 export function auditBody(receipt, topology) {
-  const first = receipt.segments[0];
+  const view = presentReceipt(receipt, topology);
+  const first = receipt.segments?.[0];
   const destination = first && topology.nodes[first.node];
-  const candidates = receiptCandidates(receipt, topology);
+  const candidates = view.candidates;
   const chosen = destination && candidates.find((item) => item.node === destination.id)?.pools.find((item) => item.pool === first.pool);
   return `<section class="receipt-section">
-    <h3>任务 #${receipt.task_id} <small>${html(receipt.task_class)}</small></h3>
+    <h3>任务 #${receipt.task_id} <small>${html(receipt.task_class)}</small>${isCrossRegion(receipt) ? ' <small>跨域</small>' : ''}</h3>
     <p>${html(topology.nodes[receipt.source]?.city)} → ${html(destination?.city || '未派单')} · ${html(first?.pool ?? '无芯片池')}</p>
-    <dl class="inline-kpis"><div><dt>电费</dt><dd>¥ ${decimal(receipt.electricity_cny, 2)}</dd></div><div><dt>碳排放</dt><dd>${decimal(receipt.co2_kg)} kgCO₂</dd></div><div><dt>相对全网供电减排</dt><dd>${decimal(receipt.avoided_vs_grid_kg)} kgCO₂</dd></div><div><dt>SLA</dt><dd>${receipt.sla_met ? '达成' : '未达成'}</dd></div></dl>
+    <dl class="inline-kpis"><div><dt>算力当量</dt><dd>${decimal(receipt.effective_efh, 3)} EF·h</dd></div><div><dt>电费结算</dt><dd>¥ ${decimal(receipt.electricity_cny, 2)}</dd></div><div><dt>碳排放</dt><dd>${decimal(receipt.co2_kg)} kgCO₂</dd></div><div><dt>相对全网供电减排</dt><dd>${decimal(receipt.avoided_vs_grid_kg)} kgCO₂</dd></div><div><dt>SLA</dt><dd>${receipt.sla_met ? '达成' : '未达成'}</dd></div></dl>
   </section>
+  ${receipt.selection_reason ? `<section class="receipt-section"><h3>选中理由</h3>${paragraphs(receipt.selection_reason)}</section>` : ''}
   <section class="receipt-section">
     <h3>选中记录</h3>
     ${first ? `<p>首次派至 ${html(destination?.city)} 的 ${html(first.pool)} 池，亲和度 ${decimal(chosen?.score, 2)}，网络时延 ${decimal(first.latency_ms, 1)} ms，时延预算 ${decimal(receipt.latency_limit_ms, 1)} ms。</p>
-    ${first.probability != null ? `<p>策略分布中的选中动作概率 ${decimal(first.probability * 100, 2)}%。</p>` : ''}
-    ${first.resource_shadow != null ? `<p>资源影子价格 ${decimal(first.resource_shadow, 4)}，碳影子价格 ${decimal(first.carbon_shadow, 4)}。</p>` : ''}` : '<p>账本没有可展示的执行分段。</p>'}
+    ${first.probability != null ? `<p>Safe-RL 选中动作概率 ${decimal(first.probability * 100, 2)}%。</p>` : '<p>该策略没有 Safe-RL 动作概率。</p>'}
+    ${first.pue != null ? `<p>实时 PUE ${decimal(first.pue, 3)}，绿电占比 ${decimal(first.green_share * 100, 2)}%。</p>` : ''}
+    ${first.resource_shadow != null ? `<p>资源影子价格 ${decimal(first.resource_shadow, 4)}，碳影子价格 ${decimal(first.carbon_shadow, 4)}。</p>` : '<p>该策略没有 MILP 影子价格。</p>'}` : '<p>账本没有可展示的执行分段。</p>'}
   </section>
   <section class="receipt-section"><h3>执行轨迹</h3><ol class="segments">
-    ${receipt.segments.map((segment) => `<li><strong>${html(topology.nodes[segment.node]?.city)} · ${html(segment.pool)}</strong><span>${slotLabel(segment.start_slot, topology.slot_minutes)} → ${slotLabel(segment.end_slot, topology.slot_minutes)}</span></li>`).join('')}
+    ${(receipt.segments ?? []).map((segment) => `<li><strong>${html(topology.nodes[segment.node]?.city)} · ${html(segment.pool)}</strong><span>${slotLabel(segment.start_slot, topology.slot_minutes)} → ${slotLabel(segment.end_slot, topology.slot_minutes)}</span></li>`).join('')}
   </ol></section>
   <details class="receipt-section"><summary>查看 16 节点候选亲和度</summary><div class="table-scroll"><table><thead><tr><th>节点</th><th>时延</th>${topology.pools.map((pool) => `<th>${html(pool)}</th>`).join('')}</tr></thead><tbody>
     ${candidates.map((node) => `<tr><th scope="row">${html(node.city)}</th><td>${decimal(node.latency, 1)} ms</td>${node.pools.map((pool) => `<td title="${pool.feasible ? '可行' : '不可行'}" class="${pool.feasible ? 'is-feasible' : 'is-blocked'}">${decimal(pool.score, 2)}${pool.feasible ? ' ✓' : ' ×'}</td>`).join('')}</tr>`).join('')}
     </tbody></table></div></details>
-  <section class="receipt-section"><h3>原始凭证 SHA-256</h3><code class="receipt-hash">${html(receipt.sha256)}</code></section>`;
+  <section class="receipt-section"><h3>碳减排凭证 SHA-256</h3><code class="receipt-hash">${html(receipt.sha256)}</code><p class="accounting-note">${html(ACCOUNTING_NOTE)}</p></section>`;
 }

@@ -5,10 +5,10 @@ import { benchmarkPanel } from '../components.js';
 import { html } from '../format.js';
 import {
   DAYS, SCENARIOS, STRATEGIES, STRATEGY_NAMES, TREND_KEYS, comparisonCsv, comparisonMarkdown,
-  createApi, createReplayStore, dailyChart, decimal, flightsAt, hourLabel, validateReplay,
+  createApi, createReplayStore, dailyChart, decimal, flightsAt, hourLabel, ledgerCsv, postText, validateReplay,
 } from './data.js';
 import { createDeltaMap } from './map.js';
-import { auditBody, auditShell, faultSummary, kpisInline, renderMetrics, renderRoutes, shell } from './view.js';
+import { auditBody, auditShell, faultSummary, kpisInline, paragraphs, renderMetrics, renderRoutes, shell } from './view.js';
 
 const root = document.querySelector('#app');
 root.innerHTML = shell;
@@ -21,6 +21,7 @@ const state = {
   scene: 'normal_weekday', strategy: 'SuCompute', node: 0, hour: 14,
   metric: 'utilization', faults: [], customFault: null, pendingFaultNode: null,
   animation: false, theme: localStorage.getItem(themeStorage) === 'dark' ? 'dark' : 'light',
+  auditSource: 'sample', auditReceipts: [], focusTask: null,
 };
 let map, clock, disposeChart, chartKey, sceneSequence = 0, auditSequence = 0, busy = false, auditTrigger;
 
@@ -138,7 +139,7 @@ async function changeScene(scene, reset = false) {
   try {
     const runs = await store.scene(state.index, scene);
     if (turn !== sceneSequence) return false;
-    Object.assign(state, { scene, runs, mode: 'fixed', weights: {}, customFault: null, pendingFaultNode: null });
+    Object.assign(state, { scene, runs, mode: 'fixed', weights: {}, customFault: null, pendingFaultNode: null, auditSource: 'sample', focusTask: null });
     if (reset) state.hour = 14;
     $('command-result').replaceChildren();
     renderRun();
@@ -157,7 +158,7 @@ async function fetchRuns(config, weights) {
 }
 
 function applyLive(runs, weights) {
-  Object.assign(state, { runs, weights, mode: 'live', customFault: null });
+  Object.assign(state, { runs, weights, mode: 'live', customFault: null, auditSource: 'api' });
   state.hour %= 24;
   renderRun();
 }
@@ -203,40 +204,60 @@ async function jumpToFault() {
   }
 }
 
+function showAudit(ids, current, body) {
+  const dialog = $('audit-dialog');
+  dialog.innerHTML = auditShell(ids, current, body);
+  if (dialog.dataset.focus === 'picker') $('audit-task')?.focus();
+  else dialog.querySelector('[data-close="audit"]')?.focus();
+}
+
 async function openAudit(requestedId, trigger) {
   const turn = ++auditSequence;
   const dialog = $('audit-dialog');
-  const context = { scene: state.scene, strategy: state.strategy, seed: state.index.seed, mode: state.mode };
+  const context = { scene: state.scene, strategy: state.strategy, seed: state.index.seed };
   if (!dialog.open) {
     auditTrigger = trigger;
     dialog.innerHTML = auditShell([], null, '<p class="receipt-message">正在加载任务凭证…</p>');
     dialog.showModal();
   }
-  if (context.mode === 'live') {
-    dialog.innerHTML = auditShell([], null, '<p class="receipt-message">固定回放包含可查凭证。即时仿真的任务归因可使用「解释调度」。</p>');
+  const wanted = requestedId ?? state.focusTask;
+  if (state.auditSource === 'api' || state.mode === 'live') {
+    try {
+      const payload = { ...getConfig(), limit: 1 };
+      if (wanted != null) payload.task_id = wanted;
+      const data = await api('ledger', payload);
+      if (turn !== auditSequence || !dialog.open) return;
+      state.auditReceipts = data.receipts;
+      const ids = data.index.map((item) => item.task_id);
+      const entry = data.receipts[0];
+      showAudit(ids, entry?.task_id ?? null, entry ? auditBody(entry, state.topology) :
+        '<p class="receipt-message">这个窗口没有可展示的任务凭证。</p>');
+    } catch (error) {
+      if (turn === auditSequence && dialog.open) showAudit([], null, `<p class="receipt-message">${html(error.message)}</p>`);
+    }
     return;
   }
   try {
-    const records = (await store.receipts()).filter((r) =>
-      r.scenario === context.scene && r.strategy === context.strategy && r.seed === context.seed);
+    const records = (await store.receipts()).filter((item) =>
+      item.scenario === context.scene && item.strategy === context.strategy && item.seed === context.seed);
     if (turn !== auditSequence || !dialog.open) return;
+    state.auditReceipts = records;
     const samples = records.map((item) => item.task_id);
-    const entry = requestedId == null ? records[0] : records.find((item) => item.task_id === requestedId);
-    dialog.innerHTML = auditShell(samples, entry?.task_id ?? null, entry ? auditBody(entry, state.topology) :
-      '<p class="receipt-message">该飞线是汇总调度段，固定样例未收录对应凭证。可从上方选择一个有凭证的任务。</p>');
+    const entry = wanted == null ? records[0] : records.find((item) => item.task_id === wanted);
+    showAudit(samples, entry?.task_id ?? null, entry ? auditBody(entry, state.topology) :
+      '<p class="receipt-message">该飞线是汇总调度段，固定样例未收录对应凭证。可从上方选择一个有凭证的任务，或加载本窗口完整账本。</p>');
     if (!entry && samples.length) $('audit-task').selectedIndex = -1;
-    if (dialog.dataset.focus === 'picker') $('audit-task')?.focus();
-    else dialog.querySelector('[data-close="audit"]').focus();
   } catch (error) {
-    if (turn === auditSequence && dialog.open) dialog.innerHTML = auditShell([], null, `<p class="receipt-message">${html(error.message)}</p>`);
+    if (turn === auditSequence && dialog.open) showAudit([], null, `<p class="receipt-message">${html(error.message)}</p>`);
   }
 }
 
-function setFault(event, metrics, strategy) {
+function setFault(event, metrics, strategy, narrative = '') {
   state.customFault = { event, strategy };
+  state.auditSource = 'api';
   state.node = state.topology.nodes.find((node) => node.city === event.city)?.id ?? state.node;
   $('fixed-replay').hidden = false;
-  $('command-result').innerHTML = `<h3>故障注入结果 · ${html(STRATEGY_NAMES[strategy])}</h3><p>独立 24 小时仿真指标，地图标记指向注入节点。</p>${faultSummary(event, state.topology)}${kpisInline(metrics)}`;
+  $('command-result').innerHTML = `${paragraphs(narrative)}<h3>故障注入结果 · ${html(STRATEGY_NAMES[strategy])}</h3><p>独立 24 小时仿真指标，地图标记指向注入节点。</p>${faultSummary(event, state.topology)}${kpisInline(metrics)}`;
   renderFrame();
 }
 
@@ -249,19 +270,29 @@ async function sendCommand(input) {
   setPlaying(false);
   $('command-result').textContent = '正在执行指令…';
   try {
-    const { action, result } = await api('copilot/command', { ...config, text: command });
+    const { action, result, narrative } = await api('copilot/command', { ...config, text: command });
     if (turn !== sceneSequence) return;
     if (action.kind === 'weights') {
-      $('command-result').textContent = '已解析权重，正在重算四种策略…';
+      const scenario = action.scenario || config.scenario;
       const weights = { ...config.weights, ...action.weights };
-      const runs = await fetchRuns(config, weights);
+      $('command-result').innerHTML = `<h3>已解析指令，正在重算四种策略…</h3>${paragraphs(narrative)}`;
+      const runs = await fetchRuns({ ...config, scenario }, weights);
       if (turn !== sceneSequence) return;
+      state.scene = scenario;
       applyLive(runs, weights);
-      $('command-result').innerHTML = `<h3>权重已应用</h3><p>${html(Object.entries(weights).map(([key, value]) => `${key}=${value}`).join(' · '))}</p><p>已刷新四策略指标与 24 小时曲线。</p>`;
+      $('command-result').innerHTML = `<h3>权重已应用</h3>${paragraphs(narrative)}<p>已刷新四策略指标与 24 小时曲线。</p>`;
     } else if (action.kind === 'fault') {
-      setFault(result.fault, result.kpis, config.strategy);
+      setFault(result.fault, result.kpis, config.strategy, narrative);
     } else {
-      $('command-result').innerHTML = `<h3>调度归因</h3><p>${html(result.summary)}</p><details><summary>查看归因证据</summary><pre>${html(JSON.stringify(result.evidence, null, 2))}</pre></details>`;
+      const receipt = result.evidence?.receipt ? {
+        ...result.evidence.receipt,
+        selection_reason: result.evidence.selection_reason,
+        cross_region: result.evidence.cross_region,
+      } : null;
+      state.previewReceipt = receipt;
+      state.focusTask = receipt?.task_id ?? null;
+      state.auditSource = 'api';
+      $('command-result').innerHTML = `<h3>调度归因</h3>${paragraphs(result.summary)}${result.global_summary ? `<h3>全局</h3>${paragraphs(result.global_summary)}` : ''}${receipt ? '<button type="button" class="s-button outline" data-preview-audit="task">在审计抽屉中查看该任务</button>' : ''}`;
     }
   } catch (error) {
     if (turn === sceneSequence) $('command-result').textContent = error.message;
@@ -370,7 +401,7 @@ $('export-md').addEventListener('click', () => {
 root.addEventListener('click', (event) => {
   const target = event.target.closest('button');
   if (!target) return;
-  const { scene, chart, task, close, command } = target.dataset;
+  const { scene, chart, task, close, command, ledger, previewAudit } = target.dataset;
   if (scene && scene !== state.scene) void changeScene(scene, true);
   if (chart) {
     state.metric = chart;
@@ -383,7 +414,33 @@ root.addEventListener('click', (event) => {
     $('command').value = command;
     void sendCommand(command);
   }
+  if (previewAudit && state.previewReceipt) {
+    const dialog = $('audit-dialog');
+    if (!dialog.open) dialog.showModal();
+    state.auditReceipts = [state.previewReceipt];
+    dialog.innerHTML = auditShell([state.previewReceipt.task_id], state.previewReceipt.task_id, auditBody(state.previewReceipt, state.topology));
+  }
+  if (ledger === 'csv') void exportLedger();
+  if (ledger === 'api') {
+    state.auditSource = 'api';
+    $('audit-dialog').dataset.focus = 'picker';
+    void openAudit(state.focusTask);
+  }
 });
+
+async function exportLedger() {
+  const filename = `sucompute-ledger-${state.scene}.csv`;
+  if (state.auditSource === 'api' || state.mode === 'live') {
+    try {
+      const body = await postText(import.meta.env.VITE_SUCOMPUTE_API_BASE || '/sucompute-api', 'ledger/csv', getConfig());
+      download(body, filename, 'text/csv;charset=utf-8');
+    } catch (error) {
+      status(error.message, 'error');
+    }
+    return;
+  }
+  if (state.auditReceipts.length) download(ledgerCsv(state.auditReceipts, state.topology), filename, 'text/csv;charset=utf-8');
+}
 
 async function boot() {
   applyTheme();
