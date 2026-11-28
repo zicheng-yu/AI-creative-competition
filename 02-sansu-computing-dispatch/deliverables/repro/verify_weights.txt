@@ -1,0 +1,1 @@
+Verified 5 hashes, 38987 bytes; max logit error 3.81e-06; forecast (24, 16, 2)
