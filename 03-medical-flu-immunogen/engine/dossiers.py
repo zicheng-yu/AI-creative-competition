@@ -3,6 +3,7 @@ import csv
 import io
 import json
 from collections import Counter
+from itertools import combinations
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
@@ -43,6 +44,49 @@ class Dossier(BaseModel):
 
 COLUMNS = tuple(Dossier.model_fields)
 CHECKED = ("version", "source_ref", "archive_sha256", "annotation", "review_status")
+SOURCE_CATALOG = ("PUBMED_LITERATURE", "NCBI_NUCCORE", "PDB_STRUCTURE", "IEDB_EPITOPE", "UNIPROT_RECORD")
+TIER_ORDER = ("T1_WET_LAB_ASSAY", "T2_SURVEILLANCE", "T3_PEER_REVIEWED_LIT", "T4_COMPUTATIONAL")
+GOVERNANCE_GAPS = ("version_mismatch", "source_review_open", "dossier_review_open")
+DIMENSION_NOTE = "这些分数只统计来源覆盖、版本一致性、引用交叉、证据等级分布和未决事项，不是免疫原性能或临床效果。"
+
+
+def citation_conflicts(records, snapshot: Snapshot) -> list[dict]:
+    """Flag pairs whose approved archive note cites the other record's public ID."""
+    notes = {record.key: snapshot.metadata[record.key].archive_note or "" for record in records}
+    found = []
+    for left, right in combinations(records, 2):
+        if right.primary_ref in notes[left.key] or left.primary_ref in notes[right.key]:
+            found.append({
+                "left": anchor(left.key), "right": anchor(right.key),
+                "left_ref": left.primary_ref, "right_ref": right.primary_ref,
+                "reason": "archive_note_cites_other_primary_ref",
+            })
+    return found
+
+
+def evidence_dimensions(records, snapshot: Snapshot, open_items: list[str], consistent) -> dict:
+    tiers = Counter(record.evidence_tier for record in records)
+    conflicts = citation_conflicts(records, snapshot)
+    gaps = [item for item in open_items if item in GOVERNANCE_GAPS]
+    if "T1_WET_LAB_ASSAY" not in tiers:
+        gaps.append("no_T1_record")
+    if "T2_SURVEILLANCE" not in tiers:
+        gaps.append("no_T2_record")
+    present = sorted({record.source_type for record in records} & set(SOURCE_CATALOG))
+    version_score = {True: 1.0, False: 0.0}.get(consistent, 0.5)
+    return {
+        "source_coverage": len(present) / len(SOURCE_CATALOG),
+        "source_types_present": present,
+        "version_consistency": version_score,
+        "citation_conflict_clearance": 0.0 if conflicts else 1.0,
+        "tier_breadth": len(tiers) / len(TIER_ORDER),
+        "open_review_clearance": 1 / (1 + len(gaps)),
+        "tier_distribution": {tier: tiers.get(tier, 0) for tier in TIER_ORDER},
+        "citation_conflicts": conflicts,
+        "evidence_gaps": gaps,
+        "catalog_source_types": list(SOURCE_CATALOG),
+        "note": DIMENSION_NOTE,
+    }
 
 
 def parse_csv(text: str) -> list[Dossier]:
@@ -114,5 +158,6 @@ def compare_dossiers(dossiers: list[Dossier], snapshot: Snapshot) -> list[dict]:
                                       "hash_verified": dossier.archive_sha256 is not None},
             "review_status": {"declared": dossier.review_status, "source_counts": review_counts,
                               "open_items": open_items, "operator_annotation": dossier.annotation},
+            "evidence_dimensions": evidence_dimensions(records, snapshot, open_items, same_version),
         })
     return matrix

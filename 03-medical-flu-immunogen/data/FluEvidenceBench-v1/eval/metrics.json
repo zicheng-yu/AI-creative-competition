@@ -1,0 +1,276 @@
+{
+  "scope": "FluEvidenceBench-v1 software prototype",
+  "dataset_version": "fluevidence-v1.1",
+  "snapshot_id": "fbf7ca92a9eee35217389ca65b85bd132f5bffae9a0dbdd50f38cb2a87613847",
+  "record_count": 24,
+  "task_1": {
+    "k": 5,
+    "queries": 7,
+    "recall_at_5": 1.0,
+    "ndcg_at_5": 0.9285714285714286,
+    "median_ms": 18.16363,
+    "per_question": [
+      {
+        "question_id": "Q1",
+        "recall_at_5": 1.0,
+        "ndcg_at_5": 1.0,
+        "elapsed_ms": 24.650288,
+        "expected": [
+          "EV-REF-GARTEN"
+        ],
+        "hits": [
+          "EV-REF-GARTEN",
+          "EV-REF-PETROVA",
+          "EV-STEM-YASSINE",
+          "EV-STEM-EKIERT",
+          "EV-REF-SMITH"
+        ]
+      },
+      {
+        "question_id": "Q2",
+        "recall_at_5": 1.0,
+        "ndcg_at_5": 1.0,
+        "elapsed_ms": 18.110621,
+        "expected": [
+          "EV-GLY-WANG"
+        ],
+        "hits": [
+          "EV-GLY-WANG",
+          "EV-GLY-TATE",
+          "EV-REF-CALHA",
+          "EV-CONS-CARTER",
+          "EV-REF-GARTEN"
+        ]
+      },
+      {
+        "question_id": "Q3",
+        "recall_at_5": 1.0,
+        "ndcg_at_5": 1.0,
+        "elapsed_ms": 18.593875,
+        "expected": [
+          "EV-CONS-CARTER",
+          "EV-CONS-CARTER-CORR"
+        ],
+        "hits": [
+          "EV-CONS-CARTER",
+          "EV-CONS-CARTER-CORR",
+          "EV-REF-CALHA",
+          "EV-REF-GARTEN",
+          "EV-ACC-CA07"
+        ]
+      },
+      {
+        "question_id": "Q4",
+        "recall_at_5": 1.0,
+        "ndcg_at_5": 1.0,
+        "elapsed_ms": 19.288599,
+        "expected": [
+          "EV-PDB-3GBN",
+          "EV-PDB-5C0S"
+        ],
+        "hits": [
+          "EV-PDB-3GBN",
+          "EV-PDB-5C0S",
+          "EV-PDB-3GBM",
+          "EV-PDB-5C0R",
+          "EV-REF-PETROVA"
+        ]
+      },
+      {
+        "question_id": "Q5",
+        "recall_at_5": 1.0,
+        "ndcg_at_5": 1.0,
+        "elapsed_ms": 14.438441,
+        "expected": [
+          "EV-ACC-CA07"
+        ],
+        "hits": [
+          "EV-ACC-CA07",
+          "EV-REF-PETROVA",
+          "EV-STEM-YASSINE",
+          "EV-REF-SMITH",
+          "EV-STEM-EKIERT"
+        ]
+      },
+      {
+        "question_id": "Q6",
+        "recall_at_5": 1.0,
+        "ndcg_at_5": 0.5,
+        "elapsed_ms": 16.761578,
+        "expected": [
+          "EV-STEM-HEADLESS"
+        ],
+        "hits": [
+          "EV-ACC-CA07",
+          "EV-PDB-3GBM",
+          "EV-STEM-HEADLESS",
+          "EV-UP-P03452",
+          "EV-PDB-3GBN"
+        ]
+      },
+      {
+        "question_id": "Q7",
+        "recall_at_5": 1.0,
+        "ndcg_at_5": 1.0,
+        "elapsed_ms": 18.16363,
+        "expected": [
+          "EV-IEDB-570",
+          "EV-IEDB-226309"
+        ],
+        "hits": [
+          "EV-IEDB-570",
+          "EV-IEDB-226309",
+          "EV-REF-PETROVA",
+          "EV-STEM-YASSINE",
+          "EV-REF-SMITH"
+        ]
+      }
+    ],
+    "note": "封闭题面包含公开题名或公开 ID。这是该题集上的测得召回，不是赛题目标值。"
+  },
+  "task_2": {
+    "dossiers": 4,
+    "compare_ms": 16.912775,
+    "signoff_ms": 11.485772,
+    "signed_state": "EXPERT_SIGNED",
+    "accepted_citations": 23,
+    "flagged_citations": 1,
+    "dossiers_matching_gold": 4,
+    "per_dossier": [
+      {
+        "dossier_id": "plan-reference-strain",
+        "consistent": true,
+        "conflicts": [],
+        "gaps": [
+          "no_T1_record"
+        ],
+        "tier_distribution": {
+          "T1_WET_LAB_ASSAY": 0,
+          "T2_SURVEILLANCE": 2,
+          "T3_PEER_REVIEWED_LIT": 5,
+          "T4_COMPUTATIONAL": 0
+        },
+        "source_types_present": [
+          "NCBI_NUCCORE",
+          "PUBMED_LITERATURE",
+          "UNIPROT_RECORD"
+        ],
+        "gap_count": 1,
+        "conflict_match": true,
+        "gap_match": true,
+        "consistent_match": true
+      },
+      {
+        "dossier_id": "plan-consensus-literature",
+        "consistent": false,
+        "conflicts": [
+          [
+            "PMID:26912624",
+            "PMID:38819164"
+          ]
+        ],
+        "gaps": [
+          "version_mismatch",
+          "dossier_review_open",
+          "source_review_open",
+          "no_T1_record",
+          "no_T2_record"
+        ],
+        "tier_distribution": {
+          "T1_WET_LAB_ASSAY": 0,
+          "T2_SURVEILLANCE": 0,
+          "T3_PEER_REVIEWED_LIT": 3,
+          "T4_COMPUTATIONAL": 0
+        },
+        "source_types_present": [
+          "PUBMED_LITERATURE"
+        ],
+        "gap_count": 5,
+        "conflict_match": true,
+        "gap_match": true,
+        "consistent_match": true
+      },
+      {
+        "dossier_id": "plan-head-glycosylation",
+        "consistent": true,
+        "conflicts": [],
+        "gaps": [
+          "no_T1_record",
+          "no_T2_record"
+        ],
+        "tier_distribution": {
+          "T1_WET_LAB_ASSAY": 0,
+          "T2_SURVEILLANCE": 0,
+          "T3_PEER_REVIEWED_LIT": 3,
+          "T4_COMPUTATIONAL": 0
+        },
+        "source_types_present": [
+          "PUBMED_LITERATURE"
+        ],
+        "gap_count": 2,
+        "conflict_match": true,
+        "gap_match": true,
+        "consistent_match": true
+      },
+      {
+        "dossier_id": "plan-conserved-stem",
+        "consistent": false,
+        "conflicts": [],
+        "gaps": [
+          "version_mismatch",
+          "no_T2_record"
+        ],
+        "tier_distribution": {
+          "T1_WET_LAB_ASSAY": 6,
+          "T2_SURVEILLANCE": 0,
+          "T3_PEER_REVIEWED_LIT": 5,
+          "T4_COMPUTATIONAL": 0
+        },
+        "source_types_present": [
+          "IEDB_EPITOPE",
+          "PDB_STRUCTURE",
+          "PUBMED_LITERATURE"
+        ],
+        "gap_count": 2,
+        "conflict_match": true,
+        "gap_match": true,
+        "consistent_match": true
+      }
+    ],
+    "note": "冲突标记只识别档案注释中的公开 ID 交叉引用。空白是缺等级、版本不一致或审阅未关闭。不是生物学性能，也不是实验清单。"
+  },
+  "citations": {
+    "accepted_matching_lock": 59,
+    "accepted_total": 59,
+    "accuracy_among_accepted": 1.0,
+    "note": "准确率只统计已经通过原文与版本锁的语句。被拒绝的草稿另行计数，不记为正确引用。"
+  },
+  "no_retrieval_baseline": {
+    "submitted": 3,
+    "accepted_statements": 0,
+    "rejected": {
+      "outside_selection": 2,
+      "nonverbatim": 1,
+      "effect_promise": 0
+    },
+    "note": "不读取快照原文的离线草稿，仅用于对照幻觉拦截。"
+  },
+  "compliance_gate": {
+    "stored_snippets": 24,
+    "stored_snippets_matching_effect_promise": 0,
+    "accepted_statements_matching_effect_promise": 0,
+    "probe_submitted": 1,
+    "probe_effect_promise_rejected": 1,
+    "probe_accepted": 0
+  },
+  "manual_sop_baseline": "未测",
+  "declined": [
+    "GISAID sequences and counts",
+    "Nextstrain clade-frequency tables",
+    "Bloom Lab deep-mutational-scan escape or fitness scores",
+    "nucleotide sequences and designed amino-acid constructs",
+    "wet-lab protocols and experimental recipes",
+    "new immunogenicity, protection, or clinical scores",
+    "timed human SOP (left as 未测)"
+  ]
+}

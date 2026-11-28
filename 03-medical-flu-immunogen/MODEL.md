@@ -27,3 +27,5 @@ python -m pytest -q
 验证器对四个权重文件逐项核对哈希和大小，检查 ONNX 结构，并在同一批合成留出样本上对照 PyTorch／ONNX 的 logits 与分类结果。CPU 耗时为模型单样本的热运行中位数；软件评测单独统计本地 TestClient 延迟。评测和测试会阻断外部连接与 DNS，允许 Windows asyncio 本地回环。
 
 [合成模型测试指标](weights/manifest.json) 中重排器的 NDCG@3 为约 0.969，同时二分类诊断漏掉了全部留出正类，故使用排序概率，不使用二分类阈值做准入。NLI 三类的合成样本宏平均 F1 为 1.000，样例规则简单，不能据此推定真实自由文本泛化。 [端到端软件指标](benchmarks/software_evaluation.json) 和 [数值一致性报告](weights/verification.json) 分开记录。人工 SOP 基线未测，软件指标用于核验资料审阅流程。
+
+FluEvidenceBench-v1 的测得结果写在 [data/FluEvidenceBench-v1/eval](data/FluEvidenceBench-v1/eval)。那是封闭题集上的召回、引用版本核验、冲突/空白标记、延迟和合规探针，不是赛题目标值，也不含人工 SOP 计时。`manual_sop_baseline` 保持「未测」。

@@ -14,6 +14,30 @@ EvidenceKey = tuple[str, str]
 Identifier = Annotated[str, StringConstraints(pattern=r"^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$")]
 SHA256 = Annotated[str, StringConstraints(pattern=r"^[a-f0-9]{64}$")]
 SCOPE = "methods-and-records-governance"
+# Public-database anchors added for FluEvidenceBench. Existing PubMed and synthetic rules stay intact.
+DATABASE_ANCHORS = (
+    ("PDB_STRUCTURE", re.compile(r"PDB:([0-9][A-Z0-9]{3})"), "https://www.rcsb.org/structure/{}/"),
+    ("IEDB_EPITOPE", re.compile(r"IEDB:([1-9][0-9]{1,11})"), "https://www.iedb.org/epitope/{}/"),
+    ("NCBI_NUCCORE", re.compile(r"Accession:([A-Z]{1,2}[0-9]{5,8}(?:\.[0-9]+)?)"),
+     "https://www.ncbi.nlm.nih.gov/nuccore/{}/"),
+    ("UNIPROT_RECORD", re.compile(r"UniProt:([OPQ][0-9][A-Z0-9]{3}[0-9])"),
+     "https://www.uniprot.org/uniprotkb/{}/"),
+)
+
+
+def database_source_type(primary_ref: str) -> str | None:
+    for source_type, pattern, _template in DATABASE_ANCHORS:
+        if pattern.fullmatch(primary_ref):
+            return source_type
+    return None
+
+
+def database_source_url(primary_ref: str) -> str | None:
+    for _source_type, pattern, template in DATABASE_ANCHORS:
+        match = pattern.fullmatch(primary_ref)
+        if match:
+            return template.format(match.group(1))
+    return None
 
 
 def digest(data: bytes) -> str:
@@ -73,7 +97,7 @@ class ApprovedEntry(BaseModel):
     title: str = Field(min_length=1)
     primary_ref: str
     source_url: str | None = None
-    nature: Literal["public_methods", "synthetic"]
+    nature: Literal["public_methods", "synthetic", "public_database"]
     approval: Literal["approved"]
     review_status: Literal["pending", "accepted", "flagged", "rejected"]
     topics: tuple[str, ...] = Field(min_length=1)
@@ -90,8 +114,13 @@ class ApprovedEntry(BaseModel):
             match = re.fullmatch(r"PMID:([1-9][0-9]{0,11})", self.primary_ref)
             if not match or self.source_url != f"https://pubmed.ncbi.nlm.nih.gov/{match[1]}/":
                 raise ValueError("invalid curated PubMed anchor")
-        elif not re.fullmatch(r"SYNTHETIC:[a-z0-9][a-z0-9-]*", self.primary_ref) or self.source_url:
-            raise ValueError("synthetic entries require a synthetic anchor and no source URL")
+        elif self.nature == "synthetic":
+            if not re.fullmatch(r"SYNTHETIC:[a-z0-9][a-z0-9-]*", self.primary_ref) or self.source_url:
+                raise ValueError("synthetic entries require a synthetic anchor and no source URL")
+        else:
+            source_type = database_source_type(self.primary_ref)
+            if source_type is None or self.source_url != database_source_url(self.primary_ref):
+                raise ValueError("invalid public database anchor")
         return self
 
 
@@ -164,6 +193,8 @@ class Snapshot:
                     raise ValueError("synthetic source type mismatch")
                 if entry.nature == "public_methods" and record.source_type != "PUBMED_LITERATURE":
                     raise ValueError("approved PubMed source type mismatch")
+                if entry.nature == "public_database" and record.source_type != database_source_type(record.primary_ref):
+                    raise ValueError("public database source type mismatch")
                 records[record.key] = record
         if records.keys() != expected.keys():
             raise ValueError("incomplete snapshot")

@@ -113,3 +113,9 @@ def create_app(snapshot: Snapshot, client: BaseLLMClient | None = None,
 
 def demo_app():
     return create_app(Snapshot(FIXTURES / "methods.jsonl", FIXTURES / "release.lock.json"))
+
+
+def flu_app():
+    """Serve the curator-locked FluEvidenceBench-v1 snapshot. Requests cannot switch snapshots."""
+    root = Path(__file__).parent / "data" / "FluEvidenceBench-v1"
+    return create_app(Snapshot(root / "jsonl", root / "release.lock.json"))

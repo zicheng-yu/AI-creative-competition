@@ -1,0 +1,167 @@
+{
+  "dataset_version": "fluevidence-v1.1",
+  "questions": [
+    {
+      "query": "PMID:19465683 的公开题名对应哪一条参考株文献？",
+      "required": [
+        "EV-REF-GARTEN"
+      ]
+    },
+    {
+      "query": "Glycans on influenza hemagglutinin affect receptor binding and immune response 是哪一条已发表题名？ PMID:19822741",
+      "required": [
+        "EV-GLY-WANG"
+      ]
+    },
+    {
+      "query": "H1N1 共识序列文献 PMID:26912624 与其更正通知 PMID:38819164 分别是哪两条记录？",
+      "required": [
+        "EV-CONS-CARTER",
+        "EV-CONS-CARTER-CORR"
+      ]
+    },
+    {
+      "query": "RCSB 登录 PDB:3GBN 与 PDB:5C0S 分别对应哪两条结构记录？",
+      "required": [
+        "EV-PDB-3GBN",
+        "EV-PDB-5C0S"
+      ]
+    },
+    {
+      "query": "NCBI Accession:CY121680.1 的血凝素定义行是什么？",
+      "required": [
+        "EV-ACC-CA07"
+      ]
+    },
+    {
+      "query": "Stalking influenza by vaccination with pre-fusion headless HA mini-stem 这条已发表题名在库中吗？",
+      "required": [
+        "EV-STEM-HEADLESS"
+      ]
+    },
+    {
+      "query": "IEDB:570 与 IEDB:226309 的表位摘要原文是什么？",
+      "required": [
+        "EV-IEDB-570",
+        "EV-IEDB-226309"
+      ]
+    }
+  ],
+  "dossiers": [
+    {
+      "dossier_id": "plan-reference-strain",
+      "label": "参考株文献与登录号",
+      "version": "fluevidence-v1",
+      "source_ref": "PMID:19465683",
+      "review_status": "accepted",
+      "annotation": "已发表参考株文献与公共登录号元数据。不含序列，不含新的生物学评分。",
+      "citations": [
+        "EV-REF-GARTEN",
+        "EV-REF-SMITH",
+        "EV-REF-PETROVA",
+        "EV-REF-CALHA",
+        "EV-ACC-CA07",
+        "EV-ACC-HK68",
+        "EV-UP-P03452"
+      ]
+    },
+    {
+      "dossier_id": "plan-consensus-literature",
+      "label": "共识序列文献",
+      "version": "fluevidence-v1",
+      "source_ref": "PMID:21320540",
+      "review_status": "flagged",
+      "annotation": "已发表共识序列文献与一条更正通知。不保存共识序列，不计算新分数。",
+      "citations": [
+        "EV-CONS-GILES",
+        "EV-CONS-CARTER",
+        "EV-CONS-CARTER-CORR"
+      ]
+    },
+    {
+      "dossier_id": "plan-head-glycosylation",
+      "label": "头部糖基化文献",
+      "version": "fluevidence-v1",
+      "source_ref": "PMID:19822741",
+      "review_status": "accepted",
+      "annotation": "已发表糖基化文献题名。不是糖基化位点改造，也不是实验步骤清单。",
+      "citations": [
+        "EV-GLY-WANG",
+        "EV-GLY-TATE",
+        "EV-GLY-ADD"
+      ]
+    },
+    {
+      "dossier_id": "plan-conserved-stem",
+      "label": "保守茎部文献与结构登录",
+      "version": "fluevidence-v1.1",
+      "source_ref": "PDB:5C0S",
+      "review_status": "accepted",
+      "annotation": "已发表茎部文献、RCSB 结构登录和 IEDB 摘要。不保存构建体序列。",
+      "citations": [
+        "EV-STEM-IMP",
+        "EV-STEM-YASSINE",
+        "EV-STEM-EKIERT",
+        "EV-STEM-HEADLESS",
+        "EV-STEM-STALK",
+        "EV-PDB-3GBN",
+        "EV-PDB-3GBM",
+        "EV-PDB-5C0S",
+        "EV-PDB-5C0R",
+        "EV-IEDB-570",
+        "EV-IEDB-226309"
+      ]
+    }
+  ],
+  "gold": {
+    "plan-reference-strain": {
+      "conflicts": [],
+      "gaps": [
+        "no_T1_record"
+      ],
+      "consistent": true
+    },
+    "plan-consensus-literature": {
+      "conflicts": [
+        [
+          "PMID:26912624",
+          "PMID:38819164"
+        ]
+      ],
+      "gaps": [
+        "version_mismatch",
+        "dossier_review_open",
+        "source_review_open",
+        "no_T1_record",
+        "no_T2_record"
+      ],
+      "consistent": false
+    },
+    "plan-head-glycosylation": {
+      "conflicts": [],
+      "gaps": [
+        "no_T1_record",
+        "no_T2_record"
+      ],
+      "consistent": true
+    },
+    "plan-conserved-stem": {
+      "conflicts": [],
+      "gaps": [
+        "version_mismatch",
+        "no_T2_record"
+      ],
+      "consistent": false
+    }
+  },
+  "declined": [
+    "GISAID sequences and counts",
+    "Nextstrain clade-frequency tables",
+    "Bloom Lab deep-mutational-scan escape or fitness scores",
+    "nucleotide sequences and designed amino-acid constructs",
+    "wet-lab protocols and experimental recipes",
+    "new immunogenicity, protection, or clinical scores",
+    "timed human SOP (left as 未测)"
+  ],
+  "manual_sop_baseline": "未测"
+}

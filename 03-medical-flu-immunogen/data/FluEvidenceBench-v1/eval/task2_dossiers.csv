@@ -1,0 +1,5 @@
+dossier_id,consistent,gap_count,gaps,conflicts,gap_match,conflict_match,consistent_match
+plan-reference-strain,True,1,no_T1_record,,True,True,True
+plan-consensus-literature,False,5,version_mismatch dossier_review_open source_review_open no_T1_record no_T2_record,PMID:26912624 PMID:38819164,True,True,True
+plan-head-glycosylation,True,2,no_T1_record no_T2_record,,True,True,True
+plan-conserved-stem,False,2,version_mismatch no_T2_record,,True,True,True

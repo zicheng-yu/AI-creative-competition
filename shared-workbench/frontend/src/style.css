@@ -72,6 +72,10 @@ button, a, select, summary, input { -webkit-tap-highlight-color: transparent; }
 .workspace-nav button span { font-weight: 650; font-size: 15px; }
 .workspace-nav button small { color: #b5c6d2; font-size: 12px; }
 .workspace-nav button[aria-current="page"] { background: #263e52; border-color: #496478; box-shadow: inset 3px 0 #87bdcc; }
+.rail-entry { display: grid; gap: 6px; padding: 12px; color: #e1ebf2; text-decoration: none; border-radius: 5px; }
+.rail-entry:hover { background: #243d50; }
+.rail-entry span { font-weight: 650; }
+.rail-entry small { color: #b5c6d2; }
 .theme-button { margin-top: auto; border-top-color: var(--rail-rule); color: #bfd0dc; border-radius: 0; }
 .rail :focus-visible { outline-color: #f3bd91; }
 

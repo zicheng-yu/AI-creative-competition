@@ -1,0 +1,418 @@
+{
+  "tenant_id": "demo",
+  "scope": "methods-and-records-governance",
+  "records": [
+    {
+      "evidence_id": "EV-REF-GARTEN",
+      "dataset_version": "fluevidence-v1",
+      "record_sha256": "422f9a723d2914a56a8f020674688ec2822bd95c407005ae274d8bf471a9b364",
+      "title": "Antigenic and genetic characteristics of swine-origin 2009 A(H1N1) influenza viruses circulating in humans.",
+      "primary_ref": "PMID:19465683",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/19465683/",
+      "nature": "public_methods",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "reference-strain",
+        "h1n1pdm09"
+      ],
+      "published_on": "2009-07-10",
+      "archive_note": "NCBI esummary pubdate 2009 Jul 10. Title citation only."
+    },
+    {
+      "evidence_id": "EV-REF-SMITH",
+      "dataset_version": "fluevidence-v1",
+      "record_sha256": "e5397a44b730e6c44d7b4ed8a0d34d5d870c15960aa9c3cc92523fa727bc22bc",
+      "title": "Mapping the antigenic and genetic evolution of influenza virus.",
+      "primary_ref": "PMID:15218094",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/15218094/",
+      "nature": "public_methods",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "reference-strain",
+        "published-table"
+      ],
+      "published_on": "2004-07-16",
+      "archive_note": "Cited as a published article title. This snapshot does not recompute an antigenic map or an evolutionary model."
+    },
+    {
+      "evidence_id": "EV-REF-PETROVA",
+      "dataset_version": "fluevidence-v1",
+      "record_sha256": "d1a73237a9a5ced72ecf19a42205722c49a7f5fd22e3be7481f1833804d8151d",
+      "title": "The evolution of seasonal influenza viruses.",
+      "primary_ref": "PMID:29081496",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/29081496/",
+      "nature": "public_methods",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "reference-strain"
+      ],
+      "published_on": null,
+      "archive_note": "NCBI esummary pubdate is 2018 Jan (month precision). Title citation only."
+    },
+    {
+      "evidence_id": "EV-REF-CALHA",
+      "dataset_version": "fluevidence-v1",
+      "record_sha256": "a28674affe9a714834c39c9bc09f6c0707183f5f10e90f836e8ed80062320d6d",
+      "title": "Pandemic influenza vaccine: characterization of A/California/07/2009 (H1N1) recombinant hemagglutinin protein and insights into H1N1 antigen stability.",
+      "primary_ref": "PMID:23110350",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/23110350/",
+      "nature": "public_methods",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "reference-strain",
+        "h1n1pdm09"
+      ],
+      "published_on": "2012-10-30",
+      "archive_note": "NCBI esummary pubdate 2012 Oct 30. Title citation only."
+    },
+    {
+      "evidence_id": "EV-CONS-GILES",
+      "dataset_version": "fluevidence-v1",
+      "record_sha256": "615b40e673108d36d1718fdcce18b4a16e2d344a9466d9da5e0c94c212e95e89",
+      "title": "A computationally optimized broadly reactive antigen (COBRA) based H5N1 VLP vaccine elicits broadly reactive antibodies in mice and ferrets.",
+      "primary_ref": "PMID:21320540",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/21320540/",
+      "nature": "public_methods",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "consensus-sequence",
+        "h5n1"
+      ],
+      "published_on": "2011-04-05",
+      "archive_note": "Title citation only. No consensus sequence, alignment, or computed score is stored."
+    },
+    {
+      "evidence_id": "EV-CONS-CARTER",
+      "dataset_version": "fluevidence-v1",
+      "record_sha256": "0e891c59737e1eafde074bbcd9d270b7001765513e10e621367ec593b901d799",
+      "title": "Design and Characterization of a Computationally Optimized Broadly Reactive Hemagglutinin Vaccine for H1N1 Influenza Viruses.",
+      "primary_ref": "PMID:26912624",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/26912624/",
+      "nature": "public_methods",
+      "approval": "approved",
+      "review_status": "flagged",
+      "topics": [
+        "consensus-sequence",
+        "h1n1"
+      ],
+      "published_on": null,
+      "archive_note": "PubMed pubdate is 2016 May (month precision). A later PubMed record PMID:38819164 is titled as a correction to this article. This capsule stores the original title only and does not restate correction details."
+    },
+    {
+      "evidence_id": "EV-CONS-CARTER-CORR",
+      "dataset_version": "fluevidence-v1.1",
+      "record_sha256": "82b028a2167f165174307903acb307cdfba3f5efadecdcfa803389854e492af6",
+      "title": "Correction for Carter et al., \"Design and Characterization of a Computationally Optimized Broadly Reactive Hemagglutinin Vaccine for H1N1 Influenza Viruses\".",
+      "primary_ref": "PMID:38819164",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/38819164/",
+      "nature": "public_methods",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "consensus-sequence",
+        "h1n1"
+      ],
+      "published_on": "2024-07-23",
+      "archive_note": "PubMed lists this item as a correction to PMID:26912624. The abstract field was empty in the 2026-11-28 efetch. This capsule stores the correction title only."
+    },
+    {
+      "evidence_id": "EV-GLY-WANG",
+      "dataset_version": "fluevidence-v1",
+      "record_sha256": "df8fe48a4da0f49258a3d2ef4f7e905ccab31b6c47f8b9c7829fe3243ced9cf2",
+      "title": "Glycans on influenza hemagglutinin affect receptor binding and immune response.",
+      "primary_ref": "PMID:19822741",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/19822741/",
+      "nature": "public_methods",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "head-glycosylation"
+      ],
+      "published_on": "2009-10-27",
+      "archive_note": "Title citation only. No glycosylation-site edit, glycan recipe, or binding energy is stored."
+    },
+    {
+      "evidence_id": "EV-GLY-TATE",
+      "dataset_version": "fluevidence-v1",
+      "record_sha256": "28e65c54ba3b1d73acfc59b6d4db7fc34a70906bb78992bcbbfe4473eb48a56c",
+      "title": "Playing hide and seek: how glycosylation of the influenza virus hemagglutinin can modulate the immune response to infection.",
+      "primary_ref": "PMID:24638204",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/24638204/",
+      "nature": "public_methods",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "head-glycosylation"
+      ],
+      "published_on": "2014-03-14",
+      "archive_note": "NCBI esummary pubdate 2014 Mar 14. Title citation only."
+    },
+    {
+      "evidence_id": "EV-GLY-ADD",
+      "dataset_version": "fluevidence-v1",
+      "record_sha256": "006bdb8bdd099e5d51292ef2df0d006843a8445a7bdafa27a6df5bd9a2c0fb74",
+      "title": "Addition of glycosylation to influenza A virus hemagglutinin modulates antibody-mediated recognition of H1N1 2009 pandemic viruses.",
+      "primary_ref": "PMID:23365085",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/23365085/",
+      "nature": "public_methods",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "head-glycosylation",
+        "h1n1pdm09"
+      ],
+      "published_on": "2013-03-01",
+      "archive_note": "NCBI esummary pubdate 2013 Mar 1. Title citation only."
+    },
+    {
+      "evidence_id": "EV-STEM-IMP",
+      "dataset_version": "fluevidence-v1",
+      "record_sha256": "92c596bfd8a229e973a9021b50d91a2c1bef465e131d70fe03d441aecdc3a032",
+      "title": "A stable trimeric influenza hemagglutinin stem as a broadly protective immunogen.",
+      "primary_ref": "PMID:26303961",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/26303961/",
+      "nature": "public_methods",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "conserved-stem"
+      ],
+      "published_on": "2015-09-18",
+      "archive_note": "NCBI esummary pubdate 2015 Sep 18. The title is quoted verbatim and is not an efficacy conclusion of this prototype."
+    },
+    {
+      "evidence_id": "EV-STEM-YASSINE",
+      "dataset_version": "fluevidence-v1",
+      "record_sha256": "8de96f6c1d7c78c1e186d308338973674367df79855456422d10908272633da1",
+      "title": "Hemagglutinin-stem nanoparticles generate heterosubtypic influenza protection.",
+      "primary_ref": "PMID:26301691",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/26301691/",
+      "nature": "public_methods",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "conserved-stem"
+      ],
+      "published_on": null,
+      "archive_note": "NCBI esummary pubdate is 2015 Sep (month precision). The title is stored verbatim and is not an efficacy conclusion of this prototype."
+    },
+    {
+      "evidence_id": "EV-STEM-EKIERT",
+      "dataset_version": "fluevidence-v1",
+      "record_sha256": "efa09736c9af7fffe76ffcdbda61188f2e4c95b18c7674a4e09ef90a755bf47b",
+      "title": "Antibody recognition of a highly conserved influenza virus epitope.",
+      "primary_ref": "PMID:19251591",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/19251591/",
+      "nature": "public_methods",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "conserved-stem"
+      ],
+      "published_on": "2009-04-10",
+      "archive_note": "NCBI esummary pubdate 2009 Apr 10. Title citation only."
+    },
+    {
+      "evidence_id": "EV-STEM-HEADLESS",
+      "dataset_version": "fluevidence-v1",
+      "record_sha256": "6a82e6d1362f2ba82e66019ad4a72b9fd3df307c1a0e85c8d0b19e81f79e4280",
+      "title": "Stalking influenza by vaccination with pre-fusion headless HA mini-stem.",
+      "primary_ref": "PMID:26947245",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/26947245/",
+      "nature": "public_methods",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "conserved-stem"
+      ],
+      "published_on": "2016-03-07",
+      "archive_note": "NCBI esummary pubdate 2016 Mar 7. Title citation only. No construct sequence is stored."
+    },
+    {
+      "evidence_id": "EV-STEM-STALK",
+      "dataset_version": "fluevidence-v1",
+      "record_sha256": "58846e721451afbf9c38efe6066ffa8d30688fe902c478e730b007cfccc19e13",
+      "title": "Induction of broadly reactive anti-hemagglutinin stalk antibodies by an H5N1 vaccine in humans.",
+      "primary_ref": "PMID:25210189",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/25210189/",
+      "nature": "public_methods",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "conserved-stem",
+        "h5n1"
+      ],
+      "published_on": null,
+      "archive_note": "NCBI esummary pubdate is 2014 Nov (month precision). Title citation only."
+    },
+    {
+      "evidence_id": "EV-ACC-CA07",
+      "dataset_version": "fluevidence-v1",
+      "record_sha256": "5825fb5d366b09882de8fec63a79a9cf31a56a29824695736d290debe5c31e07",
+      "title": "Influenza A virus (A/California/07/2009(H1N1)) hemagglutinin (HA) gene, complete cds",
+      "primary_ref": "Accession:CY121680.1",
+      "source_url": "https://www.ncbi.nlm.nih.gov/nuccore/CY121680.1/",
+      "nature": "public_database",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "reference-strain",
+        "h1n1pdm09"
+      ],
+      "published_on": null,
+      "archive_note": "NCBI nuccore createdate and updatedate 2012/06/20; slen 1752. The nucleotide sequence is not stored."
+    },
+    {
+      "evidence_id": "EV-ACC-HK68",
+      "dataset_version": "fluevidence-v1",
+      "record_sha256": "b31c3fbabc19d9262b6add69dd5fb0ff23c66f13298aa20a6089ea1126e33670",
+      "title": "Influenza A virus (A/Hong Kong/1/68(H3N2)) hemagglutinin gene, complete cds",
+      "primary_ref": "Accession:AF348176.1",
+      "source_url": "https://www.ncbi.nlm.nih.gov/nuccore/AF348176.1/",
+      "nature": "public_database",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "reference-strain",
+        "h3n2"
+      ],
+      "published_on": null,
+      "archive_note": "NCBI nuccore createdate 2001/05/09; updatedate 2001/06/07; slen 1736. The nucleotide sequence is not stored."
+    },
+    {
+      "evidence_id": "EV-PDB-3GBN",
+      "dataset_version": "fluevidence-v1",
+      "record_sha256": "d7ca1e487ee51e8c7fad0f81ec964dbe9c204a487cb5a744d746ddf851851089",
+      "title": "Crystal Structure of Fab CR6261 in Complex with the 1918 H1N1 influenza virus hemagglutinin",
+      "primary_ref": "PDB:3GBN",
+      "source_url": "https://www.rcsb.org/structure/3GBN/",
+      "nature": "public_database",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "conserved-stem",
+        "structure-deposit"
+      ],
+      "published_on": "2009-03-10",
+      "archive_note": "RCSB initial_release_date 2009-03-10; method X-RAY DIFFRACTION. Resolution is omitted; it is not a performance score."
+    },
+    {
+      "evidence_id": "EV-PDB-3GBM",
+      "dataset_version": "fluevidence-v1",
+      "record_sha256": "6458c61d631da6094c4191713568baa12e55d0e8339a8f7de2e9ee4f0f12faf0",
+      "title": "Crystal Structure of Fab CR6261 in Complex with a H5N1 influenza virus hemagglutinin.",
+      "primary_ref": "PDB:3GBM",
+      "source_url": "https://www.rcsb.org/structure/3GBM/",
+      "nature": "public_database",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "conserved-stem",
+        "structure-deposit"
+      ],
+      "published_on": "2009-03-10",
+      "archive_note": "RCSB initial_release_date 2009-03-10; method X-RAY DIFFRACTION. Deposit title includes the trailing period."
+    },
+    {
+      "evidence_id": "EV-PDB-5C0S",
+      "dataset_version": "fluevidence-v1.1",
+      "record_sha256": "7e64349018fdbc5c74f8562057b22701b25fbf06531ff5fb8ad713a63e5261cc",
+      "title": "Crystal structure of a generation 4 influenza hemagglutinin stabilized stem in complex with the broadly neutralizing antibody CR6261",
+      "primary_ref": "PDB:5C0S",
+      "source_url": "https://www.rcsb.org/structure/5C0S/",
+      "nature": "public_database",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "conserved-stem",
+        "structure-deposit"
+      ],
+      "published_on": "2015-09-02",
+      "archive_note": "RCSB initial_release_date 2015-09-02; method X-RAY DIFFRACTION. No designed sequence is stored."
+    },
+    {
+      "evidence_id": "EV-PDB-5C0R",
+      "dataset_version": "fluevidence-v1.1",
+      "record_sha256": "c0049e47471de5c067c3a227a822403de07278eb24673c37aad499b6d49a970e",
+      "title": "Crystal Structure of a Generation 3 Influenza Hemagglutinin Stabilized Stem Complexed with the Broadly Neutralizing Antibody C179",
+      "primary_ref": "PDB:5C0R",
+      "source_url": "https://www.rcsb.org/structure/5C0R/",
+      "nature": "public_database",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "conserved-stem",
+        "structure-deposit"
+      ],
+      "published_on": "2015-09-02",
+      "archive_note": "RCSB initial_release_date 2015-09-02; method X-RAY DIFFRACTION."
+    },
+    {
+      "evidence_id": "EV-IEDB-570",
+      "dataset_version": "fluevidence-v1",
+      "record_sha256": "c8bffbf0135fee9dd2a15a890b13e74bf0329f19b2fa50a0bc2952fac7d5d810",
+      "title": "ACKRGPGSGFFSRLN is a linear peptidic epitope (epitope ID 570) studied as part of Hemagglutinin (UniProt:P03452) from Influenza A virus.  This epitope has been studied for immune reactivity in 2 publication(s), tested in 4 T cell assays and 7 B cell assays.",
+      "primary_ref": "IEDB:570",
+      "source_url": "https://www.iedb.org/epitope/570/",
+      "nature": "public_database",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "hemagglutinin",
+        "iedb-epitope"
+      ],
+      "published_on": null,
+      "archive_note": "Verbatim epitope_summary from query-api.iedb.org on 2026-11-28. The peptide text is the database summary, not a construct designed here. Assay steps are not stored."
+    },
+    {
+      "evidence_id": "EV-IEDB-226309",
+      "dataset_version": "fluevidence-v1",
+      "record_sha256": "5ffbdecee182315e674b77cdecf702193391f1087b387f4cafcc28aa644936be",
+      "title": "A: H25, H45, V46, N47, L496, S306, L307, P308, T333; B: D363, G364, W365, Q382, T385, Q386, I389, D390, T393, V396, N397, I400; is a discontinuous epitope (epitope ID 226309) studied as part of Two components:Hemagglutinin (UniProt:P03452) & Hemagglutinin (UniProt:P03452) from Influenza A virus.  This epitope has been studied for immune reactivity in 4 publication(s), tested in 12 B cell assays and has 3D structure(s) 3gbn.",
+      "primary_ref": "IEDB:226309",
+      "source_url": "https://www.iedb.org/epitope/226309/",
+      "nature": "public_database",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "conserved-stem",
+        "iedb-epitope"
+      ],
+      "published_on": null,
+      "archive_note": "Verbatim epitope_summary from query-api.iedb.org on 2026-11-28. Residue tokens are the IEDB summary, not a site-engineering instruction."
+    },
+    {
+      "evidence_id": "EV-UP-P03452",
+      "dataset_version": "fluevidence-v1",
+      "record_sha256": "5ac6c425603d9327385d19937d38dcfebd64c46ee119cb3e9a3adcf2b3df8e0a",
+      "title": ">sp|P03452|HEMA_I34A1 Hemagglutinin OS=Influenza A virus (strain A/Puerto Rico/8/1934 H1N1) OX=211044 GN=HA PE=1 SV=2",
+      "primary_ref": "UniProt:P03452",
+      "source_url": "https://www.uniprot.org/uniprotkb/P03452/",
+      "nature": "public_database",
+      "approval": "approved",
+      "review_status": "accepted",
+      "topics": [
+        "reference-strain",
+        "hemagglutinin"
+      ],
+      "published_on": null,
+      "archive_note": "First line of the UniProt FASTA retrieved 2026-11-28. The amino-acid sequence is not stored. Tier T3 marks a curated reference entry, not a journal article and not a new computation."
+    }
+  ],
+  "releases": [
+    {
+      "dataset_version": "fluevidence-v1",
+      "released_at": "2026-11-28T06:30:00+08:00"
+    },
+    {
+      "dataset_version": "fluevidence-v1.1",
+      "released_at": "2026-11-28T09:30:00+08:00",
+      "previous_version": "fluevidence-v1"
+    }
+  ]
+}
